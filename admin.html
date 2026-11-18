@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artist Visuals — Panou Administrator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #07070a;
+      --bg-card: #0e0e14;
+      --bg-surface: #14141e;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(230, 0, 38, 0.6);
+      --accent-red: #e60026;
+      --accent-glow: rgba(230, 0, 38, 0.35);
+      --accent-green: #00d26a;
+      --text: #f0f0f5;
+      --text-muted: #8a8a99;
+      --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Syne', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-dark);
+      color: var(--text);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* Ambient background */
+    .bg-glow {
+      position: fixed;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(230, 0, 38, 0.15) 0%, transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Login Screen */
+    .login-container {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(7, 7, 10, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 20px;
+    }
+    .login-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(230, 0, 38, 0.12);
+      text-align: center;
+      position: relative;
+    }
+    .login-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--accent-red);
+      background: rgba(230, 0, 38, 0.1);
+      border: 1px solid rgba(230, 0, 38, 0.25);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .login-title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .login-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .form-input {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .form-input:focus {
+      border-color: var(--accent-red);
+      box-shadow: 0 0 15px rgba(230, 0, 38, 0.3);
+    }
+    .btn-login {
+      width: 100%;
+      background: var(--accent-red);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(230, 0, 38, 0.4);
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+    .btn-login:hover {
+      background: #ff1a3d;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(230, 0, 38, 0.6);
+    }
+    .login-error {
+      color: #ff4757;
+      font-size: 0.85rem;
+      margin-top: 16px;
+      display: none;
+    }
+
+    /* Top Navigation */
+    .admin-nav {
+      position: sticky;
+      top: 0;
+      background: rgba(14, 14, 20, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+    .brand-title span { color: var(--accent-red); }
+    .brand-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: rgba(230, 0, 38, 0.15);
+      border: 1px solid rgba(230, 0, 38, 0.3);
+      color: #ff6b81;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-action {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-action:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .btn-save-all {
+      background: var(--accent-green);
+      border-color: var(--accent-green);
+      color: #000;
+      font-weight: 700;
+      box-shadow: 0 0 15px rgba(0, 210, 106, 0.35);
+    }
+    .btn-save-all:hover {
+      background: #00ea77;
+      transform: translateY(-1px);
+      box-shadow: 0 0 25px rgba(0, 210, 106, 0.5);
+    }
+
+    /* Main Content */
+    .admin-main {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(230, 0, 38, 0.12) 0%, rgba(14, 14, 20, 0.6) 100%);
+      border: 1px solid rgba(230, 0, 38, 0.25);
+      border-radius: 16px;
+      padding: 24px 30px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .hero-text h1 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+    .hero-text p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+    .quick-stats {
+      display: flex;
+      gap: 16px;
+    }
+    .stat-pill {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .stat-pill span { color: var(--accent-red); font-weight: 800; }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .project-card.modified {
+      border-color: var(--accent-red);
+      box-shadow: 0 0 25px rgba(230, 0, 38, 0.2);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+    .card-id-tag {
+      font-size: 0.75rem;
+      font-family: monospace;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .project-name-input {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 4px 6px;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+    .project-name-input:focus {
+      background: var(--bg-surface);
+      border-color: var(--accent-red);
+      outline: none;
+    }
+    .project-subtitle-input {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 2px 6px;
+      width: 100%;
+      margin-top: 4px;
+    }
+    .project-subtitle-input:focus {
+      background: var(--bg-surface);
+      border-color: var(--accent-red);
+      outline: none;
+    }
+
+    /* Media Edit Blocks */
+    .media-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .media-block {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+    .media-preview-box {
+      width: 100px;
+      height: 70px;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+    }
+    .media-preview-box img,
+    .media-preview-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .media-preview-box.square {
+      height: 100px;
+    }
+    .media-empty-tip {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 4px;
+    }
+
+    .media-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .media-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .media-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .media-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+    }
+    .badge-video { background: rgba(230, 0, 38, 0.2); color: #ff6b81; }
+    .badge-cover { background: rgba(0, 210, 106, 0.2); color: #00ea77; }
+    .badge-banner { background: rgba(74, 144, 226, 0.2); color: #70a1ff; }
+
+    .select-dropdown {
+      width: 100%;
+      background: #07070a;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+    }
+    .select-dropdown:focus {
+      border-color: var(--accent-red);
+    }
+    .custom-path-input {
+      width: 100%;
+      background: #07070a;
+      border: 1px solid var(--border);
+      color: #aaa;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-family: monospace;
+      outline: none;
+      margin-top: 4px;
+    }
+    .custom-path-input:focus {
+      border-color: var(--accent-red);
+      color: #fff;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #14141e;
+      border: 1px solid var(--accent-green);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 210, 106, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Modal for Export */
+    .export-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1500;
+    }
+    .export-modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+      width: 100%;
+      max-width: 700px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .export-textarea {
+      width: 100%;
+      height: 350px;
+      background: #07070a;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      color: #00d26a;
+      font-family: monospace;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      resize: vertical;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <!-- LOGIN OVERLAY -->
+  <div class="login-container" id="loginContainer">
+    <div class="login-card">
+      <span class="login-badge">ZONE PRIVÉE</span>
+      <h2 class="login-title">Artist Visuals</h2>
+      <p class="login-subtitle">Autentificare Panou Administrator</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="usernameInput">Utilizator</label>
+          <input type="text" class="form-input" id="usernameInput" placeholder="mikekr" required autofocus autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="passwordInput">Parolă</label>
+          <input type="password" class="form-input" id="passwordInput" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn-login">Intră în Panou →</button>
+        <p class="login-error" id="loginError">Utilizator sau parolă incorectă!</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOP NAV -->
+  <header class="admin-nav">
+    <div class="nav-brand">
+      <div class="brand-title">ARTIST <span>VISUALS</span></div>
+      <span class="brand-badge">ADMIN</span>
+    </div>
+
+    <div class="nav-actions">
+      <a href="index.html" target="_blank" class="btn-action">
+        <span>🌐 Vezi Site-ul</span>
+      </a>
+      <button class="btn-action btn-save-all" id="btnSaveAll">
+        <span>💾 Salvează Toate Modificările</span>
+      </button>
+      <button class="btn-action" id="btnExportJson">
+        <span>📋 Exportă JSON</span>
+      </button>
+      <button class="btn-action" id="btnResetDefaults" title="Resetează setările la cele din fișierul original">
+        <span>🔄 Resetează</span>
+      </button>
+      <button class="btn-action" id="btnLogout" title="Deconectare din cont">
+        <span>🚪 Ieșire</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN DASHBOARD -->
+  <main class="admin-main">
+    <div class="hero-banner">
+      <div class="hero-text">
+        <h1>Panou de Control Vizualuri & Media</h1>
+        <p>Aici poți schimba sau reasigna oricare Video 4K, Frame Poster, Copertă 3000px sau Banner pentru fiecare piesă în parte. Modificările se salvează instant pe site.</p>
+      </div>
+      <div class="quick-stats">
+        <div class="stat-pill">Proiecte: <span id="statCount">8</span></div>
+        <div class="stat-pill">Status: <span style="color:#00d26a;">● Live Sync</span></div>
+      </div>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Populated dynamically via JS -->
+    </div>
+  </main>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span id="toastIcon">✓</span>
+    <span id="toastMsg">Modificările au fost salvate cu succes!</span>
+  </div>
+
+  <!-- EXPORT MODAL -->
+  <div class="export-modal-backdrop" id="exportModal">
+    <div class="export-modal">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="font-family:var(--font-heading);">Configurație Proiecte (JSON)</h3>
+        <button id="btnCloseExport" class="btn-action" style="padding:4px 10px;">&times;</button>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted);">Poți copia această configurație pentru a o păstra sau a o trimite:</p>
+      <textarea class="export-textarea" id="exportText" readonly></textarea>
+      <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <button class="btn-action" id="btnCopyExport">📋 Copiază în Clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Security Credentials specified by user
+    const AUTH_USER = 'mikekr';
+    const AUTH_PASS = 'qweasd123';
+
+    // Available Media Assets in the Library
+    const MEDIA_LIBRARY = {
+      videos: [
+        { label: 'На красивом (1080p Master)', value: 'assets/videos/video_na_krasivom.mp4' },
+        { label: 'Si vis pacem Parabellum (1080p Master)', value: 'assets/videos/video_parabellum.mp4' },
+        { label: 'MISSYRIGHT — Young Queen (1080p Master)', value: 'assets/videos/video_young_queen.mp4' },
+        { label: 'CIORNIY — Iubirea e o boală grea (1080p Master)', value: 'assets/videos/video_ciorniy.mp4' },
+        { label: 'MOOSTAF — Отпускаю (1080p Master)', value: 'assets/videos/video_moostaf.mp4' },
+        { label: 'ORI BLAZE / Jenika — Când stelele respiră (1080p)', value: 'assets/videos/video_ori_blaze.mp4' },
+        { label: '[Fără Video — Doar Cover 3000px]', value: '' }
+      ],
+      posters: [
+        { label: 'Frame: На красивом HD', value: 'assets/videos/posters/video_na_krasivom_poster.jpg' },
+        { label: 'Frame: Si vis pacem Parabellum HD', value: 'assets/videos/posters/video_parabellum_poster.jpg' },
+        { label: 'Frame: MISSYRIGHT Young Queen HD', value: 'assets/videos/posters/video_young_queen_poster.jpg' },
+        { label: 'Frame: CIORNIY Iubirea e o boală grea HD', value: 'assets/videos/posters/video_ciorniy_poster.jpg' },
+        { label: 'Frame: MOOSTAF Отпускаю HD', value: 'assets/videos/posters/video_moostaf_poster.jpg' },
+        { label: 'Frame: ORI BLAZE Când stelele respiră HD', value: 'assets/videos/posters/video_ori_blaze_poster.jpg' },
+        { label: 'Frame: MISSYRIGHT Полюбила хулигана HD', value: 'assets/videos/posters/video_hooligan_poster.jpg' },
+        { label: 'Frame: Si vis pacem Сколько стоит боль HD', value: 'assets/videos/posters/video_skolko_stoit_poster.jpg' },
+        { label: 'Frame: MOOSTAF Новый день HD', value: 'assets/videos/posters/video_new_day_poster.jpg' },
+        { label: '[Fără Poster]', value: '' }
+      ],
+      covers: [
+        { label: 'Cover: Si vis pacem Parabellum (3000x3000px)', value: 'assets/covers/cover_parabellum.jpg' },
+        { label: 'Cover: IRAVELLE feat Andrei Green — На красивом', value: 'assets/covers/cover_na_krasivom.jpg' },
+        { label: 'Cover: Ribz ft Conway The Machine — Legend Like Kareem', value: 'assets/covers/cover_ribz.jpg' },
+        { label: 'Cover: Laureall — Pa Pa', value: 'assets/covers/cover_laureall.jpg' },
+        { label: 'Cover: CIORNIY — Iubirea e o boală grea', value: 'assets/covers/cover_ciorniy.jpg' },
+        { label: 'Cover: MISSYRIGHT — Young Queen', value: 'assets/covers/cover_young_queen.jpg' },
+        { label: 'Cover: JENIKA — Altcineva', value: 'assets/covers/cover_jenika.jpg' },
+        { label: 'Cover: SILVIKA — ZERO', value: 'assets/covers/cover_silvika.jpg' }
+      ],
+      banners: [
+        { label: 'Suite: IRAVELLE — На красивом (YT + Reels + VK)', value: 'assets/banners/banner_na_krasivom.jpg' },
+        { label: 'Suite: MOOSTAF — Отпускаю (YT + Reels + VK)', value: 'assets/banners/banner_moostaf.jpg' },
+        { label: 'Suite: CIORNIY — Iubirea e o boală grea (Reels + YT)', value: 'assets/banners/banner_ciorniy.jpg' },
+        { label: 'Suite: JENIKA — Altcineva (Reels + YT Cover)', value: 'assets/banners/banner_jenika.jpg' },
+        { label: '[Fără Pachet Bannere]', value: '' }
+      ]
+    };
+
+    // State
+    let workingProjects = {};
+
+    // Auth check
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem('av_admin_auth') === 'true' || localStorage.getItem('av_admin_auth') === 'true';
+      const loginOverlay = document.getElementById('loginContainer');
+      if (isAuth) {
+        loginOverlay.style.display = 'none';
+        initAdmin();
+      } else {
+        loginOverlay.style.display = 'flex';
+      }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const u = document.getElementById('usernameInput').value.trim();
+      const p = document.getElementById('passwordInput').value.trim();
+      const err = document.getElementById('loginError');
+
+      if (u === AUTH_USER && p === AUTH_PASS) {
+        sessionStorage.setItem('av_admin_auth', 'true');
+        localStorage.setItem('av_admin_auth', 'true');
+        document.getElementById('loginContainer').style.display = 'none';
+        initAdmin();
+      } else {
+        err.style.display = 'block';
+      }
+    });
+
+    document.getElementById('btnLogout').addEventListener('click', () => {
+      sessionStorage.removeItem('av_admin_auth');
+      localStorage.removeItem('av_admin_auth');
+      location.reload();
+    });
+
+    // Toast helper
+    function showToast(msg, isSuccess = true) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      const toastIcon = document.getElementById('toastIcon');
+      toastMsg.textContent = msg;
+      toastIcon.textContent = isSuccess ? '✓' : '⚠️';
+      toast.style.borderColor = isSuccess ? 'var(--accent-green)' : 'var(--accent-red)';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // Initialize Admin Dashboard
+    function initAdmin() {
+      // Load current projects from projectsData (app.js) + any local overrides
+      const saved = localStorage.getItem('artist_visuals_custom_projects');
+      if (saved) {
+        try {
+          workingProjects = JSON.parse(saved);
+        } catch(e) {
+          workingProjects = JSON.parse(JSON.stringify(projectsData));
+        }
+      } else {
+        workingProjects = JSON.parse(JSON.stringify(projectsData));
+      }
+
+      renderProjectsGrid();
+    }
+
+    function renderProjectsGrid() {
+      const grid = document.getElementById('projectsGrid');
+      grid.innerHTML = '';
+
+      // Only display the primary projects (exclude duplicated marquee video IDs if they mirror primary keys)
+      const primaryKeys = ['parabellum', 'na_krasivom', 'ciorniy', 'young_queen', 'jenika', 'ribz', 'laureall', 'silvika'];
+      const allKeys = Object.keys(workingProjects);
+      const displayKeys = primaryKeys.filter(k => allKeys.includes(k));
+      // Add any extra keys not in primary list
+      allKeys.forEach(k => {
+        if (!displayKeys.includes(k) && !k.endsWith('_video')) {
+          displayKeys.push(k);
+        }
+      });
+
+      document.getElementById('statCount').textContent = displayKeys.length;
+
+      displayKeys.forEach(key => {
+        const p = workingProjects[key];
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        card.id = 'card_' + key;
+
+        const titleVal = p.title && (p.title.ro || p.title.ru || p.title.en) ? (p.title.ro || p.title.ru || p.title.en) : key;
+        const subVal = p.subtitle && (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) ? (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) : '';
+
+        // Build Select Options Helper
+        const makeOptions = (items, currentVal) => {
+          let found = false;
+          let html = items.map(item => {
+            const isSel = item.value === currentVal;
+            if (isSel) found = true;
+            return '<option value="' + item.value + '" ' + (isSel ? 'selected' : '') + '>' + item.label + '</option>';
+          }).join('');
+
+          if (!found && currentVal) {
+            html += '<option value="' + currentVal + '" selected>Personalizat: ' + currentVal + '</option>';
+          }
+          return html;
+        };
+
+        card.innerHTML = `
+          <div class="card-top">
+            <div style="flex: 1;">
+              <span class="card-id-tag">ID: ${key}</span>
+              <input type="text" class="project-name-input" value="${titleVal}" data-key="${key}" data-field="title" title="Apasă pentru a edita titlul">
+              <input type="text" class="project-subtitle-input" value="${subVal}" data-key="${key}" data-field="subtitle" placeholder="Subtitlu (ex: Official 4K Lyrics Video)">
+            </div>
+          </div>
+
+          <div class="media-fields">
+            <!-- 1. VIDEO -->
+            <div class="media-block">
+              <div class="media-preview-box">
+                ${p.videoSrc ? `
+                  <video src="${p.videoSrc}" poster="${p.videoPoster || ''}" preload="none" controls style="width:100%;height:100%;"></video>
+                ` : `<span class="media-empty-tip">Fără Video</span>`}
+              </div>
+              <div class="media-controls">
+                <div class="media-header">
+                  <span class="media-label">Lyrics Video 4K</span>
+                  <span class="media-badge badge-video">VIDEO</span>
+                </div>
+                <select class="select-dropdown" data-key="${key}" data-media="videoSrc">
+                  ${makeOptions(MEDIA_LIBRARY.videos, p.videoSrc || '')}
+                </select>
+                <input type="text" class="custom-path-input" placeholder="Sau scrie calea: assets/videos/..." value="${p.videoSrc || ''}" data-key="${key}" data-media-custom="videoSrc">
+              </div>
+            </div>
+
+            <!-- 2. VIDEO POSTER -->
+            <div class="media-block">
+              <div class="media-preview-box">
+                ${p.videoPoster ? `
+                  <img src="${p.videoPoster}" alt="Poster">
+                ` : `<span class="media-empty-tip">Fără Poster</span>`}
+              </div>
+              <div class="media-controls">
+                <div class="media-header">
+                  <span class="media-label">Preview Frame (Poster)</span>
+                  <span class="media-badge">FRAME</span>
+                </div>
+                <select class="select-dropdown" data-key="${key}" data-media="videoPoster">
+                  ${makeOptions(MEDIA_LIBRARY.posters, p.videoPoster || '')}
+                </select>
+                <input type="text" class="custom-path-input" placeholder="Sau calea: assets/videos/posters/..." value="${p.videoPoster || ''}" data-key="${key}" data-media-custom="videoPoster">
+              </div>
+            </div>
+
+            <!-- 3. COVER 3000x3000px -->
+            <div class="media-block">
+              <div class="media-preview-box square">
+                ${p.img ? `
+                  <img src="${p.img}" alt="Cover">
+                ` : `<span class="media-empty-tip">Fără Copertă</span>`}
+              </div>
+              <div class="media-controls">
+                <div class="media-header">
+                  <span class="media-label">Cover Art 3000px</span>
+                  <span class="media-badge badge-cover">COVER</span>
+                </div>
+                <select class="select-dropdown" data-key="${key}" data-media="img">
+                  ${makeOptions(MEDIA_LIBRARY.covers, p.img || '')}
+                </select>
+                <input type="text" class="custom-path-input" placeholder="Sau calea: assets/covers/..." value="${p.img || ''}" data-key="${key}" data-media-custom="img">
+              </div>
+            </div>
+
+            <!-- 4. BANNER SUITE -->
+            <div class="media-block">
+              <div class="media-preview-box">
+                ${p.bannerImg ? `
+                  <img src="${p.bannerImg}" alt="Banner Suite">
+                ` : `<span class="media-empty-tip">Fără Bannere</span>`}
+              </div>
+              <div class="media-controls">
+                <div class="media-header">
+                  <span class="media-label">Promo Bannere Suite</span>
+                  <span class="media-badge badge-banner">SUITE</span>
+                </div>
+                <select class="select-dropdown" data-key="${key}" data-media="bannerImg">
+                  ${makeOptions(MEDIA_LIBRARY.banners, p.bannerImg || '')}
+                </select>
+                <input type="text" class="custom-path-input" placeholder="Sau calea: assets/banners/..." value="${p.bannerImg || ''}" data-key="${key}" data-media-custom="bannerImg">
+              </div>
+            </div>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      attachInputListeners();
+    }
+
+    function attachInputListeners() {
+      // Titles & Subtitles
+      document.querySelectorAll('.project-name-input').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const key = e.target.getAttribute('data-key');
+          const val = e.target.value.trim();
+          if (!workingProjects[key].title) workingProjects[key].title = {};
+          workingProjects[key].title.ro = val;
+          workingProjects[key].title.ru = val;
+          workingProjects[key].title.en = val;
+          markModified(key);
+        });
+      });
+
+      document.querySelectorAll('.project-subtitle-input').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const key = e.target.getAttribute('data-key');
+          const val = e.target.value.trim();
+          if (!workingProjects[key].subtitle) workingProjects[key].subtitle = {};
+          workingProjects[key].subtitle.ro = val;
+          workingProjects[key].subtitle.ru = val;
+          workingProjects[key].subtitle.en = val;
+          markModified(key);
+        });
+      });
+
+      // Dropdown changes
+      document.querySelectorAll('.select-dropdown').forEach(select => {
+        select.addEventListener('change', (e) => {
+          const key = e.target.getAttribute('data-key');
+          const mediaField = e.target.getAttribute('data-media');
+          const val = e.target.value;
+          workingProjects[key][mediaField] = val;
+
+          // Update corresponding mirror video object if exists (e.g. key + '_video')
+          const videoMirrorKey = key + '_video';
+          if (workingProjects[videoMirrorKey]) {
+            workingProjects[videoMirrorKey][mediaField] = val;
+          }
+
+          // Update sibling custom-path-input
+          const customInput = e.target.parentElement.querySelector('[data-media-custom="' + mediaField + '"]');
+          if (customInput) customInput.value = val;
+
+          markModified(key);
+          refreshCardPreview(key);
+        });
+      });
+
+      // Custom path inputs
+      document.querySelectorAll('.custom-path-input').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const key = e.target.getAttribute('data-key');
+          const mediaField = e.target.getAttribute('data-media-custom');
+          const val = e.target.value.trim();
+          workingProjects[key][mediaField] = val;
+
+          // Update mirror video key if exists
+          const videoMirrorKey = key + '_video';
+          if (workingProjects[videoMirrorKey]) {
+            workingProjects[videoMirrorKey][mediaField] = val;
+          }
+
+          // Update dropdown if matches
+          const sel = e.target.parentElement.querySelector('[data-media="' + mediaField + '"]');
+          if (sel) sel.value = val;
+
+          markModified(key);
+          refreshCardPreview(key);
+        });
+      });
+    }
+
+    function markModified(key) {
+      const card = document.getElementById('card_' + key);
+      if (card) card.classList.add('modified');
+    }
+
+    function refreshCardPreview(key) {
+      const p = workingProjects[key];
+      const card = document.getElementById('card_' + key);
+      if (!card) return;
+
+      const mediaBlocks = card.querySelectorAll('.media-block');
+      // Video
+      if (mediaBlocks[0]) {
+        const box = mediaBlocks[0].querySelector('.media-preview-box');
+        box.innerHTML = p.videoSrc ? `
+          <video src="${p.videoSrc}" poster="${p.videoPoster || ''}" preload="none" controls style="width:100%;height:100%;"></video>
+        ` : `<span class="media-empty-tip">Fără Video</span>`;
+      }
+      // Poster
+      if (mediaBlocks[1]) {
+        const box = mediaBlocks[1].querySelector('.media-preview-box');
+        box.innerHTML = p.videoPoster ? `<img src="${p.videoPoster}" alt="Poster">` : `<span class="media-empty-tip">Fără Poster</span>`;
+      }
+      // Cover
+      if (mediaBlocks[2]) {
+        const box = mediaBlocks[2].querySelector('.media-preview-box');
+        box.innerHTML = p.img ? `<img src="${p.img}" alt="Cover">` : `<span class="media-empty-tip">Fără Copertă</span>`;
+      }
+      // Banner
+      if (mediaBlocks[3]) {
+        const box = mediaBlocks[3].querySelector('.media-preview-box');
+        box.innerHTML = p.bannerImg ? `<img src="${p.bannerImg}" alt="Banner Suite">` : `<span class="media-empty-tip">Fără Bannere</span>`;
+      }
+    }
+
+    // Save All
+    document.getElementById('btnSaveAll').addEventListener('click', () => {
+      localStorage.setItem('artist_visuals_custom_projects', JSON.stringify(workingProjects));
+      document.querySelectorAll('.project-card.modified').forEach(card => card.classList.remove('modified'));
+      showToast('Toate modificările au fost salvate! Site-ul principal le folosește acum instant.');
+    });
+
+    // Reset Defaults
+    document.getElementById('btnResetDefaults').addEventListener('click', () => {
+      if (confirm('Sigur vrei să resetezi toate modificările la valorile implicite originale?')) {
+        localStorage.removeItem('artist_visuals_custom_projects');
+        location.reload();
+      }
+    });
+
+    // Export JSON Modal
+    document.getElementById('btnExportJson').addEventListener('click', () => {
+      const modal = document.getElementById('exportModal');
+      const text = document.getElementById('exportText');
+      text.value = JSON.stringify(workingProjects, null, 2);
+      modal.style.display = 'flex';
+    });
+
+    document.getElementById('btnCloseExport').addEventListener('click', () => {
+      document.getElementById('exportModal').style.display = 'none';
+    });
+
+    document.getElementById('btnCopyExport').addEventListener('click', () => {
+      const text = document.getElementById('exportText');
+      text.select();
+      navigator.clipboard.writeText(text.value).then(() => {
+        showToast('JSON-ul a fost copiat în clipboard!');
+      });
+    });
+
+    // Run check on load
+    checkAuth();
+  </script>
+</body>
+</html>

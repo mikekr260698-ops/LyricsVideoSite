@@ -518,6 +518,11 @@ function setLanguage(langCode) {
 
   // Cinematic optical blur focus animation on language change
   renderCinematicTitle(langCode);
+
+  // Maintain any admin custom media overrides
+  if (typeof loadAdminOverrides === 'function') {
+    loadAdminOverrides();
+  }
 }
 
 // Cinematic Title Word Generator
@@ -1508,9 +1513,56 @@ function setupScrollParallax() {
 }
 
 // ==========================================================================
+// 5.5. ADMIN OVERRIDES SYNC (Loads custom media from Admin Panel)
+// ==========================================================================
+function loadAdminOverrides() {
+  try {
+    const saved = localStorage.getItem('artist_visuals_custom_projects');
+    if (!saved) return;
+    const custom = JSON.parse(saved);
+
+    Object.keys(custom).forEach(key => {
+      if (projectsData[key]) {
+        Object.assign(projectsData[key], custom[key]);
+      } else {
+        projectsData[key] = custom[key];
+      }
+    });
+
+    // Update marquee cards in DOM
+    document.querySelectorAll('.marquee-card[data-project-id]').forEach(card => {
+      const pId = card.getAttribute('data-project-id');
+      const p = projectsData[pId] || projectsData[pId.replace('_video', '')];
+      if (!p) return;
+
+      if (card.classList.contains('video-card')) {
+        const bgImg = card.querySelector('.card-video-bg');
+        if (bgImg && p.videoPoster) bgImg.src = p.videoPoster;
+        const h4 = card.querySelector('h4');
+        if (h4 && p.title) h4.textContent = p.title[currentLang] || p.title.ro || p.title.ru || p.title.en;
+        const span = card.querySelector('.card-overlay-bottom span');
+        if (span && p.subtitle) span.textContent = p.subtitle[currentLang] || p.subtitle.ro || p.subtitle.ru || p.subtitle.en;
+      }
+
+      if (card.classList.contains('cover-card')) {
+        const coverImg = card.querySelector('.cover-thumb-wrapper img');
+        if (coverImg && p.img) coverImg.src = p.thumb || p.img;
+        const h4 = card.querySelector('h4');
+        if (h4 && p.title) h4.textContent = p.title[currentLang] || p.title.ro || p.title.ru || p.title.en;
+      }
+    });
+  } catch (err) {
+    console.warn('Error loading custom projects from localStorage', err);
+  }
+}
+
+// ==========================================================================
 // 6. INITIALIZATION & EVENT LISTENERS
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
+  // Load any admin customizations from localStorage
+  loadAdminOverrides();
+
   // Set copyright year
   const yearEl = document.getElementById('currentYear');
   if (yearEl) yearEl.textContent = new Date().getFullYear();

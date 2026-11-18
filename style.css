@@ -1987,6 +1987,24 @@ body {
   color: var(--text-dim);
 }
 
+.admin-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all var(--transition-fast);
+  margin-left: 8px;
+  opacity: 0.65;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.admin-link:hover {
+  opacity: 1;
+  color: var(--accent-red);
+  text-shadow: 0 0 10px rgba(230, 0, 38, 0.6);
+}
+
 /* ==========================================================================
    Modals & Popups
    ========================================================================== */
