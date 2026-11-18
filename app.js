@@ -74,6 +74,9 @@ const translations = {
     "cases.hint": "Click any project to inspect full breakdown & details",
     "project.specsTitle": "What was crafted:",
     "project.orderBtn": "Order similar format",
+    "project.tabCover": "Cover Art 3000px",
+    "project.tabBanner": "Banner & Promo Suite",
+    "project.zoomBtn": "🔍 Original HD",
 
     "reviews.tag": "REVIEWS",
     "reviews.title": "What artists say",
@@ -195,6 +198,9 @@ const translations = {
     "cases.hint": "Apasă pe un proiect pentru a vedea detaliile complete",
     "project.specsTitle": "Ce a fost realizat:",
     "project.orderBtn": "Comandă un format similar",
+    "project.tabCover": "Cover Art 3000px",
+    "project.tabBanner": "Pachet Bannere & Promo",
+    "project.zoomBtn": "🔍 Original HD",
 
     "reviews.tag": "RECENZII",
     "reviews.title": "Ce spun artiștii",
@@ -316,6 +322,9 @@ const translations = {
     "cases.hint": "Нажми на проект, чтобы увидеть детали",
     "project.specsTitle": "Что было сделано:",
     "project.orderBtn": "Заказать такой же формат",
+    "project.tabCover": "Обложка 3000px",
+    "project.tabBanner": "Пакет баннеров и промо",
+    "project.zoomBtn": "🔍 Оригинал HD",
 
     "reviews.tag": "ОТЗЫВЫ",
     "reviews.title": "Что говорят артисты",
@@ -534,6 +543,7 @@ const projectsData = {
     title: "Si vis pacem Parabellum",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_parabellum.jpg",
+    bannerImg: "assets/banners/banner_moostaf.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -564,6 +574,7 @@ const projectsData = {
     title: "На красивом",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_na_krasivom.jpg",
+    bannerImg: "assets/banners/banner_na_krasivom.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -594,6 +605,7 @@ const projectsData = {
     title: "Ribz ft Conway The Machine — Legend Like Kareem",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_ribz.jpg",
+    bannerImg: "assets/banners/banner_moostaf.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -624,6 +636,7 @@ const projectsData = {
     title: "Laureall — Pa Pa",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_laureall.jpg",
+    bannerImg: "assets/banners/banner_jenika.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -654,6 +667,7 @@ const projectsData = {
     title: "SILVIKA — ZERO",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_silvika.jpg",
+    bannerImg: "assets/banners/banner_na_krasivom.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -684,6 +698,7 @@ const projectsData = {
     title: "CIORNIY — Doar ea",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_ciorniy.jpg",
+    bannerImg: "assets/banners/banner_ciorniy.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -714,6 +729,7 @@ const projectsData = {
     title: "MISSYRIGHT — Young Queen",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_young_queen.jpg",
+    bannerImg: "assets/banners/banner_ciorniy.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -744,6 +760,7 @@ const projectsData = {
     title: "JENIKA — Altcineva",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_jenika.jpg",
+    bannerImg: "assets/banners/banner_jenika.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -776,6 +793,7 @@ const projectsData = {
     title: "SILVIKA — ZERO (4K Lyrics Video)",
     pill: { en: "4K CINEMATIC LYRICS VIDEO", ro: "4K CINEMATIC LYRICS VIDEO", ru: "4K CINEMATIC LYRICS ВИДЕО" },
     img: "assets/covers/cover_silvika.jpg",
+    bannerImg: "assets/banners/banner_na_krasivom.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -806,6 +824,7 @@ const projectsData = {
     title: "JENIKA — Altcineva (4K Visualizer)",
     pill: { en: "4K OFFICIAL VISUALIZER", ro: "4K VIZUALIZER OFICIAL", ru: "4K ОФИЦИАЛЬНЫЙ ВИЗУАЛИЗАТОР" },
     img: "assets/covers/cover_jenika.jpg",
+    bannerImg: "assets/banners/banner_jenika.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -836,6 +855,7 @@ const projectsData = {
     title: "CIORNIY — Doar ea (Mood Lyrics Motion)",
     pill: { en: "LYRICS MOTION 4K", ro: "LYRICS MOTION 4K", ru: "LYRICS MOTION 4K" },
     img: "assets/covers/cover_ciorniy.jpg",
+    bannerImg: "assets/banners/banner_ciorniy.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -866,6 +886,7 @@ const projectsData = {
     title: "Ribz ft Conway The Machine — Legend Like Kareem",
     pill: { en: "STREET VISUALIZER 4K", ro: "STREET VISUALIZER 4K", ru: "STREET ВИЗУАЛИЗАТОР 4K" },
     img: "assets/covers/cover_ribz.jpg",
+    bannerImg: "assets/banners/banner_moostaf.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -896,6 +917,7 @@ const projectsData = {
     title: "Laureall — Pa Pa (Neon Lyrics 4K)",
     pill: { en: "NEON LYRICS VIDEO 4K", ro: "NEON LYRICS VIDEO 4K", ru: "НЕОНОВОЕ LYRICS ВИДЕО 4K" },
     img: "assets/covers/cover_laureall.jpg",
+    bannerImg: "assets/banners/banner_jenika.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -926,6 +948,7 @@ const projectsData = {
     title: "MISSYRIGHT — Young Queen (Trap Visualizer)",
     pill: { en: "TRAP MOTION VISUALIZER", ro: "TRAP MOTION VISUALIZER", ru: "TRAP ВИЗУАЛИЗАТОР 4K" },
     img: "assets/covers/cover_young_queen.jpg",
+    bannerImg: "assets/banners/banner_ciorniy.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -956,6 +979,7 @@ const projectsData = {
     title: "Si vis pacem Parabellum (Noir Visualizer)",
     pill: { en: "NOIR VISUALIZER 4K", ro: "NOIR VISUALIZER 4K", ru: "НУАР ВИЗУАЛИЗАТОР 4K" },
     img: "assets/covers/cover_parabellum.jpg",
+    bannerImg: "assets/banners/banner_moostaf.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -986,6 +1010,7 @@ const projectsData = {
     title: "На красивом (Full Pack Lyrics & Visualizer)",
     pill: { en: "FULL PACK RELEASE 4K", ro: "FULL PACK RELEASE 4K", ru: "ПОЛНЫЙ ПАКЕТ 4K" },
     img: "assets/covers/cover_na_krasivom.jpg",
+    bannerImg: "assets/banners/banner_na_krasivom.jpg",
     isVideo: true,
     package: "full",
     specs: {
@@ -1027,6 +1052,13 @@ function openProjectModal(projectId) {
   const pillEl = document.getElementById('projectPill');
   const titleEl = document.getElementById('projectTitle');
   const imgEl = document.getElementById('projectImg');
+  const bannerImgEl = document.getElementById('projectBannerImg');
+  const mediaWrap = document.getElementById('projectMediaWrap');
+  const viewTabs = document.getElementById('projectViewTabs');
+  const tabCover = document.getElementById('tabViewCover');
+  const tabBanner = document.getElementById('tabViewBanner');
+  const zoomBtn = document.getElementById('projectZoomBtn');
+  const bannerBar = document.getElementById('bannerFormatsBar');
   const listEl = document.getElementById('projectFeaturesList');
   const orderBtn = document.getElementById('projectOrderBtn');
 
@@ -1047,11 +1079,59 @@ function openProjectModal(projectId) {
 
   if (titleEl) titleEl.textContent = project.title;
 
+  // Set images and initial view state
   if (imgEl) {
     imgEl.src = project.img;
     imgEl.alt = project.title;
+    imgEl.style.display = 'block';
+  }
+  if (bannerImgEl) {
+    if (project.bannerImg) {
+      bannerImgEl.src = project.bannerImg;
+      bannerImgEl.alt = `${project.title} - Social Media Banner Suite`;
+    }
+    bannerImgEl.style.display = 'none';
   }
 
+  // Reset to default Cover view
+  if (mediaWrap) mediaWrap.classList.remove('view-banner-active');
+  if (tabCover) tabCover.classList.add('active');
+  if (tabBanner) tabBanner.classList.remove('active');
+  if (bannerBar) bannerBar.style.display = 'none';
+  if (zoomBtn) zoomBtn.href = project.img;
+
+  // Wire Tab Switching
+  if (viewTabs && tabCover && tabBanner) {
+    if (project.bannerImg) {
+      viewTabs.style.display = 'inline-flex';
+
+      tabCover.onclick = (e) => {
+        e.preventDefault();
+        tabCover.classList.add('active');
+        tabBanner.classList.remove('active');
+        if (imgEl) imgEl.style.display = 'block';
+        if (bannerImgEl) bannerImgEl.style.display = 'none';
+        if (mediaWrap) mediaWrap.classList.remove('view-banner-active');
+        if (bannerBar) bannerBar.style.display = 'none';
+        if (zoomBtn) zoomBtn.href = project.img;
+      };
+
+      tabBanner.onclick = (e) => {
+        e.preventDefault();
+        tabBanner.classList.add('active');
+        tabCover.classList.remove('active');
+        if (imgEl) imgEl.style.display = 'none';
+        if (bannerImgEl) bannerImgEl.style.display = 'block';
+        if (mediaWrap) mediaWrap.classList.add('view-banner-active');
+        if (bannerBar) bannerBar.style.display = 'flex';
+        if (zoomBtn) zoomBtn.href = project.bannerImg;
+      };
+    } else {
+      viewTabs.style.display = 'none';
+    }
+  }
+
+  // Populate Specs List
   if (listEl) {
     const specs = (project.specs && project.specs[lang]) || project.specs.en || [];
     listEl.innerHTML = specs.map(item => `
