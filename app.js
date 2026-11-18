@@ -474,13 +474,34 @@ function setLanguage(langCode) {
   // Update html lang attribute
   document.documentElement.lang = langCode;
 
-  // Replace text in elements with data-i18n
+  // Replace text in elements with data-i18n (except kinetic title handled separately)
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
+    if (key === 'hero.title1' || key === 'hero.title2') return;
     if (translations[langCode][key]) {
       el.textContent = translations[langCode][key];
     }
   });
+
+  // Energetic kinetic word-by-word entrance animation (duration ~2.5s)
+  renderKineticTitle(langCode);
+}
+
+// Kinetic Title Word Stagger Generator
+function renderKineticTitle(langCode) {
+  const line1El = document.getElementById('heroTitleLine1');
+  const line2El = document.getElementById('heroTitleLine2');
+  if (!line1El || !line2El) return;
+
+  const text1 = translations[langCode]["hero.title1"] || "Visuals for";
+  const text2 = translations[langCode]["hero.title2"] || "your music";
+
+  const words1 = text1.split(/\s+/).filter(Boolean);
+  const words2 = text2.split(/\s+/).filter(Boolean);
+
+  let wordIdx = 0;
+  line1El.innerHTML = words1.map(w => `<span class="kinetic-word" style="--w-idx:${wordIdx++}">${w}</span>`).join(' ');
+  line2El.innerHTML = words2.map(w => `<span class="kinetic-word" style="--w-idx:${wordIdx++}">${w}</span>`).join(' ');
 }
 
 // ==========================================================================
@@ -620,7 +641,7 @@ function setupDemoPlayer() {
   });
 }
 
-// Calm scroll parallax for the vinyl cover & lateral gradient dispersion on scroll
+// Active scroll tracking for the red gradient, lateral burst & expanded vinyl movement
 function setupScrollParallax() {
   const mockup = document.querySelector('.cover-card-mockup');
   const burstGlow = document.getElementById('heroBurstGlow');
@@ -632,30 +653,34 @@ function setupScrollParallax() {
       window.requestAnimationFrame(() => {
         const scrolled = window.pageYOffset || document.documentElement.scrollTop;
 
-        // 1. Vinyl mockup calm tilt & float
-        if (mockup && scrolled < 900) {
-          const tilt = -3 + (scrolled * 0.006);
-          const translateY = scrolled * 0.05;
-          mockup.style.transform = `rotate(${tilt}deg) translateY(${translateY}px)`;
+        // 1. Vinyl mockup: significantly larger range of movement!
+        if (mockup && scrolled < 1100) {
+          const tilt = -6 + (scrolled * 0.024); // From -6deg to +18deg
+          const translateY = scrolled * 0.18;   // Smooth downward glide
+          const translateX = Math.sin(scrolled * 0.007) * 25; // Lateral sway
+          mockup.style.transform = `rotate(${tilt}deg) translate(${translateX}px, ${translateY}px)`;
         }
 
-        // 2. Burst Gradient stretches to the sides and dissolves smoothly
+        // 2. Red burst gradient ACTIVELY MOVES up and down with scroll and expands to the sides
         if (burstGlow) {
-          const progress = Math.min(scrolled / 500, 1); // 0 to 1 over first 500px scroll
-          const scaleX = 1 + (progress * 2.5); // Extends massively sideways
-          const scaleY = 1 - (progress * 0.25);
-          const opacity = Math.max(0.65 - (progress * 0.7), 0); // Dissolves to 0
-          const blur = 75 + (progress * 50); // Dissolving blur
+          const progress = Math.min(scrolled / 650, 1);
+          const translateY = scrolled * 0.65; // Moves DOWN with scroll actively!
+          const translateX = Math.sin(scrolled * 0.007) * 45; // Sways across width
+          const scaleX = 1 + (progress * 2.8); // Stretches massively to the sides
+          const scaleY = 1 - (progress * 0.2);
+          const opacity = Math.max(0.72 - (progress * 0.68), 0.04);
+          const blur = 75 + (progress * 55);
 
-          burstGlow.style.transform = `scale(${scaleX}, ${scaleY})`;
+          burstGlow.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
           burstGlow.style.opacity = opacity;
           burstGlow.style.filter = `blur(${blur}px)`;
         }
 
-        // 3. Ambient top glow also reacts laterally
-        if (ambientTop && scrolled < 700) {
-          const ambScaleX = 1 + (scrolled * 0.0025);
-          ambientTop.style.transform = `scaleX(${ambScaleX})`;
+        // 3. Ambient top glow actively tracks scroll
+        if (ambientTop && scrolled < 900) {
+          const ambY = scrolled * 0.38;
+          const ambScaleX = 1 + (scrolled * 0.0035);
+          ambientTop.style.transform = `translateY(${ambY}px) scaleX(${ambScaleX})`;
         }
 
         ticking = false;
