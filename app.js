@@ -483,12 +483,12 @@ function setLanguage(langCode) {
     }
   });
 
-  // Energetic kinetic word-by-word entrance animation (duration ~2.5s)
-  renderKineticTitle(langCode);
+  // Cinematic optical blur focus animation on language change
+  renderCinematicTitle(langCode);
 }
 
-// Kinetic Title Word Stagger Generator
-function renderKineticTitle(langCode) {
+// Cinematic Title Word Generator
+function renderCinematicTitle(langCode) {
   const line1El = document.getElementById('heroTitleLine1');
   const line2El = document.getElementById('heroTitleLine2');
   if (!line1El || !line2El) return;
@@ -499,9 +499,9 @@ function renderKineticTitle(langCode) {
   const words1 = text1.split(/\s+/).filter(Boolean);
   const words2 = text2.split(/\s+/).filter(Boolean);
 
-  let wordIdx = 0;
-  line1El.innerHTML = words1.map(w => `<span class="kinetic-word" style="--w-idx:${wordIdx++}">${w}</span>`).join(' ');
-  line2El.innerHTML = words2.map(w => `<span class="kinetic-word" style="--w-idx:${wordIdx++}">${w}</span>`).join(' ');
+  let cIdx = 0;
+  line1El.innerHTML = words1.map(w => `<span class="cinematic-word" style="--c-idx:${cIdx++}">${w}</span>`).join(' ');
+  line2El.innerHTML = words2.map(w => `<span class="cinematic-word text-gradient" style="--c-idx:${cIdx++}">${w}</span>`).join(' ');
 }
 
 // ==========================================================================
