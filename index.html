@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="variants.css">
 </head>
 <body>
 
@@ -89,9 +90,9 @@
             <span data-i18n="hero.badge">Принимаем заказы на новые релизы</span>
           </div>
 
-          <h1 class="hero-title" id="heroTitle">
-            <span class="kinetic-line" id="heroTitleLine1" data-i18n="hero.title1">Visuals for</span><br>
-            <span class="kinetic-line text-gradient" id="heroTitleLine2" data-i18n="hero.title2">your music</span>
+                    <h1 class="hero-title-v1" id="heroTitle">
+            <span class="mask-container"><span class="masked-slide-text mask-delay-1" data-i18n="hero.title1">Visuals for</span></span>
+            <span class="mask-container"><span class="masked-slide-text mask-delay-2 text-gradient" data-i18n="hero.title2">your music</span></span>
           </h1>
 
           <p class="hero-subtitle" data-i18n="hero.subtitle">
@@ -738,5 +739,16 @@
   </div>
 
   <script src="app.js"></script>
+
+  <!-- Floating Switcher Bar -->
+  <div class="demo-switcher-bar">
+    <span class="switcher-label">⚡ Alege varianta de animație:</span>
+    <a href="v1.html" class="switcher-pill active">1. Slide Mascat</a>
+    <a href="v2.html" class="switcher-pill ">2. Decrypt Hacker</a>
+    <a href="v3.html" class="switcher-pill ">3. Blur Cinematic</a>
+    <a href="v4.html" class="switcher-pill ">4. 3D Flip</a>
+    <a href="v5.html" class="switcher-pill ">5. Neon Sweep</a>
+  </div>
+
 </body>
 </html>

@@ -1,0 +1,242 @@
+/* ==========================================================================
+   VISUALS — Typography Animation Variants (V1 - V5) & Switcher Bar
+   ========================================================================== */
+
+/* Floating Switcher Bar */
+.demo-switcher-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: rgba(15, 15, 20, 0.94);
+  border: 1px solid rgba(255, 30, 60, 0.45);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 30, 60, 0.28);
+  backdrop-filter: blur(18px);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 95vw;
+  overflow-x: auto;
+}
+
+.switcher-label {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #ff334b;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+
+.switcher-pill {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.switcher-pill:hover,
+.switcher-pill.active {
+  background: var(--accent-red);
+  color: #fff;
+  border-color: var(--accent-red);
+  box-shadow: 0 0 16px var(--accent-red-glow);
+}
+
+/* ==========================================================================
+   VARIANT 1: Masked Slide-Up (Apple / Awwwards Editorial Clean)
+   ========================================================================== */
+.hero-title-v1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.mask-container {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 4px;
+}
+
+.masked-slide-text {
+  display: inline-block;
+  transform: translateY(120%);
+  opacity: 0;
+  animation: maskedSlideEntrance 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.mask-delay-1 { animation-delay: 0.12s; }
+.mask-delay-2 { animation-delay: 0.32s; }
+
+@keyframes maskedSlideEntrance {
+  0% {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   VARIANT 2: Cyberpunk / Digital Decrypt (Text Scramble Hacker)
+   ========================================================================== */
+.hero-title-v2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.scramble-text {
+  display: inline-block;
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 30, 60, 0.6);
+}
+
+/* ==========================================================================
+   VARIANT 3: Cinematic Optical Blur & Focus Dissolve
+   ========================================================================== */
+.hero-title-v3 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.cinematic-word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(28px);
+  transform: scale(1.12) translateY(14px);
+  letter-spacing: 0.08em;
+  animation: cinematicFocusEntrance 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation-delay: calc(var(--c-idx, 0) * 0.16s);
+  margin-right: 0.2em;
+  will-change: transform, opacity, filter, letter-spacing;
+}
+
+@keyframes cinematicFocusEntrance {
+  0% {
+    opacity: 0;
+    filter: blur(28px);
+    transform: scale(1.12) translateY(14px);
+    letter-spacing: 0.08em;
+  }
+  40% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1) translateY(0);
+    letter-spacing: -0.03em;
+  }
+}
+
+/* ==========================================================================
+   VARIANT 4: 3D Billboard / Split-Flap Perspective Flip
+   ========================================================================== */
+.hero-title-v4 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  perspective: 1200px;
+}
+
+.flip-word {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  transform: rotateX(-95deg) translateY(24px);
+  opacity: 0;
+  animation: perspectiveFlipEntrance 1.4s cubic-bezier(0.34, 1.45, 0.64, 1) forwards;
+  animation-delay: calc(var(--f-idx, 0) * 0.14s);
+  margin-right: 0.22em;
+  will-change: transform, opacity;
+}
+
+@keyframes perspectiveFlipEntrance {
+  0% {
+    transform: rotateX(-95deg) translateY(24px);
+    opacity: 0;
+    text-shadow: 0 0 50px rgba(255, 30, 60, 0.9);
+  }
+  65% {
+    transform: rotateX(12deg) translateY(-4px);
+    opacity: 1;
+    text-shadow: 0 0 35px rgba(255, 30, 60, 0.7);
+  }
+  85% {
+    transform: rotateX(-3deg) translateY(1px);
+  }
+  100% {
+    transform: rotateX(0deg) translateY(0);
+    opacity: 1;
+    text-shadow: 0 0 18px rgba(230, 25, 55, 0.35);
+  }
+}
+
+/* ==========================================================================
+   VARIANT 5: Liquid Neon Laser Sweep & Shimmer
+   ========================================================================== */
+.hero-title-v5 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.laser-sweep-line {
+  display: inline-block;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, #ffffff 40%, #ff334b 55%, #ff758c 70%, rgba(255, 255, 255, 0.08) 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: laserGlowSweep 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: background-position, filter;
+}
+
+.laser-delay-1 { animation-delay: 0.1s; }
+.laser-delay-2 { animation-delay: 0.35s; }
+
+@keyframes laserGlowSweep {
+  0% {
+    background-position: 100% 0;
+    filter: drop-shadow(0 0 0px transparent);
+    opacity: 0.1;
+  }
+  50% {
+    filter: drop-shadow(0 0 32px rgba(255, 45, 75, 0.95));
+    opacity: 1;
+  }
+  100% {
+    background-position: 0% 0;
+    filter: drop-shadow(0 0 16px rgba(255, 45, 75, 0.45));
+    opacity: 1;
+  }
+}

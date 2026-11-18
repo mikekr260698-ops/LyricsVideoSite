@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artist Visuals — Cover Art & Lyrics Video</title>
+  <meta name="description" content="Professional 3000x3000px cover artwork and custom lyrics videos for music artists. Fast delivery, DSP-ready formats.">
+  <meta name="keywords" content="Artist Visuals, cover art, lyrics video, cover 3x3, music cover design, visualizer">
+
+  <!-- Open Graph / Social Media Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Artist Visuals — Music Visuals & Lyrics Videos">
+  <meta property="og:description" content="Track artwork and lyrics videos that elevate your release and set the perfect mood.">
+  <meta property="og:image" content="https://mikekr260698-ops.github.io/LyricsVideoSite/preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="variants.css">
+</head>
+<body>
+
+  <!-- Ambient Glow Background Blobs -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-mid"></div>
+
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <a href="#" class="logo">
+        <span class="logo-mark"></span>
+        <span class="logo-text">ARTIST <span class="text-accent">VISUALS</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#packages" data-i18n="nav.packages">Пакеты</a>
+        <a href="#cases" data-i18n="nav.cases">Кейсы</a>
+        <a href="#reviews" data-i18n="nav.reviews">Отзывы</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Currency Selector -->
+        <div class="selector-dropdown" id="currencySelector">
+          <button class="selector-btn" id="currencyBtn" aria-label="Сменить валюту">
+            <span class="currency-symbol" id="currentCurrencySymbol">₽</span>
+            <span class="currency-code" id="currentCurrencyCode">RUB</span>
+            <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="dropdown-menu" id="currencyMenu">
+            <button class="dropdown-item" data-currency="RUB"><span>₽</span> RUB (Рубль)</button>
+            <button class="dropdown-item" data-currency="EUR"><span>€</span> EUR (Euro)</button>
+            <button class="dropdown-item" data-currency="USD"><span>$</span> USD (Dollar)</button>
+            <button class="dropdown-item" data-currency="MDL"><span>lei</span> MDL (Leu MD)</button>
+            <button class="dropdown-item" data-currency="RON"><span>lei</span> RON (Leu RO)</button>
+          </div>
+        </div>
+
+        <!-- Language Switcher -->
+        <div class="lang-switch" id="langSwitch">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ro">RO</button>
+          <button class="lang-btn" data-lang="ru">RU</button>
+        </div>
+
+        <!-- Primary CTA -->
+        <button class="btn btn-primary btn-sm btn-glow open-modal-btn" data-modal="orderModal" data-package="all">
+          <span data-i18n="header.orderBtn">Заказать</span>
+          <span class="btn-arrow">→</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="burger-btn" id="burgerBtn" aria-label="Меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <!-- Dynamic burst glow that expands on scroll -->
+      <div class="hero-burst-glow" id="heroBurstGlow"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span data-i18n="hero.badge">Принимаем заказы на новые релизы</span>
+          </div>
+
+                    <h1 class="hero-title-v3" id="heroTitle">
+            <span class="cinematic-word" style="--c-idx:0">Visuals</span>
+            <span class="cinematic-word" style="--c-idx:1">for</span><br>
+            <span class="cinematic-word text-gradient" style="--c-idx:2">your</span>
+            <span class="cinematic-word text-gradient" style="--c-idx:3">music</span>
+          </h1>
+
+          <p class="hero-subtitle" data-i18n="hero.subtitle">
+            Обложки для треков и lyrics видео, которые усиливают твой релиз и создают правильное настроение.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#packages" class="btn btn-primary btn-lg btn-glow">
+              <span data-i18n="hero.btnPackages">Выбрать пакет</span>
+              <span class="btn-arrow">→</span>
+            </a>
+            <a href="#cases" class="btn btn-secondary btn-lg">
+              <span class="btn-play-icon">▶</span>
+              <span data-i18n="hero.btnCases">Смотреть кейсы</span>
+            </a>
+          </div>
+
+          <!-- Feature Highlights bar -->
+          <div class="features-bar">
+            <div class="feature-item">
+              <div class="feature-icon feature-icon-red">⚡</div>
+              <div class="feature-text">
+                <h4 data-i18n="features.turnkey.title">Под ключ</h4>
+                <p data-i18n="features.turnkey.desc">Ты просто оформляешь заказ, мы делаем остальное</p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon feature-icon-orange">⏱</div>
+              <div class="feature-text">
+                <h4 data-i18n="features.ontime.title">В срок</h4>
+                <p data-i18n="features.ontime.desc">Чёткие дедлайны и стабильный результат</p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon feature-icon-amber">⭐</div>
+              <div class="feature-text">
+                <h4 data-i18n="features.style.title">Под твой стиль</h4>
+                <p data-i18n="features.style.desc">Учитываем твоё звучание, референсы и идеи</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Mockup & Interactive Player -->
+        <div class="hero-visual">
+          <div class="mockup-stage">
+            <!-- Vinyl Cover Card -->
+            <div class="cover-card-mockup">
+              <div class="cover-inner">
+                <div class="cover-glow-radial"></div>
+                <div class="cover-silhouette"></div>
+                <div class="cover-badge-tag">3000 × 3000 PX</div>
+                <div class="cover-title-overlay">
+                  <span>SINGLE RELEASE</span>
+                  <h4>NIGHT VISION</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Lyrics Video Player Card -->
+            <div class="lyrics-player-card">
+              <div class="player-top">
+                <span class="player-pill">LYRICS VIDEO</span>
+                <span class="player-quality">4K UHD</span>
+              </div>
+              <div class="player-screen">
+                <div class="lyrics-line-faded">I see shadows in the crimson glow...</div>
+                <div class="lyrics-line-active">LOST IN THE SOUND OF YOU</div>
+                <div class="lyrics-line-faded">And the bass drops through the floor...</div>
+              </div>
+              <div class="player-controls">
+                <button class="player-play-btn" id="demoPlayBtn" aria-label="Play demo">
+                  <span id="playIcon">▶</span>
+                </button>
+                <div class="player-progress-bar">
+                  <div class="player-progress-fill" id="demoProgress"></div>
+                </div>
+                <span class="player-timer" id="demoTimer">0:42 / 2:36</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="section packages-section" id="packages">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag" data-i18n="packages.tag">ПАКЕТЫ</span>
+          <h2 class="section-title" data-i18n="packages.title">Выбери свой формат</h2>
+          <p class="section-subtitle" data-i18n="packages.subtitle">Готовые решения под твой релиз</p>
+        </div>
+
+        <div class="packages-grid">
+          <!-- Package 1: Cover -->
+          <div class="package-card" data-package="cover">
+            <div class="package-card-header">
+              <div class="package-thumb package-thumb-cover">
+                <div class="thumb-overlay">
+                  <span class="thumb-badge">COVER ART</span>
+                </div>
+              </div>
+              <h3 class="package-name" data-i18n="packages.cover.name">Обложка для трека</h3>
+              <p class="package-desc" data-i18n="packages.cover.desc">Уникальная обложка, которая выделит твой релиз.</p>
+            </div>
+
+            <ul class="package-perks">
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.cover.p1">Разрешение 3000 × 3000 px, 300 DPI</span></li>
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.cover.p2">Форматы для Spotify, Apple Music, VK</span></li>
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.cover.p3">До 3 вариантов концепта на выбор</span></li>
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.cover.p4">Бесплатные правки до утверждения</span></li>
+            </ul>
+
+            <div class="package-price-wrap">
+              <div class="price-value" data-price-rub="5000" data-price-eur="50" data-price-usd="55" data-price-mdl="1000" data-price-ron="250">
+                5 000 ₽
+              </div>
+            </div>
+
+            <div class="package-actions">
+              <button class="btn btn-primary btn-block open-modal-btn" data-modal="orderModal" data-package="cover">
+                <span data-i18n="packages.btnOrder">Заказать</span>
+              </button>
+              <button class="btn btn-outline btn-block open-modal-btn" data-modal="discussModal" data-package="cover">
+                <span data-i18n="packages.btnDiscuss">Обсудить</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Package 2: Lyrics Video -->
+          <div class="package-card" data-package="lyrics">
+            <div class="package-card-header">
+              <div class="package-thumb package-thumb-video">
+                <div class="thumb-overlay">
+                  <span class="thumb-badge">LYRICS VIDEO</span>
+                </div>
+              </div>
+              <h3 class="package-name" data-i18n="packages.lyrics.name">Lyrics видео</h3>
+              <p class="package-desc" data-i18n="packages.lyrics.desc">Стильное видео с текстом трека под твоё звучание.</p>
+            </div>
+
+            <ul class="package-perks">
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.lyrics.p1">Full HD / 4K качество видеоряда</span></li>
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.lyrics.p2">Формат 16:9 для YouTube и VK Видео</span></li>
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.lyrics.p3">Анимация текста точно в такт бита</span></li>
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.lyrics.p4">Атмосферный фон с эффектами</span></li>
+            </ul>
+
+            <div class="package-price-wrap">
+              <div class="price-value" data-price-rub="8000" data-price-eur="80" data-price-usd="90" data-price-mdl="1600" data-price-ron="400">
+                8 000 ₽
+              </div>
+            </div>
+
+            <div class="package-actions">
+              <button class="btn btn-primary btn-block open-modal-btn" data-modal="orderModal" data-package="lyrics">
+                <span data-i18n="packages.btnOrder">Заказать</span>
+              </button>
+              <button class="btn btn-outline btn-block open-modal-btn" data-modal="discussModal" data-package="lyrics">
+                <span data-i18n="packages.btnDiscuss">Обсудить</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Package 3: Full Pack (Featured) -->
+          <div class="package-card package-featured" data-package="full">
+            <div class="featured-badge" data-i18n="packages.full.badge">Выгодно</div>
+
+            <div class="package-card-header">
+              <div class="package-thumb package-thumb-full">
+                <div class="thumb-overlay">
+                  <span class="thumb-badge">FULL COMBO</span>
+                </div>
+              </div>
+              <h3 class="package-name" data-i18n="packages.full.name">Полный пакет</h3>
+              <p class="package-desc" data-i18n="packages.full.desc">Обложка + lyrics видео. Единый стиль, максимальный эффект.</p>
+            </div>
+
+            <ul class="package-perks">
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.full.p1">Обложка 3000 × 3000 px для всех площадок</span></li>
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.full.p2">Lyrics видео 16:9 (YouTube) в 4K</span></li>
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.full.p3">Вертикальный сниппет 9:16 (Reels/TikTok/Shorts)</span></li>
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.full.p4">Приоритетный срок изготовления</span></li>
+            </ul>
+
+            <div class="package-price-wrap">
+              <div class="old-price" data-old-price-rub="13 000 ₽" data-old-price-eur="130 €" data-old-price-usd="145 $" data-old-price-mdl="2 600 lei" data-old-price-ron="650 lei">
+                13 000 ₽
+              </div>
+              <div class="price-value price-featured" data-price-rub="12000" data-price-eur="120" data-price-usd="130" data-price-mdl="2400" data-price-ron="600">
+                12 000 ₽
+              </div>
+            </div>
+
+            <div class="package-actions">
+              <button class="btn btn-primary btn-glow btn-block open-modal-btn" data-modal="orderModal" data-package="full">
+                <span data-i18n="packages.btnOrder">Заказать</span>
+              </button>
+              <button class="btn btn-outline btn-block open-modal-btn" data-modal="discussModal" data-package="full">
+                <span data-i18n="packages.btnDiscuss">Обсудить</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's Included / Work Process Section -->
+    <section class="section included-section">
+      <div class="container">
+        <div class="included-box">
+          <div class="included-left">
+            <h2 class="included-title" data-i18n="included.title">Что входит в работу?</h2>
+            <p class="included-subtitle" data-i18n="included.subtitle">Всё, что нужно для сильного и готового к релизу визуала.</p>
+          </div>
+
+          <div class="included-right">
+            <div class="check-item">
+              <span class="check-icon">✓</span>
+              <span class="check-text" data-i18n="included.item1">Индивидуальный подход и учёт твоих референсов</span>
+            </div>
+            <div class="check-item">
+              <span class="check-icon">✓</span>
+              <span class="check-text" data-i18n="included.item2">Уникальный дизайн и плавная анимация</span>
+            </div>
+            <div class="check-item">
+              <span class="check-icon">✓</span>
+              <span class="check-text" data-i18n="included.item3">Согласование на каждом этапе производства</span>
+            </div>
+            <div class="check-item">
+              <span class="check-icon">✓</span>
+              <span class="check-text" data-i18n="included.item4">Готовые файлы в нужных форматах (релиз, соцсети и т.д.)</span>
+            </div>
+            <div class="check-item">
+              <span class="check-icon">✓</span>
+              <span class="check-text" data-i18n="included.item5">Оперативные правки до полного утверждения</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cases / Portfolio Section -->
+    <section class="section cases-section" id="cases">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag" data-i18n="cases.tag">КЕЙСЫ</span>
+          <h2 class="section-title" data-i18n="cases.title">Примеры работ</h2>
+          <p class="section-subtitle" data-i18n="cases.subtitle">Ознакомься с визуалами, созданными для последних релизов</p>
+        </div>
+
+        <div class="cases-gallery">
+          <div class="case-card" data-video="preview1">
+            <div class="case-thumb case-thumb-1">
+              <div class="case-play-badge">▶</div>
+              <div class="case-info-overlay">
+                <h4>Dark Euphoria</h4>
+                <span>Lyrics Video 4K</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" data-video="preview2">
+            <div class="case-thumb case-thumb-2">
+              <div class="case-play-badge">▶</div>
+              <div class="case-info-overlay">
+                <h4>Red Horizon</h4>
+                <span>Cover Art 3x3 + Visualizer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" data-video="preview3">
+            <div class="case-thumb case-thumb-3">
+              <div class="case-play-badge">▶</div>
+              <div class="case-info-overlay">
+                <h4>Metamorphosis</h4>
+                <span>Lyrics Video + Reels Snippet</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" data-video="preview4">
+            <div class="case-thumb case-thumb-4">
+              <div class="case-play-badge">▶</div>
+              <div class="case-info-overlay">
+                <h4>Eye of Chaos</h4>
+                <span>Single Cover 3000x3000</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card" data-video="preview5">
+            <div class="case-thumb case-thumb-5">
+              <div class="case-play-badge">▶</div>
+              <div class="case-info-overlay">
+                <h4>Cyber Dreams</h4>
+                <span>Full Pack Release</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews / Testimonials Section -->
+    <section class="section reviews-section" id="reviews">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag" data-i18n="reviews.tag">ОТЗЫВЫ</span>
+          <h2 class="section-title" data-i18n="reviews.title">Что говорят артисты</h2>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-author">
+              <div class="review-avatar avatar-1"></div>
+              <div class="review-meta">
+                <h4>@nvrmind</h4>
+                <span data-i18n="reviews.role">Артист</span>
+              </div>
+            </div>
+            <p class="review-quote" data-i18n="reviews.quote1">
+              «Сделали обложку и lyrics видео точно в моём стиле. Быстро, чётко, без лишних вопросов — 10/10.»
+            </p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-author">
+              <div class="review-avatar avatar-2"></div>
+              <div class="review-meta">
+                <h4>@kairo</h4>
+                <span data-i18n="reviews.role">Артист</span>
+              </div>
+            </div>
+            <p class="review-quote" data-i18n="reviews.quote2">
+              «Качество на уровне. Всё согласовывали, правки вносили оперативно. Советую, если нужен сильный визуал к релизу.»
+            </p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-author">
+              <div class="review-avatar avatar-3"></div>
+              <div class="review-meta">
+                <h4>@lvsht</h4>
+                <span data-i18n="reviews.role">Артист</span>
+              </div>
+            </div>
+            <p class="review-quote" data-i18n="reviews.quote3">
+              «Очень удобно: оформил заказ, скинул референсы — и просто получил готовый результат в срок. Буду ещё заказывать.»
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section" id="faq">
+      <div class="container faq-container">
+        <div class="section-header text-center">
+          <span class="section-tag" data-i18n="faq.tag">FAQ</span>
+          <h2 class="section-title" data-i18n="faq.title">Частые вопросы</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span data-i18n="faq.q1">Сколько времени занимает работа над заказом?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p data-i18n="faq.a1">Обычно обложка готова за 1–3 дня, а lyrics видео — за 2–4 дня. Если у тебя горят дедлайны, возможен срочный экспресс-заказ за 24 часа по согласованию.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span data-i18n="faq.q2">В каких форматах я получу готовые файлы?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p data-i18n="faq.a2">Обложки: 3000×3000px, 300 DPI (JPG, PNG, TIFF) — строго по стандартам площадок. Видео: MP4 (H.264 / ProRes) в Full HD или 4K UHD, горизонтальный 16:9 и вертикальный 9:16 (для Reels / Shorts / TikTok).</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span data-i18n="faq.q3">Что если мне понадобятся правки?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p data-i18n="faq.a3">Все базовые правки по цвету, шрифтам, таймингу текста и деталям композиции абсолютно бесплатны до финального утверждения проекта.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span data-i18n="faq.q4">Как происходит оплата?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              <p data-i18n="faq.a4">Работаем по предоплате 50% или 100%. Оплатить можно банковской картой (Visa/Mastercard), Revolut, через СБП/Тинькофф/Сбер, перевод или криптовалюту (USDT).</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Banner -->
+    <section class="section final-cta-section">
+      <div class="container">
+        <div class="final-cta-card">
+          <div class="final-cta-glow"></div>
+          <div class="final-cta-content">
+            <h2 class="final-cta-title" data-i18n="final.title">Готов усилить свой релиз?</h2>
+            <p class="final-cta-subtitle" data-i18n="final.subtitle">
+              Выбери подходящий пакет, оформи заказ и получи профессиональные визуалы без лишнего стресса.
+            </p>
+          </div>
+          <div class="final-cta-action">
+            <button class="btn btn-primary btn-lg btn-glow open-modal-btn" data-modal="orderModal" data-package="full">
+              <span data-i18n="final.btn">Заказать сейчас</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark"></span>
+        <span class="logo-text">ARTIST <span class="text-accent">VISUALS</span></span>
+        <p class="footer-desc" data-i18n="footer.desc">Visuals & Lyrics videos for music artists worldwide.</p>
+      </div>
+
+      <div class="footer-contacts">
+        <h5 data-i18n="footer.contactsTitle">Прямая связь</h5>
+        <div class="social-links">
+          <a href="https://t.me/mikekr260698" target="_blank" rel="noopener" class="social-pill">
+            <span>✈ Telegram</span>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="social-pill">
+            <span>📸 Instagram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom text-center">
+      <p>© <span id="currentYear"></span> ARTIST VISUALS. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============================================== -->
+  <!-- MODAL 1: ОФОРМИТЬ ЗАКАЗ (Self-service brief)   -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="orderModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <span class="modal-pill" data-i18n="modal.order.pill">ОФОРМЛЕНИЕ ЗАКАЗА</span>
+          <h3 id="orderModalTitle" data-i18n="modal.order.title">Бриф на визуалы</h3>
+        </div>
+        <button class="modal-close-btn" data-close="orderModal" aria-label="Закрыть">&times;</button>
+      </div>
+
+      <form id="orderForm" class="modal-form">
+        <!-- Package selection -->
+        <div class="form-group">
+          <label class="form-label" data-i18n="modal.order.packageLabel">Выбери пакет</label>
+          <div class="package-radio-group">
+            <label class="radio-card">
+              <input type="radio" name="selectedPackage" value="cover" id="radioCover">
+              <span class="radio-card-content">
+                <span class="radio-title" data-i18n="packages.cover.name">Обложка для трека</span>
+                <span class="radio-price" id="modalPriceCover">5 000 ₽</span>
+              </span>
+            </label>
+
+            <label class="radio-card">
+              <input type="radio" name="selectedPackage" value="lyrics" id="radioLyrics">
+              <span class="radio-card-content">
+                <span class="radio-title" data-i18n="packages.lyrics.name">Lyrics видео</span>
+                <span class="radio-price" id="modalPriceLyrics">8 000 ₽</span>
+              </span>
+            </label>
+
+            <label class="radio-card">
+              <input type="radio" name="selectedPackage" value="full" id="radioFull" checked>
+              <span class="radio-card-content">
+                <span class="radio-title" data-i18n="packages.full.name">Полный пакет</span>
+                <span class="radio-price" id="modalPriceFull">12 000 ₽</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Artist name & track title -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="artistName" data-i18n="modal.order.artistLabel">Твой псевдоним / Имя *</label>
+            <input type="text" id="artistName" required class="form-control" placeholder="Например: KAIRO" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="trackTitle" data-i18n="modal.order.trackLabel">Название трека *</label>
+            <input type="text" id="trackTitle" required class="form-control" placeholder="Например: Night Vision">
+          </div>
+        </div>
+
+        <!-- Audio link / Demo -->
+        <div class="form-group">
+          <label class="form-label" for="demoLink" data-i18n="modal.order.demoLabel">Ссылка на трек / демо</label>
+          <input type="url" id="demoLink" class="form-control" placeholder="Google Drive, Dropbox, Яндекс Диск, SoundCloud">
+          <span class="form-hint" data-i18n="modal.order.demoHint">Можно прислать позже в переписке</span>
+        </div>
+
+        <!-- Wishes / References -->
+        <div class="form-group">
+          <label class="form-label" for="orderNotes" data-i18n="modal.order.notesLabel">Пожелания / стиль / референсы</label>
+          <textarea id="orderNotes" rows="3" class="form-control" placeholder="Опиши настроение, цвета, идеи или вставь ссылки на примеры"></textarea>
+        </div>
+
+        <!-- Contact details -->
+        <div class="form-group">
+          <label class="form-label" for="contactHandle" data-i18n="modal.order.contactLabel">Контакт для связи (Telegram / WhatsApp / Instagram) *</label>
+          <input type="text" id="contactHandle" required class="form-control" placeholder="@username или +373 / +40 / +7 ...">
+        </div>
+
+        <!-- Payment Timing Choice -->
+        <div class="form-group">
+          <label class="form-label" data-i18n="modal.order.paymentLabel">Способ и время оплаты</label>
+          <div class="payment-timing-group">
+            <label class="timing-card">
+              <input type="radio" name="paymentOption" value="later" checked>
+              <span class="timing-card-content">
+                <span class="timing-badge">💬</span>
+                <span class="timing-info">
+                  <strong data-i18n="modal.order.payLaterTitle">Оплата после согласования</strong>
+                  <span data-i18n="modal.order.payLaterDesc">Обсуждаем детали и бриф, затем оплата</span>
+                </span>
+              </span>
+            </label>
+
+            <label class="timing-card">
+              <input type="radio" name="paymentOption" value="now">
+              <span class="timing-card-content">
+                <span class="timing-badge">💳</span>
+                <span class="timing-info">
+                  <strong data-i18n="modal.order.payNowTitle">Оплатить сейчас онлайн</strong>
+                  <span data-i18n="modal.order.payNowDesc">Картой (Visa/Mastercard, Revolut, Apple Pay)</span>
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary btn-block btn-glow">
+            <span data-i18n="modal.order.submitBtn">Отправить заявку</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <p class="modal-guarantee" data-i18n="modal.order.guarantee">
+            🔒 Мы свяжемся с тобой в течение 30–60 минут для согласования деталей и старта работы.
+          </p>
+        </div>
+      </form>
+
+      <!-- Success Screen inside Modal -->
+      <div id="orderSuccess" class="modal-success" style="display: none;">
+        <div class="success-icon">✓</div>
+        <h3 data-i18n="modal.success.title">Заявка успешно отправлена!</h3>
+        <p id="successSummary" class="success-text" data-i18n="modal.success.desc">
+          Спасибо! Мы получили твои данные и уже готовим концепт.
+        </p>
+        <div class="success-actions">
+          <a id="payNowDirectBtn" href="https://revolut.me/mikekr" target="_blank" rel="noopener" class="btn btn-primary btn-block btn-glow" style="display: none;">
+            <span data-i18n="modal.success.payNowBtn">💳 Оплатить заказ онлайн</span>
+          </a>
+          <a id="telegramDirectLink" href="https://t.me/mikekr260698" target="_blank" rel="noopener" class="btn btn-secondary btn-block">
+            <span>✈ Отправить бриф в Telegram</span>
+          </a>
+          <button type="button" class="btn btn-outline btn-block" data-close="orderModal">
+            <span data-i18n="modal.success.closeBtn">Вернуться на сайт</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL 2: ОБСУДИТЬ ПРОЕКТ (Quick direct contact)-->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="discussModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-sm">
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <span class="modal-pill" data-i18n="modal.discuss.pill">ПРЯМАЯ СВЯЗЬ</span>
+          <h3 data-i18n="modal.discuss.title">Обсудить проект</h3>
+        </div>
+        <button class="modal-close-btn" data-close="discussModal" aria-label="Закрыть">&times;</button>
+      </div>
+
+      <div class="modal-body text-center">
+        <p class="discuss-intro" data-i18n="modal.discuss.desc">
+          Выбери удобный способ связи. Отвечаем быстро, поможем выбрать формат и рассчитаем точную стоимость.
+        </p>
+
+        <div class="direct-contact-list">
+          <a href="https://t.me/mikekr260698" target="_blank" rel="noopener" class="direct-btn direct-telegram">
+            <div class="direct-icon">✈</div>
+            <div class="direct-info">
+              <h4>Telegram</h4>
+              <span data-i18n="modal.discuss.fastest">Самый быстрый ответ (~15 мин)</span>
+            </div>
+            <span class="direct-arrow">→</span>
+          </a>
+
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="direct-btn direct-instagram">
+            <div class="direct-icon">📸</div>
+            <div class="direct-info">
+              <h4>Instagram Direct</h4>
+              <span data-i18n="modal.discuss.portfolio">Смотри сторис и портфолио</span>
+            </div>
+            <span class="direct-arrow">→</span>
+          </a>
+
+          <a href="https://wa.me/" target="_blank" rel="noopener" class="direct-btn direct-whatsapp">
+            <div class="direct-icon">🟢</div>
+            <div class="direct-info">
+              <h4>WhatsApp</h4>
+              <span data-i18n="modal.discuss.messages">Голосовые и файлы</span>
+            </div>
+            <span class="direct-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+
+  <!-- Floating Switcher Bar -->
+  <div class="demo-switcher-bar">
+    <span class="switcher-label">⚡ Alege varianta de animație:</span>
+    <a href="v1.html" class="switcher-pill ">1. Slide Mascat</a>
+    <a href="v2.html" class="switcher-pill ">2. Decrypt Hacker</a>
+    <a href="v3.html" class="switcher-pill active">3. Blur Cinematic</a>
+    <a href="v4.html" class="switcher-pill ">4. 3D Flip</a>
+    <a href="v5.html" class="switcher-pill ">5. Neon Sweep</a>
+  </div>
+
+</body>
+</html>
