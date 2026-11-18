@@ -1,121 +1,128 @@
 /**
- * VISUALS — Core Application Script
- * Multilingual Engine (RU / RO / EN), Currency Detector & Switcher,
- * Interactive Modals & Brief Submission, Audio/Video Demo Player.
+ * ARTIST VISUALS — Core Application Script
+ * Multilingual Engine (EN / RO / RU), Auto-Currency Detector & Switcher,
+ * Interactive Modals & Dual Checkout (Pay Now / Pay Later via Telegram),
+ * Calm Parallax Wiggle & Audio/Video Demo Player.
  */
 
 // ==========================================================================
 // 1. MULTILINGUAL DICTIONARY (i18n)
 // ==========================================================================
 const translations = {
-  ru: {
-    "nav.packages": "Пакеты",
-    "nav.cases": "Кейсы",
-    "nav.reviews": "Отзывы",
+  en: {
+    "nav.packages": "Packages",
+    "nav.cases": "Portfolio",
+    "nav.reviews": "Reviews",
     "nav.faq": "FAQ",
-    "header.orderBtn": "Заказать",
+    "header.orderBtn": "Order",
 
-    "hero.badge": "Принимаем заказы на новые релизы",
-    "hero.title1": "Визуалы для",
-    "hero.title2": "твоей музыки",
-    "hero.subtitle": "Обложки для треков и lyrics видео, которые усиливают твой релиз и создают правильное настроение.",
-    "hero.btnPackages": "Выбрать пакет",
-    "hero.btnCases": "Смотреть кейсы",
+    "hero.badge": "Accepting orders for new releases",
+    "hero.title1": "Visuals for",
+    "hero.title2": "your music",
+    "hero.subtitle": "Track cover art and lyrics videos that elevate your release and set the perfect mood.",
+    "hero.btnPackages": "Choose Package",
+    "hero.btnCases": "View Cases",
 
-    "features.turnkey.title": "Под ключ",
-    "features.turnkey.desc": "Ты просто оформляешь заказ, мы делаем остальное",
-    "features.ontime.title": "В срок",
-    "features.ontime.desc": "Чёткие дедлайны и стабильный результат",
-    "features.style.title": "Под твой стиль",
-    "features.style.desc": "Учитываем твоё звучание, референсы и идеи",
+    "features.turnkey.title": "Turnkey",
+    "features.turnkey.desc": "You just submit the brief, we handle the rest",
+    "features.ontime.title": "On Time",
+    "features.ontime.desc": "Strict deadlines and guaranteed high quality",
+    "features.style.title": "Your Style",
+    "features.style.desc": "Tailored to your sound, references, and vision",
 
-    "packages.tag": "ПАКЕТЫ",
-    "packages.title": "Выбери свой формат",
-    "packages.subtitle": "Готовые решения под твой релиз",
-    "packages.btnOrder": "Заказать",
-    "packages.btnDiscuss": "Обсудить",
+    "packages.tag": "PACKAGES",
+    "packages.title": "Choose your format",
+    "packages.subtitle": "Ready-to-release solutions for artists",
+    "packages.btnOrder": "Order",
+    "packages.btnDiscuss": "Discuss",
 
-    "packages.cover.name": "Обложка для трека",
-    "packages.cover.desc": "Уникальная обложка, которая выделит твой релиз.",
-    "packages.cover.p1": "Разрешение 3000 × 3000 px, 300 DPI",
-    "packages.cover.p2": "Форматы для Spotify, Apple Music, VK",
-    "packages.cover.p3": "До 3 вариантов концепта на выбор",
-    "packages.cover.p4": "Бесплатные правки до утверждения",
+    "packages.cover.name": "Cover Art",
+    "packages.cover.desc": "Unique 3000x3000px artwork that makes your track stand out.",
+    "packages.cover.p1": "3000 × 3000 px resolution, 300 DPI",
+    "packages.cover.p2": "Ready for Spotify, Apple Music & all DSPs",
+    "packages.cover.p3": "Up to 3 concepts to choose from",
+    "packages.cover.p4": "Free revisions until final approval",
 
-    "packages.lyrics.name": "Lyrics видео",
-    "packages.lyrics.desc": "Стильное видео с текстом трека под твоё звучание.",
-    "packages.lyrics.p1": "Full HD / 4K качество видеоряда",
-    "packages.lyrics.p2": "Формат 16:9 для YouTube и VK Видео",
-    "packages.lyrics.p3": "Анимация текста точно в такт бита",
-    "packages.lyrics.p4": "Атмосферный фон с эффектами",
+    "packages.lyrics.name": "Lyrics Video",
+    "packages.lyrics.desc": "Dynamic music video with synced text matched to the beat.",
+    "packages.lyrics.p1": "Full HD / 4K UHD video resolution",
+    "packages.lyrics.p2": "16:9 widescreen format for YouTube",
+    "packages.lyrics.p3": "Precise text synchronization on beat",
+    "packages.lyrics.p4": "Atmospheric motion background & effects",
 
-    "packages.full.badge": "Выгодно",
-    "packages.full.name": "Полный пакет",
-    "packages.full.desc": "Обложка + lyrics видео. Единый стиль, максимальный эффект.",
-    "packages.full.p1": "Обложка 3000 × 3000 px для всех площадок",
-    "packages.full.p2": "Lyrics видео 16:9 (YouTube) в 4K",
-    "packages.full.p3": "Вертикальный сниппет 9:16 (Reels/TikTok/Shorts)",
-    "packages.full.p4": "Приоритетный срок изготовления",
+    "packages.full.badge": "Best Value",
+    "packages.full.name": "Full Pack",
+    "packages.full.desc": "Cover Art + Lyrics Video. Unified aesthetic, maximum impact.",
+    "packages.full.p1": "Cover Art 3000 × 3000 px for all DSPs",
+    "packages.full.p2": "Lyrics Video 16:9 (YouTube) in 4K",
+    "packages.full.p3": "Vertical 9:16 snippet for Reels/TikTok/Shorts",
+    "packages.full.p4": "Priority turnaround time",
 
-    "included.title": "Что входит в работу?",
-    "included.subtitle": "Всё, что нужно для сильного и готового к релизу визуала.",
-    "included.item1": "Индивидуальный подход и учёт твоих референсов",
-    "included.item2": "Уникальный дизайн и плавная анимация",
-    "included.item3": "Согласование на каждом этапе производства",
-    "included.item4": "Готовые файлы в нужных форматах (релиз, соцсети и т.д.)",
-    "included.item5": "Оперативные правки до полного утверждения",
+    "included.title": "What's included?",
+    "included.subtitle": "Everything required for a stunning, release-ready visual.",
+    "included.item1": "Tailored approach focused on your mood and references",
+    "included.item2": "Distinctive artwork design and fluid animation",
+    "included.item3": "Approval at every milestone of the process",
+    "included.item4": "Release-ready files formatted for all streaming platforms",
+    "included.item5": "Fast revisions until you are 100% satisfied",
 
-    "cases.tag": "КЕЙСЫ",
-    "cases.title": "Примеры работ",
-    "cases.subtitle": "Ознакомься с визуалами, созданными для последних релизов",
+    "cases.tag": "CASES",
+    "cases.title": "Selected Works",
+    "cases.subtitle": "Explore visuals created for recent music releases",
 
-    "reviews.tag": "ОТЗЫВЫ",
-    "reviews.title": "Что говорят артисты",
-    "reviews.role": "Артист",
-    "reviews.quote1": "«Сделали обложку и lyrics видео точно в моём стиле. Быстро, чётко, без лишних вопросов — 10/10.»",
-    "reviews.quote2": "«Качество на уровне. Всё согласовывали, правки вносили оперативно. Советую, если нужен сильный визуал к релизу.»",
-    "reviews.quote3": "«Очень удобно: оформил заказ, скинул референсы — и просто получил готовый результат в срок. Буду ещё заказывать.»",
+    "reviews.tag": "REVIEWS",
+    "reviews.title": "What artists say",
+    "reviews.role": "Artist",
+    "reviews.quote1": "«Created the cover and lyrics video in my exact vibe. Fast, sharp, zero hassle — 10/10.»",
+    "reviews.quote2": "«Top-tier production quality. Great communication, revisions done swiftly. Highly recommended.»",
+    "reviews.quote3": "«Super smooth process: submitted the brief and got exactly what I envisioned on time. Will order again.»",
 
     "faq.tag": "FAQ",
-    "faq.title": "Частые вопросы",
-    "faq.q1": "Сколько времени занимает работа над заказом?",
-    "faq.a1": "Обычно обложка готова за 1–3 дня, а lyrics видео — за 2–4 дня. Если у тебя горят дедлайны, возможен срочный экспресс-заказ за 24 часа по согласованию.",
-    "faq.q2": "В каких форматах я получу готовые файлы?",
-    "faq.a2": "Обложки: 3000×3000px, 300 DPI (JPG, PNG, TIFF) — строго по стандартам площадок. Видео: MP4 (H.264 / ProRes) в Full HD или 4K UHD, горизонтальный 16:9 и вертикальный 9:16 (для Reels / Shorts / TikTok).",
-    "faq.q3": "Что если мне понадобятся правки?",
-    "faq.a3": "Все базовые правки по цвету, шрифтам, таймингу текста и деталям композиции абсолютно бесплатны до финального утверждения проекта.",
-    "faq.q4": "Как происходит оплата?",
-    "faq.a4": "Работаем по предоплате 50% или 100%. Оплатить можно банковской картой (Visa/Mastercard), Revolut, через СБП/Тинькофф/Сбер, перевод или криптовалюту (USDT).",
+    "faq.title": "Frequently Asked Questions",
+    "faq.q1": "How long does a project take?",
+    "faq.a1": "Cover art is typically delivered within 1–3 days, lyrics videos in 2–4 days. Express 24h delivery is available upon request.",
+    "faq.q2": "What file formats will I receive?",
+    "faq.a2": "Cover art: 3000×3000px, 300 DPI (JPG, PNG). Videos: MP4 (H.264 / ProRes) in Full HD or 4K UHD, both 16:9 and 9:16 vertical.",
+    "faq.q3": "What if I need revisions?",
+    "faq.a3": "All standard revisions regarding color tuning, typography, text timing, and layout adjustments are free until final approval.",
+    "faq.q4": "How does payment work?",
+    "faq.a4": "We work with a 50% or 100% deposit. Accepted payment methods include Card (Visa/Mastercard), Revolut, Bank Transfer, or Crypto (USDT).",
 
-    "final.title": "Готов усилить свой релиз?",
-    "final.subtitle": "Выбери подходящий пакет, оформи заказ и получи профессиональные визуалы без лишнего стресса.",
-    "final.btn": "Заказать сейчас",
+    "final.title": "Ready to amplify your release?",
+    "final.subtitle": "Pick your package, place your order, and get industry-standard visuals without the headache.",
+    "final.btn": "Order now",
 
-    "footer.desc": "Визуалы и Lyrics видео для музыкантов по всему миру.",
-    "footer.contactsTitle": "Прямая связь",
+    "footer.desc": "Visuals & Lyrics videos for music artists worldwide.",
+    "footer.contactsTitle": "Direct Contact",
 
-    "modal.order.pill": "ОФОРМЛЕНИЕ ЗАКАЗА",
-    "modal.order.title": "Бриф на визуалы",
-    "modal.order.packageLabel": "Выбери пакет",
-    "modal.order.artistLabel": "Твой псевдоним / Имя *",
-    "modal.order.trackLabel": "Название трека *",
-    "modal.order.demoLabel": "Ссылка на трек / демо",
-    "modal.order.demoHint": "Можно прислать позже в переписке",
-    "modal.order.notesLabel": "Пожелания / стиль / референсы",
-    "modal.order.contactLabel": "Контакт для связи (Telegram / WhatsApp / Instagram) *",
-    "modal.order.submitBtn": "Отправить заявку",
-    "modal.order.guarantee": "🔒 Мы свяжемся с тобой в течение 30–60 минут для согласования деталей и старта работы.",
+    "modal.order.pill": "ORDER BRIEF",
+    "modal.order.title": "Visuals Project Brief",
+    "modal.order.packageLabel": "Choose Package",
+    "modal.order.artistLabel": "Your Artist Name *",
+    "modal.order.trackLabel": "Track Title *",
+    "modal.order.demoLabel": "Link to Track / Demo",
+    "modal.order.demoHint": "You can also share it in chat later",
+    "modal.order.notesLabel": "Preferences / Style / References",
+    "modal.order.contactLabel": "Contact handle (Telegram / WhatsApp / Instagram) *",
+    "modal.order.paymentLabel": "Payment Timing & Method",
+    "modal.order.payLaterTitle": "Pay after approval",
+    "modal.order.payLaterDesc": "We discuss brief details first, then proceed to payment",
+    "modal.order.payNowTitle": "Pay now online",
+    "modal.order.payNowDesc": "Card (Visa/Mastercard, Revolut, Apple Pay)",
+    "modal.order.submitBtn": "Submit Order",
+    "modal.order.guarantee": "🔒 We will reach out within 30–60 minutes to confirm details and initiate production.",
 
-    "modal.success.title": "Заявка успешно отправлена!",
-    "modal.success.desc": "Спасибо! Мы получили твои данные и уже готовим концепт.",
-    "modal.success.closeBtn": "Вернуться на сайт",
+    "modal.success.title": "Order submitted successfully!",
+    "modal.success.desc": "Thank you! We received your details and are already prepping your concept.",
+    "modal.success.payNowBtn": "💳 Proceed to secure checkout",
+    "modal.success.closeBtn": "Back to site",
 
-    "modal.discuss.pill": "ПРЯМАЯ СВЯЗЬ",
-    "modal.discuss.title": "Обсудить проект",
-    "modal.discuss.desc": "Выбери удобный способ связи. Отвечаем быстро, поможем выбрать формат и рассчитаем точную стоимость.",
-    "modal.discuss.fastest": "Самый быстрый ответ (~15 мин)",
-    "modal.discuss.portfolio": "Смотри сторис и портфолио",
-    "modal.discuss.messages": "Голосовые и файлы"
+    "modal.discuss.pill": "DIRECT CONTACT",
+    "modal.discuss.title": "Discuss your project",
+    "modal.discuss.desc": "Choose your preferred messaging channel. We reply quickly and help you pick the best package.",
+    "modal.discuss.fastest": "Fastest response (~15 min)",
+    "modal.discuss.portfolio": "Check stories and portfolio",
+    "modal.discuss.messages": "Voice notes and file sharing"
   },
 
   ro: {
@@ -213,11 +220,17 @@ const translations = {
     "modal.order.demoHint": "Poți trimite și mai târziu în chat",
     "modal.order.notesLabel": "Preferințe / stil / referințe",
     "modal.order.contactLabel": "Contact pentru legătură (Telegram / WhatsApp / Instagram) *",
+    "modal.order.paymentLabel": "Modalitate și timp de plată",
+    "modal.order.payLaterTitle": "Plată după confirmare",
+    "modal.order.payLaterDesc": "Discutăm detaliile și brief-ul, apoi achiți",
+    "modal.order.payNowTitle": "Achită acum online",
+    "modal.order.payNowDesc": "Card (Visa/Mastercard, Revolut, Apple Pay)",
     "modal.order.submitBtn": "Trimite comanda",
     "modal.order.guarantee": "🔒 Te contactăm în 30–60 minute pentru a discuta detaliile și a porni lucrul.",
 
     "modal.success.title": "Comanda a fost trimisă cu succes!",
     "modal.success.desc": "Mulțumim! Am primit datele tale și pregătim deja conceptul.",
+    "modal.success.payNowBtn": "💳 Mergi la plata securizată",
     "modal.success.closeBtn": "Înapoi la site",
 
     "modal.discuss.pill": "LEGĂTURĂ DIRECTĂ",
@@ -228,114 +241,120 @@ const translations = {
     "modal.discuss.messages": "Mesaje vocale și fișiere"
   },
 
-  en: {
-    "nav.packages": "Packages",
-    "nav.cases": "Portfolio",
-    "nav.reviews": "Reviews",
+  ru: {
+    "nav.packages": "Пакеты",
+    "nav.cases": "Кейсы",
+    "nav.reviews": "Отзывы",
     "nav.faq": "FAQ",
-    "header.orderBtn": "Order",
+    "header.orderBtn": "Заказать",
 
-    "hero.badge": "Accepting orders for new releases",
-    "hero.title1": "Visuals for",
-    "hero.title2": "your music",
-    "hero.subtitle": "Track cover art and lyrics videos that elevate your release and set the perfect mood.",
-    "hero.btnPackages": "Choose Package",
-    "hero.btnCases": "View Cases",
+    "hero.badge": "Принимаем заказы на новые релизы",
+    "hero.title1": "Визуалы для",
+    "hero.title2": "твоей музыки",
+    "hero.subtitle": "Обложки для треков и lyrics видео, которые усиливают твой релиз и создают правильное настроение.",
+    "hero.btnPackages": "Выбрать пакет",
+    "hero.btnCases": "Смотреть кейсы",
 
-    "features.turnkey.title": "Turnkey",
-    "features.turnkey.desc": "You just submit the brief, we handle the rest",
-    "features.ontime.title": "On Time",
-    "features.ontime.desc": "Strict deadlines and guaranteed high quality",
-    "features.style.title": "Your Style",
-    "features.style.desc": "Tailored to your sound, references, and vision",
+    "features.turnkey.title": "Под ключ",
+    "features.turnkey.desc": "Ты просто оформляешь заказ, мы делаем остальное",
+    "features.ontime.title": "В срок",
+    "features.ontime.desc": "Чёткие дедлайны и стабильный результат",
+    "features.style.title": "Под твой стиль",
+    "features.style.desc": "Учитываем твоё звучание, референсы и идеи",
 
-    "packages.tag": "PACKAGES",
-    "packages.title": "Choose your format",
-    "packages.subtitle": "Ready-to-release solutions for artists",
-    "packages.btnOrder": "Order",
-    "packages.btnDiscuss": "Discuss",
+    "packages.tag": "ПАКЕТЫ",
+    "packages.title": "Выбери свой формат",
+    "packages.subtitle": "Готовые решения под твой релиз",
+    "packages.btnOrder": "Заказать",
+    "packages.btnDiscuss": "Обсудить",
 
-    "packages.cover.name": "Cover Art",
-    "packages.cover.desc": "Unique 3000x3000px artwork that makes your track stand out.",
-    "packages.cover.p1": "3000 × 3000 px resolution, 300 DPI",
-    "packages.cover.p2": "Ready for Spotify, Apple Music & all DSPs",
-    "packages.cover.p3": "Up to 3 concepts to choose from",
-    "packages.cover.p4": "Free revisions until final approval",
+    "packages.cover.name": "Обложка для трека",
+    "packages.cover.desc": "Уникальная обложка, которая выделит твой релиз.",
+    "packages.cover.p1": "Разрешение 3000 × 3000 px, 300 DPI",
+    "packages.cover.p2": "Форматы для Spotify, Apple Music, VK",
+    "packages.cover.p3": "До 3 вариантов концепта на выбор",
+    "packages.cover.p4": "Бесплатные правки до утверждения",
 
-    "packages.lyrics.name": "Lyrics Video",
-    "packages.lyrics.desc": "Dynamic music video with synced text matched to the beat.",
-    "packages.lyrics.p1": "Full HD / 4K UHD video resolution",
-    "packages.lyrics.p2": "16:9 widescreen format for YouTube",
-    "packages.lyrics.p3": "Precise text synchronization on beat",
-    "packages.lyrics.p4": "Atmospheric motion background & effects",
+    "packages.lyrics.name": "Lyrics видео",
+    "packages.lyrics.desc": "Стильное видео с текстом трека под твоё звучание.",
+    "packages.lyrics.p1": "Full HD / 4K качество видеоряда",
+    "packages.lyrics.p2": "Формат 16:9 для YouTube и VK Видео",
+    "packages.lyrics.p3": "Анимация текста точно в такт бита",
+    "packages.lyrics.p4": "Атмосферный фон с эффектами",
 
-    "packages.full.badge": "Best Value",
-    "packages.full.name": "Full Pack",
-    "packages.full.desc": "Cover Art + Lyrics Video. Unified aesthetic, maximum impact.",
-    "packages.full.p1": "Cover Art 3000 × 3000 px for all DSPs",
-    "packages.full.p2": "Lyrics Video 16:9 (YouTube) in 4K",
-    "packages.full.p3": "Vertical 9:16 snippet for Reels/TikTok/Shorts",
-    "packages.full.p4": "Priority turnaround time",
+    "packages.full.badge": "Выгодно",
+    "packages.full.name": "Полный пакет",
+    "packages.full.desc": "Обложка + lyrics видео. Единый стиль, максимальный эффект.",
+    "packages.full.p1": "Обложка 3000 × 3000 px для всех площадок",
+    "packages.full.p2": "Lyrics видео 16:9 (YouTube) в 4K",
+    "packages.full.p3": "Вертикальный сниппет 9:16 (Reels/TikTok/Shorts)",
+    "packages.full.p4": "Приоритетный срок изготовления",
 
-    "included.title": "What's included?",
-    "included.subtitle": "Everything required for a stunning, release-ready visual.",
-    "included.item1": "Tailored approach focused on your mood and references",
-    "included.item2": "Distinctive artwork design and fluid animation",
-    "included.item3": "Approval at every milestone of the process",
-    "included.item4": "Release-ready files formatted for all streaming platforms",
-    "included.item5": "Fast revisions until you are 100% satisfied",
+    "included.title": "Что входит в работу?",
+    "included.subtitle": "Всё, что нужно для сильного и готового к релизу визуала.",
+    "included.item1": "Индивидуальный подход и учёт твоих референсов",
+    "included.item2": "Уникальный дизайн и плавная анимация",
+    "included.item3": "Согласование на каждом этапе производства",
+    "included.item4": "Готовые файлы в нужных форматах (релиз, соцсети и т.д.)",
+    "included.item5": "Оперативные правки до полного утверждения",
 
-    "cases.tag": "CASES",
-    "cases.title": "Selected Works",
-    "cases.subtitle": "Explore visuals created for recent music releases",
+    "cases.tag": "КЕЙСЫ",
+    "cases.title": "Примеры работ",
+    "cases.subtitle": "Ознакомься с визуалами, созданными для последних релизов",
 
-    "reviews.tag": "REVIEWS",
-    "reviews.title": "What artists say",
-    "reviews.role": "Artist",
-    "reviews.quote1": "«Created the cover and lyrics video in my exact vibe. Fast, sharp, zero hassle — 10/10.»",
-    "reviews.quote2": "«Top-tier production quality. Great communication, revisions done swiftly. Highly recommended.»",
-    "reviews.quote3": "«Super smooth process: submitted the brief and got exactly what I envisioned on time. Will order again.»",
+    "reviews.tag": "ОТЗЫВЫ",
+    "reviews.title": "Что говорят артисты",
+    "reviews.role": "Артист",
+    "reviews.quote1": "«Сделали обложку и lyrics видео точно в моём стиле. Быстро, чётко, без лишних вопросов — 10/10.»",
+    "reviews.quote2": "«Качество на уровне. Всё согласовывали, правки вносили оперативно. Советую, если нужен сильный визуал к релизу.»",
+    "reviews.quote3": "«Очень удобно: оформил заказ, скинул референсы — и просто получил готовый результат в срок. Буду ещё заказывать.»",
 
     "faq.tag": "FAQ",
-    "faq.title": "Frequently Asked Questions",
-    "faq.q1": "How long does a project take?",
-    "faq.a1": "Cover art is typically delivered within 1–3 days, lyrics videos in 2–4 days. Express 24h delivery is available upon request.",
-    "faq.q2": "What file formats will I receive?",
-    "faq.a2": "Cover art: 3000×3000px, 300 DPI (JPG, PNG). Videos: MP4 (H.264 / ProRes) in Full HD or 4K UHD, both 16:9 and 9:16 vertical.",
-    "faq.q3": "What if I need revisions?",
-    "faq.a3": "All standard revisions regarding color tuning, typography, text timing, and layout adjustments are free until final approval.",
-    "faq.q4": "How does payment work?",
-    "faq.a4": "We work with a 50% or 100% deposit. Accepted payment methods include Card (Visa/Mastercard), Revolut, Bank Transfer, or Crypto (USDT).",
+    "faq.title": "Частые вопросы",
+    "faq.q1": "Сколько времени занимает работа над заказом?",
+    "faq.a1": "Обычно обложка готова за 1–3 дня, а lyrics видео — за 2–4 дня. Если у тебя горят дедлайны, возможен срочный экспресс-заказ за 24 часа по согласованию.",
+    "faq.q2": "В каких форматах я получу готовые файлы?",
+    "faq.a2": "Обложки: 3000×3000px, 300 DPI (JPG, PNG, TIFF) — строго по стандартам площадок. Видео: MP4 (H.264 / ProRes) в Full HD или 4K UHD, горизонтальный 16:9 и вертикальный 9:16 (для Reels / Shorts / TikTok).",
+    "faq.q3": "Что если мне понадобятся правки?",
+    "faq.a3": "Все базовые правки по цвету, шрифтам, таймингу текста и деталям композиции абсолютно бесплатны до финального утверждения проекта.",
+    "faq.q4": "Как происходит оплата?",
+    "faq.a4": "Работаем по предоплате 50% или 100%. Оплатить можно банковской картой (Visa/Mastercard), Revolut, через СБП/Тинькофф/Сбер, перевод или криптовалюту (USDT).",
 
-    "final.title": "Ready to amplify your release?",
-    "final.subtitle": "Pick your package, place your order, and get industry-standard visuals without the headache.",
-    "final.btn": "Order now",
+    "final.title": "Готов усилить свой релиз?",
+    "final.subtitle": "Выбери подходящий пакет, оформи заказ и получи профессиональные визуалы без лишнего стресса.",
+    "final.btn": "Заказать сейчас",
 
-    "footer.desc": "Visuals & Lyrics videos for music artists worldwide.",
-    "footer.contactsTitle": "Direct Contact",
+    "footer.desc": "Визуалы и Lyrics видео для музыкантов по всему миру.",
+    "footer.contactsTitle": "Прямая связь",
 
-    "modal.order.pill": "ORDER BRIEF",
-    "modal.order.title": "Visuals Project Brief",
-    "modal.order.packageLabel": "Choose Package",
-    "modal.order.artistLabel": "Your Artist Name *",
-    "modal.order.trackLabel": "Track Title *",
-    "modal.order.demoLabel": "Link to Track / Demo",
-    "modal.order.demoHint": "You can also share it in chat later",
-    "modal.order.notesLabel": "Preferences / Style / References",
-    "modal.order.contactLabel": "Contact handle (Telegram / WhatsApp / Instagram) *",
-    "modal.order.submitBtn": "Submit Order",
-    "modal.order.guarantee": "🔒 We will reach out within 30–60 minutes to confirm details and initiate production.",
+    "modal.order.pill": "ОФОРМЛЕНИЕ ЗАКАЗА",
+    "modal.order.title": "Бриф на визуалы",
+    "modal.order.packageLabel": "Выбери пакет",
+    "modal.order.artistLabel": "Твой псевдоним / Имя *",
+    "modal.order.trackLabel": "Название трека *",
+    "modal.order.demoLabel": "Ссылка на трек / демо",
+    "modal.order.demoHint": "Можно прислать позже в переписке",
+    "modal.order.notesLabel": "Пожелания / стиль / референсы",
+    "modal.order.contactLabel": "Контакт для связи (Telegram / WhatsApp / Instagram) *",
+    "modal.order.paymentLabel": "Способ и время оплаты",
+    "modal.order.payLaterTitle": "Оплата после согласования",
+    "modal.order.payLaterDesc": "Обсуждаем детали и бриф, затем оплата",
+    "modal.order.payNowTitle": "Оплатить сейчас онлайн",
+    "modal.order.payNowDesc": "Картой (Visa/Mastercard, Revolut, Apple Pay)",
+    "modal.order.submitBtn": "Отправить заявку",
+    "modal.order.guarantee": "🔒 Мы свяжемся с тобой в течение 30–60 минут для согласования деталей и старта работы.",
 
-    "modal.success.title": "Order submitted successfully!",
-    "modal.success.desc": "Thank you! We received your details and are already prepping your concept.",
-    "modal.success.closeBtn": "Back to site",
+    "modal.success.title": "Заявка успешно отправлена!",
+    "modal.success.desc": "Спасибо! Мы получили твои данные и уже готовим концепт.",
+    "modal.success.payNowBtn": "💳 Перейти к безопасной оплате",
+    "modal.success.closeBtn": "Вернуться на сайт",
 
-    "modal.discuss.pill": "DIRECT CONTACT",
-    "modal.discuss.title": "Discuss your project",
-    "modal.discuss.desc": "Choose your preferred messaging channel. We reply quickly and help you pick the best package.",
-    "modal.discuss.fastest": "Fastest response (~15 min)",
-    "modal.discuss.portfolio": "Check stories and portfolio",
-    "modal.discuss.messages": "Voice notes and file sharing"
+    "modal.discuss.pill": "ПРЯМАЯ СВЯЗЬ",
+    "modal.discuss.title": "Обсудить проект",
+    "modal.discuss.desc": "Выбери удобный способ связи. Отвечаем быстро, поможем выбрать формат и рассчитаем точную стоимость.",
+    "modal.discuss.fastest": "Самый быстрый ответ (~15 мин)",
+    "modal.discuss.portfolio": "Смотри сторис и портфолио",
+    "modal.discuss.messages": "Голосовые и файлы"
   }
 };
 
@@ -343,37 +362,37 @@ const translations = {
 // 2. CURRENCY & PRICING CONFIGURATION
 // ==========================================================================
 const currencies = {
-  RUB: { symbol: "₽", code: "RUB", rate: 1, format: (val) => `${val.toLocaleString('ru-RU')} ₽` },
-  EUR: { symbol: "€", code: "EUR", rate: 0.01, format: (val) => `${val} €` },
-  USD: { symbol: "$", code: "USD", rate: 0.011, format: (val) => `$${val}` },
-  MDL: { symbol: "lei", code: "MDL", rate: 0.2, format: (val) => `${val.toLocaleString('ro-RO')} lei` },
-  RON: { symbol: "lei", code: "RON", rate: 0.05, format: (val) => `${val.toLocaleString('ro-RO')} lei` }
+  USD: { symbol: "$", code: "USD" },
+  EUR: { symbol: "€", code: "EUR" },
+  MDL: { symbol: "lei", code: "MDL" },
+  RON: { symbol: "lei", code: "RON" },
+  RUB: { symbol: "₽", code: "RUB" }
 };
 
 const priceMatrix = {
-  cover: { RUB: "5 000 ₽", EUR: "50 €", USD: "$55", MDL: "1 000 lei", RON: "250 lei" },
-  lyrics: { RUB: "8 000 ₽", EUR: "80 €", USD: "$90", MDL: "1 600 lei", RON: "400 lei" },
-  full: { RUB: "12 000 ₽", EUR: "120 €", USD: "$130", MDL: "2 400 lei", RON: "600 lei" }
+  cover: { USD: "$55", EUR: "50 €", MDL: "1 000 lei", RON: "250 lei", RUB: "5 000 ₽" },
+  lyrics: { USD: "$90", EUR: "80 €", MDL: "1 600 lei", RON: "400 lei", RUB: "8 000 ₽" },
+  full: { USD: "$130", EUR: "120 €", MDL: "2 400 lei", RON: "600 lei", RUB: "12 000 ₽" }
 };
 
 const oldPriceMatrix = {
-  full: { RUB: "13 000 ₽", EUR: "130 €", USD: "$145", MDL: "2 600 lei", RON: "650 lei" }
+  full: { USD: "$145", EUR: "130 €", MDL: "2 600 lei", RON: "650 lei", RUB: "13 000 ₽" }
 };
 
 // State
-let currentLang = 'ru';
-let currentCurrency = 'RUB';
+let currentLang = 'en';
+let currentCurrency = 'USD';
 
 // Detect Country / Currency automatically
 function detectUserCurrency() {
   try {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-    const locale = navigator.language || navigator.userLanguage || "";
+    const locale = (navigator.language || navigator.userLanguage || "").toLowerCase();
 
-    if (timezone.includes("Chisinau") || locale.includes("ro-MD") || locale.includes("ru-MD")) {
+    if (timezone.includes("Chisinau") || locale.includes("md")) {
       return "MDL";
     }
-    if (timezone.includes("Bucharest") || locale.includes("ro-RO") || locale.includes("ro")) {
+    if (timezone.includes("Bucharest") || locale.includes("ro")) {
       return "RON";
     }
     if (timezone.includes("Moscow") || timezone.includes("Samara") || timezone.includes("Yekaterinburg") || timezone.includes("Almaty") || timezone.includes("Minsk")) {
@@ -382,13 +401,28 @@ function detectUserCurrency() {
     if (timezone.includes("London") || timezone.includes("Paris") || timezone.includes("Berlin") || timezone.includes("Rome") || timezone.includes("Madrid") || timezone.includes("Europe")) {
       return "EUR";
     }
-    if (timezone.includes("New_York") || timezone.includes("Chicago") || timezone.includes("Los_Angeles") || timezone.includes("America")) {
-      return "USD";
-    }
   } catch (e) {
     console.warn("Currency detection fallback:", e);
   }
-  return "RUB";
+  return "USD";
+}
+
+// Detect User Language
+function detectUserLanguage() {
+  try {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    const locale = (navigator.language || navigator.userLanguage || "").toLowerCase();
+
+    if (timezone.includes("Chisinau") || timezone.includes("Bucharest") || locale.startsWith("ro")) {
+      return "ro";
+    }
+    if (timezone.includes("Moscow") || timezone.includes("Samara") || timezone.includes("Minsk") || timezone.includes("Almaty") || locale.startsWith("ru")) {
+      return "ru";
+    }
+  } catch (e) {
+    console.warn("Language detection fallback:", e);
+  }
+  return "en"; // Default is EN as requested
 }
 
 // Update Currency in UI
@@ -397,8 +431,10 @@ function setCurrency(currCode) {
   currentCurrency = currCode;
 
   // Update header buttons
-  document.getElementById('currentCurrencySymbol').textContent = currencies[currCode].symbol;
-  document.getElementById('currentCurrencyCode').textContent = currencies[currCode].code;
+  const symbolEl = document.getElementById('currentCurrencySymbol');
+  const codeEl = document.getElementById('currentCurrencyCode');
+  if (symbolEl) symbolEl.textContent = currencies[currCode].symbol;
+  if (codeEl) codeEl.textContent = currencies[currCode].code;
 
   // Update Package cards
   document.querySelectorAll('.package-card').forEach(card => {
@@ -480,7 +516,7 @@ function closeModal(modalId) {
 }
 
 // ==========================================================================
-// 4. ORDER FORM & TELEGRAM BRIDGE
+// 4. ORDER FORM & DUAL PAYMENT BRIDGE
 // ==========================================================================
 function setupOrderForm() {
   const form = document.getElementById('orderForm');
@@ -490,50 +526,67 @@ function setupOrderForm() {
     e.preventDefault();
 
     const pkg = form.querySelector('input[name="selectedPackage"]:checked').value;
+    const paymentTiming = form.querySelector('input[name="paymentOption"]:checked')?.value || 'later';
     const artist = document.getElementById('artistName').value.trim();
     const track = document.getElementById('trackTitle').value.trim();
     const demo = document.getElementById('demoLink').value.trim();
     const notes = document.getElementById('orderNotes').value.trim();
     const contact = document.getElementById('contactHandle').value.trim();
 
-    const pkgName = pkg === 'cover' ? 'Обложка 3x3' : (pkg === 'lyrics' ? 'Lyrics Видео' : 'Полный Пакет');
+    const pkgName = pkg === 'cover' ? 'Cover Art 3000x3000' : (pkg === 'lyrics' ? 'Lyrics Video 4K' : 'Full Pack Combo');
     const priceText = priceMatrix[pkg][currentCurrency];
+    const paymentLabel = paymentTiming === 'now' ? '💳 Оплата СЕЙЧАС онлайн (Card/Revolut)' : '💬 Оплата ПОСЛЕ согласования брифа';
 
     // Format message for Telegram
-    const telegramMessage = `🔥 НОВЫЙ ЗАКАЗ — VISUALS
+    const telegramMessage = `🔥 НОВЫЙ ЗАКАЗ — ARTIST VISUALS
 -----------------------------
 📦 Пакет: ${pkgName} (${priceText})
+💰 Способ оплаты: ${paymentLabel}
 🎤 Артист: ${artist}
 🎵 Трек: ${track}
-🔗 Демо: ${demo || 'Не указана (в ЛС)'}
+🔗 Демо: ${demo || 'Не указана (отправлю в ЛС)'}
 📝 Пожелания: ${notes || 'Стандарт / на вкус автора'}
 📱 Контакт клиента: ${contact}`;
 
     const tgUrl = `https://t.me/mikekr260698?text=${encodeURIComponent(telegramMessage)}`;
 
-    // Update Success screen
+    // Update Direct Links on Success screen
     const directLink = document.getElementById('telegramDirectLink');
     if (directLink) directLink.href = tgUrl;
 
+    const payNowBtn = document.getElementById('payNowDirectBtn');
+    if (payNowBtn) {
+      if (paymentTiming === 'now') {
+        payNowBtn.style.display = 'inline-flex';
+        payNowBtn.href = `https://revolut.me/mikekr`;
+      } else {
+        payNowBtn.style.display = 'none';
+      }
+    }
+
     const summary = document.getElementById('successSummary');
     if (summary) {
-      summary.innerHTML = `Пакет: <strong>${pkgName} (${priceText})</strong> для трека <em>"${artist} — ${track}"</em>.<br>Нажми кнопку ниже, чтобы сразу открыть диалог с нами в Telegram!`;
+      const timingNotice = paymentTiming === 'now' 
+        ? `<br><span style="color:#22c55e;">✓ Выбрана онлайн-оплата: нажми кнопку ниже для перехода к оплате.</span>`
+        : `<br><span style="color:#8e8e99;">✓ Выбрана оплата после согласования: детали уточним в Telegram.</span>`;
+
+      summary.innerHTML = `Пакет: <strong>${pkgName} (${priceText})</strong> для <em>"${artist} — ${track}"</em>.${timingNotice}`;
     }
 
     form.style.display = 'none';
     document.getElementById('orderSuccess').style.display = 'block';
 
-    // Optional: save to local storage as backup
+    // Backup to localStorage
     try {
-      const orders = JSON.parse(localStorage.getItem('visuals_orders') || '[]');
-      orders.push({ date: new Date().toISOString(), pkg, artist, track, demo, contact, priceText });
-      localStorage.setItem('visuals_orders', JSON.stringify(orders));
+      const orders = JSON.parse(localStorage.getItem('artist_visuals_orders') || '[]');
+      orders.push({ date: new Date().toISOString(), pkg, paymentTiming, artist, track, demo, contact, priceText });
+      localStorage.setItem('artist_visuals_orders', JSON.stringify(orders));
     } catch (err) {}
   });
 }
 
 // ==========================================================================
-// 5. INTERACTIVE DEMO PLAYER
+// 5. INTERACTIVE DEMO PLAYER & CALM PARALLAX WIGGLE
 // ==========================================================================
 function setupDemoPlayer() {
   const playBtn = document.getElementById('demoPlayBtn');
@@ -567,6 +620,28 @@ function setupDemoPlayer() {
   });
 }
 
+// Calm scroll parallax for the vinyl cover
+function setupScrollParallax() {
+  const mockup = document.querySelector('.cover-card-mockup');
+  if (!mockup) return;
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrolled < 800) {
+          const tilt = -3 + (scrolled * 0.006);
+          const translateY = scrolled * 0.05;
+          mockup.style.transform = `rotate(${tilt}deg) translateY(${translateY}px)`;
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
 // ==========================================================================
 // 6. INITIALIZATION & EVENT LISTENERS
 // ==========================================================================
@@ -575,10 +650,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('currentYear');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Initialize Currency & Language
+  // Initialize Language & Currency
+  const detectedLang = detectUserLanguage();
   const detectedCurr = detectUserCurrency();
+  setLanguage(detectedLang);
   setCurrency(detectedCurr);
-  setLanguage('ru');
 
   // Currency Dropdown Toggle
   const currBtn = document.getElementById('currencyBtn');
@@ -643,4 +719,5 @@ document.addEventListener('DOMContentLoaded', () => {
   // Setup components
   setupOrderForm();
   setupDemoPlayer();
+  setupScrollParallax();
 });

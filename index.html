@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VISUALS — Визуалы и Lyrics видео для твоей музыки</title>
-  <meta name="description" content="Профессиональные 3000x3000px обложки для треков и стильные lyrics видео для артистов. Быстрые сроки, готовые форматы для всех площадок.">
-  <meta name="keywords" content="обложка для трека, lyrics video, лирикс видео, обложка 3x3, дизайн для музыкантов, cover art">
+  <title>Artist Visuals — Cover Art & Lyrics Video</title>
+  <meta name="description" content="Professional 3000x3000px cover artwork and custom lyrics videos for music artists. Fast delivery, DSP-ready formats.">
+  <meta name="keywords" content="Artist Visuals, cover art, lyrics video, cover 3x3, music cover design, visualizer">
 
   <!-- Open Graph / Social Media Preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="VISUALS — Визуалы для твоей музыки">
-  <meta property="og:description" content="Обложки для треков и lyrics видео, которые усиливают твой релиз и создают правильное настроение.">
+  <meta property="og:title" content="Artist Visuals — Music Visuals & Lyrics Videos">
+  <meta property="og:description" content="Track artwork and lyrics videos that elevate your release and set the perfect mood.">
   <meta property="og:image" content="https://mikekr260698-ops.github.io/LyricsVideoSite/preview.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@
     <div class="header-inner container">
       <a href="#" class="logo">
         <span class="logo-mark"></span>
-        <span class="logo-text">VISUALS</span>
+        <span class="logo-text">ARTIST <span class="text-accent">VISUALS</span></span>
       </a>
 
       <nav class="nav-links" id="navLinks">
@@ -58,9 +58,9 @@
 
         <!-- Language Switcher -->
         <div class="lang-switch" id="langSwitch">
-          <button class="lang-btn active" data-lang="ru">RU</button>
+          <button class="lang-btn active" data-lang="en">EN</button>
           <button class="lang-btn" data-lang="ro">RO</button>
-          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ru">RU</button>
         </div>
 
         <!-- Primary CTA -->
@@ -528,7 +528,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="logo-mark"></span>
-        <span class="logo-text">VISUALS</span>
+        <span class="logo-text">ARTIST <span class="text-accent">VISUALS</span></span>
         <p class="footer-desc" data-i18n="footer.desc">Visuals & Lyrics videos for music artists worldwide.</p>
       </div>
 
@@ -545,7 +545,7 @@
       </div>
     </div>
     <div class="footer-bottom text-center">
-      <p>© <span id="currentYear"></span> VISUALS. All rights reserved.</p>
+      <p>© <span id="currentYear"></span> ARTIST VISUALS. All rights reserved.</p>
     </div>
   </footer>
 
@@ -624,6 +624,34 @@
           <input type="text" id="contactHandle" required class="form-control" placeholder="@username или +373 / +40 / +7 ...">
         </div>
 
+        <!-- Payment Timing Choice -->
+        <div class="form-group">
+          <label class="form-label" data-i18n="modal.order.paymentLabel">Способ и время оплаты</label>
+          <div class="payment-timing-group">
+            <label class="timing-card">
+              <input type="radio" name="paymentOption" value="later" checked>
+              <span class="timing-card-content">
+                <span class="timing-badge">💬</span>
+                <span class="timing-info">
+                  <strong data-i18n="modal.order.payLaterTitle">Оплата после согласования</strong>
+                  <span data-i18n="modal.order.payLaterDesc">Обсуждаем детали и бриф, затем оплата</span>
+                </span>
+              </span>
+            </label>
+
+            <label class="timing-card">
+              <input type="radio" name="paymentOption" value="now">
+              <span class="timing-card-content">
+                <span class="timing-badge">💳</span>
+                <span class="timing-info">
+                  <strong data-i18n="modal.order.payNowTitle">Оплатить сейчас онлайн</strong>
+                  <span data-i18n="modal.order.payNowDesc">Картой (Visa/Mastercard, Revolut, Apple Pay)</span>
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary btn-block btn-glow">
             <span data-i18n="modal.order.submitBtn">Отправить заявку</span>
@@ -643,8 +671,11 @@
           Спасибо! Мы получили твои данные и уже готовим концепт.
         </p>
         <div class="success-actions">
-          <a id="telegramDirectLink" href="https://t.me/mikekr260698" target="_blank" rel="noopener" class="btn btn-primary btn-block">
-            <span>✈ Написать напрямую в Telegram</span>
+          <a id="payNowDirectBtn" href="https://revolut.me/mikekr" target="_blank" rel="noopener" class="btn btn-primary btn-block btn-glow" style="display: none;">
+            <span data-i18n="modal.success.payNowBtn">💳 Оплатить заказ онлайн</span>
+          </a>
+          <a id="telegramDirectLink" href="https://t.me/mikekr260698" target="_blank" rel="noopener" class="btn btn-secondary btn-block">
+            <span>✈ Отправить бриф в Telegram</span>
           </a>
           <button type="button" class="btn btn-outline btn-block" data-close="orderModal">
             <span data-i18n="modal.success.closeBtn">Вернуться на сайт</span>

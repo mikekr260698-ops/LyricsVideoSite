@@ -72,9 +72,24 @@ body {
 .glow-top {
   top: -150px;
   right: 5%;
-  width: 500px;
-  height: 500px;
+  width: 550px;
+  height: 550px;
   background: radial-gradient(circle, #ff1e38 0%, rgba(200, 10, 30, 0) 70%);
+  animation: glowExpand 5s ease-out forwards;
+}
+
+@keyframes glowExpand {
+  0% {
+    transform: scale(0.6) translate(-50px, -20px);
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(1.15) translate(0, 0);
+    opacity: 0.38;
+  }
 }
 
 .glow-mid {
@@ -455,12 +470,37 @@ body {
   line-height: 1.05;
   letter-spacing: -0.03em;
   margin-bottom: 24px;
+  animation: titleGlowEntrance 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes titleGlowEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(12px);
+  }
+  60% {
+    text-shadow: 0 0 40px rgba(255, 30, 60, 0.75);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    text-shadow: 0 0 20px rgba(230, 25, 55, 0.3);
+  }
 }
 
 .text-gradient {
   background: linear-gradient(135deg, #ff334b 0%, #ff758c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
+  animation: textShimmerGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes textShimmerGlow {
+  0% { filter: drop-shadow(0 0 10px rgba(255, 45, 75, 0.35)); }
+  100% { filter: drop-shadow(0 0 26px rgba(255, 45, 75, 0.85)); }
 }
 
 .hero-subtitle {
@@ -545,12 +585,29 @@ body {
   box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 40px rgba(230, 25, 55, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: #0f0e13;
-  transform: rotate(-3deg);
-  transition: transform var(--transition-normal);
+  animation: calmWiggleFloat 8s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+  will-change: transform;
+  transition: box-shadow 0.4s ease;
+}
+
+@keyframes calmWiggleFloat {
+  0% {
+    transform: rotate(-3deg) translate(0px, 0px);
+  }
+  35% {
+    transform: rotate(-1.5deg) translate(6px, -10px);
+  }
+  70% {
+    transform: rotate(-4.5deg) translate(-5px, -6px);
+  }
+  100% {
+    transform: rotate(-2.8deg) translate(3px, -2px);
+  }
 }
 
 .cover-card-mockup:hover {
   transform: rotate(0deg) scale(1.02);
+  animation-play-state: paused;
 }
 
 .cover-inner {
@@ -1590,6 +1647,69 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.text-accent {
+  color: var(--accent-red);
+}
+
+/* Payment Timing Choice */
+.payment-timing-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.timing-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.timing-card input {
+  position: absolute;
+  opacity: 0;
+}
+
+.timing-card-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  min-height: 70px;
+}
+
+.timing-card input:checked + .timing-card-content {
+  border-color: var(--accent-red);
+  background: var(--accent-red-subtle);
+  box-shadow: 0 0 16px rgba(230, 25, 55, 0.25);
+}
+
+.timing-badge {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.timing-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.timing-info strong {
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.timing-info span {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+  margin-top: 2px;
 }
 
 /* Keyframe animations */
