@@ -620,21 +620,44 @@ function setupDemoPlayer() {
   });
 }
 
-// Calm scroll parallax for the vinyl cover
+// Calm scroll parallax for the vinyl cover & lateral gradient dispersion on scroll
 function setupScrollParallax() {
   const mockup = document.querySelector('.cover-card-mockup');
-  if (!mockup) return;
+  const burstGlow = document.getElementById('heroBurstGlow');
+  const ambientTop = document.querySelector('.glow-top');
 
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
         const scrolled = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrolled < 800) {
+
+        // 1. Vinyl mockup calm tilt & float
+        if (mockup && scrolled < 900) {
           const tilt = -3 + (scrolled * 0.006);
           const translateY = scrolled * 0.05;
           mockup.style.transform = `rotate(${tilt}deg) translateY(${translateY}px)`;
         }
+
+        // 2. Burst Gradient stretches to the sides and dissolves smoothly
+        if (burstGlow) {
+          const progress = Math.min(scrolled / 500, 1); // 0 to 1 over first 500px scroll
+          const scaleX = 1 + (progress * 2.5); // Extends massively sideways
+          const scaleY = 1 - (progress * 0.25);
+          const opacity = Math.max(0.65 - (progress * 0.7), 0); // Dissolves to 0
+          const blur = 75 + (progress * 50); // Dissolving blur
+
+          burstGlow.style.transform = `scale(${scaleX}, ${scaleY})`;
+          burstGlow.style.opacity = opacity;
+          burstGlow.style.filter = `blur(${blur}px)`;
+        }
+
+        // 3. Ambient top glow also reacts laterally
+        if (ambientTop && scrolled < 700) {
+          const ambScaleX = 1 + (scrolled * 0.0025);
+          ambientTop.style.transform = `scaleX(${ambScaleX})`;
+        }
+
         ticking = false;
       });
       ticking = true;
