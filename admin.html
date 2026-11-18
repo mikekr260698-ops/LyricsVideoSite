@@ -209,6 +209,17 @@
       background: rgba(255, 255, 255, 0.08);
       border-color: rgba(255, 255, 255, 0.2);
     }
+    .btn-add-project {
+      background: rgba(230, 0, 38, 0.15);
+      border-color: rgba(230, 0, 38, 0.4);
+      color: #ff4d6d;
+      font-weight: 700;
+    }
+    .btn-add-project:hover {
+      background: var(--accent-red);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(230, 0, 38, 0.4);
+    }
     .btn-save-all {
       background: var(--accent-green);
       border-color: var(--accent-green);
@@ -266,7 +277,7 @@
     }
     .stat-pill span { color: var(--accent-green); font-weight: 800; }
 
-    /* Auto-Optimization Explainer Tag */
+    /* Auto-Optimization Notice */
     .auto-opt-notice {
       background: rgba(0, 210, 106, 0.08);
       border: 1px solid rgba(0, 210, 106, 0.2);
@@ -327,6 +338,21 @@
       padding: 2px 8px;
       border-radius: 6px;
     }
+    .btn-delete-project {
+      background: transparent;
+      border: 1px solid rgba(255, 71, 87, 0.25);
+      color: #ff4757;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-delete-project:hover {
+      background: #ff4757;
+      color: #fff;
+    }
+
     .project-name-input {
       font-family: var(--font-heading);
       font-size: 1.15rem;
@@ -372,13 +398,13 @@
       border-radius: 12px;
       padding: 12px 14px;
       display: grid;
-      grid-template-columns: 110px 1fr;
+      grid-template-columns: 120px 1fr;
       gap: 14px;
       align-items: center;
     }
     .media-preview-box {
-      width: 110px;
-      height: 75px;
+      width: 120px;
+      height: 80px;
       background: #000;
       border-radius: 8px;
       overflow: hidden;
@@ -392,16 +418,18 @@
     .media-preview-box video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      background: #060609;
     }
     .media-preview-box.square {
-      height: 110px;
+      height: 120px;
     }
     .media-empty-tip {
       font-size: 0.65rem;
       color: var(--text-muted);
       text-align: center;
       padding: 4px;
+      line-height: 1.2;
     }
 
     .media-controls {
@@ -463,6 +491,27 @@
     .custom-path-input:focus {
       border-color: var(--accent-red);
       color: #fff;
+    }
+
+    /* Active Thumbnail Chip below select */
+    .active-thumb-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .active-thumb-chip img {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      object-fit: cover;
+      background: #000;
     }
 
     /* Upload & Auto-Optimization Buttons */
@@ -531,8 +580,8 @@
       opacity: 1;
     }
 
-    /* Modal for Export */
-    .export-modal-backdrop {
+    /* Modal Backdrop (Export & Add Project) */
+    .modal-backdrop {
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.85);
@@ -543,17 +592,19 @@
       padding: 20px;
       z-index: 1500;
     }
-    .export-modal {
+    .modal-box {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 28px;
       width: 100%;
-      max-width: 700px;
-      max-height: 85vh;
+      max-width: 650px;
+      max-height: 88vh;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
     }
     .export-textarea {
       width: 100%;
@@ -608,6 +659,9 @@
       <a href="index.html" target="_blank" class="btn-action">
         <span>🌐 Vezi Site-ul</span>
       </a>
+      <button class="btn-action btn-add-project" id="btnOpenAddModal">
+        <span>➕ Adaugă Proiect Nou</span>
+      </button>
       <button class="btn-action btn-save-all" id="btnSaveAll">
         <span>💾 Salvează Toate Modificările</span>
       </button>
@@ -628,18 +682,19 @@
     <div class="hero-banner">
       <div class="hero-text">
         <h1>Panou de Control & Upload Automat</h1>
-        <p>Aici poți schimba fișierele sau încărca poze/videoclipuri noi direct de pe calculator. Sistemul creează <strong>automat versiunea optimizată pentru carusel</strong> și păstrează originalul Full HD pentru deschidere!</p>
+        <p>Aici poți schimba fișierele, seta <strong>opțiunea [Fără Video/Cover/Banner]</strong> sau <strong>adăuga manual proiecte noi</strong>. Orice imagine încărcată este optimizată automat la preview!</p>
       </div>
       <div class="quick-stats">
+        <button class="btn-action btn-add-project" id="btnHeroAdd">➕ Adaugă Proiect Nou</button>
         <div class="stat-pill">Proiecte: <span id="statCount">8</span></div>
-        <div class="stat-pill">Auto-Convert: <span style="color:#00d26a;">✓ Activ (Canvas + HD)</span></div>
+        <div class="stat-pill">Auto-Convert: <span style="color:#00d26a;">✓ Activ</span></div>
       </div>
     </div>
 
     <div class="auto-opt-notice">
       <span>⚡</span>
       <div>
-        <strong>Optimizare Automată la Încărcare:</strong> Când încarci o copertă sau un banner de pe calculator, panoul generează automat un thumbnail ușor (~50KB) pentru ca site-ul să ruleze instant, păstrând rezoluția maximă pentru când deschizi proiectul. La videoclipuri se extrage automat un cadru HD ca poster!
+        <strong>Previzualizare și Opțiuni Fără Media:</strong> Fiecare selector are opțiunea clară <em>[Fără Video]</em>, <em>[Fără Poster]</em>, <em>[Fără Copertă]</em> și <em>[Fără Bannere]</em>. În dreptul fiecărei alegeri se afișează instant un preview vizual pentru a ști exact ce selectezi!
       </div>
     </div>
 
@@ -660,14 +715,54 @@
     <span id="toastMsg">Modificările au fost salvate cu succes!</span>
   </div>
 
+  <!-- ADD PROJECT MODAL -->
+  <div class="modal-backdrop" id="addProjectModal">
+    <div class="modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="font-family:var(--font-heading);">➕ Adaugă Proiect Nou în Portofoliu</h3>
+        <button id="btnCloseAddModal" class="btn-action" style="padding:4px 10px;">&times;</button>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted);">Completează datele proiectului. După creare, poți adăuga sau schimba media oricând:</p>
+
+      <div class="form-group">
+        <label class="form-label">ID Proiect (litere mici și liniuță jos, ex: piesa_noua)</label>
+        <input type="text" class="form-input" id="newProjectId" placeholder="ex: dark_vibes">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Titlu Proiect & Artist</label>
+        <input type="text" class="form-input" id="newProjectTitle" placeholder="ex: ARTIST — Titlu Piesă">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Subtitlu (ex: Official 4K Lyrics Video & Visualizer)</label>
+        <input type="text" class="form-input" id="newProjectSubtitle" placeholder="ex: Cinematic Lyrics Video 4K">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Pachet</label>
+        <select class="select-dropdown" id="newProjectPackage">
+          <option value="lyrics">Lyrics Video 4K Master</option>
+          <option value="cover">Single Cover Art 3000 × 3000 px</option>
+          <option value="full">Full Release Pack (Video + Cover + Bannere)</option>
+        </select>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
+        <button class="btn-action" id="btnCancelAdd">Anulează</button>
+        <button class="btn-action btn-save-all" id="btnConfirmAdd">Creează Proiectul</button>
+      </div>
+    </div>
+  </div>
+
   <!-- EXPORT MODAL -->
-  <div class="export-modal-backdrop" id="exportModal">
-    <div class="export-modal">
+  <div class="modal-backdrop" id="exportModal">
+    <div class="modal-box">
       <div style="display:flex; justify-content:space-between; align-items:center;">
         <h3 style="font-family:var(--font-heading);">Configurație Proiecte (JSON)</h3>
         <button id="btnCloseExport" class="btn-action" style="padding:4px 10px;">&times;</button>
       </div>
-      <p style="font-size:0.85rem; color:var(--text-muted);">Poți copia această configurație pentru a o păstra sau a o include în proiect:</p>
+      <p style="font-size:0.85rem; color:var(--text-muted);">Poți copia această configurație pentru a o include permanent în proiect:</p>
       <textarea class="export-textarea" id="exportText" readonly></textarea>
       <div style="display:flex; justify-content:flex-end; gap:10px;">
         <button class="btn-action" id="btnCopyExport">📋 Copiază în Clipboard</button>
@@ -681,97 +776,54 @@
     const AUTH_USER = 'mikekr';
     const AUTH_PASS = 'qweasd123';
 
-    // Available Media Assets in the Library
+    // Available Media Assets in the Library with preview thumbnails
     const MEDIA_LIBRARY = {
       videos: [
-        { label: 'На красивом (1080p Master)', value: 'assets/videos/video_na_krasivom.mp4' },
-        { label: 'Si vis pacem Parabellum (1080p Master)', value: 'assets/videos/video_parabellum.mp4' },
-        { label: 'MISSYRIGHT — Young Queen (1080p Master)', value: 'assets/videos/video_young_queen.mp4' },
-        { label: 'CIORNIY — Iubirea e o boală grea (1080p Master)', value: 'assets/videos/video_ciorniy.mp4' },
-        { label: 'MOOSTAF — Отпускаю (1080p Master)', value: 'assets/videos/video_moostaf.mp4' },
-        { label: 'ORI BLAZE / Jenika — Când stelele respiră (1080p)', value: 'assets/videos/video_ori_blaze.mp4' },
-        { label: '[Fără Video — Doar Cover 3000px]', value: '' }
+        { label: '[Fără Video — Doar Cover 3000px]', value: '', preview: '' },
+        { label: 'На красивом (1080p Master)', value: 'assets/videos/video_na_krasivom.mp4', preview: 'assets/videos/posters/video_na_krasivom_poster.jpg' },
+        { label: 'Si vis pacem Parabellum (1080p Master)', value: 'assets/videos/video_parabellum.mp4', preview: 'assets/videos/posters/video_parabellum_poster.jpg' },
+        { label: 'MISSYRIGHT — Young Queen (1080p Master)', value: 'assets/videos/video_young_queen.mp4', preview: 'assets/videos/posters/video_young_queen_poster.jpg' },
+        { label: 'CIORNIY — Iubirea e o boală grea (1080p Master)', value: 'assets/videos/video_ciorniy.mp4', preview: 'assets/videos/posters/video_ciorniy_poster.jpg' },
+        { label: 'MOOSTAF — Отпускаю (1080p Master)', value: 'assets/videos/video_moostaf.mp4', preview: 'assets/videos/posters/video_moostaf_poster.jpg' },
+        { label: 'ORI BLAZE / Jenika — Când stelele respiră (1080p)', value: 'assets/videos/video_ori_blaze.mp4', preview: 'assets/videos/posters/video_ori_blaze_poster.jpg' }
       ],
       posters: [
-        { label: 'Frame: На красивом HD', value: 'assets/videos/posters/video_na_krasivom_poster.jpg' },
-        { label: 'Frame: Si vis pacem Parabellum HD', value: 'assets/videos/posters/video_parabellum_poster.jpg' },
-        { label: 'Frame: MISSYRIGHT Young Queen HD', value: 'assets/videos/posters/video_young_queen_poster.jpg' },
-        { label: 'Frame: CIORNIY Iubirea e o boală grea HD', value: 'assets/videos/posters/video_ciorniy_poster.jpg' },
-        { label: 'Frame: MOOSTAF Отпускаю HD', value: 'assets/videos/posters/video_moostaf_poster.jpg' },
-        { label: 'Frame: ORI BLAZE Când stelele respiră HD', value: 'assets/videos/posters/video_ori_blaze_poster.jpg' },
-        { label: 'Frame: MISSYRIGHT Полюбила хулигана HD', value: 'assets/videos/posters/video_hooligan_poster.jpg' },
-        { label: 'Frame: Si vis pacem Сколько стоит боль HD', value: 'assets/videos/posters/video_skolko_stoit_poster.jpg' },
-        { label: 'Frame: MOOSTAF Новый день HD', value: 'assets/videos/posters/video_new_day_poster.jpg' },
-        { label: '[Fără Poster]', value: '' }
+        { label: '[Fără Poster]', value: '', preview: '' },
+        { label: 'Frame: На красивом HD', value: 'assets/videos/posters/video_na_krasivom_poster.jpg', preview: 'assets/videos/posters/video_na_krasivom_poster.jpg' },
+        { label: 'Frame: Si vis pacem Parabellum HD', value: 'assets/videos/posters/video_parabellum_poster.jpg', preview: 'assets/videos/posters/video_parabellum_poster.jpg' },
+        { label: 'Frame: MISSYRIGHT Young Queen HD', value: 'assets/videos/posters/video_young_queen_poster.jpg', preview: 'assets/videos/posters/video_young_queen_poster.jpg' },
+        { label: 'Frame: CIORNIY Iubirea e o boală grea HD', value: 'assets/videos/posters/video_ciorniy_poster.jpg', preview: 'assets/videos/posters/video_ciorniy_poster.jpg' },
+        { label: 'Frame: MOOSTAF Отпускаю HD', value: 'assets/videos/posters/video_moostaf_poster.jpg', preview: 'assets/videos/posters/video_moostaf_poster.jpg' },
+        { label: 'Frame: ORI BLAZE Când stelele respiră HD', value: 'assets/videos/posters/video_ori_blaze_poster.jpg', preview: 'assets/videos/posters/video_ori_blaze_poster.jpg' },
+        { label: 'Frame: MISSYRIGHT Полюбила хулигана HD', value: 'assets/videos/posters/video_hooligan_poster.jpg', preview: 'assets/videos/posters/video_hooligan_poster.jpg' },
+        { label: 'Frame: Si vis pacem Сколько стоит боль HD', value: 'assets/videos/posters/video_skolko_stoit_poster.jpg', preview: 'assets/videos/posters/video_skolko_stoit_poster.jpg' },
+        { label: 'Frame: MOOSTAF Новый день HD', value: 'assets/videos/posters/video_new_day_poster.jpg', preview: 'assets/videos/posters/video_new_day_poster.jpg' }
       ],
       covers: [
-        { label: 'Cover: Si vis pacem Parabellum (3000x3000px)', value: 'assets/covers/cover_parabellum.jpg' },
-        { label: 'Cover: IRAVELLE feat Andrei Green — На красивом', value: 'assets/covers/cover_na_krasivom.jpg' },
-        { label: 'Cover: Ribz ft Conway The Machine — Legend Like Kareem', value: 'assets/covers/cover_ribz.jpg' },
-        { label: 'Cover: Laureall — Pa Pa', value: 'assets/covers/cover_laureall.jpg' },
-        { label: 'Cover: CIORNIY — Iubirea e o boală grea', value: 'assets/covers/cover_ciorniy.jpg' },
-        { label: 'Cover: MISSYRIGHT — Young Queen', value: 'assets/covers/cover_young_queen.jpg' },
-        { label: 'Cover: JENIKA — Altcineva', value: 'assets/covers/cover_jenika.jpg' },
-        { label: 'Cover: SILVIKA — ZERO', value: 'assets/covers/cover_silvika.jpg' }
+        { label: '[Fără Copertă]', value: '', preview: '' },
+        { label: 'Cover: Si vis pacem Parabellum (3000x3000px)', value: 'assets/covers/cover_parabellum.jpg', preview: 'assets/covers/thumbs/cover_parabellum.jpg' },
+        { label: 'Cover: IRAVELLE feat Andrei Green — На красивом', value: 'assets/covers/cover_na_krasivom.jpg', preview: 'assets/covers/thumbs/cover_na_krasivom.jpg' },
+        { label: 'Cover: Ribz ft Conway The Machine — Legend Like Kareem', value: 'assets/covers/cover_ribz.jpg', preview: 'assets/covers/thumbs/cover_ribz.jpg' },
+        { label: 'Cover: Laureall — Pa Pa', value: 'assets/covers/cover_laureall.jpg', preview: 'assets/covers/thumbs/cover_laureall.jpg' },
+        { label: 'Cover: CIORNIY — Iubirea e o boală grea', value: 'assets/covers/cover_ciorniy.jpg', preview: 'assets/covers/thumbs/cover_ciorniy.jpg' },
+        { label: 'Cover: MISSYRIGHT — Young Queen', value: 'assets/covers/cover_young_queen.jpg', preview: 'assets/covers/thumbs/cover_young_queen.jpg' },
+        { label: 'Cover: JENIKA — Altcineva', value: 'assets/covers/cover_jenika.jpg', preview: 'assets/covers/thumbs/cover_jenika.jpg' },
+        { label: 'Cover: SILVIKA — ZERO', value: 'assets/covers/cover_silvika.jpg', preview: 'assets/covers/thumbs/cover_silvika.jpg' }
       ],
       banners: [
-        { label: 'Suite: IRAVELLE — На красивом (YT + Reels + VK)', value: 'assets/banners/banner_na_krasivom.jpg' },
-        { label: 'Suite: MOOSTAF — Отпускаю (YT + Reels + VK)', value: 'assets/banners/banner_moostaf.jpg' },
-        { label: 'Suite: CIORNIY — Iubirea e o boală grea (Reels + YT)', value: 'assets/banners/banner_ciorniy.jpg' },
-        { label: 'Suite: JENIKA — Altcineva (Reels + YT Cover)', value: 'assets/banners/banner_jenika.jpg' },
-        { label: '[Fără Pachet Bannere]', value: '' }
+        { label: '[Fără Pachet Bannere]', value: '', preview: '' },
+        { label: 'Suite: IRAVELLE — На красивом (YT + Reels + VK)', value: 'assets/banners/banner_na_krasivom.jpg', preview: 'assets/banners/banner_na_krasivom.jpg' },
+        { label: 'Suite: MOOSTAF — Отпускаю (YT + Reels + VK)', value: 'assets/banners/banner_moostaf.jpg', preview: 'assets/banners/banner_moostaf.jpg' },
+        { label: 'Suite: CIORNIY — Iubirea e o boală grea (Reels + YT)', value: 'assets/banners/banner_ciorniy.jpg', preview: 'assets/banners/banner_ciorniy.jpg' },
+        { label: 'Suite: JENIKA — Altcineva (Reels + YT Cover)', value: 'assets/banners/banner_jenika.jpg', preview: 'assets/banners/banner_jenika.jpg' }
       ]
     };
 
-    // State
     let workingProjects = {};
     let activeUploadContext = { key: null, type: null };
 
     // =========================================================================
-    // INDEXEDDB STORAGE (Allows saving large custom images & videos)
-    // =========================================================================
-    const DB_NAME = 'ArtistVisualsMediaDB';
-    const DB_STORE = 'uploaded_files';
-
-    function openMediaDB() {
-      return new Promise((resolve, reject) => {
-        const req = indexedDB.open(DB_NAME, 1);
-        req.onupgradeneeded = () => req.result.createObjectStore(DB_STORE);
-        req.onsuccess = () => resolve(req.result);
-        req.onerror = () => reject(req.error);
-      });
-    }
-
-    async function idbSave(key, value) {
-      try {
-        const db = await openMediaDB();
-        return new Promise((resolve, reject) => {
-          const tx = db.transaction(DB_STORE, 'readwrite');
-          tx.objectStore(DB_STORE).put(value, key);
-          tx.oncomplete = () => resolve();
-          tx.onerror = () => reject(tx.error);
-        });
-      } catch (e) {
-        console.warn('IDB save error:', e);
-      }
-    }
-
-    async function idbGet(key) {
-      try {
-        const db = await openMediaDB();
-        return new Promise((resolve, reject) => {
-          const tx = db.transaction(DB_STORE, 'readonly');
-          const req = tx.objectStore(DB_STORE).get(key);
-          req.onsuccess = () => resolve(req.result);
-          req.onerror = () => reject(req.error);
-        });
-      } catch (e) {
-        return null;
-      }
-    }
-
-    // =========================================================================
-    // AUTOMATIC IMAGE RESIZING & OPTIMIZATION (Client-Side Canvas)
+    // CANVAS AUTO-OPTIMIZATION
     // =========================================================================
     function createOptimizedThumbnail(file, maxDimension = 640, quality = 0.82) {
       return new Promise((resolve, reject) => {
@@ -807,7 +859,6 @@
             resolve({
               thumb: thumbDataUrl,
               original: originalDataUrl,
-              origSize: `${img.width}×${img.height}`,
               thumbSize: `${width}×${height}`
             });
           };
@@ -819,7 +870,6 @@
       });
     }
 
-    // Automatic Video Frame Extraction (Creates Poster from Video)
     function extractFrameFromVideoFile(file, seekTime = 4) {
       return new Promise((resolve, reject) => {
         const url = URL.createObjectURL(file);
@@ -896,7 +946,7 @@
     }
 
     // =========================================================================
-    // ADMIN DASHBOARD INITIALIZATION
+    // DASHBOARD & RENDERING
     // =========================================================================
     function initAdmin() {
       const saved = localStorage.getItem('artist_visuals_custom_projects');
@@ -912,24 +962,17 @@
 
       renderProjectsGrid();
       setupUploadTriggers();
+      setupAddProjectModal();
     }
 
     function renderProjectsGrid() {
       const grid = document.getElementById('projectsGrid');
       grid.innerHTML = '';
 
-      const primaryKeys = ['parabellum', 'na_krasivom', 'ciorniy', 'young_queen', 'jenika', 'ribz', 'laureall', 'silvika'];
-      const allKeys = Object.keys(workingProjects);
-      const displayKeys = primaryKeys.filter(k => allKeys.includes(k));
-      allKeys.forEach(k => {
-        if (!displayKeys.includes(k) && !k.endsWith('_video')) {
-          displayKeys.push(k);
-        }
-      });
+      const allKeys = Object.keys(workingProjects).filter(k => !k.endsWith('_video'));
+      document.getElementById('statCount').textContent = allKeys.length;
 
-      document.getElementById('statCount').textContent = displayKeys.length;
-
-      displayKeys.forEach(key => {
+      allKeys.forEach(key => {
         const p = workingProjects[key];
         const card = document.createElement('div');
         card.className = 'project-card';
@@ -953,10 +996,24 @@
           return html;
         };
 
+        // Find preview item for label
+        const findPreview = (items, val) => {
+          if (!val) return '';
+          const it = items.find(x => x.value === val);
+          return (it && it.preview) ? it.preview : (val.startsWith('data:') ? val : val);
+        };
+
+        const currentCoverPreview = findPreview(MEDIA_LIBRARY.covers, p.thumb || p.img);
+        const currentPosterPreview = findPreview(MEDIA_LIBRARY.posters, p.videoPoster);
+        const currentBannerPreview = findPreview(MEDIA_LIBRARY.banners, p.bannerImg);
+
         card.innerHTML = `
           <div class="card-top">
             <div style="flex: 1;">
-              <span class="card-id-tag">ID: ${key}</span>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span class="card-id-tag">ID: ${key}</span>
+                <button type="button" class="btn-delete-project" data-delete-key="${key}" title="Șterge acest proiect">🗑️ Șterge</button>
+              </div>
               <input type="text" class="project-name-input" value="${titleVal}" data-key="${key}" data-field="title" title="Apasă pentru a edita titlul">
               <input type="text" class="project-subtitle-input" value="${subVal}" data-key="${key}" data-field="subtitle" placeholder="Subtitlu (ex: Official 4K Lyrics Video)">
             </div>
@@ -968,7 +1025,7 @@
               <div class="media-preview-box">
                 ${p.videoSrc ? `
                   <video src="${p.videoSrc}" poster="${p.videoPoster || ''}" preload="none" controls style="width:100%;height:100%;"></video>
-                ` : `<span class="media-empty-tip">Fără Video</span>`}
+                ` : `<span class="media-empty-tip">Fără Video<br>(Doar Cover)</span>`}
               </div>
               <div class="media-controls">
                 <div class="media-header">
@@ -981,14 +1038,14 @@
                 <input type="text" class="custom-path-input" placeholder="Cale video: assets/videos/..." value="${p.videoSrc && !p.videoSrc.startsWith('blob:') ? p.videoSrc : ''}" data-key="${key}" data-media-custom="videoSrc">
                 <div class="upload-action-row">
                   <button type="button" class="btn-upload-file" data-upload-type="video" data-key="${key}">
-                    <span>📁 Încarcă Video (Auto-Frame HD)</span>
+                    <span>📁 Încarcă Video Nou (Auto-Frame HD)</span>
                   </button>
                   <span class="opt-status-tag" id="opt_video_${key}">✓ Frame extras!</span>
                 </div>
               </div>
             </div>
 
-            <!-- 2. VIDEO POSTER -->
+            <!-- 2. VIDEO POSTER FRAME -->
             <div class="media-block">
               <div class="media-preview-box">
                 ${p.videoPoster ? `
@@ -1003,12 +1060,16 @@
                 <select class="select-dropdown" data-key="${key}" data-media="videoPoster">
                   ${makeOptions(MEDIA_LIBRARY.posters, p.videoPoster || '')}
                 </select>
+                <div class="active-thumb-chip" id="chip_poster_${key}" style="${p.videoPoster ? '' : 'display:none;'}">
+                  <img src="${p.videoPoster || ''}" alt="preview">
+                  <span>Cadru activ selectat</span>
+                </div>
                 <input type="text" class="custom-path-input" placeholder="Cale poster: assets/videos/posters/..." value="${p.videoPoster && !p.videoPoster.startsWith('data:') ? p.videoPoster : ''}" data-key="${key}" data-media-custom="videoPoster">
                 <div class="upload-action-row">
                   <button type="button" class="btn-upload-file" data-upload-type="poster" data-key="${key}">
-                    <span>🖼️ Încarcă Poster Frame</span>
+                    <span>🖼️ Încarcă Poster Cadru</span>
                   </button>
-                  <span class="opt-status-tag" id="opt_poster_${key}">✓ Optimizat 720p</span>
+                  <span class="opt-status-tag" id="opt_poster_${key}">✓ Optimizat</span>
                 </div>
               </div>
             </div>
@@ -1028,6 +1089,10 @@
                 <select class="select-dropdown" data-key="${key}" data-media="img">
                   ${makeOptions(MEDIA_LIBRARY.covers, p.img || '')}
                 </select>
+                <div class="active-thumb-chip" id="chip_cover_${key}" style="${(p.thumb || p.img) ? '' : 'display:none;'}">
+                  <img src="${p.thumb || p.img || ''}" alt="preview">
+                  <span>Copertă activă selectată</span>
+                </div>
                 <input type="text" class="custom-path-input" placeholder="Cale copertă: assets/covers/..." value="${p.img && !p.img.startsWith('data:') ? p.img : ''}" data-key="${key}" data-media-custom="img">
                 <div class="upload-action-row">
                   <button type="button" class="btn-upload-file" data-upload-type="cover" data-key="${key}">
@@ -1053,6 +1118,10 @@
                 <select class="select-dropdown" data-key="${key}" data-media="bannerImg">
                   ${makeOptions(MEDIA_LIBRARY.banners, p.bannerImg || '')}
                 </select>
+                <div class="active-thumb-chip" id="chip_banner_${key}" style="${p.bannerImg ? '' : 'display:none;'}">
+                  <img src="${p.bannerImg || ''}" alt="preview">
+                  <span>Banner activ selectat</span>
+                </div>
                 <input type="text" class="custom-path-input" placeholder="Cale bannere: assets/banners/..." value="${p.bannerImg && !p.bannerImg.startsWith('data:') ? p.bannerImg : ''}" data-key="${key}" data-media-custom="bannerImg">
                 <div class="upload-action-row">
                   <button type="button" class="btn-upload-file" data-upload-type="banner" data-key="${key}">
@@ -1072,6 +1141,63 @@
     }
 
     // =========================================================================
+    // ADD NEW PROJECT MODAL LOGIC
+    // =========================================================================
+    function setupAddProjectModal() {
+      const modal = document.getElementById('addProjectModal');
+      const btnOpen = document.getElementById('btnOpenAddModal');
+      const btnHero = document.getElementById('btnHeroAdd');
+      const btnClose = document.getElementById('btnCloseAddModal');
+      const btnCancel = document.getElementById('btnCancelAdd');
+      const btnConfirm = document.getElementById('btnConfirmAdd');
+
+      const openModal = () => {
+        document.getElementById('newProjectId').value = 'proiect_' + (Object.keys(workingProjects).length + 1);
+        document.getElementById('newProjectTitle').value = '';
+        document.getElementById('newProjectSubtitle').value = '';
+        modal.style.display = 'flex';
+      };
+
+      if (btnOpen) btnOpen.onclick = openModal;
+      if (btnHero) btnHero.onclick = openModal;
+      if (btnClose) btnClose.onclick = () => modal.style.display = 'none';
+      if (btnCancel) btnCancel.onclick = () => modal.style.display = 'none';
+
+      if (btnConfirm) {
+        btnConfirm.onclick = () => {
+          let id = document.getElementById('newProjectId').value.trim().toLowerCase().replace(/[^a-z0-9_]/g, '_');
+          if (!id) id = 'proiect_' + Date.now();
+
+          const title = document.getElementById('newProjectTitle').value.trim() || 'Proiect Nou';
+          const subtitle = document.getElementById('newProjectSubtitle').value.trim() || 'Visuals Release';
+          const pkg = document.getElementById('newProjectPackage').value;
+
+          workingProjects[id] = {
+            title: { ro: title, ru: title, en: title },
+            subtitle: { ro: subtitle, ru: subtitle, en: subtitle },
+            package: pkg,
+            pill: { ro: 'PORTFOLIO CASE', ru: 'КЕЙС', en: 'PORTFOLIO CASE' },
+            img: '',
+            thumb: '',
+            videoSrc: '',
+            videoPoster: '',
+            bannerImg: '',
+            specs: {
+              ro: ['Format Master 4K / 3000px', 'Design Custom realizat de la zero', 'Gata de distribuție pe platforme'],
+              ru: ['Мастер формат 4K / 3000px', 'Индивидуальный дизайн с нуля', 'Готово к публикации'],
+              en: ['Master 4K / 3000px Format', 'Custom Design Crafted from Scratch', 'Ready for Digital Distribution']
+            }
+          };
+
+          modal.style.display = 'none';
+          renderProjectsGrid();
+          markModified(id);
+          showToast(`Proiectul "${title}" a fost adăugat cu succes! Completează-i media.`);
+        };
+      }
+    }
+
+    // =========================================================================
     // UPLOAD & AUTO-CONVERSION HANDLERS
     // =========================================================================
     function setupUploadTriggers() {
@@ -1080,7 +1206,6 @@
       const bannerInput = document.getElementById('globalBannerInput');
       const videoInput = document.getElementById('globalVideoInput');
 
-      // Click on upload button triggers appropriate hidden file input
       document.addEventListener('click', (e) => {
         const btn = e.target.closest('.btn-upload-file');
         if (!btn) return;
@@ -1095,7 +1220,7 @@
         else if (type === 'video') videoInput.click();
       });
 
-      // 1. Cover Upload: Creates Lightweight 640px Thumbnail for Carousel + Keeps HD Original for Modal
+      // Cover Upload (Auto-Thumb 640px + HD original)
       coverInput.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (!file || !activeUploadContext.key) return;
@@ -1104,33 +1229,25 @@
         showToast('Procesez și optimizez coperta...', true);
         try {
           const result = await createOptimizedThumbnail(file, 640, 0.82);
-          
-          // Save HD original into IndexedDB
-          await idbSave(`cover_hd_${key}`, result.original);
-
-          // Update working project
-          workingProjects[key].img = result.original; // HD original
-          workingProjects[key].thumb = result.thumb;   // Lightweight thumbnail for carousel!
+          workingProjects[key].img = result.original;
+          workingProjects[key].thumb = result.thumb;
 
           markModified(key);
           refreshCardPreview(key);
 
-          // Show status tag
           const tag = document.getElementById(`opt_cover_${key}`);
           if (tag) {
             tag.textContent = `✓ Auto-Thumb (${result.thumbSize}) creat!`;
             tag.classList.add('active');
           }
-
           showToast(`Coperta a fost optimizată automat! Thumbnail (${result.thumbSize}) + Full HD.`);
         } catch (err) {
-          console.error(err);
           showToast('Eroare la procesarea imaginii.', false);
         }
         coverInput.value = '';
       });
 
-      // 2. Poster Frame Upload
+      // Poster Frame Upload
       posterInput.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (!file || !activeUploadContext.key) return;
@@ -1160,7 +1277,7 @@
         posterInput.value = '';
       });
 
-      // 3. Banner Suite Upload
+      // Banner Suite Upload
       bannerInput.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (!file || !activeUploadContext.key) return;
@@ -1168,8 +1285,6 @@
 
         try {
           const result = await createOptimizedThumbnail(file, 1600, 0.85);
-          await idbSave(`banner_hd_${key}`, result.original);
-
           workingProjects[key].bannerImg = result.thumb;
           markModified(key);
           refreshCardPreview(key);
@@ -1181,12 +1296,12 @@
           }
           showToast('Banner Suite a fost optimizat!');
         } catch (err) {
-          showToast('Eroare la procesare banner.', false);
+          showToast('Eroare la banner.', false);
         }
         bannerInput.value = '';
       });
 
-      // 4. Video Upload: Automatically Extracts HD Frame at sec 4 as poster!
+      // Video Upload (Auto-Extract Frame at sec 4)
       videoInput.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         if (!file || !activeUploadContext.key) return;
@@ -1196,7 +1311,6 @@
         try {
           const result = await extractFrameFromVideoFile(file, 4);
 
-          // Store video blob url & extracted poster
           workingProjects[key].videoSrc = result.videoUrl;
           workingProjects[key].videoPoster = result.poster;
 
@@ -1216,7 +1330,6 @@
           }
           showToast('Video încărcat + Frame extras automat ca poster HD!');
         } catch (err) {
-          console.error(err);
           showToast('Eroare la extragerea frame-ului.', false);
         }
         videoInput.value = '';
@@ -1224,6 +1337,20 @@
     }
 
     function attachInputListeners() {
+      // Delete Project
+      document.querySelectorAll('.btn-delete-project').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const key = e.target.getAttribute('data-delete-key');
+          if (confirm(`Sigur dorești să ștergi proiectul "${key}"?`)) {
+            delete workingProjects[key];
+            delete workingProjects[key + '_video'];
+            renderProjectsGrid();
+            showToast(`Proiectul ${key} a fost șters!`);
+          }
+        });
+      });
+
+      // Titles & Subtitles
       document.querySelectorAll('.project-name-input').forEach(input => {
         input.addEventListener('input', (e) => {
           const key = e.target.getAttribute('data-key');
@@ -1248,6 +1375,7 @@
         });
       });
 
+      // Dropdown changes with live thumbnail chips & preview
       document.querySelectorAll('.select-dropdown').forEach(select => {
         select.addEventListener('change', (e) => {
           const key = e.target.getAttribute('data-key');
@@ -1263,11 +1391,31 @@
           const customInput = e.target.parentElement.querySelector('[data-media-custom="' + mediaField + '"]');
           if (customInput) customInput.value = val;
 
+          // Update chip
+          let chipId = null;
+          if (mediaField === 'img') chipId = `chip_cover_${key}`;
+          else if (mediaField === 'videoPoster') chipId = `chip_poster_${key}`;
+          else if (mediaField === 'bannerImg') chipId = `chip_banner_${key}`;
+
+          if (chipId) {
+            const chip = document.getElementById(chipId);
+            if (chip) {
+              if (val) {
+                chip.style.display = 'flex';
+                const chipImg = chip.querySelector('img');
+                if (chipImg) chipImg.src = val;
+              } else {
+                chip.style.display = 'none';
+              }
+            }
+          }
+
           markModified(key);
           refreshCardPreview(key);
         });
       });
 
+      // Custom path inputs
       document.querySelectorAll('.custom-path-input').forEach(input => {
         input.addEventListener('input', (e) => {
           const key = e.target.getAttribute('data-key');
@@ -1305,7 +1453,7 @@
         const box = mediaBlocks[0].querySelector('.media-preview-box');
         box.innerHTML = p.videoSrc ? `
           <video src="${p.videoSrc}" poster="${p.videoPoster || ''}" preload="none" controls style="width:100%;height:100%;"></video>
-        ` : `<span class="media-empty-tip">Fără Video</span>`;
+        ` : `<span class="media-empty-tip">Fără Video<br>(Doar Cover)</span>`;
       }
       // Poster
       if (mediaBlocks[1]) {
@@ -1328,7 +1476,7 @@
     document.getElementById('btnSaveAll').addEventListener('click', () => {
       localStorage.setItem('artist_visuals_custom_projects', JSON.stringify(workingProjects));
       document.querySelectorAll('.project-card.modified').forEach(card => card.classList.remove('modified'));
-      showToast('Toate modificările au fost salvate! Preview-urile mici rulează în carusel, iar Full HD se deschide în modal.');
+      showToast('Toate modificările au fost salvate! Site-ul principal le folosește acum instant.');
     });
 
     // Reset Defaults

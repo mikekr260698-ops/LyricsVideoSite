@@ -1156,6 +1156,7 @@ function openProjectModal(projectId) {
     if (bannerBar) bannerBar.style.display = 'none';
     if (mediaWrap) {
       mediaWrap.classList.add('view-video-active');
+      mediaWrap.classList.remove('view-cover-active');
       mediaWrap.classList.remove('view-banner-active');
     }
     if (zoomBtn) zoomBtn.style.display = 'none';
@@ -1171,6 +1172,7 @@ function openProjectModal(projectId) {
     if (bannerImgEl) bannerImgEl.style.display = 'none';
     if (bannerBar) bannerBar.style.display = 'none';
     if (mediaWrap) {
+      mediaWrap.classList.add('view-cover-active');
       mediaWrap.classList.remove('view-video-active');
       mediaWrap.classList.remove('view-banner-active');
     }
@@ -1192,6 +1194,7 @@ function openProjectModal(projectId) {
     if (mediaWrap) {
       mediaWrap.classList.add('view-banner-active');
       mediaWrap.classList.remove('view-video-active');
+      mediaWrap.classList.remove('view-cover-active');
     }
     if (zoomBtn && project.bannerImg) {
       zoomBtn.style.display = 'inline-flex';
@@ -1202,8 +1205,11 @@ function openProjectModal(projectId) {
   // Apply User Strategy:
   // IF project has video: VIDEO is primary (default), followed by Cover 3000x3000px, followed by Banners
   // IF project has NO video: Cover 3000x3000px is primary (default)
+  if (tabVideo) tabVideo.style.display = project.videoSrc ? 'inline-flex' : 'none';
+  if (tabCover) tabCover.style.display = (project.img || project.thumb) ? 'inline-flex' : 'none';
+  if (tabBanner) tabBanner.style.display = project.bannerImg ? 'inline-flex' : 'none';
+
   if (project.videoSrc) {
-    if (tabVideo) tabVideo.style.display = 'inline-flex';
     if (videoSource) videoSource.src = project.videoSrc;
     if (videoEl) {
       videoEl.poster = project.videoPoster || '';
@@ -1214,14 +1220,10 @@ function openProjectModal(projectId) {
     if (vctrlProgress) vctrlProgress.style.width = '0%';
     if (vctrlTime) vctrlTime.textContent = '0:00 / 0:35';
     switchToVideo();
-  } else {
-    if (tabVideo) tabVideo.style.display = 'none';
+  } else if (project.img || project.thumb) {
     switchToCover();
-  }
-
-  // Banner Tab visibility
-  if (tabBanner) {
-    tabBanner.style.display = project.bannerImg ? 'inline-flex' : 'none';
+  } else if (project.bannerImg) {
+    switchToBanner();
   }
 
   // Wire Tab Clicks
@@ -1292,10 +1294,36 @@ function openProjectModal(projectId) {
     }
 
     if (vctrlFullscreen && videoBox) {
-      vctrlFullscreen.onclick = () => {
-        if (videoBox.requestFullscreen) videoBox.requestFullscreen();
-        else if (videoEl.webkitEnterFullscreen) videoEl.webkitEnterFullscreen();
+      const toggleFullscreen = () => {
+        const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+        if (!isFs) {
+          if (videoBox.requestFullscreen) {
+            videoBox.requestFullscreen().catch(err => console.log('Fullscreen error:', err));
+          } else if (videoEl.webkitEnterFullscreen) {
+            videoEl.webkitEnterFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(err => console.log('Exit fullscreen error:', err));
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
       };
+
+      vctrlFullscreen.onclick = (e) => {
+        e.stopPropagation();
+        toggleFullscreen();
+      };
+
+      const syncFsBtn = () => {
+        const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+        vctrlFullscreen.textContent = isFs ? '🗗' : '⛶';
+        vctrlFullscreen.title = isFs ? 'Ieși din ecran complet' : 'Ecran complet';
+      };
+
+      document.onfullscreenchange = syncFsBtn;
+      document.onwebkitfullscreenchange = syncFsBtn;
     }
   }
 
