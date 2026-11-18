@@ -74,6 +74,7 @@ const translations = {
     "cases.hint": "Click any project to inspect full breakdown & details",
     "project.specsTitle": "What was crafted:",
     "project.orderBtn": "Order similar format",
+    "project.tabVideo": "Lyrics Video 4K",
     "project.tabCover": "Cover Art 3000px",
     "project.tabBanner": "Banner & Promo Suite",
     "project.zoomBtn": "🔍 Original HD",
@@ -198,6 +199,7 @@ const translations = {
     "cases.hint": "Apasă pe un proiect pentru a vedea detaliile complete",
     "project.specsTitle": "Ce a fost realizat:",
     "project.orderBtn": "Comandă un format similar",
+    "project.tabVideo": "Lyrics Video 4K",
     "project.tabCover": "Cover Art 3000px",
     "project.tabBanner": "Pachet Bannere & Promo",
     "project.zoomBtn": "🔍 Original HD",
@@ -322,6 +324,7 @@ const translations = {
     "cases.hint": "Нажми на проект, чтобы увидеть детали",
     "project.specsTitle": "Что было сделано:",
     "project.orderBtn": "Заказать такой же формат",
+    "project.tabVideo": "Lyrics видео 4K",
     "project.tabCover": "Обложка 3000px",
     "project.tabBanner": "Пакет баннеров и промо",
     "project.zoomBtn": "🔍 Оригинал HD",
@@ -544,6 +547,8 @@ const projectsData = {
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_parabellum.jpg",
     bannerImg: "assets/banners/banner_moostaf.jpg",
+    videoSrc: "assets/videos/video_parabellum.mp4",
+    videoPoster: "assets/videos/posters/video_parabellum_poster.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -575,6 +580,8 @@ const projectsData = {
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_na_krasivom.jpg",
     bannerImg: "assets/banners/banner_na_krasivom.jpg",
+    videoSrc: "assets/videos/video_na_krasivom.mp4",
+    videoPoster: "assets/videos/posters/video_na_krasivom_poster.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -606,6 +613,8 @@ const projectsData = {
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_ribz.jpg",
     bannerImg: "assets/banners/banner_moostaf.jpg",
+    videoSrc: "assets/videos/video_moostaf.mp4",
+    videoPoster: "assets/videos/posters/video_moostaf_poster.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -637,6 +646,8 @@ const projectsData = {
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_laureall.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
+    videoSrc: "assets/videos/video_young_queen.mp4",
+    videoPoster: "assets/videos/posters/video_young_queen_poster.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -668,6 +679,8 @@ const projectsData = {
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_silvika.jpg",
     bannerImg: "assets/banners/banner_na_krasivom.jpg",
+    videoSrc: "assets/videos/video_na_krasivom.mp4",
+    videoPoster: "assets/videos/posters/video_na_krasivom_poster.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -699,6 +712,8 @@ const projectsData = {
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_ciorniy.jpg",
     bannerImg: "assets/banners/banner_ciorniy.jpg",
+    videoSrc: "assets/videos/video_ciorniy.mp4",
+    videoPoster: "assets/videos/posters/video_ciorniy_poster.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -730,6 +745,8 @@ const projectsData = {
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_young_queen.jpg",
     bannerImg: "assets/banners/banner_ciorniy.jpg",
+    videoSrc: "assets/videos/video_young_queen.mp4",
+    videoPoster: "assets/videos/posters/video_young_queen_poster.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -761,6 +778,8 @@ const projectsData = {
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
     img: "assets/covers/cover_jenika.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
+    videoSrc: "assets/videos/video_ori_blaze.mp4",
+    videoPoster: "assets/videos/posters/video_ori_blaze_poster.jpg",
     isVideo: false,
     package: "cover",
     specs: {
@@ -780,7 +799,7 @@ const projectsData = {
       ],
       ru: [
         "Мастер-разрешение: 3000 × 3000 px, 300 DPI",
-        "Эмоциональный и чистый портретный стиль с акцентами",
+        "Эмоциональный и чистый портретный стиль с акcents",
         "Сбалансированная типографика для поп/инди релиза",
         "Оптимизировано для Spotify Canvas и промо-кампаний",
         "Срок сдачи 48 часов с полным пакетом правок"
@@ -794,6 +813,8 @@ const projectsData = {
     pill: { en: "4K CINEMATIC LYRICS VIDEO", ro: "4K CINEMATIC LYRICS VIDEO", ru: "4K CINEMATIC LYRICS ВИДЕО" },
     img: "assets/covers/cover_silvika.jpg",
     bannerImg: "assets/banners/banner_na_krasivom.jpg",
+    videoSrc: "assets/videos/video_na_krasivom.mp4",
+    videoPoster: "assets/videos/posters/video_na_krasivom_poster.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -825,6 +846,8 @@ const projectsData = {
     pill: { en: "4K OFFICIAL VISUALIZER", ro: "4K VIZUALIZER OFICIAL", ru: "4K ОФИЦИАЛЬНЫЙ ВИЗУАЛИЗАТОР" },
     img: "assets/covers/cover_jenika.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
+    videoSrc: "assets/videos/video_ori_blaze.mp4",
+    videoPoster: "assets/videos/posters/video_ori_blaze_poster.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -856,6 +879,8 @@ const projectsData = {
     pill: { en: "LYRICS MOTION 4K", ro: "LYRICS MOTION 4K", ru: "LYRICS MOTION 4K" },
     img: "assets/covers/cover_ciorniy.jpg",
     bannerImg: "assets/banners/banner_ciorniy.jpg",
+    videoSrc: "assets/videos/video_ciorniy.mp4",
+    videoPoster: "assets/videos/posters/video_ciorniy_poster.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -887,6 +912,8 @@ const projectsData = {
     pill: { en: "STREET VISUALIZER 4K", ro: "STREET VISUALIZER 4K", ru: "STREET ВИЗУАЛИЗАТОР 4K" },
     img: "assets/covers/cover_ribz.jpg",
     bannerImg: "assets/banners/banner_moostaf.jpg",
+    videoSrc: "assets/videos/video_moostaf.mp4",
+    videoPoster: "assets/videos/posters/video_moostaf_poster.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -918,6 +945,8 @@ const projectsData = {
     pill: { en: "NEON LYRICS VIDEO 4K", ro: "NEON LYRICS VIDEO 4K", ru: "НЕОНОВОЕ LYRICS ВИДЕО 4K" },
     img: "assets/covers/cover_laureall.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
+    videoSrc: "assets/videos/video_young_queen.mp4",
+    videoPoster: "assets/videos/posters/video_young_queen_poster.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -949,6 +978,8 @@ const projectsData = {
     pill: { en: "TRAP MOTION VISUALIZER", ro: "TRAP MOTION VISUALIZER", ru: "TRAP ВИЗУАЛИЗАТОР 4K" },
     img: "assets/covers/cover_young_queen.jpg",
     bannerImg: "assets/banners/banner_ciorniy.jpg",
+    videoSrc: "assets/videos/video_young_queen.mp4",
+    videoPoster: "assets/videos/posters/video_young_queen_poster.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -980,6 +1011,8 @@ const projectsData = {
     pill: { en: "NOIR VISUALIZER 4K", ro: "NOIR VISUALIZER 4K", ru: "НУАР ВИЗУАЛИЗАТОР 4K" },
     img: "assets/covers/cover_parabellum.jpg",
     bannerImg: "assets/banners/banner_moostaf.jpg",
+    videoSrc: "assets/videos/video_parabellum.mp4",
+    videoPoster: "assets/videos/posters/video_parabellum_poster.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -1011,6 +1044,8 @@ const projectsData = {
     pill: { en: "FULL PACK RELEASE 4K", ro: "FULL PACK RELEASE 4K", ru: "ПОЛНЫЙ ПАКЕТ 4K" },
     img: "assets/covers/cover_na_krasivom.jpg",
     bannerImg: "assets/banners/banner_na_krasivom.jpg",
+    videoSrc: "assets/videos/video_na_krasivom.mp4",
+    videoPoster: "assets/videos/posters/video_na_krasivom_poster.jpg",
     isVideo: true,
     package: "full",
     specs: {
@@ -1055,6 +1090,7 @@ function openProjectModal(projectId) {
   const bannerImgEl = document.getElementById('projectBannerImg');
   const mediaWrap = document.getElementById('projectMediaWrap');
   const viewTabs = document.getElementById('projectViewTabs');
+  const tabVideo = document.getElementById('tabViewVideo');
   const tabCover = document.getElementById('tabViewCover');
   const tabBanner = document.getElementById('tabViewBanner');
   const zoomBtn = document.getElementById('projectZoomBtn');
@@ -1062,11 +1098,24 @@ function openProjectModal(projectId) {
   const listEl = document.getElementById('projectFeaturesList');
   const orderBtn = document.getElementById('projectOrderBtn');
 
+  // Video Player Elements
+  const videoBox = document.getElementById('projectVideoBox');
+  const videoEl = document.getElementById('projectModalVideo');
+  const videoSource = document.getElementById('videoSource');
+  const playOverlay = document.getElementById('videoPlayOverlay');
+  const bigPlayBtn = document.getElementById('bigPlayBtn');
+  const vctrlPlayPause = document.getElementById('vctrlPlayPause');
+  const vctrlTime = document.getElementById('vctrlTime');
+  const vctrlProgress = document.getElementById('vctrlProgress');
+  const vctrlScrubBar = document.getElementById('vctrlScrubBar');
+  const vctrlMute = document.getElementById('vctrlMute');
+  const vctrlFullscreen = document.getElementById('vctrlFullscreen');
+
   const lang = currentLang || 'en';
 
   if (pillEl) {
     pillEl.textContent = (project.pill && project.pill[lang]) || project.pill.en || 'PORTFOLIO CASE';
-    if (project.isVideo) {
+    if (project.videoSrc) {
       pillEl.style.background = 'rgba(230, 25, 55, 0.15)';
       pillEl.style.borderColor = 'rgba(230, 25, 55, 0.4)';
       pillEl.style.color = '#ff4d6d';
@@ -1079,55 +1128,169 @@ function openProjectModal(projectId) {
 
   if (titleEl) titleEl.textContent = project.title;
 
-  // Set images and initial view state
+  // Set Cover Image
   if (imgEl) {
     imgEl.src = project.img;
     imgEl.alt = project.title;
-    imgEl.style.display = 'block';
   }
-  if (bannerImgEl) {
-    if (project.bannerImg) {
-      bannerImgEl.src = project.bannerImg;
-      bannerImgEl.alt = `${project.title} - Social Media Banner Suite`;
+
+  // Set Banner Image
+  if (bannerImgEl && project.bannerImg) {
+    bannerImgEl.src = project.bannerImg;
+    bannerImgEl.alt = `${project.title} - Social Media Banner Suite`;
+  }
+
+  // Helper function to switch tabs safely
+  function switchToVideo() {
+    if (tabVideo) tabVideo.classList.add('active');
+    if (tabCover) tabCover.classList.remove('active');
+    if (tabBanner) tabBanner.classList.remove('active');
+    if (videoBox) videoBox.style.display = 'block';
+    if (imgEl) imgEl.style.display = 'none';
+    if (bannerImgEl) bannerImgEl.style.display = 'none';
+    if (bannerBar) bannerBar.style.display = 'none';
+    if (mediaWrap) {
+      mediaWrap.classList.add('view-video-active');
+      mediaWrap.classList.remove('view-banner-active');
     }
-    bannerImgEl.style.display = 'none';
+    if (zoomBtn) zoomBtn.style.display = 'none';
   }
 
-  // Reset to default Cover view
-  if (mediaWrap) mediaWrap.classList.remove('view-banner-active');
-  if (tabCover) tabCover.classList.add('active');
-  if (tabBanner) tabBanner.classList.remove('active');
-  if (bannerBar) bannerBar.style.display = 'none';
-  if (zoomBtn) zoomBtn.href = project.img;
+  function switchToCover() {
+    if (videoEl && !videoEl.paused) videoEl.pause();
+    if (tabCover) tabCover.classList.add('active');
+    if (tabVideo) tabVideo.classList.remove('active');
+    if (tabBanner) tabBanner.classList.remove('active');
+    if (videoBox) videoBox.style.display = 'none';
+    if (imgEl) imgEl.style.display = 'block';
+    if (bannerImgEl) bannerImgEl.style.display = 'none';
+    if (bannerBar) bannerBar.style.display = 'none';
+    if (mediaWrap) {
+      mediaWrap.classList.remove('view-video-active');
+      mediaWrap.classList.remove('view-banner-active');
+    }
+    if (zoomBtn) {
+      zoomBtn.style.display = 'inline-flex';
+      zoomBtn.href = project.img;
+    }
+  }
 
-  // Wire Tab Switching
-  if (viewTabs && tabCover && tabBanner) {
-    if (project.bannerImg) {
-      viewTabs.style.display = 'inline-flex';
+  function switchToBanner() {
+    if (videoEl && !videoEl.paused) videoEl.pause();
+    if (tabBanner) tabBanner.classList.add('active');
+    if (tabVideo) tabVideo.classList.remove('active');
+    if (tabCover) tabCover.classList.remove('active');
+    if (videoBox) videoBox.style.display = 'none';
+    if (imgEl) imgEl.style.display = 'none';
+    if (bannerImgEl) bannerImgEl.style.display = 'block';
+    if (bannerBar) bannerBar.style.display = 'flex';
+    if (mediaWrap) {
+      mediaWrap.classList.add('view-banner-active');
+      mediaWrap.classList.remove('view-video-active');
+    }
+    if (zoomBtn && project.bannerImg) {
+      zoomBtn.style.display = 'inline-flex';
+      zoomBtn.href = project.bannerImg;
+    }
+  }
 
-      tabCover.onclick = (e) => {
-        e.preventDefault();
-        tabCover.classList.add('active');
-        tabBanner.classList.remove('active');
-        if (imgEl) imgEl.style.display = 'block';
-        if (bannerImgEl) bannerImgEl.style.display = 'none';
-        if (mediaWrap) mediaWrap.classList.remove('view-banner-active');
-        if (bannerBar) bannerBar.style.display = 'none';
-        if (zoomBtn) zoomBtn.href = project.img;
+  // Apply User Strategy:
+  // IF project has video: VIDEO is primary (default), followed by Cover 3000x3000px, followed by Banners
+  // IF project has NO video: Cover 3000x3000px is primary (default)
+  if (project.videoSrc) {
+    if (tabVideo) tabVideo.style.display = 'inline-flex';
+    if (videoSource) videoSource.src = project.videoSrc;
+    if (videoEl) {
+      videoEl.poster = project.videoPoster || '';
+      videoEl.load();
+    }
+    if (playOverlay) playOverlay.style.display = 'flex';
+    if (vctrlPlayPause) vctrlPlayPause.textContent = '▶';
+    if (vctrlProgress) vctrlProgress.style.width = '0%';
+    if (vctrlTime) vctrlTime.textContent = '0:00 / 0:35';
+    switchToVideo();
+  } else {
+    if (tabVideo) tabVideo.style.display = 'none';
+    switchToCover();
+  }
+
+  // Banner Tab visibility
+  if (tabBanner) {
+    tabBanner.style.display = project.bannerImg ? 'inline-flex' : 'none';
+  }
+
+  // Wire Tab Clicks
+  if (tabVideo) tabVideo.onclick = (e) => { e.preventDefault(); switchToVideo(); };
+  if (tabCover) tabCover.onclick = (e) => { e.preventDefault(); switchToCover(); };
+  if (tabBanner) tabBanner.onclick = (e) => { e.preventDefault(); switchToBanner(); };
+
+  // Video Player Controls & Events
+  if (videoEl && playOverlay) {
+    const togglePlay = () => {
+      if (videoEl.paused) {
+        videoEl.play().catch(err => console.log('Playback error:', err));
+        playOverlay.style.display = 'none';
+        if (vctrlPlayPause) vctrlPlayPause.textContent = '❚❚';
+      } else {
+        videoEl.pause();
+        if (vctrlPlayPause) vctrlPlayPause.textContent = '▶';
+      }
+    };
+
+    if (bigPlayBtn) bigPlayBtn.onclick = (e) => { e.stopPropagation(); togglePlay(); };
+    playOverlay.onclick = togglePlay;
+    if (vctrlPlayPause) vctrlPlayPause.onclick = togglePlay;
+
+    videoEl.onplay = () => {
+      playOverlay.style.display = 'none';
+      if (vctrlPlayPause) vctrlPlayPause.textContent = '❚❚';
+    };
+
+    videoEl.onpause = () => {
+      if (vctrlPlayPause) vctrlPlayPause.textContent = '▶';
+    };
+
+    videoEl.onended = () => {
+      playOverlay.style.display = 'flex';
+      if (vctrlPlayPause) vctrlPlayPause.textContent = '▶';
+      if (vctrlProgress) vctrlProgress.style.width = '0%';
+    };
+
+    videoEl.ontimeupdate = () => {
+      const cur = videoEl.currentTime || 0;
+      const dur = videoEl.duration || 35;
+      const pct = (cur / dur) * 100;
+      if (vctrlProgress) vctrlProgress.style.width = `${pct}%`;
+
+      const curM = Math.floor(cur / 60);
+      const curS = String(Math.floor(cur % 60)).padStart(2, '0');
+      const durM = Math.floor(dur / 60);
+      const durS = String(Math.floor(dur % 60)).padStart(2, '0');
+      if (vctrlTime) vctrlTime.textContent = `${curM}:${curS} / ${durM}:${durS}`;
+    };
+
+    if (vctrlScrubBar) {
+      vctrlScrubBar.onclick = (e) => {
+        const rect = vctrlScrubBar.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        if (videoEl.duration) {
+          videoEl.currentTime = pos * videoEl.duration;
+        }
       };
+    }
 
-      tabBanner.onclick = (e) => {
-        e.preventDefault();
-        tabBanner.classList.add('active');
-        tabCover.classList.remove('active');
-        if (imgEl) imgEl.style.display = 'none';
-        if (bannerImgEl) bannerImgEl.style.display = 'block';
-        if (mediaWrap) mediaWrap.classList.add('view-banner-active');
-        if (bannerBar) bannerBar.style.display = 'flex';
-        if (zoomBtn) zoomBtn.href = project.bannerImg;
+    if (vctrlMute) {
+      vctrlMute.onclick = () => {
+        videoEl.muted = !videoEl.muted;
+        vctrlMute.textContent = videoEl.muted ? '🔇' : '🔊';
       };
-    } else {
-      viewTabs.style.display = 'none';
+    }
+
+    if (vctrlFullscreen && videoBox) {
+      vctrlFullscreen.onclick = () => {
+        if (videoBox.requestFullscreen) videoBox.requestFullscreen();
+        else if (videoEl.webkitEnterFullscreen) videoEl.webkitEnterFullscreen();
+      };
     }
   }
 
@@ -1144,6 +1307,7 @@ function openProjectModal(projectId) {
 
   if (orderBtn) {
     orderBtn.onclick = () => {
+      if (videoEl && !videoEl.paused) videoEl.pause();
       closeModal('projectModal');
       openModal('orderModal', project.package);
     };
@@ -1151,6 +1315,7 @@ function openProjectModal(projectId) {
 
   openModal('projectModal');
 }
+
 function openModal(modalId, selectedPackage = null) {
   const modal = document.getElementById(modalId);
   if (!modal) return;
@@ -1178,6 +1343,14 @@ function closeModal(modalId) {
   if (!modal) return;
   modal.classList.remove('active');
   document.body.style.overflow = '';
+
+  if (modalId === 'projectModal') {
+    const videoEl = document.getElementById('projectModalVideo');
+    if (videoEl) {
+      videoEl.pause();
+      videoEl.currentTime = 0;
+    }
+  }
 }
 
 // ==========================================================================
