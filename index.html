@@ -283,7 +283,7 @@
             <ul class="package-perks">
               <li><span class="perk-check">✓</span> <span data-i18n="packages.full.p1">Обложка 3000 × 3000 px для всех площадок</span></li>
               <li><span class="perk-check">✓</span> <span data-i18n="packages.full.p2">Lyrics видео 16:9 (YouTube) в 4K</span></li>
-              <li><span class="perk-check">✓</span> <span data-i18n="packages.full.p3">Вертикальный сниппет 9:16 (Reels/TikTok/Shorts)</span></li>
+              <li><span class="perk-check">✓</span> <span data-i18n="packages.full.p3">Баннеры для соцсетей (YouTube, Facebook, Spotify Canvas)</span></li>
               <li><span class="perk-check">✓</span> <span data-i18n="packages.full.p4">Приоритетный срок изготовления</span></li>
             </ul>
 
@@ -353,53 +353,392 @@
           <p class="section-subtitle" data-i18n="cases.subtitle">Ознакомься с визуалами, созданными для последних релизов</p>
         </div>
 
-        <div class="cases-gallery">
-          <div class="case-card" data-video="preview1">
-            <div class="case-thumb case-thumb-1">
-              <div class="case-play-badge">▶</div>
-              <div class="case-info-overlay">
-                <h4>Dark Euphoria</h4>
-                <span>Lyrics Video 4K</span>
+        <div class="cases-marquee-container">
+          <!-- Row 1: 4K Videos & Visualizers (Moving Left) -->
+          <div class="marquee-header-strip">
+            <span class="marquee-section-pill" data-i18n="cases.row1.pill">▶ LYRICS VIDEOS & 4K VISUALIZERS</span>
+            <span class="marquee-hint" data-i18n="cases.hint">Нажми на проект, чтобы увидеть детали</span>
+          </div>
+
+          <div class="marquee-row marquee-row-videos">
+            <div class="marquee-track" id="videoTrack">
+              <!-- Item V1 -->
+              <div class="marquee-card video-card" data-project-id="silvika_video">
+                <div class="card-thumb card-thumb-v1">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">LYRICS VIDEO 4K</div>
+                  <div class="card-overlay-bottom">
+                    <h4>SILVIKA — ZERO</h4>
+                    <span>Cinematic Lyrics Video</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item V2 -->
+              <div class="marquee-card video-card" data-project-id="jenika_video">
+                <div class="card-thumb card-thumb-v2">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">4K VISUALIZER</div>
+                  <div class="card-overlay-bottom">
+                    <h4>JENIKA — Altcineva</h4>
+                    <span>Official Release Visualizer</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item V3 -->
+              <div class="marquee-card video-card" data-project-id="ciorniy_video">
+                <div class="card-thumb card-thumb-v3">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">LYRICS MOTION</div>
+                  <div class="card-overlay-bottom">
+                    <h4>CIORNIY — Doar ea</h4>
+                    <span>Mood Visualizer & Text</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item V4 -->
+              <div class="marquee-card video-card" data-project-id="ribz_video">
+                <div class="card-thumb card-thumb-v4">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">STREET VISUALIZER</div>
+                  <div class="card-overlay-bottom">
+                    <h4>Ribz ft Conway The Machine</h4>
+                    <span>Legend Like Kareem Video</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item V5 -->
+              <div class="marquee-card video-card" data-project-id="laureall_video">
+                <div class="card-thumb card-thumb-v5">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">NEON LYRICS</div>
+                  <div class="card-overlay-bottom">
+                    <h4>Laureall — Pa Pa</h4>
+                    <span>Neon Lyrics Video 4K</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item V6 -->
+              <div class="marquee-card video-card" data-project-id="young_queen_video">
+                <div class="card-thumb card-thumb-v6">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">TRAP VISUALIZER</div>
+                  <div class="card-overlay-bottom">
+                    <h4>MISSYRIGHT — Young Queen</h4>
+                    <span>Motion Graphic & Crown</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item V7 -->
+              <div class="marquee-card video-card" data-project-id="parabellum_video">
+                <div class="card-thumb card-thumb-v7">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">NOIR VISUALIZER</div>
+                  <div class="card-overlay-bottom">
+                    <h4>Si vis pacem Parabellum</h4>
+                    <span>Cinematic B&W Visualizer</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item V8 -->
+              <div class="marquee-card video-card" data-project-id="na_krasivom_video">
+                <div class="card-thumb card-thumb-v8">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">FULL RELEASE</div>
+                  <div class="card-overlay-bottom">
+                    <h4>На красивом</h4>
+                    <span>Full Pack Lyrics Video</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Duplicated set for seamless infinite loop -->
+              <div class="marquee-card video-card" data-project-id="silvika_video">
+                <div class="card-thumb card-thumb-v1">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">LYRICS VIDEO 4K</div>
+                  <div class="card-overlay-bottom">
+                    <h4>SILVIKA — ZERO</h4>
+                    <span>Cinematic Lyrics Video</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card video-card" data-project-id="jenika_video">
+                <div class="card-thumb card-thumb-v2">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">4K VISUALIZER</div>
+                  <div class="card-overlay-bottom">
+                    <h4>JENIKA — Altcineva</h4>
+                    <span>Official Release Visualizer</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card video-card" data-project-id="ciorniy_video">
+                <div class="card-thumb card-thumb-v3">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">LYRICS MOTION</div>
+                  <div class="card-overlay-bottom">
+                    <h4>CIORNIY — Doar ea</h4>
+                    <span>Mood Visualizer & Text</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card video-card" data-project-id="ribz_video">
+                <div class="card-thumb card-thumb-v4">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">STREET VISUALIZER</div>
+                  <div class="card-overlay-bottom">
+                    <h4>Ribz ft Conway The Machine</h4>
+                    <span>Legend Like Kareem Video</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card video-card" data-project-id="laureall_video">
+                <div class="card-thumb card-thumb-v5">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">NEON LYRICS</div>
+                  <div class="card-overlay-bottom">
+                    <h4>Laureall — Pa Pa</h4>
+                    <span>Neon Lyrics Video 4K</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card video-card" data-project-id="young_queen_video">
+                <div class="card-thumb card-thumb-v6">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">TRAP VISUALIZER</div>
+                  <div class="card-overlay-bottom">
+                    <h4>MISSYRIGHT — Young Queen</h4>
+                    <span>Motion Graphic & Crown</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card video-card" data-project-id="parabellum_video">
+                <div class="card-thumb card-thumb-v7">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">NOIR VISUALIZER</div>
+                  <div class="card-overlay-bottom">
+                    <h4>Si vis pacem Parabellum</h4>
+                    <span>Cinematic B&W Visualizer</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card video-card" data-project-id="na_krasivom_video">
+                <div class="card-thumb card-thumb-v8">
+                  <span class="card-play-btn">▶</span>
+                  <div class="card-badge-top">FULL RELEASE</div>
+                  <div class="card-overlay-bottom">
+                    <h4>На красивом</h4>
+                    <span>Full Pack Lyrics Video</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="case-card" data-video="preview2">
-            <div class="case-thumb case-thumb-2">
-              <div class="case-play-badge">▶</div>
-              <div class="case-info-overlay">
-                <h4>Red Horizon</h4>
-                <span>Cover Art 3x3 + Visualizer</span>
-              </div>
-            </div>
+          <!-- Row 2: 3000x3000px Cover Artworks (Moving Right) -->
+          <div class="marquee-header-strip strip-covers">
+            <span class="marquee-section-pill pill-red" data-i18n="cases.row2.pill">💿 COVER ARTWORKS 3000 × 3000 PX</span>
           </div>
 
-          <div class="case-card" data-video="preview3">
-            <div class="case-thumb case-thumb-3">
-              <div class="case-play-badge">▶</div>
-              <div class="case-info-overlay">
-                <h4>Metamorphosis</h4>
-                <span>Lyrics Video + Reels Snippet</span>
+          <div class="marquee-row marquee-row-covers">
+            <div class="marquee-track marquee-reverse" id="coverTrack">
+              <!-- Cover C1 -->
+              <div class="marquee-card cover-card" data-project-id="parabellum">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_parabellum.jpg" alt="Si vis pacem Parabellum" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>Si vis pacem Parabellum</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <div class="case-card" data-video="preview4">
-            <div class="case-thumb case-thumb-4">
-              <div class="case-play-badge">▶</div>
-              <div class="case-info-overlay">
-                <h4>Eye of Chaos</h4>
-                <span>Single Cover 3000x3000</span>
+              <!-- Cover C2 -->
+              <div class="marquee-card cover-card" data-project-id="na_krasivom">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_na_krasivom.jpg" alt="На красивом" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>На красивом</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <div class="case-card" data-video="preview5">
-            <div class="case-thumb case-thumb-5">
-              <div class="case-play-badge">▶</div>
-              <div class="case-info-overlay">
-                <h4>Cyber Dreams</h4>
-                <span>Full Pack Release</span>
+              <!-- Cover C3 -->
+              <div class="marquee-card cover-card" data-project-id="ribz">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_ribz.jpg" alt="Ribz ft Conway the Machine" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>Ribz ft Conway</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cover C4 -->
+              <div class="marquee-card cover-card" data-project-id="laureall">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_laureall.jpg" alt="Laureall Pa Pa" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>Laureall — Pa Pa</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cover C5 -->
+              <div class="marquee-card cover-card" data-project-id="silvika">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_silvika.jpg" alt="SILVIKA ZERO" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>SILVIKA — ZERO</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cover C6 -->
+              <div class="marquee-card cover-card" data-project-id="ciorniy">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_ciorniy.jpg" alt="CIORNIY Doar ea" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>CIORNIY — Doar ea</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cover C7 -->
+              <div class="marquee-card cover-card" data-project-id="young_queen">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_young_queen.jpg" alt="MISSYRIGHT Young Queen" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>MISSYRIGHT — Young Queen</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cover C8 -->
+              <div class="marquee-card cover-card" data-project-id="jenika">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_jenika.jpg" alt="JENIKA Altcineva" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>JENIKA — Altcineva</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Duplicated set for seamless loop -->
+              <div class="marquee-card cover-card" data-project-id="parabellum">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_parabellum.jpg" alt="Si vis pacem Parabellum" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>Si vis pacem Parabellum</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card cover-card" data-project-id="na_krasivom">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_na_krasivom.jpg" alt="На красивом" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>На красивом</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card cover-card" data-project-id="ribz">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_ribz.jpg" alt="Ribz ft Conway the Machine" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>Ribz ft Conway</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card cover-card" data-project-id="laureall">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_laureall.jpg" alt="Laureall Pa Pa" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>Laureall — Pa Pa</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card cover-card" data-project-id="silvika">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_silvika.jpg" alt="SILVIKA ZERO" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>SILVIKA — ZERO</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card cover-card" data-project-id="ciorniy">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_ciorniy.jpg" alt="CIORNIY Doar ea" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>CIORNIY — Doar ea</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card cover-card" data-project-id="young_queen">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_young_queen.jpg" alt="MISSYRIGHT Young Queen" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>MISSYRIGHT — Young Queen</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="marquee-card cover-card" data-project-id="jenika">
+                <div class="cover-thumb-wrapper">
+                  <img src="assets/covers/cover_jenika.jpg" alt="JENIKA Altcineva" loading="lazy">
+                  <div class="card-hover-overlay">
+                    <span class="hover-zoom-btn">🔍</span>
+                    <h4>JENIKA — Altcineva</h4>
+                    <span class="hover-tag">3000 × 3000 PX</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -739,6 +1078,50 @@
             </div>
             <span class="direct-arrow">→</span>
           </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL 3: SHOWCASE PROIECT (Project Details)    -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="projectModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-project">
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <span class="modal-pill" id="projectPill">PORTFOLIO CASE</span>
+          <h3 id="projectTitle">Project Title</h3>
+        </div>
+        <button class="modal-close-btn" data-close="projectModal" aria-label="Închide">&times;</button>
+      </div>
+
+      <div class="project-modal-content">
+        <div class="project-modal-media-wrap">
+          <img id="projectImg" src="" alt="Project Preview" class="project-modal-img">
+          <div id="projectVideoPlaceholder" class="project-video-preview" style="display: none;">
+            <div class="project-play-glow">▶</div>
+            <span class="project-preview-note">4K VIDEO MASTER</span>
+          </div>
+        </div>
+
+        <div class="project-modal-info">
+          <div class="project-spec-card">
+            <h4 data-i18n="project.specsTitle">Что было сделано:</h4>
+            <ul class="project-features-list" id="projectFeaturesList">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
+
+          <div class="project-cta-box">
+            <button class="btn btn-primary btn-block btn-glow" id="projectOrderBtn">
+              <span data-i18n="project.orderBtn">Заказать такой же формат</span>
+              <span class="btn-arrow">→</span>
+            </button>
+            <a href="https://t.me/mikekr260698" target="_blank" rel="noopener" class="btn btn-outline btn-block">
+              <span>✈ Обсудить идею в Telegram</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

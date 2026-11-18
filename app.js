@@ -55,7 +55,7 @@ const translations = {
     "packages.full.desc": "Cover Art + Lyrics Video. Unified aesthetic, maximum impact.",
     "packages.full.p1": "Cover Art 3000 × 3000 px for all DSPs",
     "packages.full.p2": "Lyrics Video 16:9 (YouTube) in 4K",
-    "packages.full.p3": "Vertical 9:16 snippet for Reels/TikTok/Shorts",
+    "packages.full.p3": "Social media banner suite (YouTube, Facebook, Spotify Canvas)",
     "packages.full.p4": "Priority turnaround time",
 
     "included.title": "What's included?",
@@ -69,6 +69,11 @@ const translations = {
     "cases.tag": "CASES",
     "cases.title": "Selected Works",
     "cases.subtitle": "Explore visuals created for recent music releases",
+    "cases.row1.pill": "▶ 4K LYRICS VIDEOS & VISUALIZERS",
+    "cases.row2.pill": "💿 COVER ARTWORKS 3000 × 3000 PX",
+    "cases.hint": "Click any project to inspect full breakdown & details",
+    "project.specsTitle": "What was crafted:",
+    "project.orderBtn": "Order similar format",
 
     "reviews.tag": "REVIEWS",
     "reviews.title": "What artists say",
@@ -171,7 +176,7 @@ const translations = {
     "packages.full.desc": "Cover + Lyrics Video. Stil unitar, impact maxim.",
     "packages.full.p1": "Cover 3000 × 3000 px pentru toate platformele",
     "packages.full.p2": "Lyrics video 16:9 (YouTube) în 4K",
-    "packages.full.p3": "Snippet vertical 9:16 (Reels/TikTok/Shorts)",
+    "packages.full.p3": "Bannere pentru rețele sociale (YouTube, Facebook, Spotify Canvas)",
     "packages.full.p4": "Timp prioritar de execuție",
 
     "included.title": "Ce este inclus în lucru?",
@@ -185,6 +190,11 @@ const translations = {
     "cases.tag": "PORTOFOLIU",
     "cases.title": "Exemple de lucrări",
     "cases.subtitle": "Descoperă vizualurile create pentru cele mai recente lansări",
+    "cases.row1.pill": "▶ 4K LYRICS VIDEOS & VIZUALIZERE",
+    "cases.row2.pill": "💿 COVER ARTWORKS 3000 × 3000 PX",
+    "cases.hint": "Apasă pe un proiect pentru a vedea detaliile complete",
+    "project.specsTitle": "Ce a fost realizat:",
+    "project.orderBtn": "Comandă un format similar",
 
     "reviews.tag": "RECENZII",
     "reviews.title": "Ce spun artiștii",
@@ -287,7 +297,7 @@ const translations = {
     "packages.full.desc": "Обложка + lyrics видео. Единый стиль, максимальный эффект.",
     "packages.full.p1": "Обложка 3000 × 3000 px для всех площадок",
     "packages.full.p2": "Lyrics видео 16:9 (YouTube) в 4K",
-    "packages.full.p3": "Вертикальный сниппет 9:16 (Reels/TikTok/Shorts)",
+    "packages.full.p3": "Баннеры для соцсетей (YouTube, Facebook, Spotify Canvas)",
     "packages.full.p4": "Приоритетный срок изготовления",
 
     "included.title": "Что входит в работу?",
@@ -301,6 +311,11 @@ const translations = {
     "cases.tag": "КЕЙСЫ",
     "cases.title": "Примеры работ",
     "cases.subtitle": "Ознакомься с визуалами, созданными для последних релизов",
+    "cases.row1.pill": "▶ 4K LYRICS VIDEOS & ВИЗУАЛИЗАТОРЫ",
+    "cases.row2.pill": "💿 COVER ARTWORKS 3000 × 3000 PX",
+    "cases.hint": "Нажми на проект, чтобы увидеть детали",
+    "project.specsTitle": "Что было сделано:",
+    "project.orderBtn": "Заказать такой же формат",
 
     "reviews.tag": "ОТЗЫВЫ",
     "reviews.title": "Что говорят артисты",
@@ -483,6 +498,12 @@ function setLanguage(langCode) {
     }
   });
 
+  // Refresh open project modal if active
+  const projectModal = document.getElementById('projectModal');
+  if (projectModal && projectModal.classList.contains('active') && currentModalProjectId) {
+    openProjectModal(currentModalProjectId);
+  }
+
   // Cinematic optical blur focus animation on language change
   renderCinematicTitle(langCode);
 }
@@ -505,8 +526,551 @@ function renderCinematicTitle(langCode) {
 }
 
 // ==========================================================================
+// 2.5 PORTFOLIO PROJECTS DATA
+// ==========================================================================
+const projectsData = {
+  // --- ROW 2: COVER ARTWORKS (3000x3000px) ---
+  parabellum: {
+    title: "Si vis pacem Parabellum",
+    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    img: "assets/covers/cover_parabellum.jpg",
+    isVideo: false,
+    package: "cover",
+    specs: {
+      en: [
+        "Master Resolution: 3000 × 3000 px, 300 DPI (RGB)",
+        "Monochrome film noir aesthetic with subtle analog grain & texture",
+        "Custom calligraphy title lettering & signature stroke",
+        "Stream-ready for Spotify, Apple Music, Tidal, Deezer",
+        "Delivery timeframe: 48h turnaround with unlimited refinements"
+      ],
+      ro: [
+        "Rezoluție Master: 3000 × 3000 px, 300 DPI (RGB)",
+        "Stil cinematic noir monocrom cu textură analogică fină",
+        "Caligrafie & lettering vectorial personalizat",
+        "Formatat pentru Spotify, Apple Music, Deezer, Tidal",
+        "Timp de execuție: 48 ore cu modificări incluse"
+      ],
+      ru: [
+        "Мастер-разрешение: 3000 × 3000 px, 300 DPI",
+        "Кинематографичный ч/б нуар-стиль с аналоговым зерном и фактурой",
+        "Авторский каллиграфический леттеринг названия",
+        "Полное соответствие стандартам Spotify, Apple Music, VK",
+        "Срок сдачи: 48 часов с бесплатными правками"
+      ]
+    }
+  },
+  na_krasivom: {
+    title: "На красивом",
+    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    img: "assets/covers/cover_na_krasivom.jpg",
+    isVideo: false,
+    package: "cover",
+    specs: {
+      en: [
+        "Master Resolution: 3000 × 3000 px, 300 DPI",
+        "Duo artist studio retouching & high-contrast skin tones",
+        "Atmospheric crimson flare, sparks & bokeh lights",
+        "Clean minimal signature typography overlay",
+        "100% compliant with global streaming platforms"
+      ],
+      ro: [
+        "Rezoluție Master: 3000 × 3000 px, 300 DPI",
+        "Retuș de studio pentru duo de artiști și corecție avansată de culori",
+        "Efecte atmosferice: lumini crimson, scântei și bokeh",
+        "Tipografie albă minimalistă de mare impact",
+        "Formatat conform standardelor platformelor de streaming"
+      ],
+      ru: [
+        "Мастер-разрешение: 3000 × 3000 px, 300 DPI",
+        "Студийная ретушь дуэта артистов и глубокая цветокоррекция",
+        "Атмосферное алое свечение, искры и боке",
+        "Минималистичный леттеринг названия",
+        "Готово к релизу на всех цифровых площадках"
+      ]
+    }
+  },
+  ribz: {
+    title: "Ribz ft Conway The Machine — Legend Like Kareem",
+    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    img: "assets/covers/cover_ribz.jpg",
+    isVideo: false,
+    package: "cover",
+    specs: {
+      en: [
+        "Master Resolution: 3000 × 3000 px, 300 DPI",
+        "Vintage torn-paper hip-hop photo collage aesthetic",
+        "London street photography integration (Kilburn / Camden)",
+        "Custom graffiti tag & typewriter stencil typography",
+        "Delivered for international DSP distribution"
+      ],
+      ro: [
+        "Rezoluție Master: 3000 × 3000 px, 300 DPI",
+        "Colaj foto hip-hop vintage cu efect de hârtie ruptă",
+        "Integrare fotografie stradală Londra (Kilburn / Camden)",
+        "Tipografie graffiti & stencil underground",
+        "Formatat pentru distribuție internațională pe platforme"
+      ],
+      ru: [
+        "Мастер-разрешение: 3000 × 3000 px, 300 DPI",
+        "Винтажный хип-хоп фотоколлаж с эффектом рваной бумаги",
+        "Интеграция лондонских стрит-фотографий (Kilburn, Camden)",
+        "Граффити-теги и стилизованный уличный шрифт",
+        "Полный комплект файлов для цифровой дистрибуции"
+      ]
+    }
+  },
+  laureall: {
+    title: "Laureall — Pa Pa",
+    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    img: "assets/covers/cover_laureall.jpg",
+    isVideo: false,
+    package: "cover",
+    specs: {
+      en: [
+        "Master Resolution: 3000 × 3000 px, 300 DPI",
+        "Cinematic studio portrait with vintage grain & dust texture",
+        "Vibrant neon pink signature calligraphy with outer glow",
+        "Optimized for high visibility on smartphone music apps",
+        "Exported in lossless TIFF, PNG, and JPG formats"
+      ],
+      ro: [
+        "Rezoluție Master: 3000 × 3000 px, 300 DPI",
+        "Portret de studio cinematic cu granulație de film analog",
+        "Caligrafie neon pink vibrantă cu efect de strălucire",
+        "Optimizat pentru vizibilitate maximă pe smartphone-uri",
+        "Exportat în formate fără pierdere de calitate (PNG, JPG)"
+      ],
+      ru: [
+        "Мастер-разрешение: 3000 × 3000 px, 300 DPI",
+        "Кинематографичный студийный портрет с плёночным зерном",
+        "Яркий неоновый розовый рукописный шрифт со свечением",
+        "Оптимизировано под отображение в мобильных плеерах",
+        "Файлы без сжатия: PNG, JPG, готово к публикации"
+      ]
+    }
+  },
+  silvika: {
+    title: "SILVIKA — ZERO",
+    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    img: "assets/covers/cover_silvika.jpg",
+    isVideo: false,
+    package: "cover",
+    specs: {
+      en: [
+        "Master Resolution: 3000 × 3000 px, 300 DPI",
+        "Dramatic warehouse cinematic frame capture & grading",
+        "Bold blood-red title typography with high contrast",
+        "Wet floor reflection & ambient darkness enhancement",
+        "Approved for Spotify Canvas & worldwide single release"
+      ],
+      ro: [
+        "Rezoluție Master: 3000 × 3000 px, 300 DPI",
+        "Cadru dramatic din hală industrială / warehouse cinematic",
+        "Tipografie bold roșu-sânge cu impact vizual puternic",
+        "Reflexie pe podea umedă și atmosferă întunecată",
+        "Aprobat pentru Spotify Canvas și lansare internațională"
+      ],
+      ru: [
+        "Мастер-разрешение: 3000 × 3000 px, 300 DPI",
+        "Драматичный кадр из видеоклипа в заброшенном цехе",
+        "Массивный кроваво-красный шрифт с сильным визуальным фокусом",
+        "Глубокие тени, мокрый пол и кинематографичный контраст",
+        "Готово для Spotify Canvas и официального релиза"
+      ]
+    }
+  },
+  ciorniy: {
+    title: "CIORNIY — Doar ea",
+    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    img: "assets/covers/cover_ciorniy.jpg",
+    isVideo: false,
+    package: "cover",
+    specs: {
+      en: [
+        "Master Resolution: 3000 × 3000 px, 300 DPI",
+        "Authentic vintage Polaroid frame texture and paper grain",
+        "Cobalt blue mood lighting with artistic long-exposure motion blur",
+        "Handwritten black marker signature typography",
+        "Full DSP compatibility: Spotify, Apple, Deezer, YouTube"
+      ],
+      ro: [
+        "Rezoluție Master: 3000 × 3000 px, 300 DPI",
+        "Ramă foto Polaroid retro cu textură realistă de carton",
+        "Iluminare neon albastru-cobalt cu motion blur artistic",
+        "Tipografie stil marker negru scris autentic de mână",
+        "Compatibilitate completă cu Spotify, Apple Music, Deezer"
+      ],
+      ru: [
+        "Мастер-разрешение: 3000 × 3000 px, 300 DPI",
+        "Аутентичная текстура полароидного снимка с фактурой бумаги",
+        "Глубокий синий неоновый свет с художественным смазом движения",
+        "Надпись чёрным маркером ручной работы",
+        "Полное соответствие стандартам всех стриминговых сервисов"
+      ]
+    }
+  },
+  young_queen: {
+    title: "MISSYRIGHT — Young Queen",
+    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    img: "assets/covers/cover_young_queen.jpg",
+    isVideo: false,
+    package: "cover",
+    specs: {
+      en: [
+        "Master Resolution: 3000 × 3000 px, 300 DPI",
+        "Moody deep teal portrait grading with dark sunglasses styling",
+        "Hand-drawn neon doodle crown, floating diamonds & bullets",
+        "Aggressive brush lettering title for urban / trap release",
+        "Ready for immediate worldwide digital distribution"
+      ],
+      ro: [
+        "Rezoluție Master: 3000 × 3000 px, 300 DPI",
+        "Portret urban moody în nuanțe profunde de teal și ochelari negri",
+        "Grafică doodle desenată de mână: coroană neon, diamante și gloanțe",
+        "Tipografie brush energică adaptată pentru genul trap / hip-hop",
+        "Gata de încărcare pe toate platformele muzicale"
+      ],
+      ru: [
+        "Мастер-разрешение: 3000 × 3000 px, 300 DPI",
+        "Стильный портрет в глубоких тёмно-бирюзовых тонах",
+        "Авторские дудл-элементы: светящаяся корона, алмазы и патроны",
+        "Энергичный браш-шрифт для трэп/хип-хоп релиза",
+        "Подготовлено для загрузки на лейблы и агрегаторы"
+      ]
+    }
+  },
+  jenika: {
+    title: "JENIKA — Altcineva",
+    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    img: "assets/covers/cover_jenika.jpg",
+    isVideo: false,
+    package: "cover",
+    specs: {
+      en: [
+        "Master Resolution: 3000 × 3000 px, 300 DPI",
+        "Clean emotional portrait design with selective color accent",
+        "Refined typography balance tailored to melodic pop / indie",
+        "Formatted for Spotify Canvas and promo social banners",
+        "Turnaround in 48 hours with full revisions"
+      ],
+      ro: [
+        "Rezoluție Master: 3000 × 3000 px, 300 DPI",
+        "Design curat și emoțional cu accente cromatice subtile",
+        "Tipografie echilibrată și adaptată piesei pop / indie",
+        "Optimizat pentru Spotify Canvas și postări de promovare",
+        "Livrare în 48 de ore cu toate reviziile incluse"
+      ],
+      ru: [
+        "Мастер-разрешение: 3000 × 3000 px, 300 DPI",
+        "Эмоциональный и чистый портретный стиль с акцентами",
+        "Сбалансированная типографика для поп/инди релиза",
+        "Оптимизировано для Spotify Canvas и промо-кампаний",
+        "Срок сдачи 48 часов с полным пакетом правок"
+      ]
+    }
+  },
+
+  // --- ROW 1: 4K VIDEOS & VISUALIZERS ---
+  silvika_video: {
+    title: "SILVIKA — ZERO (4K Lyrics Video)",
+    pill: { en: "4K CINEMATIC LYRICS VIDEO", ro: "4K CINEMATIC LYRICS VIDEO", ru: "4K CINEMATIC LYRICS ВИДЕО" },
+    img: "assets/covers/cover_silvika.jpg",
+    isVideo: true,
+    package: "lyrics",
+    specs: {
+      en: [
+        "Ultra HD 4K (3840 × 2160 px), 60 FPS Master Video",
+        "Beat-synced dynamic typography matched frame-by-frame",
+        "Cinematic atmospheric effects: camera shake, smoke, sparks",
+        "Includes YouTube 16:9 Master + Spotify Canvas 9:16 vertical loop",
+        "Color-matched precisely to the song's audio master"
+      ],
+      ro: [
+        "Rezoluție Ultra HD 4K (3840 × 2160 px), 60 FPS",
+        "Sincronizare dinamică cadru cu cadru a versurilor pe ritm",
+        "Efecte cinematografice de atmosferă: vibrații cameră, fum, particule",
+        "Include versiune 16:9 pentru YouTube și buclă verticală 9:16 pentru Spotify Canvas",
+        "Corecție de culoare adaptată perfect pe stilul piesei"
+      ],
+      ru: [
+        "Мастер-видео в формате Ultra HD 4K (3840 × 2160 px), 60 кадров/сек",
+        "Покадровая динамическая анимация текста строго в такт бита",
+        "Атмосферные эффекты: вибрация камеры, дым, вспышки",
+        "Включает 16:9 для YouTube и вертикальный 9:16 луп для Spotify Canvas",
+        "Полный монтаж и рендеринг в ProRes / H.264"
+      ]
+    }
+  },
+  jenika_video: {
+    title: "JENIKA — Altcineva (4K Visualizer)",
+    pill: { en: "4K OFFICIAL VISUALIZER", ro: "4K VIZUALIZER OFICIAL", ru: "4K ОФИЦИАЛЬНЫЙ ВИЗУАЛИЗАТОР" },
+    img: "assets/covers/cover_jenika.jpg",
+    isVideo: true,
+    package: "lyrics",
+    specs: {
+      en: [
+        "4K UHD (3840 × 2160 px) smooth motion visualizer",
+        "Subtle floating dust particles and slow camera zoom easing",
+        "Elegant animated title card and seamless looping background",
+        "Optimized for crystal-clear YouTube 4K streaming bitrate",
+        "Includes social cut-downs for Instagram and TikTok teasers"
+      ],
+      ro: [
+        "Rezoluție 4K UHD (3840 × 2160 px) cu mișcare lină continuă",
+        "Particule plutitoare, raze subtile și zoom cinematografic lent",
+        "Animație elegantă de titlu și buclă perfectă fără întreruperi",
+        "Optimizat pentru compresia YouTube la bitrate 4K maxim",
+        "Include teasere video 9:16 pentru Instagram Stories și TikTok"
+      ],
+      ru: [
+        "4K UHD (3840 × 2160 px) плавный визуализатор релиза",
+        "Плавающие частицы, мягкие световые лучи и плавный зум камеры",
+        "Элегантная анимация названия и бесшовное зацикливание",
+        "Оптимизировано под максимальный битрейт YouTube 4K",
+        "Включает вертикальные сниппеты для сторис и рилс"
+      ]
+    }
+  },
+  ciorniy_video: {
+    title: "CIORNIY — Doar ea (Mood Lyrics Motion)",
+    pill: { en: "LYRICS MOTION 4K", ro: "LYRICS MOTION 4K", ru: "LYRICS MOTION 4K" },
+    img: "assets/covers/cover_ciorniy.jpg",
+    isVideo: true,
+    package: "lyrics",
+    specs: {
+      en: [
+        "4K UHD 16:9 Master Video with VHS chromatic aberration & grain",
+        "Fluid handwritten lyrics animation appearing in sync with vocals",
+        "Deep cobalt blue atmosphere with rhythmic pulse on bass kicks",
+        "Vertical 9:16 version for Reels and TikTok promo included",
+        "Ready for immediate YouTube Music release"
+      ],
+      ro: [
+        "Video Master 4K UHD 16:9 cu aberație cromatică VHS și granulație",
+        "Animație fluidă a textului scris de mână în sincron cu vocea",
+        "Atmosferă albastră cobalt cu pulsație ritmică pe toba mare",
+        "Include versiune 9:16 verticală pentru TikTok și Reels",
+        "Gata de lansare pe YouTube și YouTube Music"
+      ],
+      ru: [
+        "4K UHD 16:9 видеоряд с эффектом хроматических аберраций и плёнки",
+        "Плавное появление рукописного текста точно под вокальную партию",
+        "Глубокая синяя неоновая атмосфера с пульсацией на басовых ударах",
+        "Вертикальная версия 9:16 для Reels и Shorts в комплекте",
+        "Готово к моментальной публикации на YouTube"
+      ]
+    }
+  },
+  ribz_video: {
+    title: "Ribz ft Conway The Machine — Legend Like Kareem",
+    pill: { en: "STREET VISUALIZER 4K", ro: "STREET VISUALIZER 4K", ru: "STREET ВИЗУАЛИЗАТОР 4K" },
+    img: "assets/covers/cover_ribz.jpg",
+    isVideo: true,
+    package: "lyrics",
+    specs: {
+      en: [
+        "4K UHD urban paper-rip collage animation with stop-motion feel",
+        "Beat-pulse visual reactive effects synchronized with 90s hip-hop groove",
+        "Underground graffiti text animation popping on snare hits",
+        "Includes full widescreen YouTube video and vertical promo snippets",
+        "Express studio mastering turnaround"
+      ],
+      ro: [
+        "Animație colaj urban 4K UHD în stil stop-motion cu hârtie ruptă",
+        "Efecte vizuale reactive sincronizate pe ritmul tobelor hip-hop",
+        "Animație de text graffiti care explodează pe loviturile de tobă",
+        "Include versiune widescreen pentru YouTube și snippet-uri verticale",
+        "Mastering video de calitate superioară"
+      ],
+      ru: [
+        "4K UHD урбан-коллаж с эффектом рваной бумаги и покадровой анимацией",
+        "Реактивные визуальные эффекты, пульсирующие в такт олдскул-бита",
+        "Граффити-анимация текста с акцентами на снейрах и бас-бочке",
+        "Широкоформатная версия 16:9 + вертикальные промо-ролики",
+        "Экспресс-монтаж и адаптация под все площадки"
+      ]
+    }
+  },
+  laureall_video: {
+    title: "Laureall — Pa Pa (Neon Lyrics 4K)",
+    pill: { en: "NEON LYRICS VIDEO 4K", ro: "NEON LYRICS VIDEO 4K", ru: "НЕОНОВОЕ LYRICS ВИДЕО 4K" },
+    img: "assets/covers/cover_laureall.jpg",
+    isVideo: true,
+    package: "lyrics",
+    specs: {
+      en: [
+        "4K UHD (3840 × 2160 px) cinematic aspect ratio 2.39:1",
+        "High-glow neon pink typography reacting to vocal power and hook",
+        "Cinematic film dust, slow zoom and subtle lighting pulses",
+        "Both 16:9 YouTube video and 9:16 vertical TikTok/Reels version",
+        "Delivered with priority support"
+      ],
+      ro: [
+        "Rezoluție 4K UHD (3840 × 2160 px) în format cinematic 2.39:1",
+        "Tipografie neon pink intensă care reacționează la refren și voce",
+        "Praf de film vintage, zoom lent și pulsații subtile de lumină",
+        "Include versiune orizontală 16:9 și versiune 9:16 pentru TikTok/Reels",
+        "Predare cu suport complet și modificări incluse"
+      ],
+      ru: [
+        "4K UHD (3840 × 2160 px) в кинематографичном формате 2.39:1",
+        "Светящийся розовый неон, реагирующий на дроп и вокальные акценты",
+        "Винтажная плёночная пыль, медленный зум и световые пульсации",
+        "Комплект 16:9 для YouTube + вертикальное 9:16 для TikTok и Reels",
+        "Приоритетный рендеринг и гарантия качества"
+      ]
+    }
+  },
+  young_queen_video: {
+    title: "MISSYRIGHT — Young Queen (Trap Visualizer)",
+    pill: { en: "TRAP MOTION VISUALIZER", ro: "TRAP MOTION VISUALIZER", ru: "TRAP ВИЗУАЛИЗАТОР 4K" },
+    img: "assets/covers/cover_young_queen.jpg",
+    isVideo: true,
+    package: "lyrics",
+    specs: {
+      en: [
+        "4K UHD high-impact motion visualizer with 808 bass reactivity",
+        "Animated neon doodle crown, diamond shines & floating shell casings",
+        "Fast kinetic cuts and text impact on the trap drop",
+        "Complete package: YouTube 16:9 + Reels 9:16 vertical video",
+        "Exported in 60 FPS for maximum fluidity"
+      ],
+      ro: [
+        "Vizualizer 4K UHD de mare impact cu reacție pe basul 808",
+        "Elemente doodle animate: coroană neon, străluciri de diamante și cartușe",
+        "Tăieturi kinetice rapide și text de impact pe drop-urile de trap",
+        "Pachet complet: YouTube 16:9 + Reels / TikTok 9:16 vertical",
+        "Exportat la 60 cadre/secundă pentru fluiditate maximă"
+      ],
+      ru: [
+        "4K UHD динамичный моушн-визуализатор с реакцией на 808 бас",
+        "Анимированная неоновая корона, сияние алмазов и летающие гильзы",
+        "Кинетическая типографика и мощные вспышки на трэп-дропах",
+        "Полный комплект: 16:9 для YouTube и 9:16 для Reels/TikTok",
+        "Экспорт в 60 FPS для максимальной плавности на экранах"
+      ]
+    }
+  },
+  parabellum_video: {
+    title: "Si vis pacem Parabellum (Noir Visualizer)",
+    pill: { en: "NOIR VISUALIZER 4K", ro: "NOIR VISUALIZER 4K", ru: "НУАР ВИЗУАЛИЗАТОР 4K" },
+    img: "assets/covers/cover_parabellum.jpg",
+    isVideo: true,
+    package: "lyrics",
+    specs: {
+      en: [
+        "4K UHD Black & White cinematic visualizer with 3D depth",
+        "Slow-motion volumetric smoke and drifting embers",
+        "Clean, high-fashion serif text motion synchronized with track milestones",
+        "Full suite for YouTube, Spotify Canvas, and social media teaser",
+        "High-bitrate master file ready for publishing"
+      ],
+      ro: [
+        "Vizualizer cinematic alb-negru 4K UHD cu profunzime 3D",
+        "Fum volumetric slow-motion și particule luminoase în plutire",
+        "Text serif elegant animat în armonie cu atmosfera piesei",
+        "Suită completă pentru YouTube, Spotify Canvas și promo social media",
+        "Fișier Master la bitrate ridicat gata de publicare"
+      ],
+      ru: [
+        "Чёрно-белый кинематографичный визуализатор 4K UHD с 3D-глубиной",
+        "Замедленный объёмный дым и парящие световые микрочастицы",
+        "Элегантная типографика, синхронизированная с развитием композиции",
+        "Полный набор для YouTube, Spotify Canvas и тизеров в соцсетях",
+        "Мастер-файл максимального битрейта для безупречной картинки"
+      ]
+    }
+  },
+  na_krasivom_video: {
+    title: "На красивом (Full Pack Lyrics & Visualizer)",
+    pill: { en: "FULL PACK RELEASE 4K", ro: "FULL PACK RELEASE 4K", ru: "ПОЛНЫЙ ПАКЕТ 4K" },
+    img: "assets/covers/cover_na_krasivom.jpg",
+    isVideo: true,
+    package: "full",
+    specs: {
+      en: [
+        "Full Pack: 3000x3000px Cover Artwork + 4K UHD Lyrics Video",
+        "Social media banner suite (YouTube header, Facebook banner, Spotify Canvas)",
+        "Precision bilingual text synchronization with rich vocal effects",
+        "Atmospheric red flare lighting and luxury cinematic color grading",
+        "Turnkey delivery with full distributor upload assistance"
+      ],
+      ro: [
+        "Pachet complet: Cover 3000x3000px + Lyrics Video 4K UHD",
+        "Suită de bannere pentru rețele sociale (YouTube, Facebook, Spotify Canvas)",
+        "Sincronizare precisă a textului pe refrene și versuri",
+        "Efecte atmosferice de lumină roșie și colorizare luxoasă de club",
+        "Predare la cheie cu asistență la distribuție"
+      ],
+      ru: [
+        "Полный пакет: Обложка 3000x3000px + 4K UHD Lyrics видео",
+        "Пакет баннеров для соцсетей (шапка YouTube, баннер Facebook, Spotify Canvas)",
+        "Точная синхронизация текста на куплетах и припевах",
+        "Атмосферное алое клубное свечение и стильная цветокоррекция",
+        "Сдача под ключ с консультацией по загрузке на дистрибьютор"
+      ]
+    }
+  }
+};
+
+// ==========================================================================
 // 3. MODALS LOGIC
 // ==========================================================================
+let currentModalProjectId = null;
+
+function openProjectModal(projectId) {
+  const project = projectsData[projectId];
+  if (!project) return;
+  currentModalProjectId = projectId;
+
+  const pillEl = document.getElementById('projectPill');
+  const titleEl = document.getElementById('projectTitle');
+  const imgEl = document.getElementById('projectImg');
+  const listEl = document.getElementById('projectFeaturesList');
+  const orderBtn = document.getElementById('projectOrderBtn');
+
+  const lang = currentLang || 'en';
+
+  if (pillEl) {
+    pillEl.textContent = (project.pill && project.pill[lang]) || project.pill.en || 'PORTFOLIO CASE';
+    if (project.isVideo) {
+      pillEl.style.background = 'rgba(230, 25, 55, 0.15)';
+      pillEl.style.borderColor = 'rgba(230, 25, 55, 0.4)';
+      pillEl.style.color = '#ff4d6d';
+    } else {
+      pillEl.style.background = 'rgba(255, 255, 255, 0.08)';
+      pillEl.style.borderColor = 'rgba(255, 255, 255, 0.18)';
+      pillEl.style.color = '#e4e4e7';
+    }
+  }
+
+  if (titleEl) titleEl.textContent = project.title;
+
+  if (imgEl) {
+    imgEl.src = project.img;
+    imgEl.alt = project.title;
+  }
+
+  if (listEl) {
+    const specs = (project.specs && project.specs[lang]) || project.specs.en || [];
+    listEl.innerHTML = specs.map(item => `
+      <li>
+        <span class="spec-bullet" style="color:var(--accent-red);font-weight:bold;margin-right:8px;">✓</span>
+        <span>${item}</span>
+      </li>
+    `).join('');
+  }
+
+  if (orderBtn) {
+    orderBtn.onclick = () => {
+      closeModal('projectModal');
+      openModal('orderModal', project.package);
+    };
+  }
+
+  openModal('projectModal');
+}
 function openModal(modalId, selectedPackage = null) {
   const modal = document.getElementById(modalId);
   if (!modal) return;
@@ -729,6 +1293,14 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const lang = btn.getAttribute('data-lang');
       setLanguage(lang);
+    });
+  });
+
+  // Marquee card click handlers for project modal
+  document.querySelectorAll('.marquee-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const pId = card.getAttribute('data-project-id');
+      if (pId) openProjectModal(pId);
     });
   });
 
