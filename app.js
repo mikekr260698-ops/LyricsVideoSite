@@ -538,6 +538,9 @@ function setLanguage(langCode) {
   if (typeof loadAdminOverrides === 'function') {
     loadAdminOverrides();
   }
+  if (typeof updateDemoLyricsDisplay === 'function') {
+    updateDemoLyricsDisplay();
+  }
 }
 
 // Cinematic Title Word Generator
@@ -1632,6 +1635,54 @@ function setupOrderForm() {
 // ==========================================================================
 // 5. INTERACTIVE DEMO PLAYER & CALM PARALLAX WIGGLE
 // ==========================================================================
+const demoMarketingLines = {
+  ro: [
+    "Peste 1 000+ lansări realizate anual",
+    "CALITATE 4K & VITEZĂ RECORD",
+    "Gata în 3–7 zile pentru Spotify & YouTube",
+    "Design unic creat 100% pe sound-ul tău",
+    "MODIFICĂRI GRATUITE PÂNĂ LA APROBARE",
+    "Vizualul care îți ridică instant piesa"
+  ],
+  ru: [
+    "Более 1 000+ релизов в год",
+    "КАЧЕСТВО 4K И МАКСИМАЛЬНАЯ СКОРОСТЬ",
+    "Готово за 3–7 дней для Spotify и YouTube",
+    "Уникальный стиль точно под твой трек",
+    "БЕСПЛАТНЫЕ ПРАВКИ ДО УТВЕРЖДЕНИЯ",
+    "Визуал, который выделяет твой релиз"
+  ],
+  en: [
+    "Over 1,000+ releases delivered yearly",
+    "4K CINEMA QUALITY & FAST TURNAROUND",
+    "Ready in 3–7 days for Spotify & YouTube",
+    "Custom visuals tailored to your sound",
+    "FREE REVISIONS UNTIL FINAL APPROVAL",
+    "Visuals that elevate your next release"
+  ]
+};
+
+let demoLineIndex = 1;
+
+function updateDemoLyricsDisplay() {
+  const prevEl = document.getElementById('demoLinePrev');
+  const activeEl = document.getElementById('demoLineActive');
+  const nextEl = document.getElementById('demoLineNext');
+  if (!prevEl || !activeEl || !nextEl) return;
+
+  const lang = currentLang || 'ro';
+  const lines = demoMarketingLines[lang] || demoMarketingLines.ro;
+  const len = lines.length;
+
+  const prevIdx = (demoLineIndex - 1 + len) % len;
+  const currIdx = demoLineIndex % len;
+  const nextIdx = (demoLineIndex + 1) % len;
+
+  prevEl.textContent = lines[prevIdx];
+  activeEl.textContent = lines[currIdx];
+  nextEl.textContent = lines[nextIdx];
+}
+
 function setupDemoPlayer() {
   const playBtn = document.getElementById('demoPlayBtn');
   const playIcon = document.getElementById('playIcon');
@@ -1639,10 +1690,13 @@ function setupDemoPlayer() {
   const timer = document.getElementById('demoTimer');
   if (!playBtn) return;
 
+  updateDemoLyricsDisplay();
+
   let isPlaying = false;
   let currentSec = 42;
   const totalSec = 156;
   let interval = null;
+  let tickCount = 0;
 
   playBtn.addEventListener('click', () => {
     isPlaying = !isPlaying;
@@ -1650,12 +1704,18 @@ function setupDemoPlayer() {
       playIcon.textContent = '❚❚';
       interval = setInterval(() => {
         currentSec++;
+        tickCount++;
         if (currentSec > totalSec) currentSec = 0;
         const pct = (currentSec / totalSec) * 100;
         progress.style.width = `${pct}%`;
         const mins = Math.floor(currentSec / 60);
         const secs = String(currentSec % 60).padStart(2, '0');
         timer.textContent = `${mins}:${secs} / 2:36`;
+
+        if (tickCount % 2 === 0) {
+          demoLineIndex = (demoLineIndex + 1) % (demoMarketingLines[currentLang || 'ro'].length);
+          updateDemoLyricsDisplay();
+        }
       }, 1000);
     } else {
       playIcon.textContent = '▶';
