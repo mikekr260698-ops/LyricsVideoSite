@@ -1902,9 +1902,18 @@
     // =========================================================================
     // DASHBOARD & RENDERING
     // =========================================================================
-    function initAdmin() {
+    async function initAdmin() {
       // 1. Start from default projectsData (so new projects like moostaf are always available!)
       workingProjects = JSON.parse(JSON.stringify(projectsData));
+
+      // 1.5. Fetch latest live projects_data.json
+      try {
+        const res = await fetch('projects_data.json?t=' + Date.now());
+        if (res.ok) {
+          const liveData = await res.json();
+          Object.assign(workingProjects, liveData);
+        }
+      } catch(e) {}
 
       // 2. Merge saved custom user modifications from localStorage
       const saved = localStorage.getItem('artist_visuals_custom_projects');
@@ -1975,8 +1984,43 @@
         if (!workingProjects.ciorniy.img) {
           workingProjects.ciorniy.img = 'assets/covers/cover_ciorniy.jpg';
         }
+        workingProjects.ciorniy.videoSrc = '';
+        workingProjects.ciorniy.videoPoster = '';
+        workingProjects.ciorniy.inVideo = false;
+        workingProjects.ciorniy.inCovers = true;
+        workingProjects.ciorniy.placement = 'cover';
       }
-      delete workingProjects.skoliko_stout_boli;
+      if (workingProjects.ciorniy_video && !workingProjects.ciorniy_iubirea) {
+        workingProjects.ciorniy_iubirea = workingProjects.ciorniy_video;
+        delete workingProjects.ciorniy_video;
+      }
+      if (workingProjects.ciorniy_iubirea) {
+        workingProjects.ciorniy_iubirea.title = 'CIORNIY — Iubirea e o boală grea';
+        workingProjects.ciorniy_iubirea.videoSrc = 'assets/videos/video_ciorniy.mp4';
+        workingProjects.ciorniy_iubirea.videoPoster = 'assets/videos/posters/video_ciorniy_poster.jpg';
+        workingProjects.ciorniy_iubirea.bannerImg = 'assets/banners/banner_ciorniy.jpg';
+        workingProjects.ciorniy_iubirea.img = '';
+        workingProjects.ciorniy_iubirea.inVideo = true;
+        workingProjects.ciorniy_iubirea.inCovers = false;
+        workingProjects.ciorniy_iubirea.placement = 'video';
+      }
+      if (workingProjects.skolko_stoit) {
+        workingProjects.skolko_stoit.videoPoster = 'assets/videos/posters/video_skolko_stoit_poster.jpg';
+        workingProjects.skolko_stoit.img = '';
+        workingProjects.skolko_stoit.inVideo = true;
+        workingProjects.skolko_stoit.inCovers = false;
+        workingProjects.skolko_stoit.placement = 'video';
+      }
+      if (workingProjects.hooligan) {
+        workingProjects.hooligan.videoPoster = 'assets/videos/posters/video_hooligan_poster.jpg';
+        workingProjects.hooligan.img = '';
+        workingProjects.hooligan.inVideo = true;
+        workingProjects.hooligan.inCovers = false;
+        workingProjects.hooligan.placement = 'video';
+      }
+      ['silvika_video', 'jenika_video', 'ribz_video', 'laureall_video', 'young_queen_video', 'parabellum_video', 'na_krasivom_video', 'skoliko_stout_boli'].forEach(k => {
+        delete workingProjects[k];
+      });
 
       // 5. Ensure all other projects have inVideo / inCovers defined
       Object.keys(workingProjects).forEach(key => {

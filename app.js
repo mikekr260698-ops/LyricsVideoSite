@@ -914,8 +914,8 @@ const projectsData = {
     pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
     badge: "LYRICS VIDEO 4K",
     subtitle: "Lyrics Video 4K Master",
-    img: "assets/covers/cover_parabellum.jpg",
-    bannerImg: "assets/banners/banner_moostaf.jpg",
+    img: "",
+    bannerImg: "",
     videoSrc: "assets/videos/video_parabellum.mp4",
     videoPoster: "assets/videos/posters/video_skolko_stoit_poster.jpg",
     isVideo: true,
@@ -952,8 +952,8 @@ const projectsData = {
     pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
     badge: "LYRICS VIDEO 4K",
     subtitle: "Lyrics Video 4K Master",
-    img: "assets/covers/cover_young_queen.jpg",
-    bannerImg: "assets/banners/banner_young_queen.jpg",
+    img: "",
+    bannerImg: "",
     videoSrc: "assets/videos/video_young_queen.mp4",
     videoPoster: "assets/videos/posters/video_hooligan_poster.jpg",
     isVideo: true,
@@ -985,82 +985,9 @@ const projectsData = {
       ]
     }
   },
-  silvika_video: {
-    title: "MOOSTAF — Отпускаю",
-    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
-    badge: "LYRICS VIDEO 4K",
-    subtitle: "Lyrics Video 4K Master",
-    img: "assets/covers/cover_silvika.jpg",
-    bannerImg: "assets/banners/banner_moostaf.jpg",
-    videoSrc: "assets/videos/video_moostaf.mp4",
-    videoPoster: "assets/videos/posters/video_moostaf_poster.jpg",
-    isVideo: true,
-    package: "lyrics",
-    specs: {
-      en: [
-        "Ultra HD 4K (3840 × 2160 px), 60 FPS Master Video",
-        "Beat-synced dynamic typography matched frame-by-frame",
-        "Cinematic atmospheric effects: camera shake, smoke, sparks",
-        "Includes YouTube 16:9 Master + Spotify Canvas 9:16 vertical loop",
-        "Color-matched precisely to the song's audio master"
-      ],
-      ro: [
-        "Rezoluție Ultra HD 4K (3840 × 2160 px), 60 FPS",
-        "Sincronizare dinamică cadru cu cadru a versurilor pe ritm",
-        "Efecte cinematografice de atmosferă: vibrații cameră, fum, particule",
-        "Include versiune 16:9 pentru YouTube și buclă verticală 9:16 pentru Spotify Canvas",
-        "Corecție de culoare adaptată perfect pe stilul piesei"
-      ],
-      ru: [
-        "Мастер-видео в формате Ultra HD 4K (3840 × 2160 px), 60 кадров/сек",
-        "Покадровая динамическая анимация текста строго в такт бита",
-        "Атмосферные эффекты: вибрация камеры, дым, вспышки",
-        "Включает 16:9 для YouTube и вертикальный 9:16 луп для Spotify Canvas",
-        "Полный монтаж и рендеринг в ProRes / H.264"
-      ]
-    }
-  },
-  jenika_video: {
-    title: "JENIKA — Altcineva",
-    pill: { en: "FULL RELEASE", ro: "FULL RELEASE", ru: "FULL RELEASE" },
-    badge: "FULL RELEASE",
-    subtitle: "Lyrics Video + Cover Suite",
-    img: "assets/covers/cover_jenika.jpg",
-    bannerImg: "assets/banners/banner_jenika.jpg",
-    videoSrc: "assets/videos/video_jenika.mp4",
-    videoPoster: "assets/videos/posters/video_jenika_poster.jpg",
-    isVideo: true,
-    package: "full",
-    placement: "both",
-    inVideo: true,
-    inCovers: true,
-    specs: {
-      en: [
-        "4K UHD (3840 × 2160 px) smooth motion visualizer",
-        "Subtle floating dust particles and slow camera zoom easing",
-        "Elegant animated title card and seamless looping background",
-        "Optimized for crystal-clear YouTube 4K streaming bitrate",
-        "Includes social cut-downs for Instagram and TikTok teasers"
-      ],
-      ro: [
-        "Rezoluție 4K UHD (3840 × 2160 px) cu mișcare lină continuă",
-        "Particule plutitoare, raze subtile și zoom cinematografic lent",
-        "Animație elegantă de titlu și buclă perfectă fără întreruperi",
-        "Optimizat pentru compresia YouTube la bitrate 4K maxim",
-        "Include teasere video 9:16 pentru Instagram Stories și TikTok"
-      ],
-      ru: [
-        "4K UHD (3840 × 2160 px) плавный визуализатор релиза",
-        "Плавающие частицы, мягкие световые лучи и плавный зум камеры",
-        "Элегантная анимация названия и бесшовное зацикливание",
-        "Оптимизировано под максимальный битрейт YouTube 4K",
-        "Включает вертикальные сниппеты для сторис и рилс"
-      ]
-    }
-  },
-  ciorniy_video: {
+  ciorniy_iubirea: {
     title: "CIORNIY — Iubirea e o boală grea",
-    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    pill: { en: "LYRICS MOTION 4K", ro: "LYRICS MOTION 4K", ru: "LYRICS MOTION 4K" },
     badge: "LYRICS VIDEO 4K",
     subtitle: "Lyrics Video 4K Master",
     img: "",
@@ -1095,181 +1022,6 @@ const projectsData = {
         "Готово к моментальной публикации на YouTube"
       ]
     }
-  },
-  ribz_video: {
-    title: "Si vis pacem — Сколько стоит боль?",
-    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
-    badge: "LYRICS VIDEO 4K",
-    subtitle: "Lyrics Video 4K Master",
-    img: "assets/covers/cover_ribz.jpg",
-    bannerImg: "assets/banners/banner_moostaf.jpg",
-    videoSrc: "assets/videos/video_moostaf.mp4",
-    videoPoster: "assets/videos/posters/video_skolko_stoit_poster.jpg",
-    isVideo: true,
-    package: "lyrics",
-    specs: {
-      en: [
-        "4K UHD urban paper-rip collage animation with stop-motion feel",
-        "Beat-pulse visual reactive effects synchronized with 90s hip-hop groove",
-        "Underground graffiti text animation popping on snare hits",
-        "Includes full widescreen YouTube video and vertical promo snippets",
-        "Express studio mastering turnaround"
-      ],
-      ro: [
-        "Animație colaj urban 4K UHD în stil stop-motion cu hârtie ruptă",
-        "Efecte vizuale reactive sincronizate pe ritmul tobelor hip-hop",
-        "Animație de text graffiti care explodează pe loviturile de tobă",
-        "Include versiune widescreen pentru YouTube și snippet-uri verticale",
-        "Mastering video de calitate superioară"
-      ],
-      ru: [
-        "4K UHD урбан-коллаж с эффектом рваной бумаги и покадровой анимацией",
-        "Реактивные визуальные эффекты, пульсирующие в такт олдскул-бита",
-        "Граффити-анимация текста с акцентами на снейрах и бас-бочке",
-        "Широкоформатная версия 16:9 + вертикальные промо-ролики",
-        "Экспресс-монтаж и адаптация под все площадки"
-      ]
-    }
-  },
-  laureall_video: {
-    title: "MISSYRIGHT — Полюбила хулигана",
-    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
-    badge: "LYRICS VIDEO 4K",
-    subtitle: "Lyrics Video 4K Master",
-    img: "assets/covers/cover_laureall.jpg",
-    bannerImg: "assets/banners/banner_jenika.jpg",
-    videoSrc: "assets/videos/video_young_queen.mp4",
-    videoPoster: "assets/videos/posters/video_hooligan_poster.jpg",
-    isVideo: true,
-    package: "lyrics",
-    specs: {
-      en: [
-        "4K UHD (3840 × 2160 px) cinematic aspect ratio 2.39:1",
-        "High-glow neon pink typography reacting to vocal power and hook",
-        "Cinematic film dust, slow zoom and subtle lighting pulses",
-        "Both 16:9 YouTube video and 9:16 vertical TikTok/Reels version",
-        "Delivered with priority support"
-      ],
-      ro: [
-        "Rezoluție 4K UHD (3840 × 2160 px) în format cinematic 2.39:1",
-        "Tipografie neon pink intensă care reacționează la refren și voce",
-        "Praf de film vintage, zoom lent și pulsații subtile de lumină",
-        "Include versiune orizontală 16:9 și versiune 9:16 pentru TikTok/Reels",
-        "Predare cu suport complet și modificări incluse"
-      ],
-      ru: [
-        "4K UHD (3840 × 2160 px) в кинематографичном формате 2.39:1",
-        "Светящийся розовый неон, реагирующий на дроп и вокальные акценты",
-        "Винтажная плёночная пыль, медленный зум и световые пульсации",
-        "Комплект 16:9 для YouTube + вертикальное 9:16 для TikTok и Reels",
-        "Приоритетный рендеринг и гарантия качества"
-      ]
-    }
-  },
-  young_queen_video: {
-    title: "MISSYRIGHT — Young Queen",
-    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
-    badge: "LYRICS VIDEO 4K",
-    subtitle: "Lyrics Video 4K Master",
-    img: "assets/covers/cover_young_queen.jpg",
-    bannerImg: "assets/banners/banner_young_queen.jpg",
-    videoSrc: "assets/videos/video_young_queen.mp4",
-    videoPoster: "assets/videos/posters/video_young_queen_poster.jpg",
-    isVideo: true,
-    package: "lyrics",
-    specs: {
-      en: [
-        "4K UHD high-impact motion visualizer with 808 bass reactivity",
-        "Animated neon doodle crown, diamond shines & floating shell casings",
-        "Fast kinetic cuts and text impact on the trap drop",
-        "Complete package: YouTube 16:9 + Reels 9:16 vertical video",
-        "Exported in 60 FPS for maximum fluidity"
-      ],
-      ro: [
-        "Vizualizer 4K UHD de mare impact cu reacție pe basul 808",
-        "Elemente doodle animate: coroană neon, străluciri de diamante și cartușe",
-        "Tăieturi kinetice rapide și text de impact pe drop-urile de trap",
-        "Pachet complet: YouTube 16:9 + Reels / TikTok 9:16 vertical",
-        "Exportat la 60 cadre/secundă pentru fluiditate maximă"
-      ],
-      ru: [
-        "4K UHD динамичный моушн-визуализатор с реакцией на 808 бас",
-        "Анимированная неоновая корона, сияние алмазов и летающие гильзы",
-        "Кинетическая типографика и мощные вспышки на трэп-дропах",
-        "Полный комплект: 16:9 для YouTube и 9:16 для Reels/TikTok",
-        "Экспорт в 60 FPS для максимальной плавности на экранах"
-      ]
-    }
-  },
-  parabellum_video: {
-    title: "Si vis pacem Parabellum",
-    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
-    badge: "LYRICS VIDEO 4K",
-    subtitle: "Lyrics Video 4K Master",
-    img: "assets/covers/cover_parabellum.jpg",
-    bannerImg: "assets/banners/banner_moostaf.jpg",
-    videoSrc: "assets/videos/video_parabellum.mp4",
-    videoPoster: "assets/videos/posters/video_parabellum_poster.jpg",
-    isVideo: true,
-    package: "lyrics",
-    specs: {
-      en: [
-        "4K UHD Black & White cinematic visualizer with 3D depth",
-        "Slow-motion volumetric smoke and drifting embers",
-        "Clean, high-fashion serif text motion synchronized with track milestones",
-        "Full suite for YouTube, Spotify Canvas, and social media teaser",
-        "High-bitrate master file ready for publishing"
-      ],
-      ro: [
-        "Vizualizer cinematic alb-negru 4K UHD cu profunzime 3D",
-        "Fum volumetric slow-motion și particule luminoase în plutire",
-        "Text serif elegant animat în armonie cu atmosfera piesei",
-        "Suită completă pentru YouTube, Spotify Canvas și promo social media",
-        "Fișier Master la bitrate ridicat gata de publicare"
-      ],
-      ru: [
-        "Чёрно-белый кинематографичный визуализатор 4K UHD с 3D-глубиной",
-        "Замедленный объёмный дым и парящие световые микрочастицы",
-        "Элегантная типографика, синхронизированная с развитием композиции",
-        "Полный набор для YouTube, Spotify Canvas и тизеров в соцсетях",
-        "Мастер-файл максимального битрейта для безупречной картинки"
-      ]
-    }
-  },
-  na_krasivom_video: {
-    title: "IRAVELLE feat Andrei Green — На красивом",
-    pill: { en: "FULL RELEASE", ro: "FULL RELEASE", ru: "FULL RELEASE" },
-    badge: "FULL RELEASE",
-    subtitle: "Lyrics Video + Cover Suite",
-    img: "assets/covers/cover_na_krasivom.jpg",
-    bannerImg: "assets/banners/banner_na_krasivom.jpg",
-    videoSrc: "assets/videos/video_na_krasivom.mp4",
-    videoPoster: "assets/videos/posters/video_na_krasivom_poster.jpg",
-    isVideo: true,
-    package: "full",
-    specs: {
-      en: [
-        "Full Pack: 3000x3000px Cover Artwork + 4K UHD Lyrics Video",
-        "Social media banner suite (YouTube header, Facebook banner, Spotify Canvas)",
-        "Precision bilingual text synchronization with rich vocal effects",
-        "Atmospheric red flare lighting and luxury cinematic color grading",
-        "Turnkey delivery with full distributor upload assistance"
-      ],
-      ro: [
-        "Pachet complet: Cover 3000x3000px + Lyrics Video 4K UHD",
-        "Suită de bannere pentru rețele sociale (YouTube, Facebook, Spotify Canvas)",
-        "Sincronizare precisă a textului pe refrene și versuri",
-        "Efecte atmosferice de lumină roșie și colorizare luxoasă de club",
-        "Predare la cheie cu asistență la distribuție"
-      ],
-      ru: [
-        "Полный пакет: Обложка 3000x3000px + 4K UHD Lyrics видео",
-        "Пакет баннеров для соцсетей (шапка YouTube, баннер Facebook, Spotify Canvas)",
-        "Точная синхронизация текста на куплетах и припевах",
-        "Атмосферное алое клубное свечение и стильная цветокоррекция",
-        "Сдача под ключ с консультацией по загрузке на дистрибьютор"
-      ]
-    }
   }
 };
 
@@ -1279,6 +1031,7 @@ const projectsData = {
 let currentModalProjectId = null;
 
 function openProjectModal(projectId) {
+  if (projectId === 'ciorniy_video') projectId = 'ciorniy_iubirea';
   if (!projectsData[projectId]) {
     if (projectId.endsWith('_video') && projectsData[projectId.replace('_video', '')]) {
       projectId = projectId.replace('_video', '');
@@ -2249,7 +2002,45 @@ function loadAdminOverrides() {
       if (!projectsData.ciorniy.img) {
         projectsData.ciorniy.img = 'assets/covers/cover_ciorniy.jpg';
       }
+      projectsData.ciorniy.videoSrc = '';
+      projectsData.ciorniy.videoPoster = '';
+      projectsData.ciorniy.inVideo = false;
+      projectsData.ciorniy.inCovers = true;
+      projectsData.ciorniy.placement = 'cover';
     }
+    if (projectsData.ciorniy_video && !projectsData.ciorniy_iubirea) {
+      projectsData.ciorniy_iubirea = projectsData.ciorniy_video;
+      delete projectsData.ciorniy_video;
+    }
+    if (projectsData.ciorniy_iubirea) {
+      projectsData.ciorniy_iubirea.title = 'CIORNIY — Iubirea e o boală grea';
+      projectsData.ciorniy_iubirea.videoSrc = 'assets/videos/video_ciorniy.mp4';
+      projectsData.ciorniy_iubirea.videoPoster = 'assets/videos/posters/video_ciorniy_poster.jpg';
+      projectsData.ciorniy_iubirea.bannerImg = 'assets/banners/banner_ciorniy.jpg';
+      projectsData.ciorniy_iubirea.img = '';
+      projectsData.ciorniy_iubirea.inVideo = true;
+      projectsData.ciorniy_iubirea.inCovers = false;
+      projectsData.ciorniy_iubirea.placement = 'video';
+    }
+    if (projectsData.skolko_stoit) {
+      projectsData.skolko_stoit.videoPoster = 'assets/videos/posters/video_skolko_stoit_poster.jpg';
+      projectsData.skolko_stoit.img = '';
+      projectsData.skolko_stoit.inVideo = true;
+      projectsData.skolko_stoit.inCovers = false;
+      projectsData.skolko_stoit.placement = 'video';
+    }
+    if (projectsData.hooligan) {
+      projectsData.hooligan.videoPoster = 'assets/videos/posters/video_hooligan_poster.jpg';
+      projectsData.hooligan.img = '';
+      projectsData.hooligan.inVideo = true;
+      projectsData.hooligan.inCovers = false;
+      projectsData.hooligan.placement = 'video';
+    }
+
+    // Clean up any legacy mirror keys
+    ['silvika_video', 'jenika_video', 'ribz_video', 'laureall_video', 'young_queen_video', 'parabellum_video', 'na_krasivom_video', 'skoliko_stout_boli'].forEach(k => {
+      delete projectsData[k];
+    });
 
     // Render cards dynamically matching checkboxes
     renderMarqueeTracks();
