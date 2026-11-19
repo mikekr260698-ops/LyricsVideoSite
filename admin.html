@@ -1271,6 +1271,12 @@
         workingProjects.laureall.inVideo = false;
         workingProjects.laureall.inCovers = true;
       }
+      if (workingProjects.jenika && (!workingProjects.jenika.videoSrc || workingProjects.jenika.videoSrc.includes('ori_blaze'))) {
+        workingProjects.jenika.videoSrc = '';
+        workingProjects.jenika.videoPoster = '';
+        workingProjects.jenika.inVideo = false;
+        workingProjects.jenika.inCovers = true;
+      }
 
       // 4. Ensure moostaf is present, distinct, and visible in Video row
       if (workingProjects.moostaf) {

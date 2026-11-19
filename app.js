@@ -832,15 +832,15 @@ const projectsData = {
     title: "JENIKA — Altcineva",
     pill: { en: "FULL RELEASE", ro: "FULL RELEASE", ru: "FULL RELEASE" },
     badge: "FULL RELEASE",
-    subtitle: "Lyrics Video + Cover Suite",
+    subtitle: "Cover Art + Promo Suite",
     img: "assets/covers/cover_jenika.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
-    videoSrc: "assets/videos/video_ori_blaze.mp4",
-    videoPoster: "assets/videos/posters/video_ori_blaze_poster.jpg",
-    isVideo: true,
+    videoSrc: "",
+    videoPoster: "",
+    isVideo: false,
     package: "full",
-    placement: "both",
-    inVideo: true,
+    placement: "cover",
+    inVideo: false,
     inCovers: true,
     specs: {
       en: [
@@ -1836,6 +1836,12 @@ function loadAdminOverrides() {
       projectsData.laureall.videoPoster = '';
       projectsData.laureall.inVideo = false;
       projectsData.laureall.inCovers = true;
+    }
+    if (projectsData.jenika && (!projectsData.jenika.videoSrc || projectsData.jenika.videoSrc.includes('ori_blaze'))) {
+      projectsData.jenika.videoSrc = '';
+      projectsData.jenika.videoPoster = '';
+      projectsData.jenika.inVideo = false;
+      projectsData.jenika.inCovers = true;
     }
     if (projectsData.moostaf) {
       projectsData.moostaf.videoSrc = 'assets/videos/video_moostaf.mp4';
