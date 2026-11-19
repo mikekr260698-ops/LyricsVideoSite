@@ -987,18 +987,18 @@ const projectsData = {
   },
   ciorniy_iubirea: {
     title: "CIORNIY — Iubirea e o boală grea",
-    pill: { en: "LYRICS MOTION 4K", ro: "LYRICS MOTION 4K", ru: "LYRICS MOTION 4K" },
-    badge: "LYRICS VIDEO 4K",
-    subtitle: "Lyrics Video 4K Master",
-    img: "",
+    pill: { en: "FULL RELEASE 4K", ro: "FULL RELEASE 4K", ru: "FULL RELEASE 4K" },
+    badge: "FULL RELEASE",
+    subtitle: "Lyrics Video + Cover Suite",
+    img: "assets/covers/cover_ciorniy_iubirea.jpg",
     bannerImg: "assets/banners/banner_ciorniy.jpg",
     videoSrc: "assets/videos/video_ciorniy.mp4",
     videoPoster: "assets/videos/posters/video_ciorniy_poster.jpg",
     isVideo: true,
-    package: "lyrics",
-    placement: "video",
+    package: "full",
+    placement: "both",
     inVideo: true,
-    inCovers: false,
+    inCovers: true,
     specs: {
       en: [
         "4K UHD 16:9 Master Video with VHS chromatic aberration & grain",
@@ -2017,10 +2017,11 @@ function loadAdminOverrides() {
       projectsData.ciorniy_iubirea.videoSrc = 'assets/videos/video_ciorniy.mp4';
       projectsData.ciorniy_iubirea.videoPoster = 'assets/videos/posters/video_ciorniy_poster.jpg';
       projectsData.ciorniy_iubirea.bannerImg = 'assets/banners/banner_ciorniy.jpg';
-      projectsData.ciorniy_iubirea.img = '';
+      projectsData.ciorniy_iubirea.img = 'assets/covers/cover_ciorniy_iubirea.jpg';
       projectsData.ciorniy_iubirea.inVideo = true;
-      projectsData.ciorniy_iubirea.inCovers = false;
-      projectsData.ciorniy_iubirea.placement = 'video';
+      projectsData.ciorniy_iubirea.inCovers = true;
+      projectsData.ciorniy_iubirea.placement = 'both';
+      projectsData.ciorniy_iubirea.package = 'full';
     }
     if (projectsData.skolko_stoit) {
       projectsData.skolko_stoit.videoPoster = 'assets/videos/posters/video_skolko_stoit_poster.jpg';

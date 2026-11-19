@@ -464,18 +464,18 @@
   "ciorniy_iubirea": {
     "title": "CIORNIY — Iubirea e o boală grea",
     "pill": {
-      "en": "LYRICS MOTION 4K",
-      "ro": "LYRICS MOTION 4K",
-      "ru": "LYRICS MOTION 4K"
+      "en": "FULL RELEASE 4K",
+      "ro": "FULL RELEASE 4K",
+      "ru": "FULL RELEASE 4K"
     },
-    "badge": "LYRICS VIDEO 4K",
-    "subtitle": "Lyrics Video 4K Master",
-    "img": "",
+    "badge": "FULL RELEASE",
+    "subtitle": "Lyrics Video + Cover Suite",
+    "img": "assets/covers/cover_ciorniy_iubirea.jpg",
     "bannerImg": "assets/banners/banner_ciorniy.jpg",
     "videoSrc": "assets/videos/video_ciorniy.mp4",
     "videoPoster": "assets/videos/posters/video_ciorniy_poster.jpg",
     "isVideo": true,
-    "package": "lyrics",
+    "package": "full",
     "specs": {
       "en": [
         "4K UHD 16:9 Master Video with VHS chromatic aberration & grain",
@@ -500,7 +500,7 @@
       ]
     },
     "inVideo": true,
-    "inCovers": false,
-    "placement": "video"
+    "inCovers": true,
+    "placement": "both"
   }
 }
