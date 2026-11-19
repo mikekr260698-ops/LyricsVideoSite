@@ -1782,7 +1782,7 @@ body {
 
 .project-modal-content {
   display: grid;
-  grid-template-columns: 330px 1fr;
+  grid-template-columns: 1fr 330px;
   gap: 28px;
   align-items: flex-start;
 }
@@ -1795,11 +1795,11 @@ body {
 }
 
 .project-modal-info {
-  order: 1;
+  order: 2;
 }
 
 .project-media-col {
-  order: 2;
+  order: 1;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1861,11 +1861,26 @@ body {
   cursor: zoom-in;
 }
 
+.showcase-banner-card {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+}
+
 .banner-frame-ratio {
-  aspect-ratio: 21 / 9;
-  max-height: 250px;
-  width: 100%;
+  aspect-ratio: auto;
+  max-height: none;
+  width: auto;
+  max-width: 100%;
   cursor: zoom-in;
+}
+
+.banner-frame-ratio img.project-modal-banner-img {
+  width: auto;
+  max-width: 100%;
+  max-height: 280px;
+  height: auto;
+  object-fit: contain;
 }
 
 .showcase-media-frame img {
