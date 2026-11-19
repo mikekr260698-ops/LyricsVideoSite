@@ -1664,29 +1664,52 @@ const demoMarketingLines = {
 
 let demoLineIndex = 1;
 
+function buildDemoLyricsTrack() {
+  const track = document.getElementById('demoLyricsTrack');
+  if (!track) return;
+
+  const lang = currentLang || 'ro';
+  const lines = demoMarketingLines[lang] || demoMarketingLines.ro;
+  const extended = [...lines, ...lines, ...lines];
+
+  track.innerHTML = extended.map((text, idx) =>
+    `<div class="lyrics-row${idx === demoLineIndex ? ' active' : ''}">${text}</div>`
+  ).join('');
+
+  track.style.transition = 'none';
+  track.style.transform = `translateY(-${(demoLineIndex - 1) * 34}px)`;
+  void track.offsetHeight;
+  track.style.transition = 'transform 0.65s ease-in';
+}
+
 function updateDemoLyricsDisplay(animate = false) {
-  const screenEl = document.getElementById('demoPlayerScreen') || document.querySelector('.player-screen');
-  const prevEl = document.getElementById('demoLinePrev');
-  const activeEl = document.getElementById('demoLineActive');
-  const nextEl = document.getElementById('demoLineNext');
-  if (!prevEl || !activeEl || !nextEl) return;
+  const track = document.getElementById('demoLyricsTrack');
+  if (!track) return;
 
   const lang = currentLang || 'ro';
   const lines = demoMarketingLines[lang] || demoMarketingLines.ro;
   const len = lines.length;
 
-  const prevIdx = (demoLineIndex - 1 + len) % len;
-  const currIdx = demoLineIndex % len;
-  const nextIdx = (demoLineIndex + 1) % len;
+  if (!animate || track.children.length !== len * 3) {
+    demoLineIndex = 1;
+    buildDemoLyricsTrack();
+    return;
+  }
 
-  prevEl.textContent = lines[prevIdx];
-  activeEl.textContent = lines[currIdx];
-  nextEl.textContent = lines[nextIdx];
+  const rows = track.querySelectorAll('.lyrics-row');
+  rows.forEach((r, i) => r.classList.toggle('active', i === demoLineIndex));
+  track.style.transition = 'transform 0.65s ease-in';
+  track.style.transform = `translateY(-${(demoLineIndex - 1) * 34}px)`;
 
-  if (animate && screenEl) {
-    screenEl.classList.remove('sliding-up');
-    void screenEl.offsetWidth; // trigger reflow to replay ease-in animation
-    screenEl.classList.add('sliding-up');
+  if (demoLineIndex >= len * 2) {
+    setTimeout(() => {
+      demoLineIndex = demoLineIndex - len;
+      track.style.transition = 'none';
+      rows.forEach((r, i) => r.classList.toggle('active', i === demoLineIndex));
+      track.style.transform = `translateY(-${(demoLineIndex - 1) * 34}px)`;
+      void track.offsetHeight;
+      track.style.transition = 'transform 0.65s ease-in';
+    }, 680);
   }
 }
 
@@ -1697,7 +1720,7 @@ function setupDemoPlayer() {
   const timer = document.getElementById('demoTimer');
   if (!playBtn) return;
 
-  updateDemoLyricsDisplay(false);
+  buildDemoLyricsTrack();
 
   let isPlaying = true;
   let currentSec = 42;
@@ -1719,7 +1742,7 @@ function setupDemoPlayer() {
       timer.textContent = `${mins}:${secs} / 2:36`;
 
       if (tickCount % 2 === 0) {
-        demoLineIndex = (demoLineIndex + 1) % (demoMarketingLines[currentLang || 'ro'].length);
+        demoLineIndex++;
         updateDemoLyricsDisplay(true);
       }
     }, 1000);
