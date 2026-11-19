@@ -1392,7 +1392,7 @@ function setupOrderForm() {
 📝 Пожелания: ${notes || 'Стандарт / на вкус автора'}
 📱 Контакт клиента: ${contact}`;
 
-    const tgUrl = `https://t.me/mikekr260698?text=${encodeURIComponent(telegramMessage)}`;
+    const tgUrl = `https://t.me/Mikeeekr?text=${encodeURIComponent(telegramMessage)}`;
 
     // Update Direct Links on Success screen
     const directLink = document.getElementById('telegramDirectLink');
