@@ -574,6 +574,8 @@ const projectsData = {
     isVideo: false,
     package: "full",
     placement: "both",
+    inVideo: true,
+    inCovers: true,
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI (RGB)",
@@ -610,6 +612,8 @@ const projectsData = {
     isVideo: false,
     package: "full",
     placement: "both",
+    inVideo: true,
+    inCovers: true,
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -640,12 +644,14 @@ const projectsData = {
     badge: "COVER ART",
     subtitle: "Single Cover 3000×3000 px",
     img: "assets/covers/cover_ribz.jpg",
-    bannerImg: "assets/banners/banner_moostaf.jpg",
+    bannerImg: "",
     videoSrc: "",
     videoPoster: "",
     isVideo: false,
     package: "cover",
     placement: "cover",
+    inVideo: false,
+    inCovers: true,
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -676,12 +682,14 @@ const projectsData = {
     badge: "COVER ART",
     subtitle: "Single Cover 3000×3000 px",
     img: "assets/covers/cover_laureall.jpg",
-    bannerImg: "assets/banners/banner_jenika.jpg",
+    bannerImg: "",
     videoSrc: "",
     videoPoster: "",
     isVideo: false,
     package: "cover",
     placement: "cover",
+    inVideo: false,
+    inCovers: true,
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -718,6 +726,8 @@ const projectsData = {
     isVideo: false,
     package: "cover",
     placement: "cover",
+    inVideo: false,
+    inCovers: true,
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -754,6 +764,8 @@ const projectsData = {
     isVideo: true,
     package: "full",
     placement: "both",
+    inVideo: true,
+    inCovers: true,
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -790,6 +802,8 @@ const projectsData = {
     isVideo: true,
     package: "full",
     placement: "both",
+    inVideo: true,
+    inCovers: true,
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -826,6 +840,8 @@ const projectsData = {
     isVideo: true,
     package: "full",
     placement: "both",
+    inVideo: true,
+    inCovers: true,
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -864,6 +880,8 @@ const projectsData = {
     isVideo: true,
     package: "lyrics",
     placement: "video",
+    inVideo: true,
+    inCovers: false,
     specs: {
       en: [
         "Ultra HD 4K (3840 × 2160 px), 60 FPS Master Video",
@@ -900,6 +918,8 @@ const projectsData = {
     isVideo: true,
     package: "lyrics",
     placement: "video",
+    inVideo: true,
+    inCovers: false,
     specs: {
       en: [
         "4K UHD urban paper-rip collage animation with stop-motion feel",
@@ -936,6 +956,8 @@ const projectsData = {
     isVideo: true,
     package: "lyrics",
     placement: "video",
+    inVideo: true,
+    inCovers: false,
     specs: {
       en: [
         "4K UHD (3840 × 2160 px) cinematic aspect ratio 2.39:1",
@@ -1695,18 +1717,20 @@ function renderMarqueeTracks() {
   const lang = currentLang || 'ro';
   const allKeys = Object.keys(projectsData).filter(k => !k.endsWith('_video'));
 
-  // Video projects: placement === 'video' || placement === 'both'
+  // Video projects: inVideo === true (or placement === 'video' || placement === 'both')
   const videoKeys = allKeys.filter(k => {
     const p = projectsData[k];
     if (!p) return false;
+    if (p.inVideo !== undefined) return !!p.inVideo;
     const plc = p.placement || (p.package === 'cover' ? 'cover' : (p.package === 'lyrics' ? 'video' : (p.videoPoster || p.videoSrc ? 'both' : 'cover')));
     return plc === 'video' || plc === 'both';
   });
 
-  // Cover projects: placement === 'cover' || placement === 'both'
+  // Cover projects: inCovers === true (or placement === 'cover' || placement === 'both')
   const coverKeys = allKeys.filter(k => {
     const p = projectsData[k];
     if (!p) return false;
+    if (p.inCovers !== undefined) return !!p.inCovers;
     const plc = p.placement || (p.package === 'cover' ? 'cover' : (p.package === 'lyrics' ? 'video' : (p.img || p.thumb ? 'both' : 'video')));
     return plc === 'cover' || plc === 'both';
   });
@@ -1786,7 +1810,34 @@ function loadAdminOverrides() {
       });
     }
 
-    // Render cards dynamically matching placement (video / cover / both)
+    // Ensure ribz, silvika, laureall never have fake video attached
+    if (projectsData.ribz) {
+      projectsData.ribz.videoSrc = '';
+      projectsData.ribz.videoPoster = '';
+      if (projectsData.ribz.inVideo === undefined) projectsData.ribz.inVideo = false;
+      if (projectsData.ribz.inCovers === undefined) projectsData.ribz.inCovers = true;
+    }
+    if (projectsData.silvika) {
+      projectsData.silvika.videoSrc = '';
+      projectsData.silvika.videoPoster = '';
+      if (projectsData.silvika.inVideo === undefined) projectsData.silvika.inVideo = false;
+      if (projectsData.silvika.inCovers === undefined) projectsData.silvika.inCovers = true;
+    }
+    if (projectsData.laureall) {
+      projectsData.laureall.videoSrc = '';
+      projectsData.laureall.videoPoster = '';
+      if (projectsData.laureall.inVideo === undefined) projectsData.laureall.inVideo = false;
+      if (projectsData.laureall.inCovers === undefined) projectsData.laureall.inCovers = true;
+    }
+    if (projectsData.moostaf) {
+      projectsData.moostaf.videoSrc = 'assets/videos/video_moostaf.mp4';
+      projectsData.moostaf.videoPoster = 'assets/videos/posters/video_moostaf_poster.jpg';
+      projectsData.moostaf.bannerImg = 'assets/banners/banner_moostaf.jpg';
+      if (projectsData.moostaf.inVideo === undefined) projectsData.moostaf.inVideo = true;
+      if (projectsData.moostaf.inCovers === undefined) projectsData.moostaf.inCovers = false;
+    }
+
+    // Render cards dynamically matching checkboxes
     renderMarqueeTracks();
   } catch (err) {
     console.warn('Error loading custom projects from localStorage', err);

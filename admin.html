@@ -419,49 +419,60 @@
       color: #fff;
     }
 
-    /* Placement / Display location controls */
-    .placement-control-group {
-      margin-top: 6px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
+    /* Checkbox Carousel Destination Controls */
+    .carousel-destination-box {
+      margin-top: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 12px;
       padding: 12px 14px;
-    }
-    .placement-segmented {
       display: flex;
+      flex-direction: column;
       gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 8px;
     }
-    .placement-radio-label {
+    .destination-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #fff;
+    }
+    .destination-checkboxes {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .destination-checkbox-label {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      background: rgba(255, 255, 255, 0.04);
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--bg-surface);
       border: 1px solid var(--border);
       border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 0.82rem;
+      font-weight: 700;
       color: var(--text-muted);
       cursor: pointer;
       transition: all 0.2s ease;
       user-select: none;
     }
-    .placement-radio-label:hover {
+    .destination-checkbox-label:hover {
+      border-color: rgba(255, 255, 255, 0.25);
       color: #fff;
-      border-color: rgba(255, 255, 255, 0.2);
     }
-    .placement-radio-label.active {
+    .destination-checkbox-label.active {
       background: rgba(230, 0, 38, 0.18);
       border-color: var(--accent-red);
       color: #fff;
       box-shadow: 0 0 14px rgba(230, 0, 38, 0.3);
     }
-    .placement-radio-label input[type="radio"] {
+    .destination-checkbox-label input[type="checkbox"] {
       accent-color: var(--accent-red);
-      margin: 0;
+      width: 17px;
+      height: 17px;
       cursor: pointer;
+      margin: 0;
     }
 
     /* Media Edit Blocks */
@@ -764,8 +775,9 @@
       </div>
       <div class="quick-stats">
         <button class="btn-action btn-add-project" id="btnHeroAdd">➕ Adaugă Proiect Nou</button>
-        <div class="stat-pill">Proiecte: <span id="statCount">8</span></div>
-        <div class="stat-pill">Auto-Convert: <span style="color:#00d26a;">✓ Activ</span></div>
+        <div class="stat-pill">Total Proiecte: <span id="statCount">11</span></div>
+        <div class="stat-pill">▶ În Video (Rândul 1): <span id="statVideoCount">8</span></div>
+        <div class="stat-pill">💿 În Covere (Rândul 2): <span id="statCoverCount">8</span></div>
       </div>
     </div>
 
@@ -827,12 +839,17 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label">Unde dorești să se afișeze pe site?</label>
-        <select class="select-dropdown" id="newProjectPlacement">
-          <option value="both" selected>⚡ În ambele locuri (Video + Cover)</option>
-          <option value="video">▶ Doar la Video / Visualizer (Rândul 1)</option>
-          <option value="cover">💿 Doar la Cover Art (Rândul 2)</option>
-        </select>
+        <label class="form-label">Afișează pe site în carusele:</label>
+        <div style="display:flex; gap:16px; margin-top:8px;">
+          <label style="display:flex; align-items:center; gap:8px; font-size:0.88rem; font-weight:600; cursor:pointer;">
+            <input type="checkbox" id="newProjectInVideo" checked style="width:18px;height:18px;accent-color:var(--accent-red);">
+            <span>▶ Rândul 1 (Video / Visualizer)</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; font-size:0.88rem; font-weight:600; cursor:pointer;">
+            <input type="checkbox" id="newProjectInCovers" checked style="width:18px;height:18px;accent-color:var(--accent-red);">
+            <span>💿 Rândul 2 (Cover 3000px)</span>
+          </label>
+        </div>
       </div>
 
       <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
@@ -1036,20 +1053,88 @@
     // DASHBOARD & RENDERING
     // =========================================================================
     function initAdmin() {
+      // 1. Start from default projectsData (so new projects like moostaf are always available!)
+      workingProjects = JSON.parse(JSON.stringify(projectsData));
+
+      // 2. Merge saved custom user modifications from localStorage
       const saved = localStorage.getItem('artist_visuals_custom_projects');
       if (saved) {
         try {
-          workingProjects = JSON.parse(saved);
+          const custom = JSON.parse(saved);
+          Object.keys(custom).forEach(key => {
+            if (!workingProjects[key]) workingProjects[key] = {};
+            Object.assign(workingProjects[key], custom[key]);
+          });
         } catch(e) {
-          workingProjects = JSON.parse(JSON.stringify(projectsData));
+          console.warn('Error reading localStorage in admin', e);
         }
-      } else {
-        workingProjects = JSON.parse(JSON.stringify(projectsData));
       }
 
+      // 3. FIX: ribz, silvika, laureall ONLY have cover as user specified!
+      // Clean up any accidental moostaf video leakage
+      if (workingProjects.ribz) {
+        workingProjects.ribz.videoSrc = '';
+        workingProjects.ribz.videoPoster = '';
+        if (workingProjects.ribz.inVideo === undefined) workingProjects.ribz.inVideo = false;
+        if (workingProjects.ribz.inCovers === undefined) workingProjects.ribz.inCovers = true;
+      }
+      if (workingProjects.silvika) {
+        workingProjects.silvika.videoSrc = '';
+        workingProjects.silvika.videoPoster = '';
+        if (workingProjects.silvika.inVideo === undefined) workingProjects.silvika.inVideo = false;
+        if (workingProjects.silvika.inCovers === undefined) workingProjects.silvika.inCovers = true;
+      }
+      if (workingProjects.laureall) {
+        workingProjects.laureall.videoSrc = '';
+        workingProjects.laureall.videoPoster = '';
+        if (workingProjects.laureall.inVideo === undefined) workingProjects.laureall.inVideo = false;
+        if (workingProjects.laureall.inCovers === undefined) workingProjects.laureall.inCovers = true;
+      }
+
+      // 4. Ensure moostaf is present, distinct, and visible in Video row
+      if (workingProjects.moostaf) {
+        workingProjects.moostaf.videoSrc = 'assets/videos/video_moostaf.mp4';
+        workingProjects.moostaf.videoPoster = 'assets/videos/posters/video_moostaf_poster.jpg';
+        workingProjects.moostaf.bannerImg = 'assets/banners/banner_moostaf.jpg';
+        if (workingProjects.moostaf.inVideo === undefined) workingProjects.moostaf.inVideo = true;
+        if (workingProjects.moostaf.inCovers === undefined) workingProjects.moostaf.inCovers = false;
+      }
+
+      // 5. Ensure all other projects have inVideo / inCovers defined
+      Object.keys(workingProjects).forEach(key => {
+        const p = workingProjects[key];
+        if (p.inVideo === undefined) {
+          p.inVideo = p.placement ? (p.placement === 'video' || p.placement === 'both') : !!(p.videoPoster || p.videoSrc);
+        }
+        if (p.inCovers === undefined) {
+          p.inCovers = p.placement ? (p.placement === 'cover' || p.placement === 'both') : !!(p.img || p.thumb);
+        }
+        p.placement = (p.inVideo && p.inCovers) ? 'both' : (p.inVideo ? 'video' : (p.inCovers ? 'cover' : 'none'));
+      });
+
       renderProjectsGrid();
+      updateStatsCounters();
       setupUploadTriggers();
       setupAddProjectModal();
+    }
+
+    function updateStatsCounters() {
+      const allKeys = Object.keys(workingProjects).filter(k => !k.endsWith('_video'));
+      const totalCountEl = document.getElementById('statCount');
+      const videoCountEl = document.getElementById('statVideoCount');
+      const coverCountEl = document.getElementById('statCoverCount');
+
+      let vCount = 0;
+      let cCount = 0;
+      allKeys.forEach(k => {
+        const p = workingProjects[k];
+        if (p && p.inVideo) vCount++;
+        if (p && p.inCovers) cCount++;
+      });
+
+      if (totalCountEl) totalCountEl.textContent = allKeys.length;
+      if (videoCountEl) videoCountEl.textContent = vCount;
+      if (coverCountEl) coverCountEl.textContent = cCount;
     }
 
     function renderProjectsGrid() {
@@ -1057,7 +1142,7 @@
       grid.innerHTML = '';
 
       const allKeys = Object.keys(workingProjects).filter(k => !k.endsWith('_video'));
-      document.getElementById('statCount').textContent = allKeys.length;
+      updateStatsCounters();
 
       allKeys.forEach(key => {
         const p = workingProjects[key];
@@ -1068,7 +1153,8 @@
         const titleVal = p.title && (p.title.ro || p.title.ru || p.title.en) ? (p.title.ro || p.title.ru || p.title.en) : key;
         const subVal = p.subtitle && (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) ? (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) : '';
         const badgeVal = p.badge || (typeof p.pill === 'object' ? (p.pill.ro || p.pill.en || '') : p.pill || 'LYRICS VIDEO 4K');
-        const placement = p.placement || (p.package === 'cover' ? 'cover' : (p.package === 'lyrics' ? 'video' : (p.videoPoster || p.videoSrc ? 'both' : 'cover')));
+        const isVideoChecked = p.inVideo !== undefined ? !!p.inVideo : (p.placement ? (p.placement === 'video' || p.placement === 'both') : !!(p.videoPoster || p.videoSrc));
+        const isCoversChecked = p.inCovers !== undefined ? !!p.inCovers : (p.placement ? (p.placement === 'cover' || p.placement === 'both') : !!(p.img || p.thumb));
 
         const makeOptions = (items, currentVal) => {
           let found = false;
@@ -1132,21 +1218,17 @@
                 </div>
               </div>
 
-              <!-- Unde se afișează pe Site -->
-              <div class="placement-control-group">
-                <label class="field-title-label">📍 Afișare pe Site (Alege unde vrei să apară pe site):</label>
-                <div class="placement-segmented">
-                  <label class="placement-radio-label ${placement === 'both' ? 'active' : ''}">
-                    <input type="radio" name="placement_${key}" value="both" ${placement === 'both' ? 'checked' : ''} data-key="${key}">
-                    <span>⚡ În ambele locuri (Video + Cover)</span>
+              <!-- Checkboxes Afișare în Carusel pe Site -->
+              <div class="carousel-destination-box">
+                <span class="destination-title">🎯 Afișare în Carusele pe Site (Bifează unde vrei să apară):</span>
+                <div class="destination-checkboxes">
+                  <label class="destination-checkbox-label ${isVideoChecked ? 'active' : ''}">
+                    <input type="checkbox" class="cb-target" data-key="${key}" data-target="inVideo" ${isVideoChecked ? 'checked' : ''}>
+                    <span>▶ Rândul 1 (4K Video / Visualizer)</span>
                   </label>
-                  <label class="placement-radio-label ${placement === 'video' ? 'active' : ''}">
-                    <input type="radio" name="placement_${key}" value="video" ${placement === 'video' ? 'checked' : ''} data-key="${key}">
-                    <span>▶ Doar la Video (Rândul 1)</span>
-                  </label>
-                  <label class="placement-radio-label ${placement === 'cover' ? 'active' : ''}">
-                    <input type="radio" name="placement_${key}" value="cover" ${placement === 'cover' ? 'checked' : ''} data-key="${key}">
-                    <span>💿 Doar la Cover (Rândul 2)</span>
+                  <label class="destination-checkbox-label ${isCoversChecked ? 'active' : ''}">
+                    <input type="checkbox" class="cb-target" data-key="${key}" data-target="inCovers" ${isCoversChecked ? 'checked' : ''}>
+                    <span>💿 Rândul 2 (Cover 3000 × 3000 px)</span>
                   </label>
                 </div>
               </div>
@@ -1305,13 +1387,16 @@
           const title = document.getElementById('newProjectTitle').value.trim() || 'Proiect Nou';
           const subtitle = document.getElementById('newProjectSubtitle').value.trim() || 'Visuals Release';
           const pkg = document.getElementById('newProjectPackage').value;
-          const placement = document.getElementById('newProjectPlacement') ? document.getElementById('newProjectPlacement').value : 'both';
+          const inVideo = document.getElementById('newProjectInVideo') ? document.getElementById('newProjectInVideo').checked : true;
+          const inCovers = document.getElementById('newProjectInCovers') ? document.getElementById('newProjectInCovers').checked : true;
 
           workingProjects[id] = {
             title: { ro: title, ru: title, en: title },
             subtitle: { ro: subtitle, ru: subtitle, en: subtitle },
             package: pkg,
-            placement: placement,
+            inVideo: inVideo,
+            inCovers: inCovers,
+            placement: (inVideo && inCovers) ? 'both' : (inVideo ? 'video' : (inCovers ? 'cover' : 'none')),
             pill: { ro: 'PORTFOLIO CASE', ru: 'КЕЙС', en: 'PORTFOLIO CASE' },
             img: '',
             thumb: '',
@@ -1595,25 +1680,28 @@
         });
       });
 
-      // Placement radios (Both / Video only / Cover only)
-      document.querySelectorAll('.placement-radio-label input[type="radio"]').forEach(radio => {
-        radio.addEventListener('change', (e) => {
+      // Checkbox target controls (Rândul 1 Video / Rândul 2 Cover)
+      document.querySelectorAll('.destination-checkbox-label input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', (e) => {
           const key = e.target.getAttribute('data-key');
-          const val = e.target.value;
+          const target = e.target.getAttribute('data-target'); // 'inVideo' or 'inCovers'
+          const isChecked = e.target.checked;
           if (workingProjects[key]) {
-            workingProjects[key].placement = val;
+            workingProjects[key][target] = isChecked;
+            const v = !!workingProjects[key].inVideo;
+            const c = !!workingProjects[key].inCovers;
+            workingProjects[key].placement = (v && c) ? 'both' : (v ? 'video' : (c ? 'cover' : 'none'));
+
             const mirror = key + '_video';
             if (workingProjects[mirror]) {
-              workingProjects[mirror].placement = val;
+              workingProjects[mirror][target] = isChecked;
+              workingProjects[mirror].placement = workingProjects[key].placement;
             }
           }
-          const group = e.target.closest('.placement-segmented');
-          if (group) {
-            group.querySelectorAll('.placement-radio-label').forEach(lbl => {
-              const inp = lbl.querySelector('input');
-              lbl.classList.toggle('active', inp && inp.checked);
-            });
-          }
+          const label = e.target.closest('.destination-checkbox-label');
+          if (label) label.classList.toggle('active', isChecked);
+
+          updateStatsCounters();
           markModified(key);
         });
       });
