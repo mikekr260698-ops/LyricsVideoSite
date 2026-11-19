@@ -912,8 +912,11 @@
       <button class="btn-action btn-add-project" id="btnOpenAddModal">
         <span>➕ Adaugă Proiect Nou</span>
       </button>
+      <button class="btn-action btn-deploy-live" id="btnDeployLive" style="background: linear-gradient(135deg, #00d26a, #00a854); color:#fff; font-weight:800; border:none; box-shadow:0 0 16px rgba(0,210,106,0.35); cursor:pointer;">
+        <span>🚀 Publică pe Live (Deploy)</span>
+      </button>
       <button class="btn-action btn-save-all" id="btnSaveAll">
-        <span>💾 Salvează Toate Modificările</span>
+        <span>💾 Salvează Local</span>
       </button>
       <button class="btn-action" id="btnExportJson">
         <span>📋 Exportă JSON</span>
@@ -1051,6 +1054,35 @@
       <textarea class="export-textarea" id="exportText" readonly></textarea>
       <div style="display:flex; justify-content:flex-end; gap:10px;">
         <button class="btn-action" id="btnCopyExport">📋 Copiază în Clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEPLOY MODAL / GITHUB TOKEN SETUP -->
+  <div class="modal-backdrop" id="deployModal">
+    <div class="modal-box" style="max-width: 540px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="font-family:var(--font-heading); display:flex; align-items:center; gap:8px;">
+          <span>🚀</span> Publică pe Live (GitHub Deploy)
+        </h3>
+        <button id="btnCloseDeploy" class="btn-action" style="padding:4px 10px;">&times;</button>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">
+        Această acțiune publică automat datele direct pe <strong>GitHub</strong>, făcându-le active instant pe <strong>telefon</strong> și pe orice dispozitiv din lume fără să copiezi cod manual!
+      </p>
+      <div class="form-group" id="ghTokenGroup">
+        <label class="form-label">GitHub Token de Acces (salvat securizat doar în browserul tău):</label>
+        <input type="password" class="form-input" id="ghTokenInput" placeholder="ghp_... sau gho_...">
+        <span style="font-size:0.75rem; color:var(--text-muted); margin-top:4px; display:block;">
+          Ai nevoie de un Personal Access Token cu permisiunea <code>repo</code>. Îl introduci o singură dată.
+        </span>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+        <button type="button" class="btn-action" id="btnForgetGhToken" style="display:none; color:#ff4757; font-size:0.75rem;">🗑️ Schimbă Tokenul</button>
+        <div style="display:flex; gap:10px; margin-left:auto;">
+          <button class="btn-action" id="btnCancelDeploy">Anulează</button>
+          <button class="btn-action" id="btnConfirmDeploy" style="background:var(--accent-green); color:#fff; font-weight:700;">🚀 Publică Acum</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2145,6 +2177,129 @@
         showToast('JSON-ul a fost copiat în clipboard!');
       });
     });
+
+    // =========================================================================
+    // GITHUB LIVE DEPLOY LOGIC
+    // =========================================================================
+    const GH_OWNER = 'mikekr260698-ops';
+    const GH_REPO = 'LyricsVideoSite';
+    const GH_FILE_PATH = 'projects_data.json';
+
+    const deployModal = document.getElementById('deployModal');
+    const ghTokenInput = document.getElementById('ghTokenInput');
+    const btnDeployLive = document.getElementById('btnDeployLive');
+    const btnCloseDeploy = document.getElementById('btnCloseDeploy');
+    const btnCancelDeploy = document.getElementById('btnCancelDeploy');
+    const btnConfirmDeploy = document.getElementById('btnConfirmDeploy');
+    const btnForgetGhToken = document.getElementById('btnForgetGhToken');
+
+    function utf8ToBase64(str) {
+      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
+    }
+
+    async function executeDeployToGitHub(token) {
+      showToast('⏳ Se publică pe GitHub...', true);
+      try {
+        let sha = null;
+        const getRes = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE_PATH}`, {
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (getRes.ok) {
+          const fileInfo = await getRes.json();
+          sha = fileInfo.sha;
+        } else if (getRes.status === 401 || getRes.status === 403) {
+          showToast('Eroare token GitHub (invalid sau expirat). Reintrodu token-ul.', false);
+          localStorage.removeItem('av_gh_token');
+          openDeployModal();
+          return;
+        }
+
+        const jsonContent = JSON.stringify(workingProjects, null, 2);
+        const base64Content = utf8ToBase64(jsonContent);
+
+        const putBody = {
+          message: 'Deploy live projects update from Admin Panel',
+          content: base64Content,
+          branch: 'main'
+        };
+        if (sha) putBody.sha = sha;
+
+        const putRes = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE_PATH}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(putBody)
+        });
+
+        if (!putRes.ok) {
+          const errData = await putRes.json().catch(() => ({}));
+          throw new Error(errData.message || 'Eroare la publicarea pe GitHub');
+        }
+
+        localStorage.setItem('artist_visuals_custom_projects', jsonContent);
+        document.querySelectorAll('.project-card.modified').forEach(card => card.classList.remove('modified'));
+        if (deployModal) deployModal.style.display = 'none';
+
+        showToast('🎉 Publicat cu succes pe GitHub! Schimbările sunt live pe telefon și peste tot!', true);
+      } catch (err) {
+        console.error('Deploy error:', err);
+        showToast('Eroare la publicare: ' + err.message, false);
+      }
+    }
+
+    function openDeployModal() {
+      const savedToken = localStorage.getItem('av_gh_token');
+      if (savedToken) {
+        ghTokenInput.value = savedToken;
+        if (btnForgetGhToken) btnForgetGhToken.style.display = 'block';
+      } else {
+        ghTokenInput.value = '';
+        if (btnForgetGhToken) btnForgetGhToken.style.display = 'none';
+      }
+      deployModal.style.display = 'flex';
+    }
+
+    if (btnDeployLive) {
+      btnDeployLive.addEventListener('click', () => {
+        const savedToken = localStorage.getItem('av_gh_token');
+        if (savedToken) {
+          executeDeployToGitHub(savedToken);
+        } else {
+          openDeployModal();
+        }
+      });
+    }
+
+    if (btnCloseDeploy) btnCloseDeploy.onclick = () => deployModal.style.display = 'none';
+    if (btnCancelDeploy) btnCancelDeploy.onclick = () => deployModal.style.display = 'none';
+
+    if (btnForgetGhToken) {
+      btnForgetGhToken.onclick = () => {
+        localStorage.removeItem('av_gh_token');
+        ghTokenInput.value = '';
+        btnForgetGhToken.style.display = 'none';
+        showToast('Tokenul salvat a fost șters.');
+      };
+    }
+
+    if (btnConfirmDeploy) {
+      btnConfirmDeploy.onclick = () => {
+        const token = ghTokenInput.value.trim();
+        if (!token) {
+          alert('Te rog introdu un token GitHub valid.');
+          return;
+        }
+        localStorage.setItem('av_gh_token', token);
+        executeDeployToGitHub(token);
+      };
+    }
 
     checkAuth();
   </script>

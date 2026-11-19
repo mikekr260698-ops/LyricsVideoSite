@@ -1807,6 +1807,22 @@ function renderMarqueeTracks() {
 // ==========================================================================
 // 5.5. ADMIN OVERRIDES SYNC (Loads custom media from Admin Panel)
 // ==========================================================================
+async function syncLiveProjects() {
+  try {
+    const res = await fetch('projects_data.json?t=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      Object.keys(data).forEach(k => {
+        if (!projectsData[k]) projectsData[k] = {};
+        Object.assign(projectsData[k], data[k]);
+      });
+    }
+  } catch(e) {
+    // offline fallback
+  }
+  loadAdminOverrides();
+}
+
 function loadAdminOverrides() {
   try {
     const saved = localStorage.getItem('artist_visuals_custom_projects');
@@ -1862,8 +1878,8 @@ function loadAdminOverrides() {
 // 6. INITIALIZATION & EVENT LISTENERS
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Load any admin customizations from localStorage
-  loadAdminOverrides();
+  // Load live projects JSON from repo + local admin overrides
+  syncLiveProjects();
 
   // Set copyright year
   const yearEl = document.getElementById('currentYear');
