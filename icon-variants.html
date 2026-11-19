@@ -95,9 +95,18 @@
     .v4-box::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background: linear-gradient(125deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 45%);
+      inset: -35%;
+      background: linear-gradient(
+        118deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0.24) 49%,
+        rgba(255, 255, 255, 0.07) 53%,
+        rgba(255, 255, 255, 0) 62%,
+        rgba(255, 255, 255, 0) 100%
+      );
       pointer-events: none;
+      z-index: 3;
     }
     .v4-wrap-card {
       border: 1px solid rgba(230, 25, 55, 0.35);
