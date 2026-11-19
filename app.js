@@ -1903,16 +1903,181 @@ function renderMarqueeTracks() {
     coverTrack.innerHTML = html;
   }
 
-  // Re-bind click listener on all marquee cards to open project modal
+  // Re-bind click listener on all marquee cards to open project modal (skip if dragged)
   document.querySelectorAll('.marquee-card[data-project-id]').forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
+      const track = card.closest('.marquee-track');
+      if (track && track.dataset.justDragged === '1') {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
       const pId = card.getAttribute('data-project-id');
       if (pId && typeof openProjectModal === 'function') {
         openProjectModal(pId);
       }
     });
   });
+
+  if (videoTrack) initInteractiveMarquee(videoTrack, -0.55);
+  if (coverTrack) initInteractiveMarquee(coverTrack, 0.52);
 }
+
+const marqueeControllers = {};
+
+function initInteractiveMarquee(track, baseSpeed) {
+  const row = track.closest('.marquee-row');
+  if (!row) return;
+
+  const id = track.id || ('marquee_' + Math.random());
+  if (marqueeControllers[id] && marqueeControllers[id].rafId) {
+    cancelAnimationFrame(marqueeControllers[id].rafId);
+  }
+
+  const state = {
+    offset: baseSpeed > 0 ? -(track.scrollWidth / 2 || 600) : 0,
+    isDragging: false,
+    isHovered: false,
+    startX: 0,
+    startOffset: 0,
+    velocity: 0,
+    lastX: 0,
+    lastTime: 0,
+    dragDistance: 0,
+    rafId: null
+  };
+  marqueeControllers[id] = state;
+
+  const wrapOffset = () => {
+    const half = track.scrollWidth / 2;
+    if (half <= 0) return;
+    while (state.offset <= -half) state.offset += half;
+    while (state.offset > 0) state.offset -= half;
+  };
+
+  const startDrag = (clientX) => {
+    state.isDragging = true;
+    state.startX = clientX;
+    state.startOffset = state.offset;
+    state.lastX = clientX;
+    state.lastTime = performance.now();
+    state.velocity = 0;
+    state.dragDistance = 0;
+    track.dataset.justDragged = '0';
+    track.classList.add('is-dragging');
+  };
+
+  const moveDrag = (clientX) => {
+    if (!state.isDragging) return;
+    const dx = clientX - state.startX;
+    state.dragDistance = Math.max(state.dragDistance, Math.abs(dx));
+    state.offset = state.startOffset + dx;
+
+    const now = performance.now();
+    const dt = now - state.lastTime;
+    if (dt > 0) {
+      state.velocity = ((clientX - state.lastX) / dt) * 16;
+    }
+    state.lastX = clientX;
+    state.lastTime = now;
+
+    wrapOffset();
+    track.style.transform = `translate3d(${state.offset}px, 0, 0)`;
+  };
+
+  const endDrag = () => {
+    if (!state.isDragging) return;
+    state.isDragging = false;
+    track.classList.remove('is-dragging');
+    if (state.dragDistance > 6) {
+      track.dataset.justDragged = '1';
+      setTimeout(() => { track.dataset.justDragged = '0'; }, 80);
+    }
+  };
+
+  if (!track.dataset.dragBound) {
+    track.dataset.dragBound = '1';
+
+    row.addEventListener('mouseenter', () => {
+      const s = marqueeControllers[id];
+      if (s) s.isHovered = true;
+    });
+    row.addEventListener('mouseleave', () => {
+      const s = marqueeControllers[id];
+      if (s) { s.isHovered = false; endDrag(); }
+    });
+
+    // Mouse drag
+    track.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      startDrag(e.clientX);
+    });
+    window.addEventListener('mousemove', (e) => {
+      const s = marqueeControllers[id];
+      if (s && s.isDragging) moveDrag(e.clientX);
+    });
+    window.addEventListener('mouseup', () => {
+      const s = marqueeControllers[id];
+      if (s && s.isDragging) endDrag();
+    });
+
+    // Touch swipe (mobile / tablet sensor)
+    track.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) startDrag(e.touches[0].clientX);
+    }, { passive: true });
+    track.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1) moveDrag(e.touches[0].clientX);
+    }, { passive: true });
+    track.addEventListener('touchend', () => endDrag(), { passive: true });
+    track.addEventListener('touchcancel', () => endDrag(), { passive: true });
+  }
+
+  const loop = () => {
+    if (!state.isDragging) {
+      if (Math.abs(state.velocity) > 0.15) {
+        state.offset += state.velocity;
+        state.velocity *= 0.94;
+      } else if (!state.isHovered) {
+        state.offset += baseSpeed;
+      }
+      wrapOffset();
+      track.style.transform = `translate3d(${state.offset}px, 0, 0)`;
+    }
+    state.rafId = requestAnimationFrame(loop);
+  };
+
+  state.rafId = requestAnimationFrame(loop);
+}
+
+// ==========================================================================
+// 5.4b. PROJECT MODAL PREV / NEXT NAVIGATION
+// ==========================================================================
+function navigateProjectModal(direction) {
+  const activeKeys = Object.keys(projectsData).filter(k => !k.endsWith('_video') && !projectsData[k].hidden);
+  if (activeKeys.length === 0) return;
+
+  const videoEl = document.getElementById('projectModalVideo');
+  if (videoEl && !videoEl.paused) videoEl.pause();
+
+  const currIdx = activeKeys.indexOf(currentModalProjectId);
+  const nextIdx = currIdx === -1 ? 0 : (currIdx + direction + activeKeys.length) % activeKeys.length;
+  openProjectModal(activeKeys[nextIdx]);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const prevBtn = document.getElementById('modalPrevProjectBtn');
+  const nextBtn = document.getElementById('modalNextProjectBtn');
+  if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); navigateProjectModal(-1); });
+  if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); navigateProjectModal(1); });
+
+  document.addEventListener('keydown', (e) => {
+    const projectModal = document.getElementById('projectModal');
+    if (projectModal && projectModal.classList.contains('active')) {
+      if (e.key === 'ArrowLeft') navigateProjectModal(-1);
+      else if (e.key === 'ArrowRight') navigateProjectModal(1);
+    }
+  });
+});
 
 // ==========================================================================
 // 5.5. ADMIN OVERRIDES SYNC (Loads custom media & theme from Admin Panel)
