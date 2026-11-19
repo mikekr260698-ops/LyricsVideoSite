@@ -3449,6 +3449,11 @@
       localStorage.setItem('av_site_layout', JSON.stringify(workingLayout));
       const iframe = document.getElementById('layoutPreviewIframe');
       if (iframe && iframe.contentWindow) {
+        try {
+          if (typeof iframe.contentWindow.applySiteLayout === 'function') {
+            iframe.contentWindow.applySiteLayout(workingLayout);
+          }
+        } catch (e) {}
         iframe.contentWindow.postMessage({ type: 'AV_PREVIEW_LAYOUT', layout: workingLayout }, '*');
       }
     }
@@ -3583,22 +3588,27 @@
     }
 
     const btnPresetOriginal = document.getElementById('btnPresetOriginal');
+    const btnPresetMarketing = document.getElementById('btnPresetMarketing');
+
     if (btnPresetOriginal) {
       btnPresetOriginal.onclick = () => {
         workingLayout = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+        btnPresetOriginal.classList.add('active');
+        if (btnPresetMarketing) btnPresetMarketing.classList.remove('active');
         renderLayoutBlocks();
         syncMiniaturePreview();
-        showToast('⭐ S-a încărcat Template-ul Original (Clasic)!');
+        showToast('⭐ Originală: Hero → Pachete → Info → Portofoliu → Recenzii → FAQ → CTA');
       };
     }
 
-    const btnPresetMarketing = document.getElementById('btnPresetMarketing');
     if (btnPresetMarketing) {
       btnPresetMarketing.onclick = () => {
         workingLayout = JSON.parse(JSON.stringify(MARKETING_LAYOUT));
+        btnPresetMarketing.classList.add('active');
+        if (btnPresetOriginal) btnPresetOriginal.classList.remove('active');
         renderLayoutBlocks();
         syncMiniaturePreview();
-        showToast('🔥 S-a aplicat Template-ul Marketing Maxim!', true);
+        showToast('🔥 Marketing Maxim: Hero → Portofoliu → Recenzii → Info → Pachete → FAQ → CTA', true);
       };
     }
 
