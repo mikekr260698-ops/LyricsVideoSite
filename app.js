@@ -873,18 +873,18 @@ const projectsData = {
   // --- ROW 1: 4K VIDEOS & FULL RELEASES ---
   moostaf: {
     title: "MOOSTAF — Отпускаю",
-    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
-    badge: "LYRICS VIDEO 4K",
-    subtitle: "Lyrics Video 4K Master",
-    img: "assets/covers/cover_silvika.jpg",
+    pill: { en: "FULL RELEASE 4K", ro: "FULL RELEASE 4K", ru: "FULL RELEASE 4K" },
+    badge: "FULL RELEASE",
+    subtitle: "Lyrics Video + Cover Suite",
+    img: "assets/covers/cover_moostaf.jpg",
     bannerImg: "assets/banners/banner_moostaf.jpg",
     videoSrc: "assets/videos/video_moostaf.mp4",
     videoPoster: "assets/videos/posters/video_moostaf_poster.jpg",
     isVideo: true,
-    package: "lyrics",
-    placement: "video",
+    package: "full",
+    placement: "both",
     inVideo: true,
-    inCovers: false,
+    inCovers: true,
     specs: {
       en: [
         "Ultra HD 4K (3840 × 2160 px), 60 FPS Master Video",
@@ -2019,11 +2019,15 @@ function loadAdminOverrides() {
       projectsData.jenika.placement = 'both';
     }
     if (projectsData.moostaf) {
+      projectsData.moostaf.title = 'MOOSTAF — Отпускаю';
       projectsData.moostaf.videoSrc = 'assets/videos/video_moostaf.mp4';
       projectsData.moostaf.videoPoster = 'assets/videos/posters/video_moostaf_poster.jpg';
+      projectsData.moostaf.img = 'assets/covers/cover_moostaf.jpg';
       projectsData.moostaf.bannerImg = 'assets/banners/banner_moostaf.jpg';
-      if (projectsData.moostaf.inVideo === undefined) projectsData.moostaf.inVideo = true;
-      if (projectsData.moostaf.inCovers === undefined) projectsData.moostaf.inCovers = false;
+      projectsData.moostaf.inVideo = true;
+      projectsData.moostaf.inCovers = true;
+      projectsData.moostaf.placement = 'both';
+      projectsData.moostaf.package = 'full';
     }
     if (projectsData.young_queen) {
       projectsData.young_queen.bannerImg = 'assets/banners/banner_young_queen.jpg';
