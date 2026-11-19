@@ -1259,7 +1259,7 @@ body {
   box-shadow: 0 0 8px var(--accent-red-glow);
   border-radius: 2px;
   transform: rotate(-6deg);
-  transition: width 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .old-price.struck::after {

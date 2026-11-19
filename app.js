@@ -1991,11 +1991,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (entry.isIntersecting) {
           setTimeout(() => {
             entry.target.classList.add('struck');
-          }, 200);
+          }, 650);
           obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.8 });
     oldPrices.forEach(el => priceObserver.observe(el));
   } else {
     oldPrices.forEach(el => el.classList.add('struck'));
