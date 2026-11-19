@@ -1697,19 +1697,28 @@ function updateDemoLyricsDisplay(animate = false) {
   }
 
   const rows = track.querySelectorAll('.lyrics-row');
-  rows.forEach((r, i) => r.classList.toggle('active', i === demoLineIndex));
-  track.style.transition = 'transform 0.65s ease-in';
+  // Step 1: Un-highlight previous line & glide track upward
+  rows.forEach(r => r.classList.remove('active'));
+  track.style.transition = 'transform 0.55s ease-in';
   track.style.transform = `translateY(-${(demoLineIndex - 1) * 34}px)`;
+
+  const targetIdx = demoLineIndex;
+  // Step 2: Highlight & bloom the new center line right as it lands in the middle
+  setTimeout(() => {
+    const latestRows = track.querySelectorAll('.lyrics-row');
+    latestRows.forEach((r, i) => r.classList.toggle('active', i === targetIdx));
+  }, 460);
 
   if (demoLineIndex >= len * 2) {
     setTimeout(() => {
       demoLineIndex = demoLineIndex - len;
       track.style.transition = 'none';
-      rows.forEach((r, i) => r.classList.toggle('active', i === demoLineIndex));
+      const latestRows = track.querySelectorAll('.lyrics-row');
+      latestRows.forEach((r, i) => r.classList.toggle('active', i === demoLineIndex));
       track.style.transform = `translateY(-${(demoLineIndex - 1) * 34}px)`;
       void track.offsetHeight;
-      track.style.transition = 'transform 0.65s ease-in';
-    }, 680);
+      track.style.transition = 'transform 0.55s ease-in';
+    }, 980);
   }
 }
 
