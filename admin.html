@@ -324,8 +324,7 @@
 
     .card-top {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
+      flex-direction: column;
       gap: 12px;
       border-bottom: 1px solid var(--border);
       padding-bottom: 14px;
@@ -353,37 +352,71 @@
       color: #fff;
     }
 
+    .field-title-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
     .project-name-input {
       font-family: var(--font-heading);
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #fff;
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 6px;
-      padding: 4px 6px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
       width: 100%;
       transition: all 0.2s ease;
     }
     .project-name-input:focus {
-      background: var(--bg-surface);
       border-color: var(--accent-red);
       outline: none;
     }
+
+    .project-badge-input,
     .project-subtitle-input {
       font-size: 0.82rem;
-      color: var(--text-muted);
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 6px;
-      padding: 2px 6px;
-      width: 100%;
-      margin-top: 2px;
-    }
-    .project-subtitle-input:focus {
+      color: #fff;
       background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+    .project-badge-input:focus,
+    .project-subtitle-input:focus {
       border-color: var(--accent-red);
       outline: none;
+    }
+
+    .quick-preset-chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .btn-preset-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-preset-chip:hover {
+      background: rgba(230, 0, 38, 0.2);
+      border-color: var(--accent-red);
+      color: #fff;
     }
 
     /* Media Edit Blocks */
@@ -980,6 +1013,7 @@
 
         const titleVal = p.title && (p.title.ro || p.title.ru || p.title.en) ? (p.title.ro || p.title.ru || p.title.en) : key;
         const subVal = p.subtitle && (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) ? (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) : '';
+        const badgeVal = p.badge || (typeof p.pill === 'object' ? (p.pill.ro || p.pill.en || '') : p.pill || 'LYRICS VIDEO 4K');
 
         const makeOptions = (items, currentVal) => {
           let found = false;
@@ -1009,13 +1043,39 @@
 
         card.innerHTML = `
           <div class="card-top">
-            <div style="flex: 1;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <div style="flex: 1; display:flex; flex-direction:column; gap:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
                 <span class="card-id-tag">ID: ${key}</span>
                 <button type="button" class="btn-delete-project" data-delete-key="${key}" title="Șterge acest proiect">🗑️ Șterge</button>
               </div>
-              <input type="text" class="project-name-input" value="${titleVal}" data-key="${key}" data-field="title" title="Apasă pentru a edita titlul">
-              <input type="text" class="project-subtitle-input" value="${subVal}" data-key="${key}" data-field="subtitle" placeholder="Subtitlu (ex: Official 4K Lyrics Video)">
+
+              <!-- Titlu Piesă / Proiect -->
+              <div>
+                <label class="field-title-label">Nume Proiect / Titlu Piesă & Artist:</label>
+                <input type="text" class="project-name-input" value="${titleVal}" data-key="${key}" data-field="title" placeholder="Ex: MOOSTAF — Отпускаю">
+              </div>
+
+              <!-- Badge / Etichetă Card & Modal -->
+              <div>
+                <label class="field-title-label">Etichetă Badge (Card & Modal):</label>
+                <input type="text" class="project-badge-input" value="${badgeVal}" data-key="${key}" data-field="badge" placeholder="Ex: LYRICS VIDEO 4K sau FULL RELEASE">
+                <div class="quick-preset-chips">
+                  <button type="button" class="btn-preset-chip" data-key="${key}" data-field="badge" data-val="LYRICS VIDEO 4K">LYRICS VIDEO 4K</button>
+                  <button type="button" class="btn-preset-chip" data-key="${key}" data-field="badge" data-val="FULL RELEASE">FULL RELEASE</button>
+                  <button type="button" class="btn-preset-chip" data-key="${key}" data-field="badge" data-val="COVER ART">COVER ART</button>
+                </div>
+              </div>
+
+              <!-- Subtitlu Card -->
+              <div>
+                <label class="field-title-label">Subtitlu Card (textul de sub titlu):</label>
+                <input type="text" class="project-subtitle-input" value="${subVal}" data-key="${key}" data-field="subtitle" placeholder="Ex: Lyrics Video 4K Master sau Full Release">
+                <div class="quick-preset-chips">
+                  <button type="button" class="btn-preset-chip" data-key="${key}" data-field="subtitle" data-val="Lyrics Video 4K Master">Lyrics Video 4K</button>
+                  <button type="button" class="btn-preset-chip" data-key="${key}" data-field="subtitle" data-val="Lyrics Video + Cover Suite">Full Release</button>
+                  <button type="button" class="btn-preset-chip" data-key="${key}" data-field="subtitle" data-val="Single Cover 3000×3000 px">Cover 3000px</button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1359,6 +1419,36 @@
           workingProjects[key].title.ro = val;
           workingProjects[key].title.ru = val;
           workingProjects[key].title.en = val;
+
+          const mirror = key + '_video';
+          if (workingProjects[mirror]) {
+            if (!workingProjects[mirror].title) workingProjects[mirror].title = {};
+            workingProjects[mirror].title.ro = val;
+            workingProjects[mirror].title.ru = val;
+            workingProjects[mirror].title.en = val;
+          }
+          markModified(key);
+        });
+      });
+
+      document.querySelectorAll('.project-badge-input').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const key = e.target.getAttribute('data-key');
+          const val = e.target.value.trim();
+          workingProjects[key].badge = val;
+          if (!workingProjects[key].pill) workingProjects[key].pill = {};
+          workingProjects[key].pill.ro = val;
+          workingProjects[key].pill.ru = val;
+          workingProjects[key].pill.en = val;
+
+          const mirror = key + '_video';
+          if (workingProjects[mirror]) {
+            workingProjects[mirror].badge = val;
+            if (!workingProjects[mirror].pill) workingProjects[mirror].pill = {};
+            workingProjects[mirror].pill.ro = val;
+            workingProjects[mirror].pill.ru = val;
+            workingProjects[mirror].pill.en = val;
+          }
           markModified(key);
         });
       });
@@ -1371,6 +1461,60 @@
           workingProjects[key].subtitle.ro = val;
           workingProjects[key].subtitle.ru = val;
           workingProjects[key].subtitle.en = val;
+
+          const mirror = key + '_video';
+          if (workingProjects[mirror]) {
+            if (!workingProjects[mirror].subtitle) workingProjects[mirror].subtitle = {};
+            workingProjects[mirror].subtitle.ro = val;
+            workingProjects[mirror].subtitle.ru = val;
+            workingProjects[mirror].subtitle.en = val;
+          }
+          markModified(key);
+        });
+      });
+
+      // Quick preset chips
+      document.querySelectorAll('.btn-preset-chip').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const key = btn.getAttribute('data-key');
+          const field = btn.getAttribute('data-field');
+          const val = btn.getAttribute('data-val');
+
+          if (field === 'badge') {
+            workingProjects[key].badge = val;
+            if (!workingProjects[key].pill) workingProjects[key].pill = {};
+            workingProjects[key].pill.ro = val;
+            workingProjects[key].pill.ru = val;
+            workingProjects[key].pill.en = val;
+
+            const mirror = key + '_video';
+            if (workingProjects[mirror]) {
+              workingProjects[mirror].badge = val;
+              if (!workingProjects[mirror].pill) workingProjects[mirror].pill = {};
+              workingProjects[mirror].pill.ro = val;
+              workingProjects[mirror].pill.ru = val;
+              workingProjects[mirror].pill.en = val;
+            }
+
+            const input = document.querySelector(`.project-badge-input[data-key="${key}"]`);
+            if (input) input.value = val;
+          } else if (field === 'subtitle') {
+            if (!workingProjects[key].subtitle) workingProjects[key].subtitle = {};
+            workingProjects[key].subtitle.ro = val;
+            workingProjects[key].subtitle.ru = val;
+            workingProjects[key].subtitle.en = val;
+
+            const mirror = key + '_video';
+            if (workingProjects[mirror]) {
+              if (!workingProjects[mirror].subtitle) workingProjects[mirror].subtitle = {};
+              workingProjects[mirror].subtitle.ro = val;
+              workingProjects[mirror].subtitle.ru = val;
+              workingProjects[mirror].subtitle.en = val;
+            }
+
+            const input = document.querySelector(`.project-subtitle-input[data-key="${key}"]`);
+            if (input) input.value = val;
+          }
           markModified(key);
         });
       });

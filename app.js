@@ -827,14 +827,16 @@ const projectsData = {
     }
   },
 
-  // --- ROW 1: 4K VIDEOS & VISUALIZERS ---
+  // --- ROW 1: 4K VIDEOS & FULL RELEASES ---
   silvika_video: {
-    title: "SILVIKA — ZERO (4K Lyrics Video)",
-    pill: { en: "4K CINEMATIC LYRICS VIDEO", ro: "4K CINEMATIC LYRICS VIDEO", ru: "4K CINEMATIC LYRICS ВИДЕО" },
+    title: "MOOSTAF — Отпускаю",
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
     img: "assets/covers/cover_silvika.jpg",
-    bannerImg: "assets/banners/banner_na_krasivom.jpg",
-    videoSrc: "assets/videos/video_na_krasivom.mp4",
-    videoPoster: "assets/videos/posters/video_na_krasivom_poster.jpg",
+    bannerImg: "assets/banners/banner_moostaf.jpg",
+    videoSrc: "assets/videos/video_moostaf.mp4",
+    videoPoster: "assets/videos/posters/video_moostaf_poster.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -862,14 +864,16 @@ const projectsData = {
     }
   },
   jenika_video: {
-    title: "JENIKA — Altcineva (4K Visualizer)",
-    pill: { en: "4K OFFICIAL VISUALIZER", ro: "4K VIZUALIZER OFICIAL", ru: "4K ОФИЦИАЛЬНЫЙ ВИЗУАЛИЗАТОР" },
+    title: "JENIKA — Altcineva",
+    pill: { en: "FULL RELEASE", ro: "FULL RELEASE", ru: "FULL RELEASE" },
+    badge: "FULL RELEASE",
+    subtitle: "Lyrics Video + Cover Suite",
     img: "assets/covers/cover_jenika.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
     videoSrc: "assets/videos/video_ori_blaze.mp4",
     videoPoster: "assets/videos/posters/video_ori_blaze_poster.jpg",
     isVideo: true,
-    package: "lyrics",
+    package: "full",
     specs: {
       en: [
         "4K UHD (3840 × 2160 px) smooth motion visualizer",
@@ -895,8 +899,10 @@ const projectsData = {
     }
   },
   ciorniy_video: {
-    title: "CIORNIY — Doar ea (Mood Lyrics Motion)",
-    pill: { en: "LYRICS MOTION 4K", ro: "LYRICS MOTION 4K", ru: "LYRICS MOTION 4K" },
+    title: "CIORNIY — Iubirea e o boală grea",
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
     img: "assets/covers/cover_ciorniy.jpg",
     bannerImg: "assets/banners/banner_ciorniy.jpg",
     videoSrc: "assets/videos/video_ciorniy.mp4",
@@ -928,12 +934,14 @@ const projectsData = {
     }
   },
   ribz_video: {
-    title: "Ribz ft Conway The Machine — Legend Like Kareem",
-    pill: { en: "STREET VISUALIZER 4K", ro: "STREET VISUALIZER 4K", ru: "STREET ВИЗУАЛИЗАТОР 4K" },
+    title: "Si vis pacem — Сколько стоит боль?",
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
     img: "assets/covers/cover_ribz.jpg",
     bannerImg: "assets/banners/banner_moostaf.jpg",
     videoSrc: "assets/videos/video_moostaf.mp4",
-    videoPoster: "assets/videos/posters/video_moostaf_poster.jpg",
+    videoPoster: "assets/videos/posters/video_skolko_stoit_poster.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -961,12 +969,14 @@ const projectsData = {
     }
   },
   laureall_video: {
-    title: "Laureall — Pa Pa (Neon Lyrics 4K)",
-    pill: { en: "NEON LYRICS VIDEO 4K", ro: "NEON LYRICS VIDEO 4K", ru: "НЕОНОВОЕ LYRICS ВИДЕО 4K" },
+    title: "MISSYRIGHT — Полюбила хулигана",
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
     img: "assets/covers/cover_laureall.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
     videoSrc: "assets/videos/video_young_queen.mp4",
-    videoPoster: "assets/videos/posters/video_young_queen_poster.jpg",
+    videoPoster: "assets/videos/posters/video_hooligan_poster.jpg",
     isVideo: true,
     package: "lyrics",
     specs: {
@@ -994,8 +1004,10 @@ const projectsData = {
     }
   },
   young_queen_video: {
-    title: "MISSYRIGHT — Young Queen (Trap Visualizer)",
-    pill: { en: "TRAP MOTION VISUALIZER", ro: "TRAP MOTION VISUALIZER", ru: "TRAP ВИЗУАЛИЗАТОР 4K" },
+    title: "MISSYRIGHT — Young Queen",
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
     img: "assets/covers/cover_young_queen.jpg",
     bannerImg: "assets/banners/banner_ciorniy.jpg",
     videoSrc: "assets/videos/video_young_queen.mp4",
@@ -1027,8 +1039,10 @@ const projectsData = {
     }
   },
   parabellum_video: {
-    title: "Si vis pacem Parabellum (Noir Visualizer)",
-    pill: { en: "NOIR VISUALIZER 4K", ro: "NOIR VISUALIZER 4K", ru: "НУАР ВИЗУАЛИЗАТОР 4K" },
+    title: "Si vis pacem Parabellum",
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
     img: "assets/covers/cover_parabellum.jpg",
     bannerImg: "assets/banners/banner_moostaf.jpg",
     videoSrc: "assets/videos/video_parabellum.mp4",
@@ -1060,8 +1074,10 @@ const projectsData = {
     }
   },
   na_krasivom_video: {
-    title: "На красивом (Full Pack Lyrics & Visualizer)",
-    pill: { en: "FULL PACK RELEASE 4K", ro: "FULL PACK RELEASE 4K", ru: "ПОЛНЫЙ ПАКЕТ 4K" },
+    title: "IRAVELLE feat Andrei Green — На красивом",
+    pill: { en: "FULL RELEASE", ro: "FULL RELEASE", ru: "FULL RELEASE" },
+    badge: "FULL RELEASE",
+    subtitle: "Lyrics Video + Cover Suite",
     img: "assets/covers/cover_na_krasivom.jpg",
     bannerImg: "assets/banners/banner_na_krasivom.jpg",
     videoSrc: "assets/videos/video_na_krasivom.mp4",
@@ -1552,20 +1568,26 @@ function loadAdminOverrides() {
       const p = projectsData[pId] || projectsData[pId.replace('_video', '')];
       if (!p) return;
 
+      const titleStr = typeof p.title === 'object' ? (p.title[currentLang] || p.title.ro || p.title.ru || p.title.en) : p.title;
+      const subStr = typeof p.subtitle === 'object' ? (p.subtitle[currentLang] || p.subtitle.ro || p.subtitle.ru || p.subtitle.en) : p.subtitle;
+      const badgeStr = p.badge || (typeof p.pill === 'object' ? (p.pill[currentLang] || p.pill.ro || p.pill.ru || p.pill.en) : p.pill);
+
       if (card.classList.contains('video-card')) {
         const bgImg = card.querySelector('.card-video-bg');
         if (bgImg && p.videoPoster) bgImg.src = p.videoPoster;
         const h4 = card.querySelector('h4');
-        if (h4 && p.title) h4.textContent = p.title[currentLang] || p.title.ro || p.title.ru || p.title.en;
+        if (h4 && titleStr) h4.textContent = titleStr;
         const span = card.querySelector('.card-overlay-bottom span');
-        if (span && p.subtitle) span.textContent = p.subtitle[currentLang] || p.subtitle.ro || p.subtitle.ru || p.subtitle.en;
+        if (span && subStr) span.textContent = subStr;
+        const badgeEl = card.querySelector('.card-badge-top');
+        if (badgeEl && badgeStr) badgeEl.textContent = badgeStr;
       }
 
       if (card.classList.contains('cover-card')) {
         const coverImg = card.querySelector('.cover-thumb-wrapper img');
-        if (coverImg && p.img) coverImg.src = p.thumb || p.img;
+        if (coverImg && (p.thumb || p.img)) coverImg.src = p.thumb || p.img;
         const h4 = card.querySelector('h4');
-        if (h4 && p.title) h4.textContent = p.title[currentLang] || p.title.ro || p.title.ru || p.title.en;
+        if (h4 && titleStr) h4.textContent = titleStr;
       }
     });
   } catch (err) {
