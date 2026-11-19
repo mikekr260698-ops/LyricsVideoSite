@@ -1276,7 +1276,7 @@ function openProjectModal(projectId) {
     }
   }
   const project = projectsData[projectId];
-  if (!project) return;
+  if (!project || project.hidden) return;
   currentModalProjectId = projectId;
 
   const pillEl = document.getElementById('projectPill');
@@ -1395,6 +1395,14 @@ function openProjectModal(projectId) {
   } else {
     if (showcaseBannerCard) showcaseBannerCard.style.display = 'none';
   }
+
+  // Dynamic custom labels for modal showcase
+  const vLabelEl = document.getElementById('showcaseVideoLabel');
+  const cLabelEl = document.getElementById('showcaseCoverLabel');
+  const bLabelEl = document.getElementById('showcaseBannerLabel');
+  if (vLabelEl) vLabelEl.textContent = project.videoLabel || 'Lyrics Video 4K Master (16:9)';
+  if (cLabelEl) cLabelEl.textContent = project.coverLabel || 'Streaming Cover (3000 × 3000 px)';
+  if (bLabelEl) bLabelEl.textContent = project.bannerLabel || 'Pachet Promo Bannere & Rețele Sociale';
 
   // Video Player Controls & Events
   if (videoEl && playOverlay) {
@@ -1715,7 +1723,7 @@ function renderMarqueeTracks() {
   if (!videoTrack && !coverTrack) return;
 
   const lang = currentLang || 'ro';
-  const allKeys = Object.keys(projectsData).filter(k => !k.endsWith('_video'));
+  const allKeys = Object.keys(projectsData).filter(k => !k.endsWith('_video') && !projectsData[k].hidden);
 
   // Video projects: inVideo === true (or placement === 'video' || placement === 'both')
   const videoKeys = allKeys.filter(k => {

@@ -475,6 +475,167 @@
       margin: 0;
     }
 
+    /* Card Top Header & Visibility Toggle */
+    .card-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 4px;
+    }
+    .btn-vis-toggle {
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-vis-toggle:hover {
+      transform: translateY(-1px);
+    }
+    .btn-vis-toggle.is-hidden {
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.5);
+    }
+    .btn-vis-toggle.is-hidden:hover {
+      background: rgba(34, 197, 94, 0.2);
+      color: #4ade80;
+      border-color: rgba(34, 197, 94, 0.4);
+    }
+    .btn-vis-toggle.is-visible:hover {
+      background: rgba(245, 158, 11, 0.18);
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    .hidden-indicator-pill {
+      font-size: 0.65rem;
+      font-weight: 800;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 2px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+    .active-indicator-pill {
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: rgba(34, 197, 94, 0.1);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .project-card.is-hidden-project {
+      border-color: rgba(245, 158, 11, 0.38);
+      background: rgba(24, 18, 12, 0.85);
+      opacity: 0.88;
+    }
+    .project-card.is-hidden-project:hover {
+      opacity: 1;
+      border-color: rgba(245, 158, 11, 0.65);
+    }
+
+    /* Modal Showcase Labels Editor */
+    .modal-labels-editor-box {
+      margin-top: 4px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .modal-labels-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-labels-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .modal-labels-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .field-micro-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+    .project-modal-label-input {
+      font-family: inherit;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+    .project-modal-label-input:focus {
+      border-color: var(--accent-red);
+      outline: none;
+    }
+
+    /* Admin Filter Bar */
+    .admin-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 18px 0 24px 0;
+      padding: 12px 16px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .filter-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 4px;
+    }
+    .btn-filter {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-filter:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+    .btn-filter.active {
+      background: rgba(230, 25, 55, 0.15);
+      border-color: var(--accent-red);
+      color: #fff;
+    }
+
     /* Media Edit Blocks */
     .media-fields {
       display: flex;
@@ -775,10 +936,22 @@
       </div>
       <div class="quick-stats">
         <button class="btn-action btn-add-project" id="btnHeroAdd">➕ Adaugă Proiect Nou</button>
-        <div class="stat-pill">Total Proiecte: <span id="statCount">11</span></div>
-        <div class="stat-pill">▶ În Video (Rândul 1): <span id="statVideoCount">8</span></div>
-        <div class="stat-pill">💿 În Covere (Rândul 2): <span id="statCoverCount">8</span></div>
+        <div class="stat-pill">Total: <span id="statCount">11</span></div>
+        <div class="stat-pill" style="border-color:rgba(34,197,94,0.35); color:#4ade80;">👁️ Active: <span id="statActiveCount">11</span></div>
+        <div class="stat-pill" style="border-color:rgba(245,158,11,0.35); color:#fbbf24;">🙈 Ascunse: <span id="statHiddenCount">0</span></div>
+        <div class="stat-pill">▶ În Video (R. 1): <span id="statVideoCount">8</span></div>
+        <div class="stat-pill">💿 În Covere (R. 2): <span id="statCoverCount">8</span></div>
       </div>
+    </div>
+
+    <!-- Quick Filter Bar -->
+    <div class="admin-filter-bar">
+      <span class="filter-label">Filtrează Proiecte:</span>
+      <button type="button" class="btn-filter active" data-filter="all">Toate (<span id="filterAllCount">11</span>)</button>
+      <button type="button" class="btn-filter" data-filter="active">👁️ Doar Active (<span id="filterActiveCount">11</span>)</button>
+      <button type="button" class="btn-filter" data-filter="hidden">🙈 Doar Ascunse (<span id="filterHiddenCount">0</span>)</button>
+      <button type="button" class="btn-filter" data-filter="video">▶ Rândul 1 Video (<span id="filterVideoCount">8</span>)</button>
+      <button type="button" class="btn-filter" data-filter="covers">💿 Rândul 2 Covere (<span id="filterCoverCount">8</span>)</button>
     </div>
 
     <div class="auto-opt-notice">
@@ -850,6 +1023,14 @@
             <span>💿 Rândul 2 (Cover 3000px)</span>
           </label>
         </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Stare inițială de vizibilitate:</label>
+        <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; font-weight:600; cursor:pointer; color:#fbbf24;">
+          <input type="checkbox" id="newProjectHidden" style="width:18px;height:18px;accent-color:#f59e0b;">
+          <span>🙈 Ascunde temporar la creare (nu va apărea pe site până când nu îl activezi)</span>
+        </label>
       </div>
 
       <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
@@ -1116,25 +1297,56 @@
       updateStatsCounters();
       setupUploadTriggers();
       setupAddProjectModal();
+      setupFilterBar();
+    }
+
+    let currentFilter = 'all';
+
+    function setupFilterBar() {
+      document.querySelectorAll('.btn-filter').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.getAttribute('data-filter') || 'all';
+          renderProjectsGrid();
+        };
+      });
     }
 
     function updateStatsCounters() {
       const allKeys = Object.keys(workingProjects).filter(k => !k.endsWith('_video'));
-      const totalCountEl = document.getElementById('statCount');
-      const videoCountEl = document.getElementById('statVideoCount');
-      const coverCountEl = document.getElementById('statCoverCount');
-
       let vCount = 0;
       let cCount = 0;
+      let hCount = 0;
+      let aCount = 0;
+
       allKeys.forEach(k => {
         const p = workingProjects[k];
-        if (p && p.inVideo) vCount++;
-        if (p && p.inCovers) cCount++;
+        if (p && p.hidden) {
+          hCount++;
+        } else {
+          aCount++;
+          if (p && p.inVideo) vCount++;
+          if (p && p.inCovers) cCount++;
+        }
       });
 
-      if (totalCountEl) totalCountEl.textContent = allKeys.length;
-      if (videoCountEl) videoCountEl.textContent = vCount;
-      if (coverCountEl) coverCountEl.textContent = cCount;
+      const setEl = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      };
+
+      setEl('statCount', allKeys.length);
+      setEl('statActiveCount', aCount);
+      setEl('statHiddenCount', hCount);
+      setEl('statVideoCount', vCount);
+      setEl('statCoverCount', cCount);
+
+      setEl('filterAllCount', allKeys.length);
+      setEl('filterActiveCount', aCount);
+      setEl('filterHiddenCount', hCount);
+      setEl('filterVideoCount', vCount);
+      setEl('filterCoverCount', cCount);
     }
 
     function renderProjectsGrid() {
@@ -1144,14 +1356,30 @@
       const allKeys = Object.keys(workingProjects).filter(k => !k.endsWith('_video'));
       updateStatsCounters();
 
-      allKeys.forEach(key => {
+      const filteredKeys = allKeys.filter(k => {
+        const p = workingProjects[k];
+        if (!p) return false;
+        if (currentFilter === 'active') return !p.hidden;
+        if (currentFilter === 'hidden') return !!p.hidden;
+        if (currentFilter === 'video') return !p.hidden && p.inVideo;
+        if (currentFilter === 'covers') return !p.hidden && p.inCovers;
+        return true;
+      });
+
+      if (filteredKeys.length === 0) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding: 50px 20px; color:var(--text-muted); background:var(--bg-card); border-radius:16px; border:1px dashed var(--border);">Niciun proiect nu corespunde filtrului selectat.</div>`;
+        return;
+      }
+
+      filteredKeys.forEach(key => {
         const p = workingProjects[key];
+        const isHidden = !!p.hidden;
         const card = document.createElement('div');
-        card.className = 'project-card';
+        card.className = 'project-card' + (isHidden ? ' is-hidden-project' : '');
         card.id = 'card_' + key;
 
-        const titleVal = p.title && (p.title.ro || p.title.ru || p.title.en) ? (p.title.ro || p.title.ru || p.title.en) : key;
-        const subVal = p.subtitle && (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) ? (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) : '';
+        const titleVal = p.title && (p.title.ro || p.title.ru || p.title.en) ? (p.title.ro || p.title.ru || p.title.en) : (typeof p.title === 'string' ? p.title : key);
+        const subVal = p.subtitle && (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) ? (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) : (typeof p.subtitle === 'string' ? p.subtitle : '');
         const badgeVal = p.badge || (typeof p.pill === 'object' ? (p.pill.ro || p.pill.en || '') : p.pill || 'LYRICS VIDEO 4K');
         const isVideoChecked = p.inVideo !== undefined ? !!p.inVideo : (p.placement ? (p.placement === 'video' || p.placement === 'both') : !!(p.videoPoster || p.videoSrc));
         const isCoversChecked = p.inCovers !== undefined ? !!p.inCovers : (p.placement ? (p.placement === 'cover' || p.placement === 'both') : !!(p.img || p.thumb));
@@ -1185,9 +1413,18 @@
         card.innerHTML = `
           <div class="card-top">
             <div style="flex: 1; display:flex; flex-direction:column; gap:12px;">
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span class="card-id-tag">ID: ${key}</span>
-                <button type="button" class="btn-delete-project" data-delete-key="${key}" title="Șterge acest proiect">🗑️ Șterge</button>
+              <!-- Header Bar with Visibility Toggle and Delete -->
+              <div class="card-header-bar">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="card-id-tag">ID: ${key}</span>
+                  ${isHidden ? `<span class="hidden-indicator-pill">🙈 ASCUNS TEMPORAR</span>` : `<span class="active-indicator-pill">👁️ VIZIBIL PE SITE</span>`}
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <button type="button" class="btn-vis-toggle ${isHidden ? 'is-hidden' : 'is-visible'}" data-toggle-hide="${key}" title="${isHidden ? 'Apasă pentru a afișa din nou proiectul pe site' : 'Apasă pentru a ascunde temporar proiectul de pe site fără ștergere'}">
+                    ${isHidden ? '🙈 Ascuns (Apasă pt. Afișare)' : '👁️ Vizibil (Apasă pt. Ascundere)'}
+                  </button>
+                  <button type="button" class="btn-delete-project" data-delete-key="${key}" title="Șterge definitiv acest proiect">🗑️</button>
+                </div>
               </div>
 
               <!-- Titlu Piesă / Proiect -->
@@ -1204,6 +1441,8 @@
                   <button type="button" class="btn-preset-chip" data-key="${key}" data-field="badge" data-val="LYRICS VIDEO 4K">LYRICS VIDEO 4K</button>
                   <button type="button" class="btn-preset-chip" data-key="${key}" data-field="badge" data-val="FULL RELEASE">FULL RELEASE</button>
                   <button type="button" class="btn-preset-chip" data-key="${key}" data-field="badge" data-val="COVER ART">COVER ART</button>
+                  <button type="button" class="btn-preset-chip" data-key="${key}" data-field="badge" data-val="4K VISUALIZER">4K VISUALIZER</button>
+                  <button type="button" class="btn-preset-chip" data-key="${key}" data-field="badge" data-val="STREET VISUALIZER">STREET VISUALIZER</button>
                 </div>
               </div>
 
@@ -1215,6 +1454,27 @@
                   <button type="button" class="btn-preset-chip" data-key="${key}" data-field="subtitle" data-val="Lyrics Video 4K Master">Lyrics Video 4K</button>
                   <button type="button" class="btn-preset-chip" data-key="${key}" data-field="subtitle" data-val="Lyrics Video + Cover Suite">Full Release</button>
                   <button type="button" class="btn-preset-chip" data-key="${key}" data-field="subtitle" data-val="Single Cover 3000×3000 px">Cover 3000px</button>
+                </div>
+              </div>
+
+              <!-- Denumiri & Etichete în Fereastra Modală -->
+              <div class="modal-labels-editor-box">
+                <div class="modal-labels-header">
+                  <span class="modal-labels-title">🏷️ Denumiri & Etichete în Modal (Sub Fiecare Format):</span>
+                </div>
+                <div class="modal-labels-grid">
+                  <div>
+                    <label class="field-micro-label">▶ Etichetă Video (sub player):</label>
+                    <input type="text" class="project-modal-label-input" value="${p.videoLabel || 'Lyrics Video 4K Master (16:9)'}" data-key="${key}" data-field="videoLabel" placeholder="Ex: Lyrics Video 4K Master (16:9)">
+                  </div>
+                  <div>
+                    <label class="field-micro-label">💿 Etichetă Copertă (sub imagine cover):</label>
+                    <input type="text" class="project-modal-label-input" value="${p.coverLabel || 'Streaming Cover (3000 × 3000 px)'}" data-key="${key}" data-field="coverLabel" placeholder="Ex: Streaming Cover (3000 × 3000 px)">
+                  </div>
+                  <div>
+                    <label class="field-micro-label">🎨 Etichetă Pachet Bannere (sub imagine bannere):</label>
+                    <input type="text" class="project-modal-label-input" value="${p.bannerLabel || 'Pachet Promo Bannere & Rețele Sociale'}" data-key="${key}" data-field="bannerLabel" placeholder="Ex: Pachet Promo Bannere & Rețele Sociale">
+                  </div>
                 </div>
               </div>
 
@@ -1389,6 +1649,7 @@
           const pkg = document.getElementById('newProjectPackage').value;
           const inVideo = document.getElementById('newProjectInVideo') ? document.getElementById('newProjectInVideo').checked : true;
           const inCovers = document.getElementById('newProjectInCovers') ? document.getElementById('newProjectInCovers').checked : true;
+          const inHidden = document.getElementById('newProjectHidden') ? document.getElementById('newProjectHidden').checked : false;
 
           workingProjects[id] = {
             title: { ro: title, ru: title, en: title },
@@ -1396,6 +1657,7 @@
             package: pkg,
             inVideo: inVideo,
             inCovers: inCovers,
+            hidden: inHidden,
             placement: (inVideo && inCovers) ? 'both' : (inVideo ? 'video' : (inCovers ? 'cover' : 'none')),
             pill: { ro: 'PORTFOLIO CASE', ru: 'КЕЙС', en: 'PORTFOLIO CASE' },
             img: '',
@@ -1703,6 +1965,46 @@
 
           updateStatsCounters();
           markModified(key);
+        });
+      });
+
+      // Visibility Toggle (Hide / Unhide Temporarily)
+      document.querySelectorAll('.btn-vis-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.getAttribute('data-toggle-hide');
+          if (workingProjects[key]) {
+            workingProjects[key].hidden = !workingProjects[key].hidden;
+            const isHidden = !!workingProjects[key].hidden;
+
+            const mirror = key + '_video';
+            if (workingProjects[mirror]) {
+              workingProjects[mirror].hidden = isHidden;
+            }
+
+            renderProjectsGrid();
+            markModified(key);
+            showToast(isHidden
+              ? `Proiectul "${key}" este acum ASCUNS TEMPORAR de pe site.`
+              : `Proiectul "${key}" este acum VIZIBIL pe site!`
+            );
+          }
+        });
+      });
+
+      // Modal labels (videoLabel, coverLabel, bannerLabel)
+      document.querySelectorAll('.project-modal-label-input').forEach(input => {
+        input.addEventListener('input', (e) => {
+          const key = e.target.getAttribute('data-key');
+          const field = e.target.getAttribute('data-field');
+          const val = e.target.value.trim();
+          if (workingProjects[key]) {
+            workingProjects[key][field] = val;
+            const mirror = key + '_video';
+            if (workingProjects[mirror]) {
+              workingProjects[mirror][field] = val;
+            }
+            markModified(key);
+          }
         });
       });
 
