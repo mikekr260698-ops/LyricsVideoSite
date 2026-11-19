@@ -2665,8 +2665,12 @@ body {
   letter-spacing: 0.12em;
   color: var(--accent-red);
   text-transform: uppercase;
-  margin-bottom: 6px;
-  display: block;
+  margin-bottom: 8px;
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
 }
 
 .modal-header h3 {
