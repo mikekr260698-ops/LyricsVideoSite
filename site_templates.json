@@ -1,4 +1,40 @@
 {
-  "layoutTemplates": [],
+  "layoutTemplates": [
+    {
+      "id": "ltpl_1795092272815",
+      "name": "A meu V1",
+      "dateStr": "19.11.2026, 14:44",
+      "layout": [
+        {
+          "id": "hero",
+          "hidden": false
+        },
+        {
+          "id": "cases",
+          "hidden": false
+        },
+        {
+          "id": "packages",
+          "hidden": false
+        },
+        {
+          "id": "included",
+          "hidden": false
+        },
+        {
+          "id": "reviews",
+          "hidden": false
+        },
+        {
+          "id": "faq",
+          "hidden": false
+        },
+        {
+          "id": "finalCta",
+          "hidden": false
+        }
+      ]
+    }
+  ],
   "themeTemplates": []
 }
