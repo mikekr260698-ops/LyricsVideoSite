@@ -931,23 +931,40 @@ body {
 }
 
 @keyframes calmPkgFloat {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-4px); }
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-7px) rotate(0.6deg); }
 }
 
 @keyframes calmPkgFullCoverFloat {
-  0% { transform: translateX(-28px) translateY(0px); }
-  100% { transform: translateX(-28px) translateY(-3.5px); }
+  0% { transform: translateX(-28px) translateY(0px) rotate(0deg); }
+  100% { transform: translateX(-28px) translateY(-6px) rotate(-0.5deg); }
+}
+
+@keyframes crimsonPulseGlow {
+  0% {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.88), 0 0 18px rgba(230, 25, 55, 0.20);
+    border-color: rgba(230, 25, 55, 0.20);
+  }
+  100% {
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.90), 0 0 34px rgba(230, 25, 55, 0.42), 0 0 12px rgba(230, 25, 55, 0.25);
+    border-color: rgba(230, 25, 55, 0.42);
+  }
+}
+
+@keyframes crimsonAuraPulse {
+  0% { opacity: 0.45; transform: scale(0.96); }
+  100% { opacity: 1; transform: scale(1.04); }
 }
 
 .package-thumb::before {
   content: "";
   position: absolute;
-  inset: 8px 16px;
-  background: radial-gradient(circle, rgba(230, 25, 55, 0.16) 0%, rgba(230, 25, 55, 0) 70%);
+  inset: 4px 12px;
+  background: radial-gradient(circle, rgba(230, 25, 55, 0.28) 0%, rgba(230, 25, 55, 0) 70%);
   filter: blur(22px);
   z-index: 0;
   pointer-events: none;
+  animation: crimsonAuraPulse 2s ease-in-out infinite alternate;
 }
 
 .package-thumb-full::before {
@@ -966,23 +983,23 @@ body {
   height: 155px;
   object-fit: cover;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.88), 0 0 20px rgba(230, 25, 55, 0.18);
+  border: 1px solid rgba(230, 25, 55, 0.26);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.88), 0 0 26px rgba(230, 25, 55, 0.28);
   position: relative;
   z-index: 1;
-  animation: calmPkgFloat 5.5s ease-in-out infinite alternate;
-  will-change: transform;
+  animation: calmPkgFloat 3.6s ease-in-out infinite alternate, crimsonPulseGlow 2s ease-in-out infinite alternate;
+  will-change: transform, box-shadow;
 }
 
 /* Package 2: Lyrics Video (16:9 smoky blue player) */
 .package-thumb-video {
   background: #090b10;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(230, 25, 55, 0.26);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.88), 0 0 20px rgba(230, 25, 55, 0.18);
-  animation: calmPkgFloat 6s ease-in-out 0.6s infinite alternate;
-  will-change: transform;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.88), 0 0 26px rgba(230, 25, 55, 0.28);
+  animation: calmPkgFloat 3.8s ease-in-out 0.4s infinite alternate, crimsonPulseGlow 2s ease-in-out 0.7s infinite alternate;
+  will-change: transform, box-shadow;
 }
 
 .pkg-lyrics-bg-img {
@@ -1073,7 +1090,7 @@ body {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.9);
   transform: translateX(-28px);
   z-index: 1;
-  animation: calmPkgFullCoverFloat 5.8s ease-in-out 0.3s infinite alternate;
+  animation: calmPkgFullCoverFloat 3.7s ease-in-out 0.2s infinite alternate;
   will-change: transform;
 }
 
@@ -1094,7 +1111,7 @@ body {
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.95);
   background: #090b10;
   z-index: 2;
-  animation: calmPkgFloat 6.2s ease-in-out 1.1s infinite alternate;
+  animation: calmPkgFloat 4.0s ease-in-out 0.9s infinite alternate;
   will-change: transform;
 }
 
