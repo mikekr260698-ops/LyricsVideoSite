@@ -2877,7 +2877,6 @@ body {
 .direct-telegram:hover { border-color: #229ed9; box-shadow: 0 0 20px rgba(34, 158, 217, 0.25); }
 .direct-instagram:hover { border-color: #e1306c; box-shadow: 0 0 20px rgba(225, 48, 108, 0.25); }
 .direct-whatsapp:hover { border-color: #25d366; box-shadow: 0 0 20px rgba(37, 211, 102, 0.25); }
-.direct-viber:hover { border-color: #7360f2; box-shadow: 0 0 20px rgba(115, 96, 242, 0.25); }
 .direct-imessage:hover { border-color: #007aff; box-shadow: 0 0 20px rgba(0, 122, 255, 0.25); }
 
 .direct-icon {
