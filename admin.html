@@ -1911,6 +1911,10 @@
       if (saved) {
         try {
           const custom = JSON.parse(saved);
+          if (custom.skoliko_stout_boli) {
+            delete custom.skoliko_stout_boli;
+            localStorage.setItem('artist_visuals_custom_projects', JSON.stringify(custom));
+          }
           Object.keys(custom).forEach(key => {
             if (!workingProjects[key]) workingProjects[key] = {};
             Object.assign(workingProjects[key], custom[key]);
@@ -1956,6 +1960,23 @@
         if (workingProjects.moostaf.inVideo === undefined) workingProjects.moostaf.inVideo = true;
         if (workingProjects.moostaf.inCovers === undefined) workingProjects.moostaf.inCovers = false;
       }
+      if (workingProjects.young_queen) {
+        workingProjects.young_queen.bannerImg = 'assets/banners/banner_young_queen.jpg';
+        workingProjects.young_queen.videoPoster = 'assets/videos/posters/video_young_queen_poster.jpg';
+      }
+      if (workingProjects.young_queen_video) {
+        workingProjects.young_queen_video.bannerImg = 'assets/banners/banner_young_queen.jpg';
+        workingProjects.young_queen_video.videoPoster = 'assets/videos/posters/video_young_queen_poster.jpg';
+      }
+      if (workingProjects.ciorniy) {
+        if (!workingProjects.ciorniy.bannerImg || workingProjects.ciorniy.bannerImg === 'assets/banners/banner_ciorniy.jpg') {
+          workingProjects.ciorniy.bannerImg = 'assets/banners/banner_ciorniy_doar_ea.jpg';
+        }
+        if (!workingProjects.ciorniy.img) {
+          workingProjects.ciorniy.img = 'assets/covers/cover_ciorniy.jpg';
+        }
+      }
+      delete workingProjects.skoliko_stout_boli;
 
       // 5. Ensure all other projects have inVideo / inCovers defined
       Object.keys(workingProjects).forEach(key => {

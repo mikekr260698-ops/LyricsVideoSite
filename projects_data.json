@@ -796,48 +796,5 @@
     "inVideo": true,
     "inCovers": true,
     "placement": "both"
-  },
-  "skoliko_stout_boli": {
-    "title": {
-      "ro": "Proiect Nou",
-      "ru": "Proiect Nou",
-      "en": "Proiect Nou"
-    },
-    "subtitle": {
-      "ro": "Visuals Release",
-      "ru": "Visuals Release",
-      "en": "Visuals Release"
-    },
-    "package": "lyrics",
-    "inVideo": true,
-    "inCovers": false,
-    "placement": "video",
-    "pill": {
-      "ro": "PORTFOLIO CASE",
-      "ru": "КЕЙС",
-      "en": "PORTFOLIO CASE"
-    },
-    "img": "",
-    "thumb": "",
-    "videoSrc": "assets/videos/video_parabellum.mp4",
-    "videoPoster": "assets/videos/posters/video_skolko_stoit_poster.jpg",
-    "bannerImg": "",
-    "specs": {
-      "ro": [
-        "Format Master 4K / 3000px",
-        "Design Custom realizat de la zero",
-        "Gata de distribuție pe platforme"
-      ],
-      "ru": [
-        "Мастер формат 4K / 3000px",
-        "Индивидуальный дизайн с нуля",
-        "Готово к публикации"
-      ],
-      "en": [
-        "Master 4K / 3000px Format",
-        "Custom Design Crafted from Scratch",
-        "Ready for Digital Distribution"
-      ]
-    }
   }
 }

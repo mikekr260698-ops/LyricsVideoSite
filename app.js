@@ -2190,11 +2190,16 @@ function loadAdminOverrides() {
     const saved = localStorage.getItem('artist_visuals_custom_projects');
     if (saved) {
       const custom = JSON.parse(saved);
+      if (custom.skoliko_stout_boli) {
+        delete custom.skoliko_stout_boli;
+        localStorage.setItem('artist_visuals_custom_projects', JSON.stringify(custom));
+      }
       Object.keys(custom).forEach(key => {
         if (!projectsData[key]) projectsData[key] = {};
         Object.assign(projectsData[key], custom[key]);
       });
     }
+    delete projectsData.skoliko_stout_boli;
 
     // Ensure ribz, silvika, laureall never have fake video attached
     if (projectsData.ribz) {
@@ -2228,6 +2233,22 @@ function loadAdminOverrides() {
       projectsData.moostaf.bannerImg = 'assets/banners/banner_moostaf.jpg';
       if (projectsData.moostaf.inVideo === undefined) projectsData.moostaf.inVideo = true;
       if (projectsData.moostaf.inCovers === undefined) projectsData.moostaf.inCovers = false;
+    }
+    if (projectsData.young_queen) {
+      projectsData.young_queen.bannerImg = 'assets/banners/banner_young_queen.jpg';
+      projectsData.young_queen.videoPoster = 'assets/videos/posters/video_young_queen_poster.jpg';
+    }
+    if (projectsData.young_queen_video) {
+      projectsData.young_queen_video.bannerImg = 'assets/banners/banner_young_queen.jpg';
+      projectsData.young_queen_video.videoPoster = 'assets/videos/posters/video_young_queen_poster.jpg';
+    }
+    if (projectsData.ciorniy) {
+      if (!projectsData.ciorniy.bannerImg || projectsData.ciorniy.bannerImg === 'assets/banners/banner_ciorniy.jpg') {
+        projectsData.ciorniy.bannerImg = 'assets/banners/banner_ciorniy_doar_ea.jpg';
+      }
+      if (!projectsData.ciorniy.img) {
+        projectsData.ciorniy.img = 'assets/covers/cover_ciorniy.jpg';
+      }
     }
 
     // Render cards dynamically matching checkboxes
