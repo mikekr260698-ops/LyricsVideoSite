@@ -1,0 +1,9 @@
+[
+  { "id": "hero", "hidden": false },
+  { "id": "packages", "hidden": false },
+  { "id": "included", "hidden": false },
+  { "id": "cases", "hidden": false },
+  { "id": "reviews", "hidden": false },
+  { "id": "faq", "hidden": false },
+  { "id": "finalCta", "hidden": false }
+]

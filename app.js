@@ -2084,8 +2084,44 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================================================
-// 5.5. ADMIN OVERRIDES SYNC (Loads custom media & theme from Admin Panel)
+// 5.5. ADMIN OVERRIDES SYNC (Loads custom media, theme & layout from Admin)
 // ==========================================================================
+function applySiteLayout(layoutArr) {
+  if (!Array.isArray(layoutArr) || layoutArr.length === 0) return;
+  const container = document.getElementById('siteSectionsContainer') || document.querySelector('main');
+  if (!container) return;
+
+  layoutArr.forEach(item => {
+    const id = typeof item === 'string' ? item : item.id;
+    const isHidden = typeof item === 'object' ? !!item.hidden : false;
+    const sec = container.querySelector(`section[data-section-id="${id}"]`);
+    if (sec) {
+      sec.style.display = isHidden ? 'none' : '';
+      container.appendChild(sec);
+    }
+  });
+}
+
+async function syncLiveLayout() {
+  try {
+    const res = await fetch('site_layout.json?t=' + Date.now());
+    if (res.ok) {
+      const liveLayout = await res.json();
+      applySiteLayout(liveLayout);
+    }
+  } catch (e) {}
+  try {
+    const localLayout = localStorage.getItem('av_site_layout');
+    if (localLayout) applySiteLayout(JSON.parse(localLayout));
+  } catch (e) {}
+}
+
+window.addEventListener('message', (e) => {
+  if (e.data && e.data.type === 'AV_PREVIEW_LAYOUT') {
+    applySiteLayout(e.data.layout);
+  }
+});
+
 function hexToRgbaStr(hex, alpha) {
   if (!hex || !hex.startsWith('#')) return `rgba(230, 25, 55, ${alpha})`;
   let h = hex.replace('#', '');
@@ -2198,8 +2234,9 @@ function loadAdminOverrides() {
 // 6. INITIALIZATION & EVENT LISTENERS
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Load live projects & theme JSON from repo + local admin overrides
+  // Load live projects, theme & layout JSON from repo + local admin overrides
   syncLiveTheme();
+  syncLiveLayout();
   syncLiveProjects();
 
   // One-time scroll-triggered strikethrough animation on old price

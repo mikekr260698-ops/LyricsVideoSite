@@ -302,6 +302,192 @@
       flex-direction: column;
       gap: 16px;
     }
+
+    /* Layout Constructor & Live Miniature Preview */
+    .layout-section {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .layout-section.active {
+      display: flex;
+    }
+    .constructor-workspace {
+      display: grid;
+      grid-template-columns: 440px 1fr;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    @media (max-width: 1024px) {
+      .constructor-workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+    .blocks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .block-item-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: grab;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .block-item-card:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+    .block-item-card.dragging {
+      opacity: 0.45;
+      border-color: var(--accent-red);
+      transform: scale(0.98);
+    }
+    .block-item-card.drag-over {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 18px rgba(0, 210, 106, 0.25);
+    }
+    .block-item-card.is-hidden-block {
+      opacity: 0.6;
+      border-style: dashed;
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    .block-drag-handle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: grab;
+      padding: 4px;
+    }
+    .block-order-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      background: rgba(230, 0, 38, 0.16);
+      border: 1px solid rgba(230, 0, 38, 0.35);
+      color: #ff6b81;
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .block-meta {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .block-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #fff;
+    }
+    .block-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .block-controls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+    .btn-block-mini {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    .btn-block-mini:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .btn-block-vis {
+      padding: 0 9px;
+      width: auto;
+      font-size: 0.72rem;
+    }
+    .btn-block-vis.is-hidden {
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.45);
+      background: rgba(245, 158, 11, 0.12);
+    }
+
+    /* Miniature Browser Preview Frame */
+    .preview-browser-frame {
+      background: #0a0a0e;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      position: sticky;
+      top: 86px;
+    }
+    .preview-browser-bar {
+      background: #14141c;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .preview-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .preview-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .preview-url-pill {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: rgba(0, 0, 0, 0.35);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+    .preview-iframe-viewport {
+      width: 100%;
+      height: 680px;
+      overflow: hidden;
+      position: relative;
+      background: #08080a;
+    }
+    .preview-iframe-scaled {
+      width: 210%;
+      height: 210%;
+      border: none;
+      transform: scale(0.476);
+      transform-origin: top left;
+      background: #08080a;
+    }
     .nav-actions {
       display: flex;
       align-items: center;
@@ -1142,6 +1328,7 @@
       <div class="admin-menu-tabs" style="margin-left: 10px;">
         <button type="button" class="admin-tab-btn active" id="tabBtnProjects" data-tab="projects">📁 Proiecte</button>
         <button type="button" class="admin-tab-btn" id="tabBtnThemes" data-tab="themes">🎨 Themes</button>
+        <button type="button" class="admin-tab-btn" id="tabBtnLayout" data-tab="layout">🧱 Constructor</button>
       </div>
     </div>
 
@@ -1298,6 +1485,44 @@
             <h3 id="themePreviewTitle" style="font-family:var(--font-heading); font-size:1.25rem; color:#f5f5f7; margin-bottom:6px;">Vizualuri pentru muzica ta</h3>
             <p id="themePreviewDesc" style="font-size:0.85rem; color:#8e8e99; margin-bottom:16px;">Așa vor arăta titlurile, descrierile și butonul principal pe site.</p>
             <button type="button" id="themePreviewBtn" style="background:linear-gradient(135deg, #e61937, #c4122c); color:#fff; border:none; padding:10px 22px; border-radius:999px; font-weight:700; font-size:0.88rem; cursor:default; box-shadow:0 0 24px rgba(230,25,55,0.45);">Alege pachetul →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYOUT CONSTRUCTOR SECTION -->
+    <div id="layoutSection" class="layout-section">
+      <div class="hero-banner">
+        <div class="hero-text">
+          <h1>🧱 Constructor Ordine Blocuri & Miniatură Live</h1>
+          <p>Trage blocurile cu mouse-ul sus/jos (sau folosește săgețile ▲ / ▼) pentru a schimba ordinea secțiunilor pe site. În dreapta vezi <strong>miniatura live a site-ului</strong> actualizată instant! Când e perfect, apasă <strong>Salvează</strong> și <strong>🚀 Publică pe Live (Deploy)</strong>.</p>
+        </div>
+        <div class="quick-stats">
+          <button type="button" class="btn-action" id="btnResetLayoutOrder">🔄 Ordine Implicită</button>
+          <button type="button" class="btn-action btn-save-all" id="btnSaveLayoutLocal">💾 Salvează Ordinea Local</button>
+        </div>
+      </div>
+
+      <div class="constructor-workspace">
+        <!-- Left: Draggable Blocks List -->
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:var(--text-muted); letter-spacing:0.05em;">
+            ↕️ Trage blocurile pentru a le rearanja:
+          </div>
+          <div class="blocks-list" id="layoutBlocksList">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Right: Live Miniature Preview of the Site -->
+        <div class="preview-browser-frame">
+          <div class="preview-browser-bar">
+            <div class="preview-dots"><span></span><span></span><span></span></div>
+            <div class="preview-url-pill">👁️ Miniatură Live — Artist Visuals</div>
+            <button type="button" class="btn-action" id="btnRefreshMiniature" style="padding:4px 10px; font-size:0.72rem;">↻ Reîncarcă</button>
+          </div>
+          <div class="preview-iframe-viewport">
+            <iframe id="layoutPreviewIframe" class="preview-iframe-scaled" src="index.html"></iframe>
           </div>
         </div>
       </div>
@@ -2657,6 +2882,41 @@
           console.warn('Theme deploy warning:', themeErr);
         }
 
+        // Also deploy site_layout.json
+        try {
+          let layoutSha = null;
+          const getLayoutRes = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/site_layout.json`, {
+            headers: {
+              'Authorization': `token ${token}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (getLayoutRes.ok) {
+            const layoutInfo = await getLayoutRes.json();
+            layoutSha = layoutInfo.sha;
+          }
+          const layoutJson = JSON.stringify(workingLayout, null, 2);
+          const putLayoutBody = {
+            message: 'Deploy live layout block order from Admin Constructor',
+            content: utf8ToBase64(layoutJson),
+            branch: 'main'
+          };
+          if (layoutSha) putLayoutBody.sha = layoutSha;
+
+          await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/site_layout.json`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `token ${token}`,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(putLayoutBody)
+          });
+          localStorage.setItem('av_site_layout', layoutJson);
+        } catch (layoutErr) {
+          console.warn('Layout deploy warning:', layoutErr);
+        }
+
         localStorage.setItem('artist_visuals_custom_projects', jsonContent);
         document.querySelectorAll('.project-card.modified').forEach(card => card.classList.remove('modified'));
         if (deployModal) deployModal.style.display = 'none';
@@ -3073,26 +3333,211 @@
     // Tab switching
     const tabBtnProjects = document.getElementById('tabBtnProjects');
     const tabBtnThemes = document.getElementById('tabBtnThemes');
+    const tabBtnLayout = document.getElementById('tabBtnLayout');
     const projectsSection = document.getElementById('projectsSection');
     const themesSection = document.getElementById('themesSection');
+    const layoutSection = document.getElementById('layoutSection');
 
     const switchAdminTab = (tabName) => {
+      [tabBtnProjects, tabBtnThemes, tabBtnLayout].forEach(b => { if (b) b.classList.remove('active'); });
+      if (projectsSection) projectsSection.style.display = 'none';
+      if (themesSection) themesSection.classList.remove('active');
+      if (layoutSection) layoutSection.classList.remove('active');
+
       if (tabName === 'themes') {
-        if (tabBtnProjects) tabBtnProjects.classList.remove('active');
         if (tabBtnThemes) tabBtnThemes.classList.add('active');
-        if (projectsSection) projectsSection.style.display = 'none';
         if (themesSection) themesSection.classList.add('active');
+      } else if (tabName === 'layout') {
+        if (tabBtnLayout) tabBtnLayout.classList.add('active');
+        if (layoutSection) layoutSection.classList.add('active');
+        syncMiniaturePreview();
       } else {
-        if (tabBtnThemes) tabBtnThemes.classList.remove('active');
         if (tabBtnProjects) tabBtnProjects.classList.add('active');
-        if (themesSection) themesSection.classList.remove('active');
         if (projectsSection) projectsSection.style.display = 'block';
       }
     };
 
     if (tabBtnProjects) tabBtnProjects.onclick = () => switchAdminTab('projects');
     if (tabBtnThemes) tabBtnThemes.onclick = () => switchAdminTab('themes');
+    if (tabBtnLayout) tabBtnLayout.onclick = () => switchAdminTab('layout');
 
+    // =========================================================================
+    // LAYOUT CONSTRUCTOR & LIVE MINIATURE PREVIEW LOGIC
+    // =========================================================================
+    const DEFAULT_LAYOUT = [
+      { id: 'hero', hidden: false },
+      { id: 'packages', hidden: false },
+      { id: 'included', hidden: false },
+      { id: 'cases', hidden: false },
+      { id: 'reviews', hidden: false },
+      { id: 'faq', hidden: false },
+      { id: 'finalCta', hidden: false }
+    ];
+
+    const BLOCK_LABELS = {
+      hero: { title: 'Hero & Zagalovok', desc: 'Titlul principal, butoane CTA, Cover rotativ & Mini-Player' },
+      packages: { title: 'Pachetele Ofertă', desc: 'Cover pentru piesă, Lyrics Video & Pachet Complet' },
+      included: { title: 'Info despre Produs', desc: 'Secțiunea „Ce este inclus în lucru?” cu bifele animate' },
+      cases: { title: 'Exemple Portofoliu', desc: 'Caruselul dublu interactiv (Video 4K & Covere 3000px)' },
+      reviews: { title: 'Recenzii / Otzivi', desc: 'Feedback de la @ciorniy.m, @moostaf_kipa, @ribzmakesmusic' },
+      faq: { title: 'Întrebări Frecvente (FAQ)', desc: 'Acordeon cu termene, formate și modificări' },
+      finalCta: { title: 'Final Offer / CTA', desc: 'Bannerul final cu butonul de comandă' }
+    };
+
+    let workingLayout = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+    let draggedBlockIndex = null;
+
+    function loadWorkingLayout() {
+      try {
+        const saved = localStorage.getItem('av_site_layout');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            workingLayout = parsed;
+          }
+        }
+      } catch (e) {}
+      renderLayoutBlocks();
+    }
+
+    function syncMiniaturePreview() {
+      localStorage.setItem('av_site_layout', JSON.stringify(workingLayout));
+      const iframe = document.getElementById('layoutPreviewIframe');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ type: 'AV_PREVIEW_LAYOUT', layout: workingLayout }, '*');
+      }
+    }
+
+    function renderLayoutBlocks() {
+      const list = document.getElementById('layoutBlocksList');
+      if (!list) return;
+
+      list.innerHTML = workingLayout.map((item, idx) => {
+        const info = BLOCK_LABELS[item.id] || { title: item.id, desc: '' };
+        const isHidden = !!item.hidden;
+        return `
+          <div class="block-item-card${isHidden ? ' is-hidden-block' : ''}" draggable="true" data-block-idx="${idx}">
+            <span class="block-drag-handle" title="Trage pentru a muta">⋮⋮</span>
+            <span class="block-order-num">${idx + 1}</span>
+            <div class="block-meta">
+              <div class="block-title">${info.title}</div>
+              <div class="block-desc">${info.desc}</div>
+            </div>
+            <div class="block-controls">
+              <button type="button" class="btn-block-mini btn-block-up" data-idx="${idx}" title="Mută mai sus" ${idx === 0 ? 'disabled style="opacity:0.35;cursor:default;"' : ''}>▲</button>
+              <button type="button" class="btn-block-mini btn-block-down" data-idx="${idx}" title="Mută mai jos" ${idx === workingLayout.length - 1 ? 'disabled style="opacity:0.35;cursor:default;"' : ''}>▼</button>
+              <button type="button" class="btn-block-mini btn-block-vis${isHidden ? ' is-hidden' : ''}" data-idx="${idx}" title="${isHidden ? 'Arată pe site' : 'Ascunde blocul'}">${isHidden ? '🙈' : '👁️'}</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Drag & Drop handlers
+      list.querySelectorAll('.block-item-card').forEach(card => {
+        card.addEventListener('dragstart', (e) => {
+          draggedBlockIndex = Number(card.getAttribute('data-block-idx'));
+          card.classList.add('dragging');
+          e.dataTransfer.effectAllowed = 'move';
+        });
+
+        card.addEventListener('dragend', () => {
+          card.classList.remove('dragging');
+          list.querySelectorAll('.block-item-card').forEach(c => c.classList.remove('drag-over'));
+          draggedBlockIndex = null;
+        });
+
+        card.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          card.classList.add('drag-over');
+        });
+
+        card.addEventListener('dragleave', () => {
+          card.classList.remove('drag-over');
+        });
+
+        card.addEventListener('drop', (e) => {
+          e.preventDefault();
+          card.classList.remove('drag-over');
+          const targetIndex = Number(card.getAttribute('data-block-idx'));
+          if (draggedBlockIndex !== null && draggedBlockIndex !== targetIndex) {
+            const [moved] = workingLayout.splice(draggedBlockIndex, 1);
+            workingLayout.splice(targetIndex, 0, moved);
+            renderLayoutBlocks();
+            syncMiniaturePreview();
+          }
+        });
+      });
+
+      // Up / Down / Visibility button handlers
+      list.querySelectorAll('.btn-block-up').forEach(btn => {
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          const i = Number(btn.getAttribute('data-idx'));
+          if (i > 0) {
+            [workingLayout[i - 1], workingLayout[i]] = [workingLayout[i], workingLayout[i - 1]];
+            renderLayoutBlocks();
+            syncMiniaturePreview();
+          }
+        };
+      });
+
+      list.querySelectorAll('.btn-block-down').forEach(btn => {
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          const i = Number(btn.getAttribute('data-idx'));
+          if (i < workingLayout.length - 1) {
+            [workingLayout[i], workingLayout[i + 1]] = [workingLayout[i + 1], workingLayout[i]];
+            renderLayoutBlocks();
+            syncMiniaturePreview();
+          }
+        };
+      });
+
+      list.querySelectorAll('.btn-block-vis').forEach(btn => {
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          const i = Number(btn.getAttribute('data-idx'));
+          workingLayout[i].hidden = !workingLayout[i].hidden;
+          renderLayoutBlocks();
+          syncMiniaturePreview();
+        };
+      });
+    }
+
+    const layoutPreviewIframe = document.getElementById('layoutPreviewIframe');
+    if (layoutPreviewIframe) {
+      layoutPreviewIframe.addEventListener('load', () => syncMiniaturePreview());
+    }
+
+    const btnRefreshMiniature = document.getElementById('btnRefreshMiniature');
+    if (btnRefreshMiniature && layoutPreviewIframe) {
+      btnRefreshMiniature.onclick = () => {
+        layoutPreviewIframe.src = 'index.html?preview=' + Date.now();
+      };
+    }
+
+    const btnSaveLayoutLocal = document.getElementById('btnSaveLayoutLocal');
+    if (btnSaveLayoutLocal) {
+      btnSaveLayoutLocal.onclick = () => {
+        syncMiniaturePreview();
+        showToast('🧱 Ordinea blocurilor a fost salvată local! Apasă "🚀 Publică pe Live (Deploy)" pentru a o aplica peste tot.', true);
+      };
+    }
+
+    const btnResetLayoutOrder = document.getElementById('btnResetLayoutOrder');
+    if (btnResetLayoutOrder) {
+      btnResetLayoutOrder.onclick = () => {
+        if (confirm('Resetezi ordinea blocurilor la varianta implicită?')) {
+          workingLayout = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+          renderLayoutBlocks();
+          syncMiniaturePreview();
+          showToast('Ordinea blocurilor a fost resetată.');
+        }
+      };
+    }
+
+    loadWorkingLayout();
     loadWorkingTheme();
     checkAuth();
   </script>
