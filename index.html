@@ -200,9 +200,7 @@
           <div class="package-card" data-package="cover">
             <div class="package-card-header">
               <div class="package-thumb package-thumb-cover">
-                <div class="thumb-overlay">
-                  <span class="thumb-badge">COVER ART</span>
-                </div>
+                <img src="assets/covers/pkg_cover_blue.jpg" alt="Cover Art" class="pkg-cover-art-img">
               </div>
               <h3 class="package-name" data-i18n="packages.cover.name">Обложка для трека</h3>
               <p class="package-desc" data-i18n="packages.cover.desc">Уникальная обложка, которая выделит твой релиз.</p>
@@ -235,8 +233,14 @@
           <div class="package-card" data-package="lyrics">
             <div class="package-card-header">
               <div class="package-thumb package-thumb-video">
-                <div class="thumb-overlay">
-                  <span class="thumb-badge">LYRICS VIDEO</span>
+                <img src="assets/covers/pkg_lyrics_blue.jpg" alt="Lyrics Video" class="pkg-lyrics-bg-img">
+                <div class="pkg-lyrics-overlay">
+                  <div class="pkg-lyrics-title">LYRICS<br>VIDEO</div>
+                  <div class="pkg-lyrics-bar">
+                    <span class="pkg-play-icon">▶</span>
+                    <span class="pkg-time">0:00 / 2:36</span>
+                    <div class="pkg-progress-track"><div class="pkg-progress-fill"></div></div>
+                  </div>
                 </div>
               </div>
               <h3 class="package-name" data-i18n="packages.lyrics.name">Lyrics видео</h3>
@@ -272,8 +276,20 @@
 
             <div class="package-card-header">
               <div class="package-thumb package-thumb-full">
-                <div class="thumb-overlay">
-                  <span class="thumb-badge">FULL COMBO</span>
+                <div class="pkg-full-stage">
+                  <div class="pkg-full-cover">
+                    <img src="assets/covers/pkg_cover_blue.jpg" alt="Cover Art">
+                  </div>
+                  <div class="pkg-full-video">
+                    <img src="assets/covers/pkg_lyrics_blue.jpg" alt="Lyrics Video">
+                    <div class="pkg-lyrics-overlay compact">
+                      <div class="pkg-lyrics-title">LYRICS<br>VIDEO</div>
+                      <div class="pkg-lyrics-bar">
+                        <span class="pkg-play-icon">▶</span>
+                        <div class="pkg-progress-track"><div class="pkg-progress-fill"></div></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <h3 class="package-name" data-i18n="packages.full.name">Полный пакет</h3>

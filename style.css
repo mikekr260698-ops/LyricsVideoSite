@@ -918,24 +918,165 @@ body {
 
 .package-thumb {
   width: 100%;
-  height: 160px;
+  height: 175px;
   border-radius: var(--radius-md);
   margin-bottom: 24px;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
 }
 
+/* Package 1: Cover Art (Square centered card) */
 .package-thumb-cover {
-  background: linear-gradient(to top, rgba(5, 5, 7, 0.85), rgba(16, 6, 9, 0.2)), url('assets/covers/hero_cover_art.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.pkg-cover-art-img {
+  width: 155px;
+  height: 155px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
+}
+
+/* Package 2: Lyrics Video (16:9 smoky blue player) */
 .package-thumb-video {
-  background: radial-gradient(circle at center, #1a162b 0%, #0d0a17 70%, #050507 100%);
+  background: #090b10;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85);
 }
 
-.package-thumb-full {
-  background: radial-gradient(circle at center, #480c16 0%, #1f080e 70%, #050507 100%);
+.pkg-lyrics-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pkg-lyrics-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.15) 0%, rgba(5, 7, 12, 0.6) 100%);
+}
+
+.pkg-lyrics-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0 22px rgba(148, 163, 184, 0.55);
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.pkg-lyrics-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.pkg-play-icon {
+  font-size: 0.65rem;
+  color: #fff;
+}
+
+.pkg-time {
+  font-family: monospace;
+  font-size: 0.62rem;
+  white-space: nowrap;
+}
+
+.pkg-progress-track {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.pkg-progress-fill {
+  width: 32%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Package 3: Full Combo (Square Cover + Overlapping Lyrics Player) */
+.pkg-full-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pkg-full-cover {
+  width: 138px;
+  height: 138px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
+  transform: translateX(-28px);
+  z-index: 1;
+}
+
+.pkg-full-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pkg-full-video {
+  position: absolute;
+  right: 6px;
+  width: 162px;
+  height: 106px;
+  border-radius: 11px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.95);
+  background: #090b10;
+  z-index: 2;
+}
+
+.pkg-full-video img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pkg-lyrics-overlay.compact {
+  padding: 10px;
+}
+
+.pkg-lyrics-overlay.compact .pkg-lyrics-title {
+  font-size: 0.82rem;
 }
 
 .thumb-overlay {
