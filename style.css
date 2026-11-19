@@ -690,26 +690,20 @@ body {
   box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 50px rgba(230, 25, 55, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: #0f0e13;
-  animation: dynamicWiggleFloat 8.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+  animation: dynamicWiggleFloat 14s ease-in-out infinite alternate;
   will-change: transform;
   transition: box-shadow 0.4s ease;
 }
 
 @keyframes dynamicWiggleFloat {
   0% {
-    transform: rotate(-6deg) translate(0px, 0px);
-  }
-  25% {
-    transform: rotate(-1.5deg) translate(18px, -24px);
+    transform: rotate(-4deg) translate(0px, 0px);
   }
   50% {
-    transform: rotate(3.5deg) translate(22px, 14px);
-  }
-  75% {
-    transform: rotate(-4.5deg) translate(-16px, 20px);
+    transform: rotate(1.5deg) translate(8px, -10px);
   }
   100% {
-    transform: rotate(-6deg) translate(0px, 0px);
+    transform: rotate(-3deg) translate(-6px, 8px);
   }
 }
 
