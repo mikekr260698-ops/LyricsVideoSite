@@ -422,21 +422,21 @@
   "hooligan": {
     "title": "MISSYRIGHT — Полюбила хулигана",
     "pill": {
-      "en": "LYRICS VIDEO 4K",
-      "ro": "LYRICS VIDEO 4K",
-      "ru": "LYRICS ВИДЕО 4K"
+      "en": "FULL RELEASE 4K",
+      "ro": "FULL RELEASE 4K",
+      "ru": "FULL RELEASE 4K"
     },
-    "badge": "LYRICS VIDEO 4K",
-    "subtitle": "Lyrics Video 4K Master",
-    "img": "",
-    "bannerImg": "",
-    "videoSrc": "assets/videos/video_young_queen.mp4",
+    "badge": "FULL RELEASE",
+    "subtitle": "Lyrics Video + Cover Suite",
+    "img": "assets/covers/cover_hooligan.jpg",
+    "bannerImg": "assets/banners/banner_hooligan.jpg",
+    "videoSrc": "assets/videos/video_hooligan.mp4",
     "videoPoster": "assets/videos/posters/video_hooligan_poster.jpg",
     "isVideo": true,
-    "package": "lyrics",
-    "placement": "video",
+    "package": "full",
+    "placement": "both",
     "inVideo": true,
-    "inCovers": false,
+    "inCovers": true,
     "specs": {
       "en": [
         "4K UHD (3840 × 2160 px) cinematic aspect ratio 2.39:1",

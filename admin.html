@@ -1735,6 +1735,7 @@
         { label: 'MISSYRIGHT — Young Queen (1080p Master)', value: 'assets/videos/video_young_queen.mp4', preview: 'assets/videos/posters/video_young_queen_poster.jpg' },
         { label: 'CIORNIY — Iubirea e o boală grea (1080p Master)', value: 'assets/videos/video_ciorniy.mp4', preview: 'assets/videos/posters/video_ciorniy_poster.jpg' },
         { label: 'MOOSTAF — Отпускаю (1080p Master)', value: 'assets/videos/video_moostaf.mp4', preview: 'assets/videos/posters/video_moostaf_poster.jpg' },
+        { label: 'MISSYRIGHT — Полюбила хулигана (1080p Master)', value: 'assets/videos/video_hooligan.mp4', preview: 'assets/videos/posters/video_hooligan_poster.jpg' },
         { label: 'JENIKA — Altcineva (HD Master)', value: 'assets/videos/video_jenika.mp4', preview: 'assets/videos/posters/video_jenika_poster.jpg' },
         { label: 'ORI BLAZE — Când stelele respiră (1080p)', value: 'assets/videos/video_ori_blaze.mp4', preview: 'assets/videos/posters/video_ori_blaze_poster.jpg' }
       ],
@@ -1759,6 +1760,7 @@
         { label: 'Cover: Laureall — Pa Pa', value: 'assets/covers/cover_laureall.jpg', preview: 'assets/covers/thumbs/cover_laureall.jpg' },
         { label: 'Cover: CIORNIY — Doar ea', value: 'assets/covers/cover_ciorniy.jpg', preview: 'assets/covers/thumbs/cover_ciorniy.jpg' },
         { label: 'Cover: MISSYRIGHT — Young Queen', value: 'assets/covers/cover_young_queen.jpg', preview: 'assets/covers/thumbs/cover_young_queen.jpg' },
+        { label: 'Cover: MISSYRIGHT — Полюбила хулигана', value: 'assets/covers/cover_hooligan.jpg', preview: 'assets/covers/thumbs/cover_hooligan.jpg' },
         { label: 'Cover: JENIKA — Altcineva', value: 'assets/covers/cover_jenika.jpg', preview: 'assets/covers/thumbs/cover_jenika.jpg' },
         { label: 'Cover: SILVIKA — ZERO', value: 'assets/covers/cover_silvika.jpg', preview: 'assets/covers/thumbs/cover_silvika.jpg' }
       ],
@@ -1769,7 +1771,8 @@
         { label: 'Suite: CIORNIY — Iubirea e o boală grea (Reels + YT)', value: 'assets/banners/banner_ciorniy.jpg', preview: 'assets/banners/banner_ciorniy.jpg' },
         { label: 'Suite: CIORNIY — Doar ea (YT Cover + Reels)', value: 'assets/banners/banner_ciorniy_doar_ea.jpg', preview: 'assets/banners/banner_ciorniy_doar_ea.jpg' },
         { label: 'Suite: JENIKA — Altcineva (Reels + YT Cover)', value: 'assets/banners/banner_jenika.jpg', preview: 'assets/banners/banner_jenika.jpg' },
-        { label: 'Suite: MISSYRIGHT — Young Queen (YT Cover + Reels)', value: 'assets/banners/banner_young_queen.jpg', preview: 'assets/banners/banner_young_queen.jpg' }
+        { label: 'Suite: MISSYRIGHT — Young Queen (YT Cover + Reels)', value: 'assets/banners/banner_young_queen.jpg', preview: 'assets/banners/banner_young_queen.jpg' },
+        { label: 'Suite: MISSYRIGHT — Полюбила хулигана (YT + Reels)', value: 'assets/banners/banner_hooligan.jpg', preview: 'assets/banners/banner_hooligan.jpg' }
       ]
     };
 
@@ -2012,11 +2015,15 @@
         workingProjects.skolko_stoit.placement = 'video';
       }
       if (workingProjects.hooligan) {
+        workingProjects.hooligan.title = 'MISSYRIGHT — Полюбила хулигана';
+        workingProjects.hooligan.videoSrc = 'assets/videos/video_hooligan.mp4';
         workingProjects.hooligan.videoPoster = 'assets/videos/posters/video_hooligan_poster.jpg';
-        workingProjects.hooligan.img = '';
+        workingProjects.hooligan.img = 'assets/covers/cover_hooligan.jpg';
+        workingProjects.hooligan.bannerImg = 'assets/banners/banner_hooligan.jpg';
         workingProjects.hooligan.inVideo = true;
-        workingProjects.hooligan.inCovers = false;
-        workingProjects.hooligan.placement = 'video';
+        workingProjects.hooligan.inCovers = true;
+        workingProjects.hooligan.placement = 'both';
+        workingProjects.hooligan.package = 'full';
       }
       ['silvika_video', 'jenika_video', 'ribz_video', 'laureall_video', 'young_queen_video', 'parabellum_video', 'na_krasivom_video', 'skoliko_stout_boli'].forEach(k => {
         delete workingProjects[k];

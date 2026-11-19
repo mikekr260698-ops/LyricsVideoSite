@@ -949,18 +949,18 @@ const projectsData = {
   },
   hooligan: {
     title: "MISSYRIGHT — Полюбила хулигана",
-    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
-    badge: "LYRICS VIDEO 4K",
-    subtitle: "Lyrics Video 4K Master",
-    img: "",
-    bannerImg: "",
-    videoSrc: "assets/videos/video_young_queen.mp4",
+    pill: { en: "FULL RELEASE 4K", ro: "FULL RELEASE 4K", ru: "FULL RELEASE 4K" },
+    badge: "FULL RELEASE",
+    subtitle: "Lyrics Video + Cover Suite",
+    img: "assets/covers/cover_hooligan.jpg",
+    bannerImg: "assets/banners/banner_hooligan.jpg",
+    videoSrc: "assets/videos/video_hooligan.mp4",
     videoPoster: "assets/videos/posters/video_hooligan_poster.jpg",
     isVideo: true,
-    package: "lyrics",
-    placement: "video",
+    package: "full",
+    placement: "both",
     inVideo: true,
-    inCovers: false,
+    inCovers: true,
     specs: {
       en: [
         "4K UHD (3840 × 2160 px) cinematic aspect ratio 2.39:1",
@@ -2030,11 +2030,15 @@ function loadAdminOverrides() {
       projectsData.skolko_stoit.placement = 'video';
     }
     if (projectsData.hooligan) {
+      projectsData.hooligan.title = 'MISSYRIGHT — Полюбила хулигана';
+      projectsData.hooligan.videoSrc = 'assets/videos/video_hooligan.mp4';
       projectsData.hooligan.videoPoster = 'assets/videos/posters/video_hooligan_poster.jpg';
-      projectsData.hooligan.img = '';
+      projectsData.hooligan.img = 'assets/covers/cover_hooligan.jpg';
+      projectsData.hooligan.bannerImg = 'assets/banners/banner_hooligan.jpg';
       projectsData.hooligan.inVideo = true;
-      projectsData.hooligan.inCovers = false;
-      projectsData.hooligan.placement = 'video';
+      projectsData.hooligan.inCovers = true;
+      projectsData.hooligan.placement = 'both';
+      projectsData.hooligan.package = 'full';
     }
 
     // Clean up any legacy mirror keys
