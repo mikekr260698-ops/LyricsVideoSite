@@ -1488,6 +1488,21 @@
           </div>
         </div>
       </div>
+
+      <!-- Saved Theme Templates (Save As) -->
+      <div class="theme-preview-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <span style="font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:#fff;">📦 Template-uri de Culori Salvate (Save As):</span>
+          <button type="button" class="btn-filter" id="btnThemePresetDefault">⭐ Originală (Crimson Dark)</button>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <input type="text" class="form-input" id="newThemeTemplateName" placeholder="Nume template culori (opțional — automat se pune vX • Data & Ora)" style="flex:1; min-width:240px;">
+          <button type="button" class="btn-action" id="btnSaveThemeTemplate" style="background:var(--accent-red); color:#fff; font-weight:700; white-space:nowrap;">💾 Salvează Template Culori</button>
+        </div>
+        <div class="backups-list" id="themeTemplatesList" style="max-height:240px;">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
     </div>
 
     <!-- LAYOUT CONSTRUCTOR SECTION -->
@@ -1495,21 +1510,30 @@
       <div class="hero-banner">
         <div class="hero-text">
           <h1>🧱 Constructor Ordine Blocuri & Miniatură Live</h1>
-          <p>Trage blocurile cu mouse-ul sus/jos (sau folosește săgețile ▲ / ▼) pentru a schimba ordinea secțiunilor pe site. În dreapta vezi <strong>miniatura live a site-ului</strong> actualizată instant! Când e perfect, apasă <strong>Salvează</strong> și <strong>🚀 Publică pe Live (Deploy)</strong>.</p>
+          <p>Trage blocurile cu mouse-ul sus/jos (sau folosește săgețile ▲ / ▼) pentru a schimba ordinea secțiunilor pe site. În dreapta vezi <strong>miniatura live a site-ului</strong> actualizată instant! Poți salva nelimitat <strong>Template-uri</strong> cu nume și dată fără să se suprascrie.</p>
         </div>
         <div class="quick-stats">
           <button type="button" class="btn-action" id="btnResetLayoutOrder">🔄 Ordine Originală</button>
-          <button type="button" class="btn-action" id="btnSaveMyLayout" style="border-color:rgba(59,130,246,0.45); color:#93c5fd;">📌 Salvează ca „Versiunea Mea”</button>
-          <button type="button" class="btn-action btn-save-all" id="btnSaveLayoutLocal">💾 Salvează Ordinea Local</button>
+          <button type="button" class="btn-action btn-save-all" id="btnSaveLayoutLocal">💾 Salvează Ordinea Activă</button>
         </div>
       </div>
 
-      <!-- Layout Presets / Versions Bar -->
-      <div class="admin-filter-bar" style="margin: 0;">
-        <span class="filter-label">📌 Versiuni Salvate:</span>
-        <button type="button" class="btn-filter" id="btnPresetOriginal">⭐ Originală (Clasică)</button>
-        <button type="button" class="btn-filter" id="btnPresetMyLayout">👤 Versiunea Mea Salvata</button>
-        <button type="button" class="btn-filter" id="btnPresetMarketing" style="border-color:rgba(230,25,55,0.45); color:#ff6b81;">🔥 Marketing Maxim (Conversie Mare)</button>
+      <!-- Built-in Permanent Presets + Save As New Template -->
+      <div class="theme-preview-box" style="padding:18px; gap:12px;">
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <span class="filter-label">📌 Template-uri Predefinite (Permanente):</span>
+          <button type="button" class="btn-filter" id="btnPresetOriginal">⭐ Originală (Clasică)</button>
+          <button type="button" class="btn-filter" id="btnPresetMarketing" style="border-color:rgba(230,25,55,0.45); color:#ff6b81;">🔥 Marketing Maxim (Conversie Mare)</button>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; border-top:1px solid var(--border); padding-top:12px;">
+          <input type="text" class="form-input" id="newLayoutTemplateName" placeholder="Nume template nou (opțional — automat se pune vX • Data & Ora)" style="flex:1; min-width:240px;">
+          <button type="button" class="btn-action" id="btnSaveLayoutTemplate" style="background:var(--accent-red); color:#fff; font-weight:700; white-space:nowrap;">💾 Salvează Template Nou (Save As)</button>
+        </div>
+
+        <div class="backups-list" id="layoutTemplatesList" style="max-height:220px;">
+          <!-- Populated dynamically via JS -->
+        </div>
       </div>
 
       <div class="constructor-workspace">
@@ -3558,43 +3582,13 @@
       };
     }
 
-    // Preserve user's current custom arrangement as "Versiunea Mea" if not saved yet
-    if (!localStorage.getItem('av_my_layout') && localStorage.getItem('av_site_layout')) {
-      localStorage.setItem('av_my_layout', localStorage.getItem('av_site_layout'));
-    }
-
-    const btnSaveMyLayout = document.getElementById('btnSaveMyLayout');
-    if (btnSaveMyLayout) {
-      btnSaveMyLayout.onclick = () => {
-        localStorage.setItem('av_my_layout', JSON.stringify(workingLayout));
-        showToast('📌 Ordinea curentă a fost salvată ca „Versiunea Mea”!');
-      };
-    }
-
     const btnPresetOriginal = document.getElementById('btnPresetOriginal');
     if (btnPresetOriginal) {
       btnPresetOriginal.onclick = () => {
         workingLayout = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
         renderLayoutBlocks();
         syncMiniaturePreview();
-        showToast('⭐ S-a încărcat Versiunea Originală!');
-      };
-    }
-
-    const btnPresetMyLayout = document.getElementById('btnPresetMyLayout');
-    if (btnPresetMyLayout) {
-      btnPresetMyLayout.onclick = () => {
-        const savedMy = localStorage.getItem('av_my_layout');
-        if (!savedMy) {
-          showToast('Nu ai salvat încă o versiune personală. Apasă „Salvează ca Versiunea Mea” mai întâi!', false);
-          return;
-        }
-        try {
-          workingLayout = JSON.parse(savedMy);
-          renderLayoutBlocks();
-          syncMiniaturePreview();
-          showToast('👤 S-a încărcat „Versiunea Mea Salvata”!');
-        } catch (e) {}
+        showToast('⭐ S-a încărcat Template-ul Original (Clasic)!');
       };
     }
 
@@ -3604,9 +3598,214 @@
         workingLayout = JSON.parse(JSON.stringify(MARKETING_LAYOUT));
         renderLayoutBlocks();
         syncMiniaturePreview();
-        showToast('🔥 S-a aplicat structura de Marketing Maxim (Hero → Portofoliu → Recenzii → Info → Pachete → FAQ → CTA)!', true);
+        showToast('🔥 S-a aplicat Template-ul Marketing Maxim!', true);
       };
     }
+
+    // =========================================================================
+    // LAYOUT SAVED TEMPLATES (UNLIMITED SAVE AS WITH AUTO VERSION & DATE/TIME)
+    // =========================================================================
+    function getLayoutTemplates() {
+      try {
+        const raw = localStorage.getItem('av_layout_templates');
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+
+      const initial = [];
+      // Migrate old single av_my_layout if user had saved one earlier
+      try {
+        const oldMy = localStorage.getItem('av_my_layout');
+        if (oldMy) {
+          initial.push({
+            id: 'ltpl_' + Date.now(),
+            name: 'Versiunea Mea v1 — ' + getFormattedDate(),
+            dateStr: getFormattedDate(),
+            layout: JSON.parse(oldMy)
+          });
+          localStorage.setItem('av_layout_templates', JSON.stringify(initial));
+        }
+      } catch (e) {}
+      return initial;
+    }
+
+    function renderLayoutTemplates() {
+      const container = document.getElementById('layoutTemplatesList');
+      if (!container) return;
+      const list = getLayoutTemplates();
+      if (list.length === 0) {
+        container.innerHTML = '<div style="font-size:0.78rem; color:var(--text-muted); padding:8px 2px;">Niciun template personal salvat încă. Apasă „Salvează Template Nou (Save As)” ca să salvezi ordinea curentă!</div>';
+        return;
+      }
+
+      container.innerHTML = list.map(tpl => `
+        <div class="backup-item-card" style="padding:10px 14px;">
+          <div class="backup-info">
+            <div class="backup-title-row">
+              <span class="backup-name" style="font-size:0.86rem;">🧱 ${tpl.name}</span>
+              <span class="backup-tag tag-manual">TEMPLATE</span>
+            </div>
+            <div class="backup-meta">
+              <span>🕒 ${tpl.dateStr}</span>
+              <span>${tpl.layout.map(x => x.id).join(' → ')}</span>
+            </div>
+          </div>
+          <div class="backup-actions">
+            <button type="button" class="btn-restore-backup btn-apply-ltpl" data-id="${tpl.id}">✓ Aplică</button>
+            <button type="button" class="btn-delete-backup btn-del-ltpl" data-id="${tpl.id}" title="Șterge template">🗑️</button>
+          </div>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('.btn-apply-ltpl').forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.getAttribute('data-id');
+          const found = getLayoutTemplates().find(x => x.id === id);
+          if (!found) return;
+          workingLayout = JSON.parse(JSON.stringify(found.layout));
+          renderLayoutBlocks();
+          syncMiniaturePreview();
+          showToast(`✓ Template-ul „${found.name}” a fost aplicat!`, true);
+        };
+      });
+
+      container.querySelectorAll('.btn-del-ltpl').forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.getAttribute('data-id');
+          if (confirm('Sigur vrei să ștergi acest template de layout?')) {
+            const next = getLayoutTemplates().filter(x => x.id !== id);
+            localStorage.setItem('av_layout_templates', JSON.stringify(next));
+            renderLayoutTemplates();
+            showToast('Template-ul a fost șters.');
+          }
+        };
+      });
+    }
+
+    const btnSaveLayoutTemplate = document.getElementById('btnSaveLayoutTemplate');
+    const newLayoutTemplateName = document.getElementById('newLayoutTemplateName');
+    if (btnSaveLayoutTemplate) {
+      btnSaveLayoutTemplate.onclick = () => {
+        const list = getLayoutTemplates();
+        const dateStr = getFormattedDate();
+        const customName = newLayoutTemplateName ? newLayoutTemplateName.value.trim() : '';
+        const finalName = customName || `Versiunea ${list.length + 1} — ${dateStr}`;
+
+        list.unshift({
+          id: 'ltpl_' + Date.now(),
+          name: finalName,
+          dateStr: dateStr,
+          layout: JSON.parse(JSON.stringify(workingLayout))
+        });
+        localStorage.setItem('av_layout_templates', JSON.stringify(list));
+        if (newLayoutTemplateName) newLayoutTemplateName.value = '';
+        renderLayoutTemplates();
+        showToast(`💾 Template-ul „${finalName}” a fost salvat!`, true);
+      };
+    }
+
+    // =========================================================================
+    // THEME SAVED TEMPLATES (UNLIMITED SAVE AS WITH AUTO VERSION & DATE/TIME)
+    // =========================================================================
+    function getThemeTemplates() {
+      try {
+        const raw = localStorage.getItem('av_theme_templates');
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return [];
+    }
+
+    function renderThemeTemplates() {
+      const container = document.getElementById('themeTemplatesList');
+      if (!container) return;
+      const list = getThemeTemplates();
+      if (list.length === 0) {
+        container.innerHTML = '<div style="font-size:0.78rem; color:var(--text-muted); padding:8px 2px;">Niciun template de culori salvat încă. Alege culorile dorite și apasă „Salvează Template Culori”!</div>';
+        return;
+      }
+
+      container.innerHTML = list.map(tpl => `
+        <div class="backup-item-card" style="padding:10px 14px;">
+          <div class="backup-info">
+            <div class="backup-title-row">
+              <span style="display:inline-flex; gap:4px; align-items:center;">
+                <span style="width:14px;height:14px;border-radius:50%;background:${tpl.theme.accentRed};border:1px solid rgba(255,255,255,0.3);display:inline-block;"></span>
+                <span style="width:14px;height:14px;border-radius:50%;background:${tpl.theme.bgDark};border:1px solid rgba(255,255,255,0.3);display:inline-block;"></span>
+                <span style="width:14px;height:14px;border-radius:50%;background:${tpl.theme.bgCard};border:1px solid rgba(255,255,255,0.3);display:inline-block;"></span>
+              </span>
+              <span class="backup-name" style="font-size:0.86rem;">${tpl.name}</span>
+              <span class="backup-tag tag-manual">TEMA</span>
+            </div>
+            <div class="backup-meta">
+              <span>🕒 ${tpl.dateStr}</span>
+              <span>Accent: <strong>${tpl.theme.accentRed}</strong></span>
+            </div>
+          </div>
+          <div class="backup-actions">
+            <button type="button" class="btn-restore-backup btn-apply-ttpl" data-id="${tpl.id}">✓ Aplică</button>
+            <button type="button" class="btn-delete-backup btn-del-ttpl" data-id="${tpl.id}" title="Șterge template">🗑️</button>
+          </div>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('.btn-apply-ttpl').forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.getAttribute('data-id');
+          const found = getThemeTemplates().find(x => x.id === id);
+          if (!found) return;
+          workingTheme = Object.assign({}, DEFAULT_THEME, found.theme);
+          localStorage.setItem('av_site_theme', JSON.stringify(workingTheme));
+          syncThemeInputsAndPreview();
+          showToast(`🎨 Template-ul de culori „${found.name}” a fost aplicat!`, true);
+        };
+      });
+
+      container.querySelectorAll('.btn-del-ttpl').forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.getAttribute('data-id');
+          if (confirm('Sigur vrei să ștergi acest template de culori?')) {
+            const next = getThemeTemplates().filter(x => x.id !== id);
+            localStorage.setItem('av_theme_templates', JSON.stringify(next));
+            renderThemeTemplates();
+            showToast('Template-ul de culori a fost șters.');
+          }
+        };
+      });
+    }
+
+    const btnThemePresetDefault = document.getElementById('btnThemePresetDefault');
+    if (btnThemePresetDefault) {
+      btnThemePresetDefault.onclick = () => {
+        workingTheme = Object.assign({}, DEFAULT_THEME);
+        localStorage.setItem('av_site_theme', JSON.stringify(workingTheme));
+        syncThemeInputsAndPreview();
+        showToast('⭐ S-a aplicat Tema Originală (Crimson Dark)!');
+      };
+    }
+
+    const btnSaveThemeTemplate = document.getElementById('btnSaveThemeTemplate');
+    const newThemeTemplateName = document.getElementById('newThemeTemplateName');
+    if (btnSaveThemeTemplate) {
+      btnSaveThemeTemplate.onclick = () => {
+        const list = getThemeTemplates();
+        const dateStr = getFormattedDate();
+        const customName = newThemeTemplateName ? newThemeTemplateName.value.trim() : '';
+        const finalName = customName || `Tema v${list.length + 1} — ${dateStr}`;
+
+        list.unshift({
+          id: 'ttpl_' + Date.now(),
+          name: finalName,
+          dateStr: dateStr,
+          theme: Object.assign({}, workingTheme)
+        });
+        localStorage.setItem('av_theme_templates', JSON.stringify(list));
+        if (newThemeTemplateName) newThemeTemplateName.value = '';
+        renderThemeTemplates();
+        showToast(`💾 Template-ul „${finalName}” a fost salvat!`, true);
+      };
+    }
+
+    renderLayoutTemplates();
+    renderThemeTemplates();
 
     loadWorkingLayout();
     loadWorkingTheme();
