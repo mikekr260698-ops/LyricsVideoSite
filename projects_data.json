@@ -9,11 +9,11 @@
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
     "img": "assets/covers/cover_parabellum.jpg",
-    "bannerImg": "assets/banners/banner_moostaf.jpg",
+    "bannerImg": "",
     "videoSrc": "assets/videos/video_parabellum.mp4",
     "videoPoster": "assets/videos/posters/video_parabellum_poster.jpg",
     "isVideo": false,
-    "package": "full",
+    "package": "cover",
     "placement": "both",
     "inVideo": true,
     "inCovers": true,
@@ -44,9 +44,9 @@
   "na_krasivom": {
     "title": "На красивом",
     "pill": {
-      "en": "FULL RELEASE",
-      "ro": "FULL RELEASE",
-      "ru": "FULL RELEASE"
+      "en": "COVER ARTWORK 3000 × 3000 PX",
+      "ro": "COVER ARTWORK 3000 × 3000 PX",
+      "ru": "ОБЛОЖКА 3000 × 3000 PX"
     },
     "badge": "FULL RELEASE",
     "subtitle": "Lyrics Video + Cover Suite",
@@ -55,7 +55,7 @@
     "videoSrc": "assets/videos/video_na_krasivom.mp4",
     "videoPoster": "assets/videos/posters/video_na_krasivom_poster.jpg",
     "isVideo": false,
-    "package": "full",
+    "package": "cover",
     "placement": "both",
     "inVideo": true,
     "inCovers": true,
@@ -128,9 +128,9 @@
   "laureall": {
     "title": "Laureall — Pa Pa",
     "pill": {
-      "en": "COVER ARTWORK 3000 × 3000 PX",
-      "ro": "COVER ARTWORK 3000 × 3000 PX",
-      "ru": "ОБЛОЖКА 3000 × 3000 PX"
+      "en": "COVER ART",
+      "ro": "COVER ART",
+      "ru": "COVER ART"
     },
     "badge": "COVER ART",
     "subtitle": "Single Cover 3000×3000 px",
@@ -177,7 +177,7 @@
     "badge": "COVER ART",
     "subtitle": "Single Cover 3000×3000 px",
     "img": "assets/covers/cover_silvika.jpg",
-    "bannerImg": "assets/banners/banner_na_krasivom.jpg",
+    "bannerImg": "",
     "videoSrc": "",
     "videoPoster": "",
     "isVideo": false,
@@ -212,21 +212,21 @@
   "ciorniy": {
     "title": "CIORNIY — Doar ea",
     "pill": {
-      "en": "LYRICS VIDEO 4K",
-      "ro": "LYRICS VIDEO 4K",
-      "ru": "LYRICS ВИДЕО 4K"
+      "en": "COVER ARTWORK 3000 × 3000 PX",
+      "ro": "COVER ARTWORK 3000 × 3000 PX",
+      "ru": "ОБЛОЖКА 3000 × 3000 PX"
     },
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
-    "img": "assets/covers/cover_ciorniy.jpg",
+    "img": "",
     "bannerImg": "assets/banners/banner_ciorniy.jpg",
     "videoSrc": "assets/videos/video_ciorniy.mp4",
     "videoPoster": "assets/videos/posters/video_ciorniy_poster.jpg",
-    "isVideo": true,
-    "package": "full",
-    "placement": "both",
+    "isVideo": false,
+    "package": "cover",
+    "placement": "video",
     "inVideo": true,
-    "inCovers": true,
+    "inCovers": false,
     "specs": {
       "en": [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -254,18 +254,18 @@
   "young_queen": {
     "title": "MISSYRIGHT — Young Queen",
     "pill": {
-      "en": "LYRICS VIDEO 4K",
-      "ro": "LYRICS VIDEO 4K",
-      "ru": "LYRICS ВИДЕО 4K"
+      "en": "COVER ARTWORK 3000 × 3000 PX",
+      "ro": "COVER ARTWORK 3000 × 3000 PX",
+      "ru": "ОБЛОЖКА 3000 × 3000 PX"
     },
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
     "img": "assets/covers/cover_young_queen.jpg",
-    "bannerImg": "assets/banners/banner_ciorniy.jpg",
+    "bannerImg": "",
     "videoSrc": "assets/videos/video_young_queen.mp4",
     "videoPoster": "assets/videos/posters/video_young_queen_poster.jpg",
-    "isVideo": true,
-    "package": "full",
+    "isVideo": false,
+    "package": "cover",
     "placement": "both",
     "inVideo": true,
     "inCovers": true,
@@ -296,18 +296,18 @@
   "jenika": {
     "title": "JENIKA — Altcineva",
     "pill": {
-      "en": "FULL RELEASE",
-      "ro": "FULL RELEASE",
-      "ru": "FULL RELEASE"
+      "en": "COVER ARTWORK 3000 × 3000 PX",
+      "ro": "COVER ARTWORK 3000 × 3000 PX",
+      "ru": "ОБЛОЖКА 3000 × 3000 PX"
     },
     "badge": "FULL RELEASE",
-    "subtitle": "Cover Art + Promo Suite",
+    "subtitle": "Lyrics Video + Cover Suite",
     "img": "assets/covers/cover_jenika.jpg",
     "bannerImg": "assets/banners/banner_jenika.jpg",
     "videoSrc": "",
     "videoPoster": "",
     "isVideo": false,
-    "package": "full",
+    "package": "cover",
     "placement": "cover",
     "inVideo": false,
     "inCovers": true,
@@ -344,7 +344,7 @@
     },
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
-    "img": "assets/covers/cover_silvika.jpg",
+    "img": "",
     "bannerImg": "assets/banners/banner_moostaf.jpg",
     "videoSrc": "assets/videos/video_moostaf.mp4",
     "videoPoster": "assets/videos/posters/video_moostaf_poster.jpg",
@@ -387,9 +387,9 @@
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
     "img": "assets/covers/cover_parabellum.jpg",
-    "bannerImg": "assets/banners/banner_moostaf.jpg",
+    "bannerImg": "",
     "videoSrc": "assets/videos/video_parabellum.mp4",
-    "videoPoster": "assets/videos/posters/video_skolko_stoit_poster.jpg",
+    "videoPoster": "assets/videos/posters/video_parabellum_poster.jpg",
     "isVideo": true,
     "package": "lyrics",
     "placement": "video",
@@ -428,8 +428,8 @@
     },
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
-    "img": "assets/covers/cover_young_queen.jpg",
-    "bannerImg": "assets/banners/banner_ciorniy.jpg",
+    "img": "",
+    "bannerImg": "",
     "videoSrc": "assets/videos/video_young_queen.mp4",
     "videoPoster": "assets/videos/posters/video_hooligan_poster.jpg",
     "isVideo": true,
@@ -462,18 +462,18 @@
     }
   },
   "silvika_video": {
-    "title": "MOOSTAF — Отпускаю",
+    "title": "SILVIKA — ZERO (4K Lyrics Video)",
     "pill": {
-      "en": "LYRICS VIDEO 4K",
-      "ro": "LYRICS VIDEO 4K",
-      "ru": "LYRICS ВИДЕО 4K"
+      "en": "4K CINEMATIC LYRICS VIDEO",
+      "ro": "4K CINEMATIC LYRICS VIDEO",
+      "ru": "4K CINEMATIC LYRICS ВИДЕО"
     },
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
     "img": "assets/covers/cover_silvika.jpg",
-    "bannerImg": "assets/banners/banner_moostaf.jpg",
-    "videoSrc": "assets/videos/video_moostaf.mp4",
-    "videoPoster": "assets/videos/posters/video_moostaf_poster.jpg",
+    "bannerImg": "",
+    "videoSrc": "",
+    "videoPoster": "",
     "isVideo": true,
     "package": "lyrics",
     "specs": {
@@ -498,23 +498,26 @@
         "Включает 16:9 для YouTube и вертикальный 9:16 луп для Spotify Canvas",
         "Полный монтаж и рендеринг в ProRes / H.264"
       ]
-    }
+    },
+    "inVideo": false,
+    "inCovers": true,
+    "placement": "cover"
   },
   "jenika_video": {
-    "title": "JENIKA — Altcineva",
+    "title": "JENIKA — Altcineva (4K Visualizer)",
     "pill": {
-      "en": "FULL RELEASE",
-      "ro": "FULL RELEASE",
-      "ru": "FULL RELEASE"
+      "en": "4K OFFICIAL VISUALIZER",
+      "ro": "4K VIZUALIZER OFICIAL",
+      "ru": "4K ОФИЦИАЛЬНЫЙ ВИЗУАЛИЗАТОР"
     },
     "badge": "FULL RELEASE",
     "subtitle": "Lyrics Video + Cover Suite",
     "img": "assets/covers/cover_jenika.jpg",
     "bannerImg": "assets/banners/banner_jenika.jpg",
-    "videoSrc": "assets/videos/video_ori_blaze.mp4",
-    "videoPoster": "assets/videos/posters/video_ori_blaze_poster.jpg",
+    "videoSrc": "",
+    "videoPoster": "",
     "isVideo": true,
-    "package": "full",
+    "package": "lyrics",
     "specs": {
       "en": [
         "4K UHD (3840 × 2160 px) smooth motion visualizer",
@@ -537,18 +540,21 @@
         "Оптимизировано под максимальный битрейт YouTube 4K",
         "Включает вертикальные сниппеты для сторис и рилс"
       ]
-    }
+    },
+    "inVideo": false,
+    "inCovers": true,
+    "placement": "cover"
   },
   "ciorniy_video": {
-    "title": "CIORNIY — Iubirea e o boală grea",
+    "title": "CIORNIY — Doar ea (Mood Lyrics Motion)",
     "pill": {
-      "en": "LYRICS VIDEO 4K",
-      "ro": "LYRICS VIDEO 4K",
-      "ru": "LYRICS ВИДЕО 4K"
+      "en": "LYRICS MOTION 4K",
+      "ro": "LYRICS MOTION 4K",
+      "ru": "LYRICS MOTION 4K"
     },
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
-    "img": "assets/covers/cover_ciorniy.jpg",
+    "img": "",
     "bannerImg": "assets/banners/banner_ciorniy.jpg",
     "videoSrc": "assets/videos/video_ciorniy.mp4",
     "videoPoster": "assets/videos/posters/video_ciorniy_poster.jpg",
@@ -576,21 +582,24 @@
         "Вертикальная версия 9:16 для Reels и Shorts в комплекте",
         "Готово к моментальной публикации на YouTube"
       ]
-    }
+    },
+    "inVideo": true,
+    "inCovers": false,
+    "placement": "video"
   },
   "ribz_video": {
-    "title": "Si vis pacem — Сколько стоит боль?",
+    "title": "Ribz ft Conway The Machine — Legend Like Kareem",
     "pill": {
-      "en": "LYRICS VIDEO 4K",
-      "ro": "LYRICS VIDEO 4K",
-      "ru": "LYRICS ВИДЕО 4K"
+      "en": "STREET VISUALIZER 4K",
+      "ro": "STREET VISUALIZER 4K",
+      "ru": "STREET ВИЗУАЛИЗАТОР 4K"
     },
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
     "img": "assets/covers/cover_ribz.jpg",
-    "bannerImg": "assets/banners/banner_moostaf.jpg",
+    "bannerImg": "",
     "videoSrc": "assets/videos/video_moostaf.mp4",
-    "videoPoster": "assets/videos/posters/video_skolko_stoit_poster.jpg",
+    "videoPoster": "assets/videos/posters/video_moostaf_poster.jpg",
     "isVideo": true,
     "package": "lyrics",
     "specs": {
@@ -615,21 +624,24 @@
         "Широкоформатная версия 16:9 + вертикальные промо-ролики",
         "Экспресс-монтаж и адаптация под все площадки"
       ]
-    }
+    },
+    "inVideo": true,
+    "inCovers": false,
+    "placement": "video"
   },
   "laureall_video": {
-    "title": "MISSYRIGHT — Полюбила хулигана",
+    "title": "Laureall — Pa Pa (Neon Lyrics 4K)",
     "pill": {
-      "en": "LYRICS VIDEO 4K",
-      "ro": "LYRICS VIDEO 4K",
-      "ru": "LYRICS ВИДЕО 4K"
+      "en": "COVER ART",
+      "ro": "COVER ART",
+      "ru": "COVER ART"
     },
-    "badge": "LYRICS VIDEO 4K",
+    "badge": "COVER ART",
     "subtitle": "Lyrics Video 4K Master",
     "img": "assets/covers/cover_laureall.jpg",
-    "bannerImg": "assets/banners/banner_jenika.jpg",
-    "videoSrc": "assets/videos/video_young_queen.mp4",
-    "videoPoster": "assets/videos/posters/video_hooligan_poster.jpg",
+    "bannerImg": "",
+    "videoSrc": "",
+    "videoPoster": "",
     "isVideo": true,
     "package": "lyrics",
     "specs": {
@@ -654,19 +666,22 @@
         "Комплект 16:9 для YouTube + вертикальное 9:16 для TikTok и Reels",
         "Приоритетный рендеринг и гарантия качества"
       ]
-    }
+    },
+    "inVideo": false,
+    "inCovers": true,
+    "placement": "cover"
   },
   "young_queen_video": {
-    "title": "MISSYRIGHT — Young Queen",
+    "title": "MISSYRIGHT — Young Queen (Trap Visualizer)",
     "pill": {
-      "en": "LYRICS VIDEO 4K",
-      "ro": "LYRICS VIDEO 4K",
-      "ru": "LYRICS ВИДЕО 4K"
+      "en": "TRAP MOTION VISUALIZER",
+      "ro": "TRAP MOTION VISUALIZER",
+      "ru": "TRAP ВИЗУАЛИЗАТОР 4K"
     },
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
     "img": "assets/covers/cover_young_queen.jpg",
-    "bannerImg": "assets/banners/banner_ciorniy.jpg",
+    "bannerImg": "",
     "videoSrc": "assets/videos/video_young_queen.mp4",
     "videoPoster": "assets/videos/posters/video_young_queen_poster.jpg",
     "isVideo": true,
@@ -693,19 +708,22 @@
         "Полный комплект: 16:9 для YouTube и 9:16 для Reels/TikTok",
         "Экспорт в 60 FPS для максимальной плавности на экранах"
       ]
-    }
+    },
+    "inVideo": true,
+    "inCovers": true,
+    "placement": "both"
   },
   "parabellum_video": {
-    "title": "Si vis pacem Parabellum",
+    "title": "Si vis pacem Parabellum (Noir Visualizer)",
     "pill": {
-      "en": "LYRICS VIDEO 4K",
-      "ro": "LYRICS VIDEO 4K",
-      "ru": "LYRICS ВИДЕО 4K"
+      "en": "NOIR VISUALIZER 4K",
+      "ro": "NOIR VISUALIZER 4K",
+      "ru": "НУАР ВИЗУАЛИЗАТОР 4K"
     },
     "badge": "LYRICS VIDEO 4K",
     "subtitle": "Lyrics Video 4K Master",
     "img": "assets/covers/cover_parabellum.jpg",
-    "bannerImg": "assets/banners/banner_moostaf.jpg",
+    "bannerImg": "",
     "videoSrc": "assets/videos/video_parabellum.mp4",
     "videoPoster": "assets/videos/posters/video_parabellum_poster.jpg",
     "isVideo": true,
@@ -732,14 +750,17 @@
         "Полный набор для YouTube, Spotify Canvas и тизеров в соцсетях",
         "Мастер-файл максимального битрейта для безупречной картинки"
       ]
-    }
+    },
+    "inVideo": true,
+    "inCovers": true,
+    "placement": "both"
   },
   "na_krasivom_video": {
-    "title": "IRAVELLE feat Andrei Green — На красивом",
+    "title": "На красивом (Full Pack Lyrics & Visualizer)",
     "pill": {
-      "en": "FULL RELEASE",
-      "ro": "FULL RELEASE",
-      "ru": "FULL RELEASE"
+      "en": "FULL PACK RELEASE 4K",
+      "ro": "FULL PACK RELEASE 4K",
+      "ru": "ПОЛНЫЙ ПАКЕТ 4K"
     },
     "badge": "FULL RELEASE",
     "subtitle": "Lyrics Video + Cover Suite",
@@ -770,6 +791,52 @@
         "Точная синхронизация текста на куплетах и припевах",
         "Атмосферное алое клубное свечение и стильная цветокоррекция",
         "Сдача под ключ с консультацией по загрузке на дистрибьютор"
+      ]
+    },
+    "inVideo": true,
+    "inCovers": true,
+    "placement": "both"
+  },
+  "skoliko_stout_boli": {
+    "title": {
+      "ro": "Proiect Nou",
+      "ru": "Proiect Nou",
+      "en": "Proiect Nou"
+    },
+    "subtitle": {
+      "ro": "Visuals Release",
+      "ru": "Visuals Release",
+      "en": "Visuals Release"
+    },
+    "package": "lyrics",
+    "inVideo": true,
+    "inCovers": false,
+    "placement": "video",
+    "pill": {
+      "ro": "PORTFOLIO CASE",
+      "ru": "КЕЙС",
+      "en": "PORTFOLIO CASE"
+    },
+    "img": "",
+    "thumb": "",
+    "videoSrc": "assets/videos/video_parabellum.mp4",
+    "videoPoster": "assets/videos/posters/video_skolko_stoit_poster.jpg",
+    "bannerImg": "",
+    "specs": {
+      "ro": [
+        "Format Master 4K / 3000px",
+        "Design Custom realizat de la zero",
+        "Gata de distribuție pe platforme"
+      ],
+      "ru": [
+        "Мастер формат 4K / 3000px",
+        "Индивидуальный дизайн с нуля",
+        "Готово к публикации"
+      ],
+      "en": [
+        "Master 4K / 3000px Format",
+        "Custom Design Crafted from Scratch",
+        "Ready for Digital Distribution"
       ]
     }
   }
