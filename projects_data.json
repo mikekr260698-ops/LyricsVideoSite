@@ -216,17 +216,17 @@
       "ro": "COVER ARTWORK 3000 × 3000 PX",
       "ru": "ОБЛОЖКА 3000 × 3000 PX"
     },
-    "badge": "LYRICS VIDEO 4K",
-    "subtitle": "Lyrics Video 4K Master",
-    "img": "",
-    "bannerImg": "assets/banners/banner_ciorniy.jpg",
-    "videoSrc": "assets/videos/video_ciorniy.mp4",
-    "videoPoster": "assets/videos/posters/video_ciorniy_poster.jpg",
+    "badge": "COVER ART",
+    "subtitle": "Cover 3000×3000 + YT & Reels",
+    "img": "assets/covers/cover_ciorniy.jpg",
+    "bannerImg": "assets/banners/banner_ciorniy_doar_ea.jpg",
+    "videoSrc": "",
+    "videoPoster": "",
     "isVideo": false,
     "package": "cover",
-    "placement": "video",
-    "inVideo": true,
-    "inCovers": false,
+    "placement": "cover",
+    "inVideo": false,
+    "inCovers": true,
     "specs": {
       "en": [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -546,7 +546,7 @@
     "placement": "cover"
   },
   "ciorniy_video": {
-    "title": "CIORNIY — Doar ea (Mood Lyrics Motion)",
+    "title": "CIORNIY — Iubirea e o boală grea",
     "pill": {
       "en": "LYRICS MOTION 4K",
       "ro": "LYRICS MOTION 4K",
