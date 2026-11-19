@@ -636,6 +636,123 @@
       color: #fff;
     }
 
+    /* Backups Modal & History Cards */
+    .backups-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 440px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .backup-item-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.2s ease;
+    }
+    .backup-item-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    .backup-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .backup-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .backup-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+    .backup-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .backup-tag.tag-deploy {
+      background: rgba(0, 210, 106, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(0, 210, 106, 0.3);
+    }
+    .backup-tag.tag-manual {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    .backup-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .backup-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .btn-restore-backup {
+      background: rgba(0, 210, 106, 0.15);
+      border: 1px solid rgba(0, 210, 106, 0.35);
+      color: #4ade80;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-restore-backup:hover {
+      background: #00d26a;
+      color: #000;
+    }
+    .btn-download-single-backup {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      font-size: 0.75rem;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-download-single-backup:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .btn-delete-backup {
+      background: transparent;
+      border: 1px solid rgba(255, 71, 87, 0.25);
+      color: #ff4757;
+      font-size: 0.75rem;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-delete-backup:hover {
+      background: #ff4757;
+      color: #fff;
+    }
+
     /* Media Edit Blocks */
     .media-fields {
       display: flex;
@@ -915,6 +1032,9 @@
       <button class="btn-action btn-deploy-live" id="btnDeployLive" style="background: linear-gradient(135deg, #00d26a, #00a854); color:#fff; font-weight:800; border:none; box-shadow:0 0 16px rgba(0,210,106,0.35); cursor:pointer;">
         <span>🚀 Publică pe Live (Deploy)</span>
       </button>
+      <button class="btn-action" id="btnOpenBackupsModal" style="border-color: rgba(59, 130, 246, 0.45); color: #60a5fa; font-weight:700;">
+        <span>📦 Backup-uri (<span id="navBackupCount">0</span>)</span>
+      </button>
       <button class="btn-action btn-save-all" id="btnSaveAll">
         <span>💾 Salvează Local</span>
       </button>
@@ -939,6 +1059,7 @@
       </div>
       <div class="quick-stats">
         <button class="btn-action btn-add-project" id="btnHeroAdd">➕ Adaugă Proiect Nou</button>
+        <button class="btn-action" id="btnHeroBackups" style="border-color:rgba(59,130,246,0.45); color:#93c5fd; font-weight:700;">📦 Backup-uri (<span id="heroBackupCount">0</span>)</button>
         <div class="stat-pill">Total: <span id="statCount">11</span></div>
         <div class="stat-pill" style="border-color:rgba(34,197,94,0.35); color:#4ade80;">👁️ Active: <span id="statActiveCount">11</span></div>
         <div class="stat-pill" style="border-color:rgba(245,158,11,0.35); color:#fbbf24;">🙈 Ascunse: <span id="statHiddenCount">0</span></div>
@@ -1082,6 +1203,52 @@
         <div style="display:flex; gap:10px; margin-left:auto;">
           <button class="btn-action" id="btnCancelDeploy">Anulează</button>
           <button class="btn-action" id="btnConfirmDeploy" style="background:var(--accent-green); color:#fff; font-weight:700;">🚀 Publică Acum</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BACKUPS & VERSION HISTORY MODAL -->
+  <div class="modal-backdrop" id="backupsModal">
+    <div class="modal-box" style="max-width: 740px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="font-family:var(--font-heading); display:flex; align-items:center; gap:8px;">
+          <span>📦</span> Istoric Versiuni & Puncte de Restaurare
+        </h3>
+        <button id="btnCloseBackups" class="btn-action" style="padding:4px 10px;">&times;</button>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5;">
+        Fiecare publicare pe site (Deploy) creează automat un punct de restaurare. Poți crea și versiuni manuale cu nume propriu (Save As), descărca fișiere <code>.json</code> pe calculator sau te poți întoarce la orice versiune anterioară cu 1 singur click!
+      </p>
+
+      <!-- Create New Snapshot / Save As Box -->
+      <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:10px;">
+        <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#fff; letter-spacing:0.04em;">➕ Salvează Versiune Curentă (Save As):</span>
+        <div style="display:flex; gap:10px;">
+          <input type="text" class="form-input" id="newBackupNameInput" placeholder="Nume versiune (ex: Înainte de lansare album) — Opțional" style="flex:1;">
+          <button type="button" class="btn-action" id="btnCreateManualBackup" style="background:var(--accent-red); color:#fff; font-weight:700; white-space:nowrap;">
+            💾 Salvează Punct
+          </button>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:2px;">
+          <button type="button" class="btn-action" id="btnDownloadBackupFile" style="font-size:0.75rem;">
+            ⬇️ Descarcă Backup .json pe Calculator
+          </button>
+          <button type="button" class="btn-action" id="btnTriggerImportFile" style="font-size:0.75rem;">
+            📁 Încarcă Backup din Fișier (.json)
+          </button>
+          <input type="file" id="backupFileInput" accept=".json" style="display:none;">
+        </div>
+      </div>
+
+      <!-- Backups List -->
+      <div style="margin-top:6px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span style="font-size:0.78rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Puncte de Restaurare Salvate:</span>
+          <span style="font-size:0.75rem; color:var(--text-muted);" id="backupListSummary">0 versiuni</span>
+        </div>
+        <div class="backups-list" id="backupsListContainer">
+          <!-- Populated dynamically via JS -->
         </div>
       </div>
     </div>
@@ -1333,6 +1500,7 @@
 
       renderProjectsGrid();
       updateStatsCounters();
+      updateBackupCounters();
       setupUploadTriggers();
       setupAddProjectModal();
       setupFilterBar();
@@ -2218,6 +2386,9 @@
           return;
         }
 
+        // Auto backup point on deploy
+        saveBackup(`[Deploy GitHub] Live — ${getFormattedDate()}`, 'deploy', 'Publicat automat pe GitHub');
+
         const jsonContent = JSON.stringify(workingProjects, null, 2);
         const base64Content = utf8ToBase64(jsonContent);
 
@@ -2298,6 +2469,262 @@
         }
         localStorage.setItem('av_gh_token', token);
         executeDeployToGitHub(token);
+      };
+    }
+
+    // =========================================================================
+    // BACKUPS & VERSION HISTORY LOGIC
+    // =========================================================================
+    const backupsModal = document.getElementById('backupsModal');
+    const btnOpenBackupsModal = document.getElementById('btnOpenBackupsModal');
+    const btnHeroBackups = document.getElementById('btnHeroBackups');
+    const btnCloseBackups = document.getElementById('btnCloseBackups');
+    const btnCreateManualBackup = document.getElementById('btnCreateManualBackup');
+    const newBackupNameInput = document.getElementById('newBackupNameInput');
+    const btnDownloadBackupFile = document.getElementById('btnDownloadBackupFile');
+    const btnTriggerImportFile = document.getElementById('btnTriggerImportFile');
+    const backupFileInput = document.getElementById('backupFileInput');
+    const backupsListContainer = document.getElementById('backupsListContainer');
+
+    function getFormattedDate(d = new Date()) {
+      return d.toLocaleDateString('ro-RO') + ', ' + d.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function getStoredBackups() {
+      try {
+        const raw = localStorage.getItem('av_project_backups');
+        if (raw) return JSON.parse(raw);
+      } catch(e) {}
+
+      // Initial baseline snapshot
+      const baseline = [
+        {
+          id: 'backup_baseline',
+          name: 'Versiunea Inițială (Baseline)',
+          note: 'Punct inițial curat al proiectelor',
+          tag: 'original',
+          timestamp: Date.now() - 3600000,
+          dateStr: getFormattedDate(new Date(Date.now() - 3600000)),
+          totalProjects: Object.keys(projectsData).filter(k => !k.endsWith('_video')).length,
+          data: JSON.parse(JSON.stringify(projectsData))
+        }
+      ];
+      localStorage.setItem('av_project_backups', JSON.stringify(baseline));
+      return baseline;
+    }
+
+    function saveBackup(name, tag = 'manual', note = '') {
+      const backups = getStoredBackups();
+      const count = Object.keys(workingProjects).filter(k => !k.endsWith('_video')).length;
+      const dateStr = getFormattedDate();
+
+      const newBackup = {
+        id: 'backup_' + Date.now(),
+        name: name || (`Versiunea ${backups.length + 1} — ${dateStr}`),
+        note: note,
+        tag: tag,
+        timestamp: Date.now(),
+        dateStr: dateStr,
+        totalProjects: count,
+        data: JSON.parse(JSON.stringify(workingProjects))
+      };
+
+      backups.unshift(newBackup);
+      if (backups.length > 30) backups.pop(); // Keep last 30
+      localStorage.setItem('av_project_backups', JSON.stringify(backups));
+
+      updateBackupCounters();
+      renderBackupsList();
+      return newBackup;
+    }
+
+    function updateBackupCounters() {
+      const backups = getStoredBackups();
+      const count = backups.length;
+      const navEl = document.getElementById('navBackupCount');
+      const heroEl = document.getElementById('heroBackupCount');
+      const summaryEl = document.getElementById('backupListSummary');
+      if (navEl) navEl.textContent = count;
+      if (heroEl) heroEl.textContent = count;
+      if (summaryEl) summaryEl.textContent = `${count} ${count === 1 ? 'versiune' : 'versiuni'}`;
+    }
+
+    function renderBackupsList() {
+      if (!backupsListContainer) return;
+      const backups = getStoredBackups();
+      if (backups.length === 0) {
+        backupsListContainer.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text-muted);">Niciun punct de restaurare salvat încă.</div>';
+        return;
+      }
+
+      let html = '';
+      backups.forEach((b) => {
+        const tagClass = b.tag === 'deploy' ? 'tag-deploy' : (b.tag === 'original' ? 'tag-deploy' : 'tag-manual');
+        const tagLabel = b.tag === 'deploy' ? '🚀 LIVE DEPLOY' : (b.tag === 'original' ? '⭐ ORIGINAL' : (b.tag === 'import' ? '📁 IMPORTAT' : '💾 SAVE AS'));
+
+        html += `
+          <div class="backup-item-card" data-backup-id="${b.id}">
+            <div class="backup-info">
+              <div class="backup-title-row">
+                <span class="backup-name">${b.name}</span>
+                <span class="backup-tag ${tagClass}">${tagLabel}</span>
+              </div>
+              <div class="backup-meta">
+                <span>🕒 ${b.dateStr}</span>
+                <span>📁 Proiecte: <strong>${b.totalProjects || Object.keys(b.data || {}).filter(k => !k.endsWith('_video')).length}</strong></span>
+                ${b.note ? `<span style="color:#94a3b8; font-style:italic;">"${b.note}"</span>` : ''}
+              </div>
+            </div>
+            <div class="backup-actions">
+              <button type="button" class="btn-restore-backup" data-restore-id="${b.id}" title="Restaurează această versiune">
+                🔄 Restaurează
+              </button>
+              <button type="button" class="btn-download-single-backup" data-download-id="${b.id}" title="Descarcă fișier .json pentru această versiune">
+                ⬇️
+              </button>
+              ${b.id !== 'backup_baseline' ? `
+                <button type="button" class="btn-delete-backup" data-delete-id="${b.id}" title="Șterge acest punct">
+                  🗑️
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      });
+
+      backupsListContainer.innerHTML = html;
+
+      // Event listeners on backup actions
+      backupsListContainer.querySelectorAll('.btn-restore-backup').forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.getAttribute('data-restore-id');
+          const backups = getStoredBackups();
+          const target = backups.find(x => x.id === id);
+          if (!target) return;
+
+          if (confirm(`Sigur dorești să restaurezi versiunea "${target.name}" (${target.dateStr})?\n\nDatele curente din admin vor fi înlocuite. Poți previzualiza modificările și apoi apăsa butonul verde "🚀 Publică pe Live (Deploy)" pentru a o face activă pe site.`)) {
+            // Save automatic safety snapshot of current state before reverting
+            saveBackup(`[Înainte de restaurare] ${getFormattedDate()}`, 'manual', `Înainte de revenirea la "${target.name}"`);
+
+            workingProjects = JSON.parse(JSON.stringify(target.data));
+            localStorage.setItem('artist_visuals_custom_projects', JSON.stringify(workingProjects));
+
+            renderProjectsGrid();
+            updateStatsCounters();
+            if (backupsModal) backupsModal.style.display = 'none';
+
+            showToast(`✓ Versiunea "${target.name}" a fost restaurată! Apasă "🚀 Publică pe Live" pentru a o trimite pe site.`, true);
+          }
+        };
+      });
+
+      backupsListContainer.querySelectorAll('.btn-download-single-backup').forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.getAttribute('data-download-id');
+          const backups = getStoredBackups();
+          const target = backups.find(x => x.id === id);
+          if (!target) return;
+          downloadJsonFile(target.data, `artist_visuals_${id}.json`);
+        };
+      });
+
+      backupsListContainer.querySelectorAll('.btn-delete-backup').forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.getAttribute('data-delete-id');
+          if (confirm('Sigur vrei să ștergi acest punct de restaurare?')) {
+            let backups = getStoredBackups();
+            backups = backups.filter(x => x.id !== id);
+            localStorage.setItem('av_project_backups', JSON.stringify(backups));
+            updateBackupCounters();
+            renderBackupsList();
+            showToast('Punctul de restaurare a fost șters.');
+          }
+        };
+      });
+    }
+
+    function downloadJsonFile(obj, filename) {
+      const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Modal Triggers
+    const openBackups = () => {
+      updateBackupCounters();
+      renderBackupsList();
+      if (newBackupNameInput) newBackupNameInput.value = '';
+      if (backupsModal) backupsModal.style.display = 'flex';
+    };
+
+    if (btnOpenBackupsModal) btnOpenBackupsModal.onclick = openBackups;
+    if (btnHeroBackups) btnHeroBackups.onclick = openBackups;
+    if (btnCloseBackups) btnCloseBackups.onclick = () => backupsModal.style.display = 'none';
+
+    // Manual Backup Button (Save As)
+    if (btnCreateManualBackup) {
+      btnCreateManualBackup.onclick = () => {
+        const customName = newBackupNameInput.value.trim();
+        const saved = saveBackup(customName, 'manual');
+        if (newBackupNameInput) newBackupNameInput.value = '';
+        showToast(`✓ Versiunea "${saved.name}" a fost salvată cu succes!`);
+      };
+    }
+
+    // Download Current State as JSON
+    if (btnDownloadBackupFile) {
+      btnDownloadBackupFile.onclick = () => {
+        const now = new Date();
+        const name = `artist_visuals_backup_${now.toISOString().slice(0, 10)}.json`;
+        downloadJsonFile(workingProjects, name);
+        showToast('Fișierul de backup a fost descărcat pe calculator!');
+      };
+    }
+
+    // Import from JSON file
+    if (btnTriggerImportFile && backupFileInput) {
+      btnTriggerImportFile.onclick = () => backupFileInput.click();
+
+      backupFileInput.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const parsed = JSON.parse(event.target.result);
+            if (typeof parsed !== 'object' || parsed === null) {
+              throw new Error('Format invalid.');
+            }
+            const keys = Object.keys(parsed).filter(k => !k.endsWith('_video'));
+            if (keys.length === 0) {
+              throw new Error('Fișierul nu conține proiecte valide.');
+            }
+
+            if (confirm(`Fișierul "${file.name}" este valid și conține ${keys.length} proiecte.\n\nDorești să îl salvezi ca punct de restaurare și să îl activezi acum în Admin?`)) {
+              workingProjects = parsed;
+              localStorage.setItem('artist_visuals_custom_projects', JSON.stringify(workingProjects));
+
+              saveBackup(`[Import Fișier] ${file.name.replace('.json', '')}`, 'import', `Importat din fișierul ${file.name}`);
+
+              renderProjectsGrid();
+              updateStatsCounters();
+              if (backupsModal) backupsModal.style.display = 'none';
+
+              showToast(`✓ Backup-ul din "${file.name}" a fost încărcat și activat!`, true);
+            }
+          } catch(err) {
+            alert('Eroare la citirea fișierului de backup: ' + err.message);
+          }
+          backupFileInput.value = '';
+        };
+        reader.readAsText(file);
       };
     }
 
