@@ -1964,13 +1964,15 @@ function initInteractiveMarquee(track, baseSpeed) {
     state.velocity = 0;
     state.dragDistance = 0;
     track.dataset.justDragged = '0';
-    track.classList.add('is-dragging');
   };
 
   const moveDrag = (clientX) => {
     if (!state.isDragging) return;
     const dx = clientX - state.startX;
     state.dragDistance = Math.max(state.dragDistance, Math.abs(dx));
+    if (state.dragDistance > 6) {
+      track.classList.add('is-dragging');
+    }
     state.offset = state.startOffset + dx;
 
     const now = performance.now();
@@ -1997,6 +1999,8 @@ function initInteractiveMarquee(track, baseSpeed) {
 
   if (!track.dataset.dragBound) {
     track.dataset.dragBound = '1';
+
+    track.addEventListener('dragstart', (e) => e.preventDefault());
 
     row.addEventListener('mouseenter', () => {
       const s = marqueeControllers[id];

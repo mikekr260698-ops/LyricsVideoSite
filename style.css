@@ -1554,10 +1554,6 @@ body {
   cursor: grabbing;
 }
 
-.marquee-track.is-dragging .marquee-card {
-  pointer-events: none;
-}
-
 /* Card base styles */
 .marquee-card {
   border-radius: var(--radius-md);
