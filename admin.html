@@ -1735,7 +1735,8 @@
         { label: 'MISSYRIGHT — Young Queen (1080p Master)', value: 'assets/videos/video_young_queen.mp4', preview: 'assets/videos/posters/video_young_queen_poster.jpg' },
         { label: 'CIORNIY — Iubirea e o boală grea (1080p Master)', value: 'assets/videos/video_ciorniy.mp4', preview: 'assets/videos/posters/video_ciorniy_poster.jpg' },
         { label: 'MOOSTAF — Отпускаю (1080p Master)', value: 'assets/videos/video_moostaf.mp4', preview: 'assets/videos/posters/video_moostaf_poster.jpg' },
-        { label: 'ORI BLAZE / Jenika — Când stelele respiră (1080p)', value: 'assets/videos/video_ori_blaze.mp4', preview: 'assets/videos/posters/video_ori_blaze_poster.jpg' }
+        { label: 'JENIKA — Altcineva (HD Master)', value: 'assets/videos/video_jenika.mp4', preview: 'assets/videos/posters/video_jenika_poster.jpg' },
+        { label: 'ORI BLAZE — Când stelele respiră (1080p)', value: 'assets/videos/video_ori_blaze.mp4', preview: 'assets/videos/posters/video_ori_blaze_poster.jpg' }
       ],
       posters: [
         { label: '[Fără Poster]', value: '', preview: '' },
@@ -1744,6 +1745,7 @@
         { label: 'Frame: MISSYRIGHT Young Queen HD', value: 'assets/videos/posters/video_young_queen_poster.jpg', preview: 'assets/videos/posters/video_young_queen_poster.jpg' },
         { label: 'Frame: CIORNIY Iubirea e o boală grea HD', value: 'assets/videos/posters/video_ciorniy_poster.jpg', preview: 'assets/videos/posters/video_ciorniy_poster.jpg' },
         { label: 'Frame: MOOSTAF Отпускаю HD', value: 'assets/videos/posters/video_moostaf_poster.jpg', preview: 'assets/videos/posters/video_moostaf_poster.jpg' },
+        { label: 'Frame: JENIKA Altcineva HD', value: 'assets/videos/posters/video_jenika_poster.jpg', preview: 'assets/videos/posters/video_jenika_poster.jpg' },
         { label: 'Frame: ORI BLAZE Când stelele respiră HD', value: 'assets/videos/posters/video_ori_blaze_poster.jpg', preview: 'assets/videos/posters/video_ori_blaze_poster.jpg' },
         { label: 'Frame: MISSYRIGHT Полюбила хулигана HD', value: 'assets/videos/posters/video_hooligan_poster.jpg', preview: 'assets/videos/posters/video_hooligan_poster.jpg' },
         { label: 'Frame: Si vis pacem Сколько стоит боль HD', value: 'assets/videos/posters/video_skolko_stoit_poster.jpg', preview: 'assets/videos/posters/video_skolko_stoit_poster.jpg' },
@@ -1939,10 +1941,11 @@
         workingProjects.laureall.inCovers = true;
       }
       if (workingProjects.jenika && (!workingProjects.jenika.videoSrc || workingProjects.jenika.videoSrc.includes('ori_blaze'))) {
-        workingProjects.jenika.videoSrc = '';
-        workingProjects.jenika.videoPoster = '';
-        workingProjects.jenika.inVideo = false;
+        workingProjects.jenika.videoSrc = 'assets/videos/video_jenika.mp4';
+        workingProjects.jenika.videoPoster = 'assets/videos/posters/video_jenika_poster.jpg';
+        workingProjects.jenika.inVideo = true;
         workingProjects.jenika.inCovers = true;
+        workingProjects.jenika.placement = 'both';
       }
 
       // 4. Ensure moostaf is present, distinct, and visible in Video row

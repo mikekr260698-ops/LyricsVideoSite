@@ -833,17 +833,17 @@ const projectsData = {
   },
   jenika: {
     title: "JENIKA — Altcineva",
-    pill: { en: "FULL RELEASE", ro: "FULL RELEASE", ru: "FULL RELEASE" },
+    pill: { en: "FULL RELEASE 4K", ro: "FULL RELEASE 4K", ru: "FULL RELEASE 4K" },
     badge: "FULL RELEASE",
-    subtitle: "Cover Art + Promo Suite",
+    subtitle: "Lyrics Video + Cover Suite",
     img: "assets/covers/cover_jenika.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
-    videoSrc: "",
-    videoPoster: "",
-    isVideo: false,
+    videoSrc: "assets/videos/video_jenika.mp4",
+    videoPoster: "assets/videos/posters/video_jenika_poster.jpg",
+    isVideo: true,
     package: "full",
-    placement: "cover",
-    inVideo: false,
+    placement: "both",
+    inVideo: true,
     inCovers: true,
     specs: {
       en: [
@@ -1027,10 +1027,13 @@ const projectsData = {
     subtitle: "Lyrics Video + Cover Suite",
     img: "assets/covers/cover_jenika.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
-    videoSrc: "assets/videos/video_ori_blaze.mp4",
-    videoPoster: "assets/videos/posters/video_ori_blaze_poster.jpg",
+    videoSrc: "assets/videos/video_jenika.mp4",
+    videoPoster: "assets/videos/posters/video_jenika_poster.jpg",
     isVideo: true,
     package: "full",
+    placement: "both",
+    inVideo: true,
+    inCovers: true,
     specs: {
       en: [
         "4K UHD (3840 × 2160 px) smooth motion visualizer",
@@ -2213,10 +2216,11 @@ function loadAdminOverrides() {
       projectsData.laureall.inCovers = true;
     }
     if (projectsData.jenika && (!projectsData.jenika.videoSrc || projectsData.jenika.videoSrc.includes('ori_blaze'))) {
-      projectsData.jenika.videoSrc = '';
-      projectsData.jenika.videoPoster = '';
-      projectsData.jenika.inVideo = false;
+      projectsData.jenika.videoSrc = 'assets/videos/video_jenika.mp4';
+      projectsData.jenika.videoPoster = 'assets/videos/posters/video_jenika_poster.jpg';
+      projectsData.jenika.inVideo = true;
       projectsData.jenika.inCovers = true;
+      projectsData.jenika.placement = 'both';
     }
     if (projectsData.moostaf) {
       projectsData.moostaf.videoSrc = 'assets/videos/video_moostaf.mp4';

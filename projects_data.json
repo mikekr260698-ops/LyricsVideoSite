@@ -296,20 +296,20 @@
   "jenika": {
     "title": "JENIKA — Altcineva",
     "pill": {
-      "en": "COVER ARTWORK 3000 × 3000 PX",
-      "ro": "COVER ARTWORK 3000 × 3000 PX",
-      "ru": "ОБЛОЖКА 3000 × 3000 PX"
+      "en": "FULL RELEASE 4K",
+      "ro": "FULL RELEASE 4K",
+      "ru": "FULL RELEASE 4K"
     },
     "badge": "FULL RELEASE",
     "subtitle": "Lyrics Video + Cover Suite",
     "img": "assets/covers/cover_jenika.jpg",
     "bannerImg": "assets/banners/banner_jenika.jpg",
-    "videoSrc": "",
-    "videoPoster": "",
-    "isVideo": false,
-    "package": "cover",
-    "placement": "cover",
-    "inVideo": false,
+    "videoSrc": "assets/videos/video_jenika.mp4",
+    "videoPoster": "assets/videos/posters/video_jenika_poster.jpg",
+    "isVideo": true,
+    "package": "full",
+    "placement": "both",
+    "inVideo": true,
     "inCovers": true,
     "specs": {
       "en": [
@@ -514,10 +514,10 @@
     "subtitle": "Lyrics Video + Cover Suite",
     "img": "assets/covers/cover_jenika.jpg",
     "bannerImg": "assets/banners/banner_jenika.jpg",
-    "videoSrc": "",
-    "videoPoster": "",
+    "videoSrc": "assets/videos/video_jenika.mp4",
+    "videoPoster": "assets/videos/posters/video_jenika_poster.jpg",
     "isVideo": true,
-    "package": "lyrics",
+    "package": "full",
     "specs": {
       "en": [
         "4K UHD (3840 × 2160 px) smooth motion visualizer",
@@ -541,9 +541,9 @@
         "Включает вертикальные сниппеты для сторис и рилс"
       ]
     },
-    "inVideo": false,
+    "inVideo": true,
     "inCovers": true,
-    "placement": "cover"
+    "placement": "both"
   },
   "ciorniy_video": {
     "title": "CIORNIY — Iubirea e o boală grea",
