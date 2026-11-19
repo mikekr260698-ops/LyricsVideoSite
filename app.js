@@ -565,12 +565,15 @@ const projectsData = {
   parabellum: {
     title: "Si vis pacem Parabellum",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
     img: "assets/covers/cover_parabellum.jpg",
     bannerImg: "assets/banners/banner_moostaf.jpg",
     videoSrc: "assets/videos/video_parabellum.mp4",
     videoPoster: "assets/videos/posters/video_parabellum_poster.jpg",
     isVideo: false,
-    package: "cover",
+    package: "full",
+    placement: "both",
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI (RGB)",
@@ -597,13 +600,16 @@ const projectsData = {
   },
   na_krasivom: {
     title: "На красивом",
-    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    pill: { en: "FULL RELEASE", ro: "FULL RELEASE", ru: "FULL RELEASE" },
+    badge: "FULL RELEASE",
+    subtitle: "Lyrics Video + Cover Suite",
     img: "assets/covers/cover_na_krasivom.jpg",
     bannerImg: "assets/banners/banner_na_krasivom.jpg",
     videoSrc: "assets/videos/video_na_krasivom.mp4",
     videoPoster: "assets/videos/posters/video_na_krasivom_poster.jpg",
     isVideo: false,
-    package: "cover",
+    package: "full",
+    placement: "both",
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -631,12 +637,15 @@ const projectsData = {
   ribz: {
     title: "Ribz ft Conway The Machine — Legend Like Kareem",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    badge: "COVER ART",
+    subtitle: "Single Cover 3000×3000 px",
     img: "assets/covers/cover_ribz.jpg",
     bannerImg: "assets/banners/banner_moostaf.jpg",
-    videoSrc: "assets/videos/video_moostaf.mp4",
-    videoPoster: "assets/videos/posters/video_moostaf_poster.jpg",
+    videoSrc: "",
+    videoPoster: "",
     isVideo: false,
     package: "cover",
+    placement: "cover",
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -664,12 +673,15 @@ const projectsData = {
   laureall: {
     title: "Laureall — Pa Pa",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    badge: "COVER ART",
+    subtitle: "Single Cover 3000×3000 px",
     img: "assets/covers/cover_laureall.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
-    videoSrc: "assets/videos/video_young_queen.mp4",
-    videoPoster: "assets/videos/posters/video_young_queen_poster.jpg",
+    videoSrc: "",
+    videoPoster: "",
     isVideo: false,
     package: "cover",
+    placement: "cover",
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -697,12 +709,15 @@ const projectsData = {
   silvika: {
     title: "SILVIKA — ZERO",
     pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    badge: "COVER ART",
+    subtitle: "Single Cover 3000×3000 px",
     img: "assets/covers/cover_silvika.jpg",
     bannerImg: "assets/banners/banner_na_krasivom.jpg",
-    videoSrc: "assets/videos/video_na_krasivom.mp4",
-    videoPoster: "assets/videos/posters/video_na_krasivom_poster.jpg",
+    videoSrc: "",
+    videoPoster: "",
     isVideo: false,
     package: "cover",
+    placement: "cover",
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -729,13 +744,16 @@ const projectsData = {
   },
   ciorniy: {
     title: "CIORNIY — Doar ea",
-    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
     img: "assets/covers/cover_ciorniy.jpg",
     bannerImg: "assets/banners/banner_ciorniy.jpg",
     videoSrc: "assets/videos/video_ciorniy.mp4",
     videoPoster: "assets/videos/posters/video_ciorniy_poster.jpg",
-    isVideo: false,
-    package: "cover",
+    isVideo: true,
+    package: "full",
+    placement: "both",
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -762,13 +780,16 @@ const projectsData = {
   },
   young_queen: {
     title: "MISSYRIGHT — Young Queen",
-    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
     img: "assets/covers/cover_young_queen.jpg",
     bannerImg: "assets/banners/banner_ciorniy.jpg",
     videoSrc: "assets/videos/video_young_queen.mp4",
     videoPoster: "assets/videos/posters/video_young_queen_poster.jpg",
-    isVideo: false,
-    package: "cover",
+    isVideo: true,
+    package: "full",
+    placement: "both",
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -795,13 +816,16 @@ const projectsData = {
   },
   jenika: {
     title: "JENIKA — Altcineva",
-    pill: { en: "COVER ARTWORK 3000 × 3000 PX", ro: "COVER ARTWORK 3000 × 3000 PX", ru: "ОБЛОЖКА 3000 × 3000 PX" },
+    pill: { en: "FULL RELEASE", ro: "FULL RELEASE", ru: "FULL RELEASE" },
+    badge: "FULL RELEASE",
+    subtitle: "Lyrics Video + Cover Suite",
     img: "assets/covers/cover_jenika.jpg",
     bannerImg: "assets/banners/banner_jenika.jpg",
     videoSrc: "assets/videos/video_ori_blaze.mp4",
     videoPoster: "assets/videos/posters/video_ori_blaze_poster.jpg",
-    isVideo: false,
-    package: "cover",
+    isVideo: true,
+    package: "full",
+    placement: "both",
     specs: {
       en: [
         "Master Resolution: 3000 × 3000 px, 300 DPI",
@@ -828,6 +852,114 @@ const projectsData = {
   },
 
   // --- ROW 1: 4K VIDEOS & FULL RELEASES ---
+  moostaf: {
+    title: "MOOSTAF — Отпускаю",
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
+    img: "assets/covers/cover_silvika.jpg",
+    bannerImg: "assets/banners/banner_moostaf.jpg",
+    videoSrc: "assets/videos/video_moostaf.mp4",
+    videoPoster: "assets/videos/posters/video_moostaf_poster.jpg",
+    isVideo: true,
+    package: "lyrics",
+    placement: "video",
+    specs: {
+      en: [
+        "Ultra HD 4K (3840 × 2160 px), 60 FPS Master Video",
+        "Beat-synced dynamic typography matched frame-by-frame",
+        "Cinematic atmospheric effects: camera shake, smoke, sparks",
+        "Includes YouTube 16:9 Master + Spotify Canvas 9:16 vertical loop",
+        "Color-matched precisely to the song's audio master"
+      ],
+      ro: [
+        "Rezoluție Ultra HD 4K (3840 × 2160 px), 60 FPS",
+        "Sincronizare dinamică cadru cu cadru a versurilor pe ritm",
+        "Efecte cinematografice de atmosferă: vibrații cameră, fum, particule",
+        "Include versiune 16:9 pentru YouTube și buclă verticală 9:16 pentru Spotify Canvas",
+        "Corecție de culoare adaptată perfect pe stilul piesei"
+      ],
+      ru: [
+        "Мастер-видео в формате Ultra HD 4K (3840 × 2160 px), 60 кадров/сек",
+        "Покадровая динамическая анимация текста строго в такт бита",
+        "Атмосферные эффекты: вибрация камеры, дым, вспышки",
+        "Включает 16:9 для YouTube и вертикальный 9:16 луп для Spotify Canvas",
+        "Полный монтаж и рендеринг в ProRes / H.264"
+      ]
+    }
+  },
+  skolko_stoit: {
+    title: "Si vis pacem — Сколько стоит боль?",
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
+    img: "assets/covers/cover_parabellum.jpg",
+    bannerImg: "assets/banners/banner_moostaf.jpg",
+    videoSrc: "assets/videos/video_parabellum.mp4",
+    videoPoster: "assets/videos/posters/video_skolko_stoit_poster.jpg",
+    isVideo: true,
+    package: "lyrics",
+    placement: "video",
+    specs: {
+      en: [
+        "4K UHD urban paper-rip collage animation with stop-motion feel",
+        "Beat-pulse visual reactive effects synchronized with 90s hip-hop groove",
+        "Underground graffiti text animation popping on snare hits",
+        "Includes full widescreen YouTube video and vertical promo snippets",
+        "Express studio mastering turnaround"
+      ],
+      ro: [
+        "Animație colaj urban 4K UHD în stil stop-motion cu hârtie ruptă",
+        "Efecte vizuale reactive sincronizate pe ritmul tobelor hip-hop",
+        "Animație de text graffiti care explodează pe loviturile de tobă",
+        "Include versiune widescreen pentru YouTube și snippet-uri verticale",
+        "Mastering video de calitate superioară"
+      ],
+      ru: [
+        "4K UHD урбан-коллаж с эффектом рваной бумаги и покадровой анимацией",
+        "Реактивные визуальные эффекты, пульсирующие в такт олдскул-бита",
+        "Граффити-анимация текста с акцентами на снейрах и бас-бочке",
+        "Широкоформатная версия 16:9 + вертикальные промо-ролики",
+        "Экспресс-монтаж и адаптация под все площадки"
+      ]
+    }
+  },
+  hooligan: {
+    title: "MISSYRIGHT — Полюбила хулигана",
+    pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
+    badge: "LYRICS VIDEO 4K",
+    subtitle: "Lyrics Video 4K Master",
+    img: "assets/covers/cover_young_queen.jpg",
+    bannerImg: "assets/banners/banner_ciorniy.jpg",
+    videoSrc: "assets/videos/video_young_queen.mp4",
+    videoPoster: "assets/videos/posters/video_hooligan_poster.jpg",
+    isVideo: true,
+    package: "lyrics",
+    placement: "video",
+    specs: {
+      en: [
+        "4K UHD (3840 × 2160 px) cinematic aspect ratio 2.39:1",
+        "High-glow neon pink typography reacting to vocal power and hook",
+        "Cinematic film dust, slow zoom and subtle lighting pulses",
+        "Both 16:9 YouTube video and 9:16 vertical TikTok/Reels version",
+        "Delivered with priority support"
+      ],
+      ro: [
+        "Rezoluție 4K UHD (3840 × 2160 px) în format cinematic 2.39:1",
+        "Tipografie neon pink intensă care reacționează la refren și voce",
+        "Praf de film vintage, zoom lent și pulsații subtile de lumină",
+        "Include versiune orizontală 16:9 și versiune 9:16 pentru TikTok/Reels",
+        "Predare cu suport complet și modificări incluse"
+      ],
+      ru: [
+        "4K UHD (3840 × 2160 px) в кинематографичном формате 2.39:1",
+        "Светящийся розовый неон, реагирующий на дроп и вокальные акценты",
+        "Винтажная плёночная пыль, медленный зум и световые пульсации",
+        "Комплект 16:9 для YouTube + вертикальное 9:16 для TikTok и Reels",
+        "Приоритетный рендеринг и гарантия качества"
+      ]
+    }
+  },
   silvika_video: {
     title: "MOOSTAF — Отпускаю",
     pill: { en: "LYRICS VIDEO 4K", ro: "LYRICS VIDEO 4K", ru: "LYRICS ВИДЕО 4K" },
@@ -1116,6 +1248,11 @@ const projectsData = {
 let currentModalProjectId = null;
 
 function openProjectModal(projectId) {
+  if (!projectsData[projectId]) {
+    if (projectId.endsWith('_video') && projectsData[projectId.replace('_video', '')]) {
+      projectId = projectId.replace('_video', '');
+    }
+  }
   const project = projectsData[projectId];
   if (!project) return;
   currentModalProjectId = projectId;
@@ -1128,7 +1265,7 @@ function openProjectModal(projectId) {
   const lang = currentLang || 'en';
 
   if (pillEl) {
-    pillEl.textContent = (project.pill && project.pill[lang]) || project.pill.en || 'PORTFOLIO CASE';
+    pillEl.textContent = (project.pill && project.pill[lang]) || (project.pill && project.pill.en) || project.badge || 'PORTFOLIO CASE';
     if (project.videoSrc) {
       pillEl.style.background = 'rgba(230, 25, 55, 0.15)';
       pillEl.style.borderColor = 'rgba(230, 25, 55, 0.4)';
@@ -1140,7 +1277,8 @@ function openProjectModal(projectId) {
     }
   }
 
-  if (titleEl) titleEl.textContent = project.title;
+  const titleStr = typeof project.title === 'object' ? (project.title[lang] || project.title.ro || project.title.ru || project.title.en) : project.title;
+  if (titleEl) titleEl.textContent = titleStr;
 
   // Multi-Media Showcase Board Elements
   const showcaseTopRow = document.getElementById('showcaseTopRow');
@@ -1546,50 +1684,110 @@ function setupScrollParallax() {
 }
 
 // ==========================================================================
+// 5.4. DYNAMIC MARQUEE TRACKS RENDERER
+// Filters and renders cards based on user's placement (video / cover / both)
+// ==========================================================================
+function renderMarqueeTracks() {
+  const videoTrack = document.getElementById('videoTrack');
+  const coverTrack = document.getElementById('coverTrack');
+  if (!videoTrack && !coverTrack) return;
+
+  const lang = currentLang || 'ro';
+  const allKeys = Object.keys(projectsData).filter(k => !k.endsWith('_video'));
+
+  // Video projects: placement === 'video' || placement === 'both'
+  const videoKeys = allKeys.filter(k => {
+    const p = projectsData[k];
+    if (!p) return false;
+    const plc = p.placement || (p.package === 'cover' ? 'cover' : (p.package === 'lyrics' ? 'video' : (p.videoPoster || p.videoSrc ? 'both' : 'cover')));
+    return plc === 'video' || plc === 'both';
+  });
+
+  // Cover projects: placement === 'cover' || placement === 'both'
+  const coverKeys = allKeys.filter(k => {
+    const p = projectsData[k];
+    if (!p) return false;
+    const plc = p.placement || (p.package === 'cover' ? 'cover' : (p.package === 'lyrics' ? 'video' : (p.img || p.thumb ? 'both' : 'video')));
+    return plc === 'cover' || plc === 'both';
+  });
+
+  // Render Video Track (No text overlay on video cards!)
+  if (videoTrack && videoKeys.length > 0) {
+    const repeatCount = videoKeys.length < 5 ? 4 : 2;
+    let html = '';
+    for (let r = 0; r < repeatCount; r++) {
+      videoKeys.forEach((key, idx) => {
+        const p = projectsData[key];
+        const titleStr = typeof p.title === 'object' ? (p.title[lang] || p.title.ro || p.title.ru || p.title.en) : (p.title || key);
+        const badgeStr = p.badge || (typeof p.pill === 'object' ? (p.pill[lang] || p.pill.ro || p.pill.ru || p.pill.en) : p.pill) || 'LYRICS VIDEO 4K';
+        const poster = p.videoPoster || p.thumb || p.img || '';
+
+        html += `
+          <div class="marquee-card video-card" data-project-id="${key}">
+            <div class="card-thumb card-thumb-v${(idx % 8) + 1}">
+              <img class="card-video-bg" src="${poster}" alt="${titleStr}" loading="lazy">
+              <span class="card-play-btn">▶</span>
+              <div class="card-badge-top">${badgeStr}</div>
+            </div>
+          </div>
+        `;
+      });
+    }
+    videoTrack.innerHTML = html;
+  }
+
+  // Render Cover Track
+  if (coverTrack && coverKeys.length > 0) {
+    const repeatCount = coverKeys.length < 5 ? 4 : 2;
+    let html = '';
+    for (let r = 0; r < repeatCount; r++) {
+      coverKeys.forEach((key) => {
+        const p = projectsData[key];
+        const titleStr = typeof p.title === 'object' ? (p.title[lang] || p.title.ro || p.title.ru || p.title.en) : (p.title || key);
+        const cover = p.thumb || p.img || '';
+
+        html += `
+          <div class="marquee-card cover-card" data-project-id="${key}">
+            <div class="cover-thumb-wrapper">
+              <img src="${cover}" alt="${titleStr}" loading="lazy">
+              <div class="card-hover-overlay">
+                <div class="hover-zoom-btn">🔍</div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+    coverTrack.innerHTML = html;
+  }
+
+  // Re-bind click listener on all marquee cards to open project modal
+  document.querySelectorAll('.marquee-card[data-project-id]').forEach(card => {
+    card.addEventListener('click', () => {
+      const pId = card.getAttribute('data-project-id');
+      if (pId && typeof openProjectModal === 'function') {
+        openProjectModal(pId);
+      }
+    });
+  });
+}
+
+// ==========================================================================
 // 5.5. ADMIN OVERRIDES SYNC (Loads custom media from Admin Panel)
 // ==========================================================================
 function loadAdminOverrides() {
   try {
     const saved = localStorage.getItem('artist_visuals_custom_projects');
-    if (!saved) return;
-    const custom = JSON.parse(saved);
-
-    Object.keys(custom).forEach(key => {
-      if (projectsData[key]) {
+    if (saved) {
+      const custom = JSON.parse(saved);
+      Object.keys(custom).forEach(key => {
+        if (!projectsData[key]) projectsData[key] = {};
         Object.assign(projectsData[key], custom[key]);
-      } else {
-        projectsData[key] = custom[key];
-      }
-    });
+      });
+    }
 
-    // Update marquee cards in DOM
-    document.querySelectorAll('.marquee-card[data-project-id]').forEach(card => {
-      const pId = card.getAttribute('data-project-id');
-      const p = projectsData[pId] || projectsData[pId.replace('_video', '')];
-      if (!p) return;
-
-      const titleStr = typeof p.title === 'object' ? (p.title[currentLang] || p.title.ro || p.title.ru || p.title.en) : p.title;
-      const subStr = typeof p.subtitle === 'object' ? (p.subtitle[currentLang] || p.subtitle.ro || p.subtitle.ru || p.subtitle.en) : p.subtitle;
-      const badgeStr = p.badge || (typeof p.pill === 'object' ? (p.pill[currentLang] || p.pill.ro || p.pill.ru || p.pill.en) : p.pill);
-
-      if (card.classList.contains('video-card')) {
-        const bgImg = card.querySelector('.card-video-bg');
-        if (bgImg && p.videoPoster) bgImg.src = p.videoPoster;
-        const h4 = card.querySelector('h4');
-        if (h4 && titleStr) h4.textContent = titleStr;
-        const span = card.querySelector('.card-overlay-bottom span');
-        if (span && subStr) span.textContent = subStr;
-        const badgeEl = card.querySelector('.card-badge-top');
-        if (badgeEl && badgeStr) badgeEl.textContent = badgeStr;
-      }
-
-      if (card.classList.contains('cover-card')) {
-        const coverImg = card.querySelector('.cover-thumb-wrapper img');
-        if (coverImg && (p.thumb || p.img)) coverImg.src = p.thumb || p.img;
-        const h4 = card.querySelector('h4');
-        if (h4 && titleStr) h4.textContent = titleStr;
-      }
-    });
+    // Render cards dynamically matching placement (video / cover / both)
+    renderMarqueeTracks();
   } catch (err) {
     console.warn('Error loading custom projects from localStorage', err);
   }

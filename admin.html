@@ -419,6 +419,51 @@
       color: #fff;
     }
 
+    /* Placement / Display location controls */
+    .placement-control-group {
+      margin-top: 6px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .placement-segmented {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .placement-radio-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .placement-radio-label:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .placement-radio-label.active {
+      background: rgba(230, 0, 38, 0.18);
+      border-color: var(--accent-red);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(230, 0, 38, 0.3);
+    }
+    .placement-radio-label input[type="radio"] {
+      accent-color: var(--accent-red);
+      margin: 0;
+      cursor: pointer;
+    }
+
     /* Media Edit Blocks */
     .media-fields {
       display: flex;
@@ -781,6 +826,15 @@
         </select>
       </div>
 
+      <div class="form-group">
+        <label class="form-label">Unde dorești să se afișeze pe site?</label>
+        <select class="select-dropdown" id="newProjectPlacement">
+          <option value="both" selected>⚡ În ambele locuri (Video + Cover)</option>
+          <option value="video">▶ Doar la Video / Visualizer (Rândul 1)</option>
+          <option value="cover">💿 Doar la Cover Art (Rândul 2)</option>
+        </select>
+      </div>
+
       <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:10px;">
         <button class="btn-action" id="btnCancelAdd">Anulează</button>
         <button class="btn-action btn-save-all" id="btnConfirmAdd">Creează Proiectul</button>
@@ -1014,6 +1068,7 @@
         const titleVal = p.title && (p.title.ro || p.title.ru || p.title.en) ? (p.title.ro || p.title.ru || p.title.en) : key;
         const subVal = p.subtitle && (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) ? (p.subtitle.ro || p.subtitle.ru || p.subtitle.en) : '';
         const badgeVal = p.badge || (typeof p.pill === 'object' ? (p.pill.ro || p.pill.en || '') : p.pill || 'LYRICS VIDEO 4K');
+        const placement = p.placement || (p.package === 'cover' ? 'cover' : (p.package === 'lyrics' ? 'video' : (p.videoPoster || p.videoSrc ? 'both' : 'cover')));
 
         const makeOptions = (items, currentVal) => {
           let found = false;
@@ -1074,6 +1129,25 @@
                   <button type="button" class="btn-preset-chip" data-key="${key}" data-field="subtitle" data-val="Lyrics Video 4K Master">Lyrics Video 4K</button>
                   <button type="button" class="btn-preset-chip" data-key="${key}" data-field="subtitle" data-val="Lyrics Video + Cover Suite">Full Release</button>
                   <button type="button" class="btn-preset-chip" data-key="${key}" data-field="subtitle" data-val="Single Cover 3000×3000 px">Cover 3000px</button>
+                </div>
+              </div>
+
+              <!-- Unde se afișează pe Site -->
+              <div class="placement-control-group">
+                <label class="field-title-label">📍 Afișare pe Site (Alege unde vrei să apară pe site):</label>
+                <div class="placement-segmented">
+                  <label class="placement-radio-label ${placement === 'both' ? 'active' : ''}">
+                    <input type="radio" name="placement_${key}" value="both" ${placement === 'both' ? 'checked' : ''} data-key="${key}">
+                    <span>⚡ În ambele locuri (Video + Cover)</span>
+                  </label>
+                  <label class="placement-radio-label ${placement === 'video' ? 'active' : ''}">
+                    <input type="radio" name="placement_${key}" value="video" ${placement === 'video' ? 'checked' : ''} data-key="${key}">
+                    <span>▶ Doar la Video (Rândul 1)</span>
+                  </label>
+                  <label class="placement-radio-label ${placement === 'cover' ? 'active' : ''}">
+                    <input type="radio" name="placement_${key}" value="cover" ${placement === 'cover' ? 'checked' : ''} data-key="${key}">
+                    <span>💿 Doar la Cover (Rândul 2)</span>
+                  </label>
                 </div>
               </div>
             </div>
@@ -1231,11 +1305,13 @@
           const title = document.getElementById('newProjectTitle').value.trim() || 'Proiect Nou';
           const subtitle = document.getElementById('newProjectSubtitle').value.trim() || 'Visuals Release';
           const pkg = document.getElementById('newProjectPackage').value;
+          const placement = document.getElementById('newProjectPlacement') ? document.getElementById('newProjectPlacement').value : 'both';
 
           workingProjects[id] = {
             title: { ro: title, ru: title, en: title },
             subtitle: { ro: subtitle, ru: subtitle, en: subtitle },
             package: pkg,
+            placement: placement,
             pill: { ro: 'PORTFOLIO CASE', ru: 'КЕЙС', en: 'PORTFOLIO CASE' },
             img: '',
             thumb: '',
@@ -1514,6 +1590,29 @@
 
             const input = document.querySelector(`.project-subtitle-input[data-key="${key}"]`);
             if (input) input.value = val;
+          }
+          markModified(key);
+        });
+      });
+
+      // Placement radios (Both / Video only / Cover only)
+      document.querySelectorAll('.placement-radio-label input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          const key = e.target.getAttribute('data-key');
+          const val = e.target.value;
+          if (workingProjects[key]) {
+            workingProjects[key].placement = val;
+            const mirror = key + '_video';
+            if (workingProjects[mirror]) {
+              workingProjects[mirror].placement = val;
+            }
+          }
+          const group = e.target.closest('.placement-segmented');
+          if (group) {
+            group.querySelectorAll('.placement-radio-label').forEach(lbl => {
+              const inp = lbl.querySelector('input');
+              lbl.classList.toggle('active', inp && inp.checked);
+            });
           }
           markModified(key);
         });
