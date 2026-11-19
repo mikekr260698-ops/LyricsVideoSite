@@ -914,7 +914,7 @@ body {
 }
 
 .player-progress-fill {
-  width: 38%;
+  width: 0%;
   height: 100%;
   background: var(--accent-red);
   transition: width 1s linear;

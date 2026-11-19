@@ -1732,10 +1732,25 @@ function setupDemoPlayer() {
   buildDemoLyricsTrack();
 
   let isPlaying = true;
-  let currentSec = 42;
+  let currentSec = 47; // 30% of 156s
   const totalSec = 156;
   let interval = null;
   let tickCount = 0;
+
+  // Start cleanly at 0%, glide to 30%, then continue normally
+  progress.style.transition = 'none';
+  progress.style.width = '0%';
+  timer.textContent = '0:00 / 2:36';
+  void progress.offsetWidth;
+
+  setTimeout(() => {
+    progress.style.transition = 'width 0.9s cubic-bezier(0.22, 1, 0.36, 1)';
+    progress.style.width = '30%';
+    timer.textContent = '0:47 / 2:36';
+    setTimeout(() => {
+      progress.style.transition = 'width 1s linear';
+    }, 920);
+  }, 120);
 
   const startPlayback = () => {
     clearInterval(interval);
@@ -1757,8 +1772,11 @@ function setupDemoPlayer() {
     }, 1000);
   };
 
-  // Start playing immediately on page entry
-  startPlayback();
+  // Start playing forward right after the smooth 0% -> 30% intro glide
+  playIcon.textContent = '❚❚';
+  setTimeout(() => {
+    if (isPlaying) startPlayback();
+  }, 1050);
 
   playBtn.addEventListener('click', () => {
     isPlaying = !isPlaying;
