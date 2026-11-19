@@ -183,6 +183,125 @@
       padding: 3px 8px;
       border-radius: 6px;
     }
+    .admin-menu-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .admin-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .admin-tab-btn:hover { color: #fff; }
+    .admin-tab-btn.active {
+      background: var(--accent-red);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(230, 0, 38, 0.4);
+    }
+
+    /* Themes Section Styles */
+    .themes-section {
+      display: none;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .themes-section.active {
+      display: flex;
+    }
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 18px;
+    }
+    .color-picker-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s ease;
+    }
+    .color-picker-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .color-card-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .color-card-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .color-input-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .color-swatch-input {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 52px;
+      height: 44px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .color-swatch-input::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    .color-swatch-input::-webkit-color-swatch {
+      border: none;
+      border-radius: 8px;
+    }
+    .color-hex-input {
+      flex: 1;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: #fff;
+      font-family: monospace;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+    .color-hex-input:focus {
+      outline: none;
+      border-color: var(--accent-red);
+    }
+    .theme-preview-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
     .nav-actions {
       display: flex;
       align-items: center;
@@ -1020,6 +1139,10 @@
     <div class="nav-brand">
       <div class="brand-title">ARTIST <span>VISUALS</span></div>
       <span class="brand-badge">ADMIN</span>
+      <div class="admin-menu-tabs" style="margin-left: 10px;">
+        <button type="button" class="admin-tab-btn active" id="tabBtnProjects" data-tab="projects">📁 Proiecte</button>
+        <button type="button" class="admin-tab-btn" id="tabBtnThemes" data-tab="themes">🎨 Themes</button>
+      </div>
     </div>
 
     <div class="nav-actions">
@@ -1052,6 +1175,7 @@
 
   <!-- MAIN DASHBOARD -->
   <main class="admin-main">
+    <div id="projectsSection">
     <div class="hero-banner">
       <div class="hero-text">
         <h1>Panou de Control & Upload Automat</h1>
@@ -1093,6 +1217,90 @@
 
     <div class="projects-grid" id="projectsGrid">
       <!-- Populated dynamically via JS -->
+    </div>
+    </div>
+
+    <!-- THEMES & COLORS SECTION -->
+    <div id="themesSection" class="themes-section">
+      <div class="hero-banner">
+        <div class="hero-text">
+          <h1>🎨 Temă & Culori Principale Site</h1>
+          <p>Apasă pe orice pătrat de culoare pentru a deschide selectorul de culoare (stil Photoshop) sau introdu codul HEX. După ce modifici, apasă <strong>Salvează Tema</strong> și apoi <strong>🚀 Publică pe Live (Deploy)</strong> ca să se aplice pe tot site-ul (PC și telefon)!</p>
+        </div>
+        <div class="quick-stats">
+          <button type="button" class="btn-action" id="btnResetThemeColors">🔄 Resetează Culorile Implicite</button>
+          <button type="button" class="btn-action btn-save-all" id="btnSaveThemeLocal">💾 Salvează Tema Local</button>
+        </div>
+      </div>
+
+      <div class="themes-grid">
+        <div class="color-picker-card">
+          <div class="color-card-title">🔴 Culoare Principală (Accent & Butoane)</div>
+          <div class="color-card-desc">Culoarea principală pentru butoanele CTA, badge-uri, bife, săgeți și glow-uri.</div>
+          <div class="color-input-row">
+            <input type="color" class="color-swatch-input" id="colorSwatchAccentRed" data-theme-key="accentRed" value="#e61937">
+            <input type="text" class="color-hex-input" id="colorHexAccentRed" data-theme-key="accentRed" value="#e61937">
+          </div>
+        </div>
+
+        <div class="color-picker-card">
+          <div class="color-card-title">🟥 Culoare Secundară Gradient</div>
+          <div class="color-card-desc">Capătul închis al gradientului de pe butoane și carduri evidențiate.</div>
+          <div class="color-input-row">
+            <input type="color" class="color-swatch-input" id="colorSwatchAccentDark" data-theme-key="accentDark" value="#c4122c">
+            <input type="text" class="color-hex-input" id="colorHexAccentDark" data-theme-key="accentDark" value="#c4122c">
+          </div>
+        </div>
+
+        <div class="color-picker-card">
+          <div class="color-card-title">⬛ Fundal Principal Site</div>
+          <div class="color-card-desc">Culoarea de fundal a întregului site (implicit negru obsidian).</div>
+          <div class="color-input-row">
+            <input type="color" class="color-swatch-input" id="colorSwatchBgDark" data-theme-key="bgDark" value="#08080a">
+            <input type="text" class="color-hex-input" id="colorHexBgDark" data-theme-key="bgDark" value="#08080a">
+          </div>
+        </div>
+
+        <div class="color-picker-card">
+          <div class="color-card-title">🃏 Fundal Carduri & Ferestre Modale</div>
+          <div class="color-card-desc">Culoarea de fundal pentru pachete, recenzii, FAQ și ferestrele modale.</div>
+          <div class="color-input-row">
+            <input type="color" class="color-swatch-input" id="colorSwatchBgCard" data-theme-key="bgCard" value="#121216">
+            <input type="text" class="color-hex-input" id="colorHexBgCard" data-theme-key="bgCard" value="#121216">
+          </div>
+        </div>
+
+        <div class="color-picker-card">
+          <div class="color-card-title">⬜ Text Principal (Titluri)</div>
+          <div class="color-card-desc">Culoarea titlurilor mari și a textelor principale de contrast.</div>
+          <div class="color-input-row">
+            <input type="color" class="color-swatch-input" id="colorSwatchTextMain" data-theme-key="textMain" value="#f5f5f7">
+            <input type="text" class="color-hex-input" id="colorHexTextMain" data-theme-key="textMain" value="#f5f5f7">
+          </div>
+        </div>
+
+        <div class="color-picker-card">
+          <div class="color-card-title">🩶 Text Secundar (Descrieri)</div>
+          <div class="color-card-desc">Culoarea subtitlurilor, descrierilor și elementelor secundare.</div>
+          <div class="color-input-row">
+            <input type="color" class="color-swatch-input" id="colorSwatchTextMuted" data-theme-key="textMuted" value="#8e8e99">
+            <input type="text" class="color-hex-input" id="colorHexTextMuted" data-theme-key="textMuted" value="#8e8e99">
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Mini Preview -->
+      <div class="theme-preview-box" id="themeLivePreviewBox">
+        <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted);">👁️ Previzualizare Live Culori Alese:</div>
+        <div id="themePreviewStage" style="background:#08080a; border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:24px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;">
+          <div id="themePreviewCard" style="background:#121216; border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px 22px; flex:1; min-width:260px;">
+            <span id="themePreviewBadge" style="display:inline-block; font-size:0.7rem; font-weight:800; padding:4px 10px; border-radius:999px; background:rgba(230,25,55,0.15); color:#e61937; border:1px solid rgba(230,25,55,0.35); margin-bottom:10px;">EXEMPLU PACHET</span>
+            <h3 id="themePreviewTitle" style="font-family:var(--font-heading); font-size:1.25rem; color:#f5f5f7; margin-bottom:6px;">Vizualuri pentru muzica ta</h3>
+            <p id="themePreviewDesc" style="font-size:0.85rem; color:#8e8e99; margin-bottom:16px;">Așa vor arăta titlurile, descrierile și butonul principal pe site.</p>
+            <button type="button" id="themePreviewBtn" style="background:linear-gradient(135deg, #e61937, #c4122c); color:#fff; border:none; padding:10px 22px; border-radius:999px; font-weight:700; font-size:0.88rem; cursor:default; box-shadow:0 0 24px rgba(230,25,55,0.45);">Alege pachetul →</button>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -2414,6 +2622,41 @@
           throw new Error(errData.message || 'Eroare la publicarea pe GitHub');
         }
 
+        // Also deploy site_theme.json
+        try {
+          let themeSha = null;
+          const getThemeRes = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/site_theme.json`, {
+            headers: {
+              'Authorization': `token ${token}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (getThemeRes.ok) {
+            const themeInfo = await getThemeRes.json();
+            themeSha = themeInfo.sha;
+          }
+          const themeJson = JSON.stringify(workingTheme, null, 2);
+          const putThemeBody = {
+            message: 'Deploy live theme colors from Admin Panel',
+            content: utf8ToBase64(themeJson),
+            branch: 'main'
+          };
+          if (themeSha) putThemeBody.sha = themeSha;
+
+          await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/site_theme.json`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `token ${token}`,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(putThemeBody)
+          });
+          localStorage.setItem('av_site_theme', themeJson);
+        } catch (themeErr) {
+          console.warn('Theme deploy warning:', themeErr);
+        }
+
         localStorage.setItem('artist_visuals_custom_projects', jsonContent);
         document.querySelectorAll('.project-card.modified').forEach(card => card.classList.remove('modified'));
         if (deployModal) deployModal.style.display = 'none';
@@ -2728,6 +2971,129 @@
       };
     }
 
+    // =========================================================================
+    // ADMIN MENU TABS & THEMES COLOR EDITOR LOGIC
+    // =========================================================================
+    const DEFAULT_THEME = {
+      accentRed: '#e61937',
+      accentDark: '#c4122c',
+      bgDark: '#08080a',
+      bgCard: '#121216',
+      textMain: '#f5f5f7',
+      textMuted: '#8e8e99'
+    };
+
+    let workingTheme = Object.assign({}, DEFAULT_THEME);
+
+    function loadWorkingTheme() {
+      try {
+        const saved = localStorage.getItem('av_site_theme');
+        if (saved) {
+          Object.assign(workingTheme, JSON.parse(saved));
+        }
+      } catch (e) {}
+      syncThemeInputsAndPreview();
+    }
+
+    function syncThemeInputsAndPreview() {
+      document.querySelectorAll('[data-theme-key]').forEach(el => {
+        const key = el.getAttribute('data-theme-key');
+        if (workingTheme[key]) {
+          el.value = workingTheme[key];
+        }
+      });
+
+      const stage = document.getElementById('themePreviewStage');
+      const card = document.getElementById('themePreviewCard');
+      const badge = document.getElementById('themePreviewBadge');
+      const title = document.getElementById('themePreviewTitle');
+      const desc = document.getElementById('themePreviewDesc');
+      const btn = document.getElementById('themePreviewBtn');
+
+      if (stage) stage.style.background = workingTheme.bgDark;
+      if (card) card.style.background = workingTheme.bgCard;
+      if (title) title.style.color = workingTheme.textMain;
+      if (desc) desc.style.color = workingTheme.textMuted;
+      if (badge) {
+        badge.style.color = workingTheme.accentRed;
+        badge.style.borderColor = workingTheme.accentRed;
+        badge.style.background = workingTheme.accentRed + '22';
+      }
+      if (btn) {
+        btn.style.background = `linear-gradient(135deg, ${workingTheme.accentRed}, ${workingTheme.accentDark})`;
+        btn.style.boxShadow = `0 0 24px ${workingTheme.accentRed}66`;
+      }
+    }
+
+    document.querySelectorAll('.color-swatch-input').forEach(swatch => {
+      swatch.addEventListener('input', (e) => {
+        const key = e.target.getAttribute('data-theme-key');
+        const val = e.target.value;
+        workingTheme[key] = val;
+        const hexInput = document.querySelector(`.color-hex-input[data-theme-key="${key}"]`);
+        if (hexInput) hexInput.value = val.toUpperCase();
+        syncThemeInputsAndPreview();
+      });
+    });
+
+    document.querySelectorAll('.color-hex-input').forEach(hexInput => {
+      hexInput.addEventListener('input', (e) => {
+        const key = e.target.getAttribute('data-theme-key');
+        let val = e.target.value.trim();
+        if (!val.startsWith('#')) val = '#' + val;
+        if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+          workingTheme[key] = val.toLowerCase();
+          const swatch = document.querySelector(`.color-swatch-input[data-theme-key="${key}"]`);
+          if (swatch) swatch.value = val.toLowerCase();
+          syncThemeInputsAndPreview();
+        }
+      });
+    });
+
+    const btnSaveThemeLocal = document.getElementById('btnSaveThemeLocal');
+    if (btnSaveThemeLocal) {
+      btnSaveThemeLocal.addEventListener('click', () => {
+        localStorage.setItem('av_site_theme', JSON.stringify(workingTheme));
+        showToast('🎨 Culorile temei au fost salvate local! Apasă "🚀 Publică pe Live (Deploy)" pentru a le aplica pe site.', true);
+      });
+    }
+
+    const btnResetThemeColors = document.getElementById('btnResetThemeColors');
+    if (btnResetThemeColors) {
+      btnResetThemeColors.addEventListener('click', () => {
+        if (confirm('Resetezi toate culorile la tema originală roșu/negru?')) {
+          workingTheme = Object.assign({}, DEFAULT_THEME);
+          localStorage.setItem('av_site_theme', JSON.stringify(workingTheme));
+          syncThemeInputsAndPreview();
+          showToast('Culorile au fost resetate la original.');
+        }
+      });
+    }
+
+    // Tab switching
+    const tabBtnProjects = document.getElementById('tabBtnProjects');
+    const tabBtnThemes = document.getElementById('tabBtnThemes');
+    const projectsSection = document.getElementById('projectsSection');
+    const themesSection = document.getElementById('themesSection');
+
+    const switchAdminTab = (tabName) => {
+      if (tabName === 'themes') {
+        if (tabBtnProjects) tabBtnProjects.classList.remove('active');
+        if (tabBtnThemes) tabBtnThemes.classList.add('active');
+        if (projectsSection) projectsSection.style.display = 'none';
+        if (themesSection) themesSection.classList.add('active');
+      } else {
+        if (tabBtnThemes) tabBtnThemes.classList.remove('active');
+        if (tabBtnProjects) tabBtnProjects.classList.add('active');
+        if (themesSection) themesSection.classList.remove('active');
+        if (projectsSection) projectsSection.style.display = 'block';
+      }
+    };
+
+    if (tabBtnProjects) tabBtnProjects.onclick = () => switchAdminTab('projects');
+    if (tabBtnThemes) tabBtnThemes.onclick = () => switchAdminTab('themes');
+
+    loadWorkingTheme();
     checkAuth();
   </script>
 </body>

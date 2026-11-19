@@ -1805,8 +1805,49 @@ function renderMarqueeTracks() {
 }
 
 // ==========================================================================
-// 5.5. ADMIN OVERRIDES SYNC (Loads custom media from Admin Panel)
+// 5.5. ADMIN OVERRIDES SYNC (Loads custom media & theme from Admin Panel)
 // ==========================================================================
+function hexToRgbaStr(hex, alpha) {
+  if (!hex || !hex.startsWith('#')) return `rgba(230, 25, 55, ${alpha})`;
+  let h = hex.replace('#', '');
+  if (h.length === 3) h = h.split('').map(c => c + c).join('');
+  const r = parseInt(h.substring(0, 2), 16) || 0;
+  const g = parseInt(h.substring(2, 4), 16) || 0;
+  const b = parseInt(h.substring(4, 6), 16) || 0;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function applySiteTheme(theme) {
+  if (!theme || typeof theme !== 'object') return;
+  const root = document.documentElement;
+  if (theme.accentRed) {
+    root.style.setProperty('--accent-red', theme.accentRed);
+    root.style.setProperty('--border-focus', theme.accentRed);
+    root.style.setProperty('--accent-red-glow', hexToRgbaStr(theme.accentRed, 0.45));
+    root.style.setProperty('--accent-red-subtle', hexToRgbaStr(theme.accentRed, 0.12));
+    const endColor = theme.accentDark || theme.accentRed;
+    root.style.setProperty('--accent-red-gradient', `linear-gradient(135deg, ${theme.accentRed} 0%, ${endColor} 100%)`);
+  }
+  if (theme.bgDark) root.style.setProperty('--bg-dark', theme.bgDark);
+  if (theme.bgCard) root.style.setProperty('--bg-card', theme.bgCard);
+  if (theme.textMain) root.style.setProperty('--text-main', theme.textMain);
+  if (theme.textMuted) root.style.setProperty('--text-muted', theme.textMuted);
+}
+
+async function syncLiveTheme() {
+  try {
+    const res = await fetch('site_theme.json?t=' + Date.now());
+    if (res.ok) {
+      const liveTheme = await res.json();
+      applySiteTheme(liveTheme);
+    }
+  } catch (e) {}
+  try {
+    const localTheme = localStorage.getItem('av_site_theme');
+    if (localTheme) applySiteTheme(JSON.parse(localTheme));
+  } catch (e) {}
+}
+
 async function syncLiveProjects() {
   try {
     const res = await fetch('projects_data.json?t=' + Date.now());
@@ -1878,8 +1919,27 @@ function loadAdminOverrides() {
 // 6. INITIALIZATION & EVENT LISTENERS
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Load live projects JSON from repo + local admin overrides
+  // Load live projects & theme JSON from repo + local admin overrides
+  syncLiveTheme();
   syncLiveProjects();
+
+  // One-time scroll-triggered strikethrough animation on old price
+  const oldPrices = document.querySelectorAll('.old-price');
+  if (oldPrices.length > 0 && 'IntersectionObserver' in window) {
+    const priceObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('struck');
+          }, 200);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    oldPrices.forEach(el => priceObserver.observe(el));
+  } else {
+    oldPrices.forEach(el => el.classList.add('struck'));
+  }
 
   // Set copyright year
   const yearEl = document.getElementById('currentYear');
