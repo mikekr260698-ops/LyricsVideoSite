@@ -985,6 +985,44 @@ const projectsData = {
       ]
     }
   },
+    dyara: {
+    title: "DYARA — Это не любовь — это глубже",
+    pill: { en: "FULL RELEASE 4K", ro: "FULL RELEASE 4K", ru: "FULL RELEASE 4K" },
+    badge: "FULL RELEASE",
+    subtitle: "Lyrics Video + Cover Suite",
+    img: "assets/covers/cover_dyara.jpg",
+    bannerImg: "assets/banners/banner_dyara.jpg",
+    videoSrc: "assets/videos/video_dyara.mp4",
+    videoPoster: "assets/videos/posters/video_dyara_poster.jpg",
+    isVideo: true,
+    package: "full",
+    placement: "both",
+    inVideo: true,
+    inCovers: true,
+    specs: {
+      en: [
+        "Master 4K UHD 16:9 cinematic lyrics video with atmospheric storm grading",
+        "Elegant serif typography synced to emotional vocal delivery",
+        "DSP Official Cover Artwork 3000 × 3000 px, 300 DPI (Spotify, Apple Music)",
+        "Full Promo Suite: YouTube Cover (1920×1080), Reels / TikTok (1080×1920), YouTube & Facebook Banners",
+        "Production-ready master delivery for major digital streaming platforms"
+      ],
+      ro: [
+        "Video Master 4K UHD 16:9 cinematic cu grading dramatic de furtună pe ocean",
+        "Tipografie elegantă cu serife sincronizată milimetric pe linia melodică",
+        "Cover Artwork Oficial 3000 × 3000 px, 300 DPI pentru platforme DSP (Spotify, Apple Music)",
+        "Suită Promo completă: YouTube Cover (1920×1080), Reels / TikTok (1080×1920), Bannere YouTube & Facebook",
+        "Master profesional pregătit pentru distribuție globală"
+      ],
+      ru: [
+        "Мастер-видео 4K UHD 16:9 в кинематографичной штормовой эстетике",
+        "Элегантная типографика с засечками, синхронизированная с эмоциональным вокалом",
+        "Официальная обложка 3000 × 3000 px, 300 DPI для всех стриминговых площадок (Spotify, Apple Music)",
+        "Полный промо-пакет: YouTube Cover (1920×1080), Reels / Shorts (1080×1920), баннеры YouTube и Facebook",
+        "Готовый релиз высшего студийного качества для цифровой дистрибуции"
+      ]
+    }
+  },
   ciorniy_iubirea: {
     title: "CIORNIY — Iubirea e o boală grea",
     pill: { en: "FULL RELEASE 4K", ro: "FULL RELEASE 4K", ru: "FULL RELEASE 4K" },
@@ -2011,6 +2049,17 @@ function loadAdminOverrides() {
     if (projectsData.ciorniy_video && !projectsData.ciorniy_iubirea) {
       projectsData.ciorniy_iubirea = projectsData.ciorniy_video;
       delete projectsData.ciorniy_video;
+    }
+        if (projectsData.dyara) {
+      projectsData.dyara.title = 'DYARA — Это не любовь — это глубже';
+      projectsData.dyara.videoSrc = 'assets/videos/video_dyara.mp4';
+      projectsData.dyara.videoPoster = 'assets/videos/posters/video_dyara_poster.jpg';
+      projectsData.dyara.img = 'assets/covers/cover_dyara.jpg';
+      projectsData.dyara.bannerImg = 'assets/banners/banner_dyara.jpg';
+      projectsData.dyara.inVideo = true;
+      projectsData.dyara.inCovers = true;
+      projectsData.dyara.placement = 'both';
+      projectsData.dyara.package = 'full';
     }
     if (projectsData.ciorniy_iubirea) {
       projectsData.ciorniy_iubirea.title = 'CIORNIY — Iubirea e o boală grea';
