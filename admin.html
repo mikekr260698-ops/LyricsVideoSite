@@ -1498,9 +1498,18 @@
           <p>Trage blocurile cu mouse-ul sus/jos (sau folosește săgețile ▲ / ▼) pentru a schimba ordinea secțiunilor pe site. În dreapta vezi <strong>miniatura live a site-ului</strong> actualizată instant! Când e perfect, apasă <strong>Salvează</strong> și <strong>🚀 Publică pe Live (Deploy)</strong>.</p>
         </div>
         <div class="quick-stats">
-          <button type="button" class="btn-action" id="btnResetLayoutOrder">🔄 Ordine Implicită</button>
+          <button type="button" class="btn-action" id="btnResetLayoutOrder">🔄 Ordine Originală</button>
+          <button type="button" class="btn-action" id="btnSaveMyLayout" style="border-color:rgba(59,130,246,0.45); color:#93c5fd;">📌 Salvează ca „Versiunea Mea”</button>
           <button type="button" class="btn-action btn-save-all" id="btnSaveLayoutLocal">💾 Salvează Ordinea Local</button>
         </div>
+      </div>
+
+      <!-- Layout Presets / Versions Bar -->
+      <div class="admin-filter-bar" style="margin: 0;">
+        <span class="filter-label">📌 Versiuni Salvate:</span>
+        <button type="button" class="btn-filter" id="btnPresetOriginal">⭐ Originală (Clasică)</button>
+        <button type="button" class="btn-filter" id="btnPresetMyLayout">👤 Versiunea Mea Salvata</button>
+        <button type="button" class="btn-filter" id="btnPresetMarketing" style="border-color:rgba(230,25,55,0.45); color:#ff6b81;">🔥 Marketing Maxim (Conversie Mare)</button>
       </div>
 
       <div class="constructor-workspace">
@@ -3374,6 +3383,18 @@
       { id: 'finalCta', hidden: false }
     ];
 
+    // High-converting marketing funnel order:
+    // Hook (Hero) -> Visual Proof (Portfolio) -> Trust (Reviews) -> Value (Included) -> Offer (Packages) -> Objections (FAQ) -> Final Push (CTA)
+    const MARKETING_LAYOUT = [
+      { id: 'hero', hidden: false },
+      { id: 'cases', hidden: false },
+      { id: 'reviews', hidden: false },
+      { id: 'included', hidden: false },
+      { id: 'packages', hidden: false },
+      { id: 'faq', hidden: false },
+      { id: 'finalCta', hidden: false }
+    ];
+
     const BLOCK_LABELS = {
       hero: { title: 'Hero & Zagalovok', desc: 'Titlul principal, butoane CTA, Cover rotativ & Mini-Player' },
       packages: { title: 'Pachetele Ofertă', desc: 'Cover pentru piesă, Lyrics Video & Pachet Complet' },
@@ -3528,12 +3549,62 @@
     const btnResetLayoutOrder = document.getElementById('btnResetLayoutOrder');
     if (btnResetLayoutOrder) {
       btnResetLayoutOrder.onclick = () => {
-        if (confirm('Resetezi ordinea blocurilor la varianta implicită?')) {
+        if (confirm('Resetezi ordinea blocurilor la varianta originală?')) {
           workingLayout = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
           renderLayoutBlocks();
           syncMiniaturePreview();
-          showToast('Ordinea blocurilor a fost resetată.');
+          showToast('Ordinea a fost resetată la varianta Originală.');
         }
+      };
+    }
+
+    // Preserve user's current custom arrangement as "Versiunea Mea" if not saved yet
+    if (!localStorage.getItem('av_my_layout') && localStorage.getItem('av_site_layout')) {
+      localStorage.setItem('av_my_layout', localStorage.getItem('av_site_layout'));
+    }
+
+    const btnSaveMyLayout = document.getElementById('btnSaveMyLayout');
+    if (btnSaveMyLayout) {
+      btnSaveMyLayout.onclick = () => {
+        localStorage.setItem('av_my_layout', JSON.stringify(workingLayout));
+        showToast('📌 Ordinea curentă a fost salvată ca „Versiunea Mea”!');
+      };
+    }
+
+    const btnPresetOriginal = document.getElementById('btnPresetOriginal');
+    if (btnPresetOriginal) {
+      btnPresetOriginal.onclick = () => {
+        workingLayout = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+        renderLayoutBlocks();
+        syncMiniaturePreview();
+        showToast('⭐ S-a încărcat Versiunea Originală!');
+      };
+    }
+
+    const btnPresetMyLayout = document.getElementById('btnPresetMyLayout');
+    if (btnPresetMyLayout) {
+      btnPresetMyLayout.onclick = () => {
+        const savedMy = localStorage.getItem('av_my_layout');
+        if (!savedMy) {
+          showToast('Nu ai salvat încă o versiune personală. Apasă „Salvează ca Versiunea Mea” mai întâi!', false);
+          return;
+        }
+        try {
+          workingLayout = JSON.parse(savedMy);
+          renderLayoutBlocks();
+          syncMiniaturePreview();
+          showToast('👤 S-a încărcat „Versiunea Mea Salvata”!');
+        } catch (e) {}
+      };
+    }
+
+    const btnPresetMarketing = document.getElementById('btnPresetMarketing');
+    if (btnPresetMarketing) {
+      btnPresetMarketing.onclick = () => {
+        workingLayout = JSON.parse(JSON.stringify(MARKETING_LAYOUT));
+        renderLayoutBlocks();
+        syncMiniaturePreview();
+        showToast('🔥 S-a aplicat structura de Marketing Maxim (Hero → Portofoliu → Recenzii → Info → Pachete → FAQ → CTA)!', true);
       };
     }
 
