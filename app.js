@@ -1814,20 +1814,20 @@ function loadAdminOverrides() {
     if (projectsData.ribz) {
       projectsData.ribz.videoSrc = '';
       projectsData.ribz.videoPoster = '';
-      if (projectsData.ribz.inVideo === undefined) projectsData.ribz.inVideo = false;
-      if (projectsData.ribz.inCovers === undefined) projectsData.ribz.inCovers = true;
+      projectsData.ribz.inVideo = false;
+      projectsData.ribz.inCovers = true;
     }
     if (projectsData.silvika) {
       projectsData.silvika.videoSrc = '';
       projectsData.silvika.videoPoster = '';
-      if (projectsData.silvika.inVideo === undefined) projectsData.silvika.inVideo = false;
-      if (projectsData.silvika.inCovers === undefined) projectsData.silvika.inCovers = true;
+      projectsData.silvika.inVideo = false;
+      projectsData.silvika.inCovers = true;
     }
     if (projectsData.laureall) {
       projectsData.laureall.videoSrc = '';
       projectsData.laureall.videoPoster = '';
-      if (projectsData.laureall.inVideo === undefined) projectsData.laureall.inVideo = false;
-      if (projectsData.laureall.inCovers === undefined) projectsData.laureall.inCovers = true;
+      projectsData.laureall.inVideo = false;
+      projectsData.laureall.inCovers = true;
     }
     if (projectsData.moostaf) {
       projectsData.moostaf.videoSrc = 'assets/videos/video_moostaf.mp4';
