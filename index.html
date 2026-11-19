@@ -1125,62 +1125,73 @@
           </div>
         </div>
 
-        <!-- Media Stage / Canvas (Dreapta) -->
+        <!-- Media Showcase Board (Dreapta: Video stânga + Cover 3x3 dreapta, mai jos Bannere) -->
         <div class="project-media-col">
-          <!-- View switcher tabs: Video vs Cover vs Banners -->
-          <div class="project-view-tabs" id="projectViewTabs">
-            <button class="view-tab-btn active" id="tabViewVideo" type="button" style="display: none;">
-              <span class="tab-icon">▶</span>
-              <span data-i18n="project.tabVideo">Lyrics Video 4K</span>
-              <span class="tab-badge-promo tab-badge-video">MASTER</span>
-            </button>
-            <button class="view-tab-btn" id="tabViewCover" type="button">
-              <span class="tab-icon">💿</span>
-              <span data-i18n="project.tabCover">Cover Art 3000px</span>
-            </button>
-            <button class="view-tab-btn" id="tabViewBanner" type="button">
-              <span class="tab-icon">🎨</span>
-              <span data-i18n="project.tabBanner">Pachet Bannere & Promo</span>
-              <span class="tab-badge-promo">SUITE</span>
-            </button>
-          </div>
-
-          <div class="project-modal-media-wrap" id="projectMediaWrap">
-            <!-- Video Player Box with Custom Sleek UI -->
-            <div class="project-video-box" id="projectVideoBox" style="display: none;">
-              <video id="projectModalVideo" class="project-video-element" playsinline preload="none" poster="">
-                <source id="videoSource" src="" type="video/mp4">
-              </video>
-              <div class="video-play-overlay" id="videoPlayOverlay">
-                <button type="button" class="video-big-play-btn" id="bigPlayBtn" aria-label="Play video">
-                  <span class="big-play-icon">▶</span>
-                </button>
-                <div class="video-preview-tag">4K / 1080P LYRICS VIDEO MASTER</div>
-              </div>
-              <div class="video-custom-controls" id="videoCustomControls">
-                <button type="button" class="vctrl-btn" id="vctrlPlayPause" aria-label="Play/Pause">▶</button>
-                <div class="vctrl-time" id="vctrlTime">0:00 / 0:35</div>
-                <div class="vctrl-scrub-bar" id="vctrlScrubBar">
-                  <div class="vctrl-progress-fill" id="vctrlProgress"></div>
+          <!-- Top Row: Video (stânga) + Cover 3000x3000 (dreapta) -->
+          <div class="showcase-top-row" id="showcaseTopRow">
+            <!-- 1. Video Player Box -->
+            <div class="showcase-card showcase-video-card" id="showcaseVideoCard">
+              <div class="showcase-media-frame video-frame-ratio">
+                <video id="projectModalVideo" class="project-video-element" playsinline preload="none" poster="">
+                  <source id="videoSource" src="" type="video/mp4">
+                </video>
+                <div class="video-play-overlay" id="videoPlayOverlay">
+                  <button type="button" class="video-big-play-btn" id="bigPlayBtn" aria-label="Play video">
+                    <span class="big-play-icon">▶</span>
+                  </button>
+                  <div class="video-preview-tag">LYRICS VIDEO MASTER</div>
                 </div>
-                <button type="button" class="vctrl-btn" id="vctrlMute" aria-label="Mute/Unmute">🔊</button>
-                <button type="button" class="vctrl-btn" id="vctrlFullscreen" aria-label="Fullscreen">⛶</button>
+                <div class="video-custom-controls" id="videoCustomControls">
+                  <button type="button" class="vctrl-btn" id="vctrlPlayPause" aria-label="Play/Pause">▶</button>
+                  <div class="vctrl-time" id="vctrlTime">0:00 / 0:35</div>
+                  <div class="vctrl-scrub-bar" id="vctrlScrubBar">
+                    <div class="vctrl-progress-fill" id="vctrlProgress"></div>
+                  </div>
+                  <button type="button" class="vctrl-btn" id="vctrlMute" aria-label="Mute/Unmute">🔊</button>
+                  <button type="button" class="vctrl-btn" id="vctrlFullscreen" aria-label="Fullscreen">⛶</button>
+                </div>
+              </div>
+              <div class="showcase-label">
+                <span class="showcase-label-icon">▶</span>
+                <span class="showcase-label-title" id="showcaseVideoLabel" data-i18n="project.labelVideo">Lyrics Video 4K Master (16:9)</span>
               </div>
             </div>
 
-            <img id="projectImg" src="" alt="Project Preview" class="project-modal-img" loading="eager">
-            <img id="projectBannerImg" src="" alt="Banner Suite Preview" class="project-modal-banner-img" style="display: none;" loading="eager">
-            <a href="#" target="_blank" rel="noopener" class="media-zoom-btn" id="projectZoomBtn" title="Deschide originalul la rezoluție maximă">
-              <span data-i18n="project.zoomBtn">🔍 Original HD</span>
-            </a>
+            <!-- 2. Cover 3000x3000px Box -->
+            <div class="showcase-card showcase-cover-card" id="showcaseCoverCard">
+              <div class="showcase-media-frame cover-frame-ratio" id="coverFrameClick" title="Deschide originalul 3000x3000px">
+                <img id="projectImg" src="" alt="Cover Art 3000x3000" class="project-modal-img" loading="eager">
+                <a href="#" target="_blank" rel="noopener" class="showcase-zoom-chip" id="coverZoomBtn" title="Deschide originalul 3000x3000px">
+                  <span data-i18n="project.zoomCover">🔍 HD 3000px</span>
+                </a>
+              </div>
+              <div class="showcase-label">
+                <span class="showcase-label-icon">💿</span>
+                <span class="showcase-label-title" id="showcaseCoverLabel" data-i18n="project.labelCover">Streaming Cover (3000 × 3000 px)</span>
+              </div>
+            </div>
           </div>
 
-          <!-- Banner formats pill list (visible when banner tab is active) -->
-          <div class="banner-formats-badge-bar" id="bannerFormatsBar" style="display: none;">
-            <span class="fmt-pill">YouTube Cover 1920×1080</span>
-            <span class="fmt-pill">Cover Reels 1080×1920</span>
-            <span class="fmt-pill">YouTube Banner 2048×1152</span>
-            <span class="fmt-pill">VK / FB 1920×768</span>
+          <!-- Bottom Row: Promo Banner Suite (mai jos restu) -->
+          <div class="showcase-card showcase-banner-card" id="showcaseBannerCard">
+            <div class="showcase-media-frame banner-frame-ratio" id="bannerFrameClick" title="Deschide pachetul de banere la rezoluție maximă">
+              <img id="projectBannerImg" src="" alt="Banner Suite Preview" class="project-modal-banner-img" loading="eager">
+              <a href="#" target="_blank" rel="noopener" class="showcase-zoom-chip" id="bannerZoomBtn" title="Deschide pachetul de banere la rezoluție maximă">
+                <span data-i18n="project.zoomBanner">🔍 Banner Suite HD</span>
+              </a>
+            </div>
+            <div class="showcase-label showcase-banner-label">
+              <div class="label-left">
+                <span class="showcase-label-icon">🎨</span>
+                <span class="showcase-label-title" id="showcaseBannerLabel" data-i18n="project.labelBanner">Pachet Promo Bannere & Rețele Sociale</span>
+              </div>
+              <div class="banner-formats-badge-bar" id="bannerFormatsBar">
+                <span class="fmt-pill">YouTube Cover 1920×1080</span>
+                <span class="fmt-pill">Cover Reels 1080×1920</span>
+                <span class="fmt-pill">YouTube Banner 2048×1152</span>
+                <span class="fmt-pill">VK / FB 1920×768</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

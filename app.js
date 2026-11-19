@@ -78,6 +78,11 @@ const translations = {
     "project.tabCover": "Cover Art 3000px",
     "project.tabBanner": "Banner & Promo Suite",
     "project.zoomBtn": "🔍 Original HD",
+    "project.labelVideo": "Lyrics Video 4K Master (16:9)",
+    "project.labelCover": "Streaming Cover (3000 × 3000 px)",
+    "project.labelBanner": "Social Media & Promo Banner Suite",
+    "project.zoomCover": "🔍 HD 3000px",
+    "project.zoomBanner": "🔍 Banner Suite HD",
 
     "reviews.tag": "REVIEWS",
     "reviews.title": "What artists say",
@@ -203,6 +208,11 @@ const translations = {
     "project.tabCover": "Cover Art 3000px",
     "project.tabBanner": "Pachet Bannere & Promo",
     "project.zoomBtn": "🔍 Original HD",
+    "project.labelVideo": "Lyrics Video 4K Master (16:9)",
+    "project.labelCover": "Cover Streaming (3000 × 3000 px)",
+    "project.labelBanner": "Pachet Promo Bannere & Rețele Sociale",
+    "project.zoomCover": "🔍 HD 3000px",
+    "project.zoomBanner": "🔍 Banner Suite HD",
 
     "reviews.tag": "RECENZII",
     "reviews.title": "Ce spun artiștii",
@@ -328,6 +338,11 @@ const translations = {
     "project.tabCover": "Обложка 3000px",
     "project.tabBanner": "Пакет баннеров и промо",
     "project.zoomBtn": "🔍 Оригинал HD",
+    "project.labelVideo": "Lyrics Video 4K Master (16:9)",
+    "project.labelCover": "Обложка для стриминга (3000 × 3000 px)",
+    "project.labelBanner": "Пакет промо-баннеров для соцсетей",
+    "project.zoomCover": "🔍 HD 3000px",
+    "project.zoomBanner": "🔍 Баннеры HD",
 
     "reviews.tag": "ОТЗЫВЫ",
     "reviews.title": "Что говорят артисты",
@@ -1091,30 +1106,8 @@ function openProjectModal(projectId) {
 
   const pillEl = document.getElementById('projectPill');
   const titleEl = document.getElementById('projectTitle');
-  const imgEl = document.getElementById('projectImg');
-  const bannerImgEl = document.getElementById('projectBannerImg');
-  const mediaWrap = document.getElementById('projectMediaWrap');
-  const viewTabs = document.getElementById('projectViewTabs');
-  const tabVideo = document.getElementById('tabViewVideo');
-  const tabCover = document.getElementById('tabViewCover');
-  const tabBanner = document.getElementById('tabViewBanner');
-  const zoomBtn = document.getElementById('projectZoomBtn');
-  const bannerBar = document.getElementById('bannerFormatsBar');
   const listEl = document.getElementById('projectFeaturesList');
   const orderBtn = document.getElementById('projectOrderBtn');
-
-  // Video Player Elements
-  const videoBox = document.getElementById('projectVideoBox');
-  const videoEl = document.getElementById('projectModalVideo');
-  const videoSource = document.getElementById('videoSource');
-  const playOverlay = document.getElementById('videoPlayOverlay');
-  const bigPlayBtn = document.getElementById('bigPlayBtn');
-  const vctrlPlayPause = document.getElementById('vctrlPlayPause');
-  const vctrlTime = document.getElementById('vctrlTime');
-  const vctrlProgress = document.getElementById('vctrlProgress');
-  const vctrlScrubBar = document.getElementById('vctrlScrubBar');
-  const vctrlMute = document.getElementById('vctrlMute');
-  const vctrlFullscreen = document.getElementById('vctrlFullscreen');
 
   const lang = currentLang || 'en';
 
@@ -1133,83 +1126,39 @@ function openProjectModal(projectId) {
 
   if (titleEl) titleEl.textContent = project.title;
 
-  // Set Cover Image
-  if (imgEl) {
-    imgEl.src = project.img;
-    imgEl.alt = project.title;
-  }
+  // Multi-Media Showcase Board Elements
+  const showcaseTopRow = document.getElementById('showcaseTopRow');
+  const showcaseVideoCard = document.getElementById('showcaseVideoCard');
+  const showcaseCoverCard = document.getElementById('showcaseCoverCard');
+  const showcaseBannerCard = document.getElementById('showcaseBannerCard');
 
-  // Set Banner Image
-  if (bannerImgEl && project.bannerImg) {
-    bannerImgEl.src = project.bannerImg;
-    bannerImgEl.alt = `${project.title} - Social Media Banner Suite`;
-  }
+  const imgEl = document.getElementById('projectImg');
+  const bannerImgEl = document.getElementById('projectBannerImg');
+  const coverZoomBtn = document.getElementById('coverZoomBtn');
+  const bannerZoomBtn = document.getElementById('bannerZoomBtn');
+  const coverFrameClick = document.getElementById('coverFrameClick');
+  const bannerFrameClick = document.getElementById('bannerFrameClick');
 
-  // Helper function to switch tabs safely
-  function switchToVideo() {
-    if (tabVideo) tabVideo.classList.add('active');
-    if (tabCover) tabCover.classList.remove('active');
-    if (tabBanner) tabBanner.classList.remove('active');
-    if (videoBox) videoBox.style.display = 'block';
-    if (imgEl) imgEl.style.display = 'none';
-    if (bannerImgEl) bannerImgEl.style.display = 'none';
-    if (bannerBar) bannerBar.style.display = 'none';
-    if (mediaWrap) {
-      mediaWrap.classList.add('view-video-active');
-      mediaWrap.classList.remove('view-cover-active');
-      mediaWrap.classList.remove('view-banner-active');
-    }
-    if (zoomBtn) zoomBtn.style.display = 'none';
-  }
+  // Video Player Elements
+  const videoEl = document.getElementById('projectModalVideo');
+  const videoSource = document.getElementById('videoSource');
+  const playOverlay = document.getElementById('videoPlayOverlay');
+  const bigPlayBtn = document.getElementById('bigPlayBtn');
+  const vctrlPlayPause = document.getElementById('vctrlPlayPause');
+  const vctrlTime = document.getElementById('vctrlTime');
+  const vctrlProgress = document.getElementById('vctrlProgress');
+  const vctrlScrubBar = document.getElementById('vctrlScrubBar');
+  const vctrlMute = document.getElementById('vctrlMute');
+  const vctrlFullscreen = document.getElementById('vctrlFullscreen');
+  const videoBox = (showcaseVideoCard && showcaseVideoCard.querySelector('.showcase-media-frame')) || document.getElementById('projectVideoBox') || showcaseVideoCard;
 
-  function switchToCover() {
-    if (videoEl && !videoEl.paused) videoEl.pause();
-    if (tabCover) tabCover.classList.add('active');
-    if (tabVideo) tabVideo.classList.remove('active');
-    if (tabBanner) tabBanner.classList.remove('active');
-    if (videoBox) videoBox.style.display = 'none';
-    if (imgEl) imgEl.style.display = 'block';
-    if (bannerImgEl) bannerImgEl.style.display = 'none';
-    if (bannerBar) bannerBar.style.display = 'none';
-    if (mediaWrap) {
-      mediaWrap.classList.add('view-cover-active');
-      mediaWrap.classList.remove('view-video-active');
-      mediaWrap.classList.remove('view-banner-active');
-    }
-    if (zoomBtn) {
-      zoomBtn.style.display = 'inline-flex';
-      zoomBtn.href = project.img;
-    }
-  }
+  const hasVideo = !!project.videoSrc;
+  const hasCover = !!(project.img || project.thumb);
+  const hasBanner = !!project.bannerImg;
 
-  function switchToBanner() {
-    if (videoEl && !videoEl.paused) videoEl.pause();
-    if (tabBanner) tabBanner.classList.add('active');
-    if (tabVideo) tabVideo.classList.remove('active');
-    if (tabCover) tabCover.classList.remove('active');
-    if (videoBox) videoBox.style.display = 'none';
-    if (imgEl) imgEl.style.display = 'none';
-    if (bannerImgEl) bannerImgEl.style.display = 'block';
-    if (bannerBar) bannerBar.style.display = 'flex';
-    if (mediaWrap) {
-      mediaWrap.classList.add('view-banner-active');
-      mediaWrap.classList.remove('view-video-active');
-      mediaWrap.classList.remove('view-cover-active');
-    }
-    if (zoomBtn && project.bannerImg) {
-      zoomBtn.style.display = 'inline-flex';
-      zoomBtn.href = project.bannerImg;
-    }
-  }
-
-  // Apply User Strategy:
-  // IF project has video: VIDEO is primary (default), followed by Cover 3000x3000px, followed by Banners
-  // IF project has NO video: Cover 3000x3000px is primary (default)
-  if (tabVideo) tabVideo.style.display = project.videoSrc ? 'inline-flex' : 'none';
-  if (tabCover) tabCover.style.display = (project.img || project.thumb) ? 'inline-flex' : 'none';
-  if (tabBanner) tabBanner.style.display = project.bannerImg ? 'inline-flex' : 'none';
-
-  if (project.videoSrc) {
+  // 1. VIDEO SETUP (stânga pe rândul de sus)
+  if (hasVideo) {
+    if (showcaseVideoCard) showcaseVideoCard.style.display = 'flex';
     if (videoSource) videoSource.src = project.videoSrc;
     if (videoEl) {
       videoEl.poster = project.videoPoster || '';
@@ -1219,17 +1168,57 @@ function openProjectModal(projectId) {
     if (vctrlPlayPause) vctrlPlayPause.textContent = '▶';
     if (vctrlProgress) vctrlProgress.style.width = '0%';
     if (vctrlTime) vctrlTime.textContent = '0:00 / 0:35';
-    switchToVideo();
-  } else if (project.img || project.thumb) {
-    switchToCover();
-  } else if (project.bannerImg) {
-    switchToBanner();
+  } else {
+    if (showcaseVideoCard) showcaseVideoCard.style.display = 'none';
+    if (videoEl && !videoEl.paused) videoEl.pause();
   }
 
-  // Wire Tab Clicks
-  if (tabVideo) tabVideo.onclick = (e) => { e.preventDefault(); switchToVideo(); };
-  if (tabCover) tabCover.onclick = (e) => { e.preventDefault(); switchToCover(); };
-  if (tabBanner) tabBanner.onclick = (e) => { e.preventDefault(); switchToBanner(); };
+  // 2. COVER 3000x3000px SETUP (dreapta pe rândul de sus)
+  if (hasCover) {
+    if (showcaseCoverCard) showcaseCoverCard.style.display = 'flex';
+    if (imgEl) {
+      imgEl.src = project.img;
+      imgEl.alt = `${project.title} - Cover Artwork`;
+    }
+    if (coverZoomBtn) coverZoomBtn.href = project.img;
+    if (coverFrameClick) {
+      coverFrameClick.onclick = (e) => {
+        if (e.target !== coverZoomBtn && !coverZoomBtn.contains(e.target)) {
+          window.open(project.img, '_blank');
+        }
+      };
+    }
+  } else {
+    if (showcaseCoverCard) showcaseCoverCard.style.display = 'none';
+  }
+
+  // Ajustare automată a grilei superioare (single item dacă lipsește video sau cover)
+  if (showcaseTopRow) {
+    if (!hasVideo || !hasCover) {
+      showcaseTopRow.classList.add('single-item');
+    } else {
+      showcaseTopRow.classList.remove('single-item');
+    }
+  }
+
+  // 3. PROMO BANNER SUITE SETUP (mai jos restu)
+  if (hasBanner) {
+    if (showcaseBannerCard) showcaseBannerCard.style.display = 'flex';
+    if (bannerImgEl) {
+      bannerImgEl.src = project.bannerImg;
+      bannerImgEl.alt = `${project.title} - Promo Banner Suite`;
+    }
+    if (bannerZoomBtn) bannerZoomBtn.href = project.bannerImg;
+    if (bannerFrameClick) {
+      bannerFrameClick.onclick = (e) => {
+        if (e.target !== bannerZoomBtn && !bannerZoomBtn.contains(e.target)) {
+          window.open(project.bannerImg, '_blank');
+        }
+      };
+    }
+  } else {
+    if (showcaseBannerCard) showcaseBannerCard.style.display = 'none';
+  }
 
   // Video Player Controls & Events
   if (videoEl && playOverlay) {
