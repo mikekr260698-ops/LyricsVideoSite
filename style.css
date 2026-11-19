@@ -1361,9 +1361,11 @@ body {
    Project Details Modal & Banner Showcase
    ========================================================================== */
 
-.modal-dialog-project {
-  max-width: 1260px;
-  width: 94vw;
+#projectModal .modal-dialog,
+.modal-dialog.modal-dialog-project {
+  max-width: 1180px;
+  width: 92vw;
+  padding: 32px;
 }
 
 .project-modal-content {
@@ -2061,6 +2063,14 @@ body {
   position: relative;
   transform: translateY(20px);
   transition: transform var(--transition-normal);
+}
+
+/* Project Modal: Exactly 2x wider (~1180px) so Left Info and Right Media Stage fit side-by-side */
+.modal-dialog.modal-dialog-project,
+#projectModal .modal-dialog {
+  max-width: 1180px;
+  width: 92vw;
+  padding: 32px;
 }
 
 .modal-dialog-sm {
