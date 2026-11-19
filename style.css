@@ -838,6 +838,23 @@ body {
   padding: 12px;
   text-align: center;
   margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.player-screen.sliding-up .lyrics-line-faded,
+.player-screen.sliding-up .lyrics-line-active {
+  animation: lyricsCarouselUp 0.55s ease-in forwards;
+}
+
+@keyframes lyricsCarouselUp {
+  0% {
+    opacity: 0.25;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .lyrics-line-faded {

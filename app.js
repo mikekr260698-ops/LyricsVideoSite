@@ -1637,7 +1637,7 @@ function setupOrderForm() {
 // ==========================================================================
 const demoMarketingLines = {
   ro: [
-    "Peste 1 000+ lansări realizate anual",
+    "Peste 100+ proiecte pe an",
     "CALITATE 4K & VITEZĂ RECORD",
     "Gata în 3–7 zile pentru Spotify & YouTube",
     "Design unic creat 100% pe sound-ul tău",
@@ -1645,7 +1645,7 @@ const demoMarketingLines = {
     "Vizualul care îți ridică instant piesa"
   ],
   ru: [
-    "Более 1 000+ релизов в год",
+    "Более 100+ проектов в год",
     "КАЧЕСТВО 4K И МАКСИМАЛЬНАЯ СКОРОСТЬ",
     "Готово за 3–7 дней для Spotify и YouTube",
     "Уникальный стиль точно под твой трек",
@@ -1653,7 +1653,7 @@ const demoMarketingLines = {
     "Визуал, который выделяет твой релиз"
   ],
   en: [
-    "Over 1,000+ releases delivered yearly",
+    "Over 100+ projects every year",
     "4K CINEMA QUALITY & FAST TURNAROUND",
     "Ready in 3–7 days for Spotify & YouTube",
     "Custom visuals tailored to your sound",
@@ -1664,7 +1664,8 @@ const demoMarketingLines = {
 
 let demoLineIndex = 1;
 
-function updateDemoLyricsDisplay() {
+function updateDemoLyricsDisplay(animate = false) {
+  const screenEl = document.getElementById('demoPlayerScreen') || document.querySelector('.player-screen');
   const prevEl = document.getElementById('demoLinePrev');
   const activeEl = document.getElementById('demoLineActive');
   const nextEl = document.getElementById('demoLineNext');
@@ -1681,6 +1682,12 @@ function updateDemoLyricsDisplay() {
   prevEl.textContent = lines[prevIdx];
   activeEl.textContent = lines[currIdx];
   nextEl.textContent = lines[nextIdx];
+
+  if (animate && screenEl) {
+    screenEl.classList.remove('sliding-up');
+    void screenEl.offsetWidth; // trigger reflow to replay ease-in animation
+    screenEl.classList.add('sliding-up');
+  }
 }
 
 function setupDemoPlayer() {
@@ -1690,33 +1697,41 @@ function setupDemoPlayer() {
   const timer = document.getElementById('demoTimer');
   if (!playBtn) return;
 
-  updateDemoLyricsDisplay();
+  updateDemoLyricsDisplay(false);
 
-  let isPlaying = false;
+  let isPlaying = true;
   let currentSec = 42;
   const totalSec = 156;
   let interval = null;
   let tickCount = 0;
 
+  const startPlayback = () => {
+    clearInterval(interval);
+    playIcon.textContent = '❚❚';
+    interval = setInterval(() => {
+      currentSec++;
+      tickCount++;
+      if (currentSec > totalSec) currentSec = 0;
+      const pct = (currentSec / totalSec) * 100;
+      progress.style.width = `${pct}%`;
+      const mins = Math.floor(currentSec / 60);
+      const secs = String(currentSec % 60).padStart(2, '0');
+      timer.textContent = `${mins}:${secs} / 2:36`;
+
+      if (tickCount % 2 === 0) {
+        demoLineIndex = (demoLineIndex + 1) % (demoMarketingLines[currentLang || 'ro'].length);
+        updateDemoLyricsDisplay(true);
+      }
+    }, 1000);
+  };
+
+  // Start playing immediately on page entry
+  startPlayback();
+
   playBtn.addEventListener('click', () => {
     isPlaying = !isPlaying;
     if (isPlaying) {
-      playIcon.textContent = '❚❚';
-      interval = setInterval(() => {
-        currentSec++;
-        tickCount++;
-        if (currentSec > totalSec) currentSec = 0;
-        const pct = (currentSec / totalSec) * 100;
-        progress.style.width = `${pct}%`;
-        const mins = Math.floor(currentSec / 60);
-        const secs = String(currentSec % 60).padStart(2, '0');
-        timer.textContent = `${mins}:${secs} / 2:36`;
-
-        if (tickCount % 2 === 0) {
-          demoLineIndex = (demoLineIndex + 1) % (demoMarketingLines[currentLang || 'ro'].length);
-          updateDemoLyricsDisplay();
-        }
-      }, 1000);
+      startPlayback();
     } else {
       playIcon.textContent = '▶';
       clearInterval(interval);
