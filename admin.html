@@ -2950,6 +2950,43 @@
           console.warn('Layout deploy warning:', layoutErr);
         }
 
+        // Also deploy site_templates.json (saved Constructor & Theme templates)
+        try {
+          let tplSha = null;
+          const getTplRes = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/site_templates.json`, {
+            headers: {
+              'Authorization': `token ${token}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (getTplRes.ok) {
+            const tplInfo = await getTplRes.json();
+            tplSha = tplInfo.sha;
+          }
+          const templatesPayload = {
+            layoutTemplates: getLayoutTemplates(),
+            themeTemplates: getThemeTemplates()
+          };
+          const putTplBody = {
+            message: 'Deploy saved Constructor & Theme templates from Admin Panel',
+            content: utf8ToBase64(JSON.stringify(templatesPayload, null, 2)),
+            branch: 'main'
+          };
+          if (tplSha) putTplBody.sha = tplSha;
+
+          await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/site_templates.json`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `token ${token}`,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(putTplBody)
+          });
+        } catch (tplErr) {
+          console.warn('Templates deploy warning:', tplErr);
+        }
+
         localStorage.setItem('artist_visuals_custom_projects', jsonContent);
         document.querySelectorAll('.project-card.modified').forEach(card => card.classList.remove('modified'));
         if (deployModal) deployModal.style.display = 'none';
@@ -3814,8 +3851,36 @@
       };
     }
 
+    async function syncCloudTemplates() {
+      try {
+        const res = await fetch('site_templates.json?t=' + Date.now());
+        if (!res.ok) return;
+        const cloud = await res.json();
+
+        if (Array.isArray(cloud.layoutTemplates) && cloud.layoutTemplates.length > 0) {
+          const localL = getLayoutTemplates();
+          const mapL = new Map();
+          localL.forEach(x => mapL.set(x.id, x));
+          cloud.layoutTemplates.forEach(x => { if (!mapL.has(x.id)) mapL.set(x.id, x); });
+          localStorage.setItem('av_layout_templates', JSON.stringify(Array.from(mapL.values())));
+        }
+
+        if (Array.isArray(cloud.themeTemplates) && cloud.themeTemplates.length > 0) {
+          const localT = getThemeTemplates();
+          const mapT = new Map();
+          localT.forEach(x => mapT.set(x.id, x));
+          cloud.themeTemplates.forEach(x => { if (!mapT.has(x.id)) mapT.set(x.id, x); });
+          localStorage.setItem('av_theme_templates', JSON.stringify(Array.from(mapT.values())));
+        }
+
+        renderLayoutTemplates();
+        renderThemeTemplates();
+      } catch (e) {}
+    }
+
     renderLayoutTemplates();
     renderThemeTemplates();
+    syncCloudTemplates();
 
     loadWorkingLayout();
     loadWorkingTheme();
