@@ -2001,6 +2001,24 @@ document.addEventListener('DOMContentLoaded', () => {
     oldPrices.forEach(el => el.classList.add('struck'));
   }
 
+  // Staggered overshoot + glow reveal for "Ce este inclus in lucru?" checkmarks
+  const includedBox = document.querySelector('.included-box');
+  if (includedBox && 'IntersectionObserver' in window) {
+    const includedObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('revealed');
+          }, 150);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    includedObserver.observe(includedBox);
+  } else if (includedBox) {
+    includedBox.classList.add('revealed');
+  }
+
   // Set copyright year
   const yearEl = document.getElementById('currentYear');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
